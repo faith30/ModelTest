@@ -1,12 +1,14 @@
 # ModelTest
 
-Lyra Starter Game 官方 C++ 工程，来自 Epic Games 的 Unreal Engine **5.8.3** 发布版本。
+Lyra Starter Game 官方 C++ 工程：使用 Unreal Engine **5.8.3** 发布版源码，并包含通过 Fab / Epic Games Launcher 获取的 **5.8 系列完整 Content 资源**。
 
 ## 当前内容
 
 - 包含上游 `Samples/Games/Lyra` 的完整 Git 文件：`Source`、`Plugins`、`Config`、`Build`、`Platforms` 和 `Lyra.uproject`。
 - 包含 354 个 `.cpp`、353 个 `.h`、19 个 `.Build.cs`、10 个 `.Target.cs` 和 20 个 `.uplugin`。
-- **尚未包含 Content 资源，当前不能直接运行游戏。** Epic 官方 Git 仓库不提供地图、蓝图、角色、动画等 `.uasset` / `.umap` 文件；这些资源需要另外从 Fab / Epic Games Launcher 获取。
+- 包含官方资源包全部 11 个 `Content` 目录，共 8,816 个文件、2,498,397,660 字节；其中有 8,667 个 `.uasset` 和 22 个 `.umap`，其余为本地化、字体及附带许可等文件。
+- `.uasset`、`.umap` 等二进制资产使用 Git LFS。克隆后需要拉取 LFS 文件。
+- 引擎本体、预编译二进制、Intermediate、Saved 和缓存不纳入版本管理。
 - 未执行编译、编辑器启动或运行测试。
 
 ## 上游来源
@@ -18,14 +20,20 @@ Lyra Starter Game 官方 C++ 工程，来自 Epic Games 的 Unreal Engine **5.8.
 - 导入日期：2026-10-17
 - 原始说明：[README-Lyra-Upstream.md](README-Lyra-Upstream.md)
 - 许可：[LICENSE.md](LICENSE.md) 和 [Unreal Engine EULA](https://www.unrealengine.com/eula/unreal)
+- 资源包：[Fab Lyra Starter Game](https://www.fab.com/listings/93faede1-4434-47c0-85f1-bf27c0820ad0)，通过 Launcher 选择 `5.8`，下载于 2026-10-17。
 
-除将上游 README 保存为 `README-Lyra-Upstream.md` 外，Lyra 工程文件按原样导入。此仓库不包含 Unreal Engine 引擎源码。
+保留 Git 上游的 C++ 源码与配置；上游 README 保存为 `README-Lyra-Upstream.md`，`Lyra.uproject` 的 `EngineAssociation` 设置为 `5.8`。资源包内的构建版本标记为 5.8.0，未用它覆盖 5.8.3 源码或复制其预编译二进制。
 
-## 补齐本地可运行项目
+## 使用
 
-1. 安装与源码匹配的 Unreal Engine 5.8.3 和对应 C++ 开发工具。
-2. 登录 Epic 账号，在 [Fab 的 Lyra Starter Game 页面](https://www.fab.com/listings/93faede1-4434-47c0-85f1-bf27c0820ad0)领取项目，并通过 Epic Games Launcher 创建匹配版本的 Lyra 示例。
-3. 将下载项目中的主 `Content` 文件夹，以及插件等子目录中的所有 `Content` 文件夹，按原有相对路径复制到此项目。
-4. 将 `Lyra.uproject` 关联到对应引擎版本，生成项目文件后构建 `LyraEditor`。
+1. 安装 Unreal Engine 5.8.3、对应 C++ 开发工具和 Git LFS。
+2. 克隆仓库后运行 `git lfs install` 和 `git lfs pull`。
+3. 将 `Lyra.uproject` 关联到对应引擎安装，生成项目文件并构建 `LyraEditor`，再打开项目。
 
-操作步骤以 [Epic 官方 Lyra 文档](https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine) 为准。下载资源的共享与分发须遵守其附带许可。
+资源已从官方包按原有相对路径合入，包含主项目以及所有插件中的 Content。全部 8,816 个资源文件与官方下载安装包的 SHA256 一致，无缺失或多余文件；已确认启动地图、GameMode、GameInstance、DefaultGameData 和默认 PawnData 等关键资源文件存在。文件完整性检查不代表已通过编译或运行测试。
+
+## 资源许可
+
+Git 源码沿用 Unreal Engine EULA。Fab 资源按领取时的标准许可证及其 UE-Only 标记使用，另保留资源包中的第三方许可。完整原始资源通过私有仓库用于同项目协作；公开源码版本可让使用者自行从 Fab 获取 Content。
+
+参阅 [Fab 标准许可](https://www.fab.com/eula) 和 [Epic 官方 Lyra 文档](https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine)。
