@@ -9,7 +9,7 @@ Lyra Starter Game 官方 C++ 工程：使用 Unreal Engine **5.8.3** 发布版�
 - 包含官方资源包全部 11 个 `Content` 目录，共 8,816 个文件、2,498,397,660 字节；其中有 8,667 个 `.uasset` 和 22 个 `.umap`，其余为本地化、字体及附带许可等文件。
 - `.uasset`、`.umap` 等二进制资产使用 Git LFS。克隆后需要拉取 LFS 文件。
 - 引擎本体、预编译二进制、Intermediate、Saved 和缓存不纳入版本管理。
-- 未执行编译、编辑器启动或运行测试。
+- 已使用 UE 5.8.3 源码引擎通过 `LyraEditor` 和 `ShaderCompileWorker` 的 Win64 Development 编译；未执行编辑器启动、PIE 或打包测试。
 
 ## 上游来源
 
@@ -30,7 +30,11 @@ Lyra Starter Game 官方 C++ 工程：使用 Unreal Engine **5.8.3** 发布版�
 2. 克隆仓库后运行 `git lfs install` 和 `git lfs pull`。
 3. 将 `Lyra.uproject` 关联到对应引擎安装，生成项目文件并构建 `LyraEditor`，再打开项目。
 
-资源已从官方包按原有相对路径合入，包含主项目以及所有插件中的 Content。全部 8,816 个资源文件与官方下载安装包的 SHA256 一致，无缺失或多余文件；已确认启动地图、GameMode、GameInstance、DefaultGameData 和默认 PawnData 等关键资源文件存在。文件完整性检查不代表已通过编译或运行测试。
+使用源码引擎时，先将引擎同步到上述 5.8.3 发布提交并运行 `Setup.bat`，完成 VC++ 和 GameInput 运行库安装，再生成工程文件。项目使用 `BuildSettingsVersion.V7`，UE 5.7 的构建工具无法解析该配置。
+
+2026-10-17 构建验证：使用 MSVC 14.44.35222、Windows SDK 10.0.22621.0 和引擎自带 .NET SDK 10.0.203，工程文件生成、`LyraEditor Win64 Development`（4,359 项任务）及 `ShaderCompileWorker Win64 Development`（281 项任务）全部成功。编辑器和 Lyra DLL 的产物版本均为 5.8.3。
+
+资源已从官方包按原有相对路径合入，包含主项目以及所有插件中的 Content。全部 8,816 个资源文件与官方下载安装包的 SHA256 一致，无缺失或多余文件；已确认启动地图、GameMode、GameInstance、DefaultGameData 和默认 PawnData 等关键资源文件存在。资源完整性和 C++ 编译已验证，资产加载、PIE 及打包运行尚未验证。
 
 ## 资源许可
 

@@ -8,6 +8,9 @@ Saved/
 .vs/
 .idea/
 *.sln
+*.slnx
+/.vsconfig
+/Build/Scripts/Lyra.Automation.csproj.props
 *.suo
 *.sdf
 *.opensdf
