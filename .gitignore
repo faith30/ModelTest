@@ -1,0 +1,25 @@
+# Unreal-generated files, including generated files inside plugins.
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Local IDE state and generated solutions.
+.vs/
+.idea/
+*.sln
+*.slnx
+/.vsconfig
+/Build/Scripts/Lyra.Automation.csproj.props
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+# Local platform metadata.
+.DS_Store
+Thumbs.db

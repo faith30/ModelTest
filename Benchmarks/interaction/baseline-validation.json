@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "feature": "interaction",
+  "state": "stripped_starter",
+  "engine": "5.8.3",
+  "source_reference_commit": "6527fa085dd5b0ae5317b158589e5bbb75a8c835",
+  "source_files_stripped": 8,
+  "assets_stripped": 13,
+  "preparation": "UE native graph editing, data editing, Blueprint compilation and package saves. Compatible package paths and reflected interfaces retained.",
+  "project_modules_build": {
+    "result": "passed",
+    "exit_code": 0,
+    "target": "LyraEditor Win64 Development",
+    "modules": [
+      "LyraGame",
+      "LyraEditor",
+      "ShooterCoreRuntime"
+    ],
+    "final_pass_actions": 0,
+    "log_sha256": "0121d9da6462e946f51daf83c14d5f607b12dda8435d8bc0ffd77a4643f01e27"
+  },
+  "full_target_build": {
+    "result": "blocked_by_existing_engine_dll_lock",
+    "note": "Shared UnrealEditor-NetCore.dll was in use by the existing editor/debugger during the full builds. User processes were left running; affected project modules compiled and linked successfully."
+  },
+  "asset_readback": {
+    "result": "passed",
+    "separate_process": true,
+    "uses_rebuilt_branch_project_modules": true,
+    "assertions_passed": 69,
+    "shell_blueprints_compiled": 10,
+    "errors": []
+  },
+  "gameplay_validation": {
+    "PIE": "not_run",
+    "multiplayer": "not_run",
+    "packaging": "not_run"
+  },
+  "files": [
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Input/Abilities/AbilitySet_InventoryTest.uasset",
+      "bytes": 2537,
+      "sha256": "04cd07f1b85db95df85433f18a447ae3ba68176354ae178bb740b9dbbe12dc5a"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Input/Abilities/GA_Interact.uasset",
+      "bytes": 14163,
+      "sha256": "01efc218e95286b95e4eb2d76d10522d81ae60e48c29bef5dff75a5a0533721d"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Input/Abilities/GA_ToggleInventory.uasset",
+      "bytes": 6675,
+      "sha256": "de0a5a74f052b17fb9041e4054b25cb0e0f5fa76f03b6c0bd5645f3707fba25b"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Input/Actions/InputData_InventoryTest.uasset",
+      "bytes": 6030,
+      "sha256": "ff8d395550dfcf113dbf8d57e239af3335667dd676a5450e6d65b002955b87b4"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Input/Mappings/IMC_InventoryTest.uasset",
+      "bytes": 4955,
+      "sha256": "b3c0a57dd1e4b486185c92c9d4f0935e096dc72aa44303b42779ce10d64d4531"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Interact/GA_Interaction_Collect.uasset",
+      "bytes": 10387,
+      "sha256": "a3f6129d0cd5ac4bd3f11001a4196dc2592bf319e3e03c349b5417efa1d44f07"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/Items/B_InteractableRock.uasset",
+      "bytes": 21160,
+      "sha256": "f8b3398f9b8fc58ba3b1fc32cc8b4b852d452a950429fa46dc9c2bf2f38a1356"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/UserInterface/W_InteractionPrompt.uasset",
+      "bytes": 20873,
+      "sha256": "b5082fb197fdf3968eb2c83dbe986494fbf10c3a56203f7995e863f0ac1ffa68"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/UserInterface/W_InventoryGrid.uasset",
+      "bytes": 13818,
+      "sha256": "026e8f8142239e99bc69b29f2cf5b07c571629373195f4c2366227cefdaef8b2"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/UserInterface/W_InventoryScreen.uasset",
+      "bytes": 22323,
+      "sha256": "eedf7c5364f7558667434ba50eb1c212a3cbfc90109b905cd651fb3ad4f792be"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/UserInterface/W_InventoryTile.uasset",
+      "bytes": 22276,
+      "sha256": "b1338f06b673c0736baad1102ff28a96c75c2ebc739fdd553126d78406aa46c1"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/UserInterface/W_ItemAcquiredList.uasset",
+      "bytes": 24737,
+      "sha256": "4fbd41ddcbf5810df809e76088c3615665327a95bbfd1bde5d13fb727d3a0a0a"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterExplorer/Content/UserInterface/W_ItemAcquiredToastRow.uasset",
+      "bytes": 41880,
+      "sha256": "b248ff50014671eab2c4713991593334885954b15f7c707f4dda1b79872dd685"
+    }
+  ]
+}

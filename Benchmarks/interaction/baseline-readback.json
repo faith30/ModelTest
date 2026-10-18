@@ -1,0 +1,402 @@
+{
+  "feature": "interaction",
+  "kind": "stripped-baseline-readback",
+  "blueprints": [
+    {
+      "path": "/ShooterExplorer/Input/Abilities/GA_Interact",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 2
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/Input/Abilities/GA_ToggleInventory",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/Interact/GA_Interaction_Collect",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/Items/B_InteractableRock",
+      "graphs": [
+        {
+          "name": "UserConstructionScript",
+          "signature_nodes": 1
+        },
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/UserInterface/W_InteractionPrompt",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/UserInterface/W_InventoryScreen",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/UserInterface/W_InventoryGrid",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/UserInterface/W_InventoryTile",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/UserInterface/W_ItemAcquiredList",
+      "graphs": [
+        {
+          "name": "UpdateDisplayVisibility",
+          "signature_nodes": 1
+        },
+        {
+          "name": "EventGraph",
+          "signature_nodes": 1
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterExplorer/UserInterface/W_ItemAcquiredToastRow",
+      "graphs": [
+        {
+          "name": "SetIcon",
+          "signature_nodes": 1
+        },
+        {
+          "name": "EventGraph",
+          "signature_nodes": 1
+        },
+        {
+          "name": "OnToastExpired",
+          "signature_nodes": 1
+        }
+      ],
+      "compile_succeeded": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "load /ShooterExplorer/Input/Abilities/GA_Interact",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/Input/Abilities/GA_Interact:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/Input/Abilities/GA_Interact:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/Input/Abilities/GA_Interact",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Input/Abilities/GA_ToggleInventory",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/Input/Abilities/GA_ToggleInventory:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/Input/Abilities/GA_ToggleInventory:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/Input/Abilities/GA_ToggleInventory",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Interact/GA_Interaction_Collect",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/Interact/GA_Interaction_Collect:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/Interact/GA_Interaction_Collect:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/Interact/GA_Interaction_Collect",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Items/B_InteractableRock",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/Items/B_InteractableRock:UserConstructionScript",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/Items/B_InteractableRock:UserConstructionScript",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/Items/B_InteractableRock:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/Items/B_InteractableRock:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/Items/B_InteractableRock",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/UserInterface/W_InteractionPrompt",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_InteractionPrompt:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_InteractionPrompt:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/UserInterface/W_InteractionPrompt",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/UserInterface/W_InventoryScreen",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_InventoryScreen:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_InventoryScreen:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/UserInterface/W_InventoryScreen",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/UserInterface/W_InventoryGrid",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_InventoryGrid:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_InventoryGrid:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/UserInterface/W_InventoryGrid",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/UserInterface/W_InventoryTile",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_InventoryTile:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_InventoryTile:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/UserInterface/W_InventoryTile",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/UserInterface/W_ItemAcquiredList",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_ItemAcquiredList:UpdateDisplayVisibility",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_ItemAcquiredList:UpdateDisplayVisibility",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_ItemAcquiredList:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_ItemAcquiredList:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/UserInterface/W_ItemAcquiredList",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow:SetIcon",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow:SetIcon",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow:OnToastExpired",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow:OnToastExpired",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterExplorer/UserInterface/W_ItemAcquiredToastRow",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Input/Abilities/GA_Interact",
+      "passed": true
+    },
+    {
+      "name": "no default prompt",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Input/Abilities/GA_ToggleInventory",
+      "passed": true
+    },
+    {
+      "name": "no inventory widget class",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Items/B_InteractableRock",
+      "passed": true
+    },
+    {
+      "name": "no collect ability",
+      "passed": true
+    },
+    {
+      "name": "no collect prompt",
+      "passed": true
+    },
+    {
+      "name": "empty pickup templates",
+      "passed": true
+    },
+    {
+      "name": "empty pickup instances",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Input/Abilities/AbilitySet_InventoryTest",
+      "passed": true
+    },
+    {
+      "name": "feature abilities removed; other abilities retained",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Input/Actions/InputData_InventoryTest",
+      "passed": true
+    },
+    {
+      "name": "feature input tags removed; other actions retained",
+      "passed": true
+    },
+    {
+      "name": "native movement input retained",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Input/Mappings/IMC_InventoryTest",
+      "passed": true
+    },
+    {
+      "name": "feature keys removed; other keys retained",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/System/Experiences/B_TestInventoryExperience",
+      "passed": true
+    },
+    {
+      "name": "shared blueprint compiles /ShooterExplorer/System/Experiences/B_TestInventoryExperience",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/System/Experiences/LAS_InventoryTest",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterExplorer/Items/B_InteractableChair",
+      "passed": true
+    },
+    {
+      "name": "shared blueprint compiles /ShooterExplorer/Items/B_InteractableChair",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

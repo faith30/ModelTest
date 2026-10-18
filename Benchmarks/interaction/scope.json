@@ -1,0 +1,112 @@
+{
+  "feature": "interaction",
+  "title": "交互、拾取与背包展示",
+  "branch": "codex/benchmark-interaction",
+  "source_strategy": "保留反射接口、构造、任务工厂和计时器生命周期；将交互探测、选项处理、能力授予与触发、拾取转换和世界对象业务方法改为空实现。",
+  "source_files": [
+    "Source/LyraGame/Interaction/Abilities/LyraGameplayAbility_Interact.cpp",
+    "Source/LyraGame/Interaction/Abilities/GameplayAbilityTargetActor_Interact.cpp",
+    "Source/LyraGame/Interaction/InteractionStatics.cpp",
+    "Source/LyraGame/Interaction/Tasks/AbilityTask_GrantNearbyInteraction.cpp",
+    "Source/LyraGame/Interaction/Tasks/AbilityTask_WaitForInteractableTargets.cpp",
+    "Source/LyraGame/Interaction/Tasks/AbilityTask_WaitForInteractableTargets_SingleLineTrace.cpp",
+    "Source/LyraGame/Inventory/IPickupable.cpp",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Private/LyraWorldCollectable.cpp"
+  ],
+  "stub_methods": [
+    "ULyraGameplayAbility_Interact::ActivateAbility",
+    "ULyraGameplayAbility_Interact::UpdateInteractions",
+    "ULyraGameplayAbility_Interact::TriggerInteraction",
+    "AGameplayAbilityTargetActor_Interact::PerformTrace",
+    "UInteractionStatics::GetActorFromInteractableTarget",
+    "UInteractionStatics::GetInteractableTargetsFromActor",
+    "UInteractionStatics::AppendInteractableTargetsFromOverlapResults",
+    "UInteractionStatics::AppendInteractableTargetsFromHitResult",
+    "UAbilityTask_GrantNearbyInteraction::QueryInteractables",
+    "UAbilityTask_WaitForInteractableTargets::LineTrace",
+    "UAbilityTask_WaitForInteractableTargets::AimWithPlayerController",
+    "UAbilityTask_WaitForInteractableTargets::ClipCameraRayToAbilityRange",
+    "UAbilityTask_WaitForInteractableTargets::UpdateInteractableOptions",
+    "UAbilityTask_WaitForInteractableTargets_SingleLineTrace::PerformTrace",
+    "UPickupableStatics::GetFirstPickupableFromActor",
+    "UPickupableStatics::AddPickupToInventory",
+    "ALyraWorldCollectable::GatherInteractionOptions",
+    "ALyraWorldCollectable::GetPickupInventory"
+  ],
+  "preserved_framework": [
+    "Source/LyraGame/Inventory/LyraInventoryManagerComponent.*",
+    "Source/LyraGame/Inventory/LyraInventoryItemDefinition.*",
+    "Source/LyraGame/Inventory/LyraInventoryItemInstance.*",
+    "Source/LyraGame/Inventory/InventoryFragment_*",
+    "Source/LyraGame/Equipment/",
+    "Source/LyraGame/Interaction/**/*.h",
+    "Source/LyraGame/UI/IndicatorSystem/",
+    "Source/LyraGame/GameModes/",
+    "Source/LyraGame/GameFeatures/",
+    "Plugins/GameFeatures/ShooterCore/Content/Input/Abilities/GAB_ShowWidget_WhenInputPressed.uasset"
+  ],
+  "asset_strategy": "指定图行为与配置已由 UE 原生 API 清除并独立回读；保留资产路径、继承、接口、组件外观及 Widget Designer 布局。",
+  "blueprint_shell_assets": [
+    "/ShooterExplorer/Input/Abilities/GA_Interact",
+    "/ShooterExplorer/Input/Abilities/GA_ToggleInventory",
+    "/ShooterExplorer/Interact/GA_Interaction_Collect",
+    "/ShooterExplorer/Items/B_InteractableRock",
+    "/ShooterExplorer/UserInterface/W_InteractionPrompt",
+    "/ShooterExplorer/UserInterface/W_InventoryScreen",
+    "/ShooterExplorer/UserInterface/W_InventoryGrid",
+    "/ShooterExplorer/UserInterface/W_InventoryTile",
+    "/ShooterExplorer/UserInterface/W_ItemAcquiredList",
+    "/ShooterExplorer/UserInterface/W_ItemAcquiredToastRow"
+  ],
+  "configuration_shells": [
+    {
+      "asset": "/ShooterExplorer/Input/Abilities/GA_Interact",
+      "intent": "清空 DefaultInteractionWidgetClass；保留扫描范围和频率作为可编辑参数。"
+    },
+    {
+      "asset": "/ShooterExplorer/Input/Abilities/GA_ToggleInventory",
+      "intent": "清空 WidgetToSpawn；否则共享父蓝图仍可打开原背包。"
+    },
+    {
+      "asset": "/ShooterExplorer/Items/B_InteractableRock",
+      "intent": "清空 Option 的能力、目标与提示类引用以及 StaticInventory.Templates/Instances；保留场景美术组件。"
+    },
+    {
+      "asset": "/ShooterExplorer/Input/Abilities/AbilitySet_InventoryTest",
+      "intent": "GrantedGameplayAbilities 仅移除 GA_Interact 和 GA_ToggleInventory 项，保留地图/标记能力。"
+    },
+    {
+      "asset": "/ShooterExplorer/Input/Actions/InputData_InventoryTest",
+      "intent": "AbilityInputActions 仅移除 IA_Interact 和 IA_ToggleInventory；保留 NativeInputActions 和其他能力输入。"
+    },
+    {
+      "asset": "/ShooterExplorer/Input/Mappings/IMC_InventoryTest",
+      "intent": "仅移除 IA_Interact 和 IA_ToggleInventory 对应映射，保留地图、标记和 Emote 映射。"
+    }
+  ],
+  "preserve_assets": [
+    "/ShooterExplorer/ShooterExplorer",
+    "/ShooterExplorer/System/Experiences/B_TestInventoryExperience",
+    "/ShooterExplorer/System/Experiences/LAS_InventoryTest",
+    "/ShooterExplorer/Game/HeroData_Explorer",
+    "/ShooterExplorer/Items/TestID_Rock",
+    "/ShooterExplorer/Items/TestID_Tree",
+    "/ShooterExplorer/Items/B_InteractableChair",
+    "/ShooterExplorer/Interact/GA_Interaction_Sit",
+    "/ShooterExplorer/Maps/L_InventoryTestMap",
+    "/ShooterExplorer/Maps/L_InteractionTestMap",
+    "/ShooterExplorer/Maps/L_StateTree_FollowTest"
+  ],
+  "dependency_notes": [
+    "ShooterExplorer 为 content-only GameFeature，依赖 ShooterCore 和 LyraExampleContent；原生边界跨 LyraGame 与 ShooterCoreRuntime。",
+    "HeroData_Explorer 的输入配置含基础移动和武器操作，不可整体清空。",
+    "AbilitySet 和 IMC 同时包含地图/标记等独立行为，只清除本题两种输入及能力。",
+    "TestID_Rock 被 B_InteractableChair 复用，保留物品资源作为公共配置示例；题目要求自行交付至少两种有效物品配置。",
+    "B_InteractableChair 的资源和坐椅能力保留，但依赖本题的公共交互探测与 ALyraWorldCollectable 行为，基线中暂不能通过交互触发；重建后应恢复接入。",
+    "L_StateTree_FollowTest 也引用 B_TestInventoryExperience，保留 Experience 及地图路径以免破坏原有引用。",
+    "通过可打印包名检索确认引用关系，不等于完整 Blueprint 图或运行时验证。"
+  ],
+  "validation_boundary": "项目模块构建、蓝图编译及独立资产回读通过；完整Target受共享引擎DLL占用阻挡；未做PIE、多人或打包。详见 baseline-validation.json。",
+  "asset_preparation_status": "completed_and_independently_read_back",
+  "baseline_validation": "baseline-validation.json"
+}
