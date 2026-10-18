@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "feature": "context-effects",
+  "branch": "codex/benchmark-context-effects",
+  "task": "Benchmarks/context-effects/TASK.md",
+  "removal_strategy": "Keep reflected contracts and package shells; remove runtime implementation and feature-owned asset behavior/configuration.",
+  "source_stubs": [
+    "Source/LyraGame/Feedback/ContextEffects/AnimNotify_LyraContextEffects.cpp",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectComponent.cpp",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsLibrary.cpp",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsSubsystem.cpp"
+  ],
+  "preserved_contract_files": [
+    "Source/LyraGame/Feedback/ContextEffects/AnimNotify_LyraContextEffects.h",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectComponent.h",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsLibrary.h",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsSubsystem.h",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsInterface.h",
+    "Source/LyraGame/Feedback/ContextEffects/LyraContextEffectsInterface.cpp"
+  ],
+  "config_edits": [
+    {
+      "path": "Config/DefaultGame.ini",
+      "section": "/Script/LyraGame.LyraContextEffectsSettings",
+      "property": "SurfaceTypeToContextMap",
+      "stripped_value": "()"
+    }
+  ],
+  "asset_shell_plan": [
+    {
+      "path": "Content/ContextEffects/CFX_DefaultSkin.uasset",
+      "package": "/Game/ContextEffects/CFX_DefaultSkin",
+      "clear_properties": [
+        "ContextEffects"
+      ],
+      "expected_value": [],
+      "preserve": [
+        "asset class",
+        "package path"
+      ]
+    },
+    {
+      "path": "Content/Effects/Blueprints/B_FootStep.uasset",
+      "package": "/Game/Effects/Blueprints/B_FootStep",
+      "remove_behavior": "Owned event/function graph implementation nodes; retain compatible entry/signature nodes as required.",
+      "preserve": [
+        "actor class",
+        "package path",
+        "LyraContextEffectsInterface",
+        "all variables including FootStepRightFootBone",
+        "public function signatures",
+        "construction/component scaffold"
+      ]
+    },
+    {
+      "path": "Content/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier.uasset",
+      "package": "/Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier",
+      "remove_behavior": "Owned event/function graph implementation nodes; retain compatible entry/signature nodes as required.",
+      "preserve": [
+        "AnimationModifier class",
+        "package path",
+        "variables",
+        "public function signatures",
+        "references from shared animations"
+      ]
+    }
+  ],
+  "preserve_editor_authoring": [
+    "Source/LyraEditor/LyraEditor.cpp",
+    "Source/LyraEditor/Private/LyraContextEffectsLibraryFactory.h",
+    "Source/LyraEditor/Private/LyraContextEffectsLibraryFactory.cpp",
+    "Source/LyraEditor/Private/AssetTypeActions_LyraContextEffectsLibrary.h",
+    "Source/LyraEditor/Private/AssetTypeActions_LyraContextEffectsLibrary.cpp"
+  ],
+  "preserve_shared_assets": [
+    "Content/ContextEffects/DT_AnimEffectTags.uasset",
+    "Content/ContextEffects/DT_SurfaceTypes.uasset",
+    "Content/Characters/Heroes/B_Hero_Default.uasset",
+    "Content/Characters/Heroes/Mannequin/Animations/Locomotion/**",
+    "Content/Effects/AnimationNotifies/AN_FootPlant_Left.uasset",
+    "Content/Effects/AnimationNotifies/AN_FootPlant_Right.uasset",
+    "Content/Effects/Blueprints/B_WeaponDecals.uasset",
+    "Content/PhysicsMaterials/**",
+    "Content/Audio/**",
+    "Content/Effects/Particles/**"
+  ],
+  "candidate_required_assets": [
+    "/Game/ContextEffects/CFX_DefaultSkin",
+    "/Game/Effects/Blueprints/B_FootStep",
+    "/Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier",
+    "/Game/Benchmarks/ContextEffects/L_ContextEffectsValidation",
+    "/Game/Benchmarks/ContextEffects/<second-configured-context-library>",
+    "/Game/Benchmarks/ContextEffects/<validation-blueprint>",
+    "/Game/Benchmarks/ContextEffects/<walk-animation-copy>",
+    "/Game/Benchmarks/ContextEffects/<land-animation-copy>"
+  ],
+  "dependency_evidence": {
+    "method": "Source reference search and read-only ASCII string candidate scan; not a complete native Asset Registry dependency export.",
+    "native_notify_candidate_packages": 231,
+    "native_notify_shared_locomotion_animations": 230,
+    "context_system_candidate_packages": 241,
+    "cautions": [
+      "B_Hero_Default directly references B_FootStep members; retain variables and class.",
+      "Do not delete native reflected classes or shared animation assets.",
+      "Do not clear whole B_Hero_Default; it contains unrelated lifecycle logic."
+    ]
+  },
+  "preparation_validation_boundary": "Project module build and independent native asset reload/Blueprint compile passed. Full target build hit an externally locked engine DLL. No PIE, multiplayer or packaging result is asserted.",
+  "asset_preparation_status": "completed_and_independently_read_back",
+  "baseline_validation": "baseline-validation.json"
+}

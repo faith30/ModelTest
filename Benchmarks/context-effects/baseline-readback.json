@@ -1,0 +1,146 @@
+{
+  "feature": "context-effects",
+  "kind": "stripped-baseline-readback",
+  "blueprints": [
+    {
+      "path": "/Game/Effects/Blueprints/B_FootStep",
+      "graphs": [
+        {
+          "name": "UserConstructionScript",
+          "signature_nodes": 1
+        },
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier",
+      "graphs": [
+        {
+          "name": "RemoveExistingNotifies",
+          "signature_nodes": 1
+        },
+        {
+          "name": "AddNotifyTrack",
+          "signature_nodes": 1
+        },
+        {
+          "name": "AddEffectNotifyAndSetParams",
+          "signature_nodes": 1
+        },
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "load /Game/Effects/Blueprints/B_FootStep",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /Game/Effects/Blueprints/B_FootStep:UserConstructionScript",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /Game/Effects/Blueprints/B_FootStep:UserConstructionScript",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /Game/Effects/Blueprints/B_FootStep:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /Game/Effects/Blueprints/B_FootStep:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /Game/Effects/Blueprints/B_FootStep",
+      "passed": true
+    },
+    {
+      "name": "load /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:RemoveExistingNotifies",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:RemoveExistingNotifies",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:AddNotifyTrack",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:AddNotifyTrack",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:AddEffectNotifyAndSetParams",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:AddEffectNotifyAndSetParams",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier",
+      "passed": true
+    },
+    {
+      "name": "load /Game/ContextEffects/CFX_DefaultSkin",
+      "passed": true
+    },
+    {
+      "name": "empty context effects library",
+      "passed": true
+    },
+    {
+      "name": "load /Game/Effects/Blueprints/B_FootStep",
+      "passed": true
+    },
+    {
+      "name": "public right foot bone retained",
+      "passed": true
+    },
+    {
+      "name": "surface map empty",
+      "passed": true
+    },
+    {
+      "name": "load /Game/Characters/Heroes/B_Hero_Default",
+      "passed": true
+    },
+    {
+      "name": "shared blueprint compiles /Game/Characters/Heroes/B_Hero_Default",
+      "passed": true
+    },
+    {
+      "name": "load /Game/ContextEffects/DT_AnimEffectTags",
+      "passed": true
+    },
+    {
+      "name": "load /Game/ContextEffects/DT_SurfaceTypes",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

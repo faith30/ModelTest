@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "feature": "context-effects",
+  "state": "stripped_starter",
+  "engine": "5.8.3",
+  "source_reference_commit": "6527fa085dd5b0ae5317b158589e5bbb75a8c835",
+  "source_files_stripped": 4,
+  "assets_stripped": 3,
+  "preparation": "UE native graph editing, data editing, Blueprint compilation and package saves. Compatible package paths and reflected interfaces retained.",
+  "project_modules_build": {
+    "result": "passed",
+    "exit_code": 0,
+    "target": "LyraEditor Win64 Development",
+    "modules": [
+      "LyraGame",
+      "LyraEditor",
+      "ShooterCoreRuntime"
+    ],
+    "final_pass_actions": 0,
+    "log_sha256": "9ac91db9e9ce884e7f57e9dfee92f67384c6721240d9a63e732d120e58b7ee17"
+  },
+  "full_target_build": {
+    "result": "blocked_by_existing_engine_dll_lock",
+    "note": "Shared UnrealEditor-NetCore.dll was in use by the existing editor/debugger during the full builds. User processes were left running; affected project modules compiled and linked successfully."
+  },
+  "asset_readback": {
+    "result": "passed",
+    "separate_process": true,
+    "uses_rebuilt_branch_project_modules": true,
+    "assertions_passed": 25,
+    "shell_blueprints_compiled": 2,
+    "errors": []
+  },
+  "gameplay_validation": {
+    "PIE": "not_run",
+    "multiplayer": "not_run",
+    "packaging": "not_run"
+  },
+  "files": [
+    {
+      "path": "Content/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier.uasset",
+      "bytes": 24672,
+      "sha256": "ecbcae29eaaf0e6b115bd69774c952a7aea060867419a950a838d85d3148e65b"
+    },
+    {
+      "path": "Content/ContextEffects/CFX_DefaultSkin.uasset",
+      "bytes": 1035,
+      "sha256": "db3fa3685510a580217ad410a5c4efdeca85a31d01902cda906a03a4f3e5f0a3"
+    },
+    {
+      "path": "Content/Effects/Blueprints/B_FootStep.uasset",
+      "bytes": 42692,
+      "sha256": "b97ce283020b1cae426411bf91833752d267f8a0369576faaf84c9be397dbcb9"
+    }
+  ]
+}
