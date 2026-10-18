@@ -1,0 +1,37 @@
+{
+  "task_id": "lyra-death-v1",
+  "artificial_defects": true,
+  "source_commit": "743260fdb903008faa2db28384e47cf5eadfa590",
+  "source_worktree_modified": false,
+  "source_hashes": {
+    "Source/LyraGame/Character/LyraHealthComponent.cpp": "f1178cf93578df02b8d30374023cf1d84d8d93999685f2d6f4e5a92c7334eb26",
+    "Source/LyraGame/Character/LyraHealthComponent.h": "ab10f775fa23505fe0b8688beb9a96267d4df858d925234249d3defcfab84764",
+    "Source/LyraGame/AbilitySystem/Attributes/LyraHealthSet.cpp": "01cb2996f6b1b27bd2c14e50f528c3005781ea10c31297ca3b5198768e4a69e6"
+  },
+  "seeded_hashes": {
+    "Source/LyraGame/Character/LyraHealthComponent.cpp": "d6a5d72cb47911a90e0e1fc8e3ceb1afed6deac7f966e1255dbf987e4a76eb03",
+    "Source/LyraGame/Character/LyraHealthComponent.h": "ab10f775fa23505fe0b8688beb9a96267d4df858d925234249d3defcfab84764",
+    "Source/LyraGame/AbilitySystem/Attributes/LyraHealthSet.cpp": "01cb2996f6b1b27bd2c14e50f528c3005781ea10c31297ca3b5198768e4a69e6"
+  },
+  "mutation_checks": [
+    {
+      "id": "replication_skips_start",
+      "function": "OnRep_DeathState",
+      "original_matches": 1,
+      "seeded_matches": 1
+    },
+    {
+      "id": "start_allows_duplicate",
+      "function": "StartDeath",
+      "original_matches": 1,
+      "seeded_matches": 1
+    },
+    {
+      "id": "finish_clears_dead",
+      "function": "FinishDeath",
+      "original_matches": 1,
+      "seeded_matches": 1
+    }
+  ],
+  "evaluation_boundary": "Candidate changes are applied to the complete Lyra project, built with Unreal Engine, and evaluated by real UE automation on Linux. This preparation step does not build or run UE."
+}
