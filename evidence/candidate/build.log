@@ -1,0 +1,1493 @@
+Running AutomationTool...
+Using bundled DotNet SDK version: 10.0 win-x64
+UnrealBuildTool is up-to-date
+AutomationTool is up-to-date
+Starting AutomationTool...
+Parsing command line: BuildCookRun -project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject -target=LyraServer -nop4 -server -noclient -serverplatform=Linux -serverconfig=Development -build -cook -stage -pak -archive -archivedirectory=D:\ModelTest\Saved\LyraEvaluation\LinuxCandidate-3daa3a3-resumed\archive -MapsToCook=/Engine/Maps/Entry+/Game/DefaultGameData -AdditionalCookerOptions="-CookSkipRequests -unattended -nullrhi -nosound" -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase -ubtargs=-MaxParallelActions=12 -utf8output -unattended
+Initializing script modules...
+Total script module initialization time: 0.73 s.
+Using C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe
+Executing commands...
+Setting up ProjectParams for C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject
+Compiling GameFeaturePlugins in branch UE5
+********** BUILD COMMAND STARTED **********
+Running: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\ThirdParty\DotNet\10.0\win-x64\dotnet.exe "C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" -Target="LyraEditor Win64 Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" -Target="ShaderCompileWorker Win64 Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" -Target="UnrealPak Win64 Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" -Target="LyraServer Linux Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject  -remoteini=\"C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\"  -MaxParallelActions=12 -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase " -log="C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\UBA-LyraEditor-Win64-Development.txt"
+Log file: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\UBA-LyraEditor-Win64-Development.txt
+Executing up to 12 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (C:\Users\huaqijiang\Documents\Study\UE5).
+Using 'git status' to determine working set for adaptive non-unity build (C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest).
+UbaServer - Listening on 0.0.0.0:1345
+Compiling GameFeaturePlugins in branch UE5
+Waiting for 'git status' command to complete
+Waiting for 'git status' command to complete
+Building ShaderCompileWorker, UnrealPak, LyraServer and LyraEditor...
+===== Toolchain Information =====
+ShaderCompileWorker Win64 Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2)
+  Using Visual Studio 14.44.35222 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+UnrealPak Win64 Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2)
+  Using Visual Studio 14.44.35222 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+LyraServer Linux Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2)
+  Using Clang compiler 20.1.8 (D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu\bin\clang++.exe)
+    clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-pc-windows-msvc Thread model: posix InstalledDir: D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu\bin
+  Using Clang archiver (D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu\bin\llvm-ar.exe)
+    LLVM (http://llvm.org/):   LLVM version 20.1.8   Optimized build.
+  Using toolchain located at 'D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu'
+  Using bundled libc++ standard C++ library.
+  Compressing debug files
+  [Adaptive Build] Excluded from LyraGame unity file: LyraDeathAutomationTest.cpp, LyraDeathTestTypes.cpp
+LyraEditor Win64 Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2)
+  Using Visual Studio 14.44.35222 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+  [Adaptive Build] Excluded from LyraGame unity file: LyraDeathAutomationTest.cpp, LyraDeathTestTypes.cpp
+=================================
+Using Unreal Build Accelerator local executor to run 579 action(s)
+  CPU 16 physical cores, 32 logical cores
+  Memory 127.85 GB physical, 76.85 GB/135.85 GB committed
+  UBA Storage capacity 40 GB
+** For LyraServer-Linux-Development **
+[1/579] Compile Module.Engine.30.cpp
+[2/579] Compile Module.Engine.3.cpp
+** For LyraEditor-Win64-Development **
+[3/579] WriteMetadata LyraEditor.target [NoUba]
+** For LyraServer-Linux-Development **
+[4/579] Compile Module.Engine.28.cpp
+[5/579] Compile Module.Engine.31.cpp
+[6/579] Compile Module.Engine.32.cpp
+[7/579] Compile Module.Engine.29.cpp
+[8/579] Compile Module.Engine.25.cpp
+[9/579] Compile Module.Engine.26.cpp
+[10/579] Compile Module.Engine.24.cpp
+[11/579] Compile Module.Engine.20.cpp
+[12/579] Compile Module.Engine.23.cpp
+[13/579] Compile Module.Engine.33.cpp
+[14/579] Compile Module.Engine.27.cpp
+[15/579] Compile Module.Engine.37.cpp
+[16/579] Compile Module.Engine.4.cpp
+[17/579] Compile Module.Engine.17.cpp
+[18/579] Compile Module.Engine.36.cpp
+[19/579] Compile Module.Engine.38.cpp
+[20/579] Compile Module.Engine.34.cpp
+[21/579] Compile Module.Engine.35.cpp
+[22/579] Compile Module.Engine.39.cpp
+[23/579] Compile Module.Engine.47.cpp
+[24/579] Compile Module.Engine.44.cpp
+[25/579] Compile Module.Engine.41.cpp
+[26/579] Compile Module.Engine.48.cpp
+[27/579] Compile Module.Engine.46.cpp
+[28/579] Compile Module.Engine.43.cpp
+[29/579] Compile Module.Engine.15.cpp
+[30/579] Compile Module.Engine.42.cpp
+[31/579] Compile Module.Engine.45.cpp
+[32/579] Compile Module.Engine.55.cpp
+[33/579] Compile Module.Engine.49.cpp
+[34/579] Compile Module.Engine.40.cpp
+[35/579] Compile Module.Engine.5.cpp
+[36/579] Compile Module.Engine.51.cpp
+[37/579] Compile Module.Engine.50.cpp
+[38/579] Compile Module.Engine.52.cpp
+[39/579] Compile Module.Engine.53.cpp
+[40/579] Compile Module.Engine.63.cpp
+[41/579] Compile Module.Engine.59.cpp
+[42/579] Compile Module.Engine.56.cpp
+[43/579] Compile Module.Engine.60.cpp
+[44/579] Compile Module.Engine.64.cpp
+[45/579] Compile Module.EventLoop.cpp
+[46/579] Compile Module.Engine.6.cpp
+[47/579] Compile Module.Engine.61.cpp
+[48/579] Compile Module.ExampleDeviceProfileSelector.cpp
+[49/579] Compile Module.Engine.54.cpp
+[50/579] Compile Module.EyeTracker.cpp
+[51/579] Compile Module.Engine.62.cpp
+[52/579] Compile Module.ExrReaderGpu.cpp
+[53/579] Compile Module.FacialAnimation.cpp
+[54/579] Compile Module.FieldNotification.cpp
+[55/579] Compile Module.Engine.58.cpp
+[56/579] Compile Module.ExternalRpcRegistry.cpp
+[57/579] Compile Module.Engine.57.cpp
+[58/579] Compile Module.Engine.7.cpp
+[59/579] Compile Module.Foliage.cpp
+[60/579] Compile Module.Engine.9.cpp
+[61/579] Compile Module.EnhancedInput.cpp
+[62/579] Compile Module.FieldSystemEngine.cpp
+[63/579] Compile Module.GameSubtitles.cpp
+[64/579] Compile Module.GLTFCore.cpp
+[65/579] Compile Module.FunctionalTesting.cpp
+[66/579] Compile Module.FractureEngine.cpp
+[67/579] Compile Module.Engine.8.cpp
+[68/579] Compile Module.FullBodyIK.cpp
+[69/579] Compile Module.GameSettings.cpp
+[70/579] Compile Module.GameplayBhvSO.cpp
+[71/579] Compile Module.GameplayBehaviorsModule.cpp
+[72/579] Compile Module.GameplayAbilities.4.cpp
+[73/579] Compile Module.Engine.65.cpp
+[74/579] Compile Module.GLTFExporter.cpp
+[75/579] Compile Module.GameplayMessageRuntime.cpp
+[76/579] Compile Module.GameplayDebugger.cpp
+[77/579] Compile Module.GameplayCameras.1.cpp
+[78/579] Compile Module.GameplayCameras.4.cpp
+[79/579] Compile Module.GameplayInteractions.cpp
+[80/579] Compile Module.GameplayCameras.2.cpp
+[81/579] Compile Module.GameplayTasks.cpp
+[82/579] Compile Module.Gauntlet.cpp
+[83/579] Compile Module.GameplayStateTreeModule.cpp
+[84/579] Compile Module.GameplayAbilities.1.cpp
+[85/579] Compile Module.GameplayAbilities.3.cpp
+[86/579] Compile Module.GameplayAbilities.2.cpp
+[87/579] Compile Module.GeometryCacheTracks.cpp
+[88/579] Compile Module.GameFeatures.cpp
+[89/579] Compile Module.GameplayTags.cpp
+[90/579] Compile Module.GameplayCameras.3.cpp
+[91/579] Compile Module.GeometryCollectionDepNodes.cpp
+[92/579] Compile Module.GeometryAlgorithms.3.cpp
+[93/579] Compile Module.GeometryCache.cpp
+[94/579] Compile Module.GeometryCollectionTracks.cpp
+[95/579] Compile Module.GeometryCollectionNodes.3.cpp
+[96/579] Compile Module.GeometryDataflowNodes.cpp
+[97/579] Compile Module.GeometryCollectionEngine.2.cpp
+[98/579] Compile Module.GeometryCollectionEngine.1.cpp
+[99/579] Compile Module.GeometryCore.3.cpp
+[100/579] Compile Module.GeometryAlgorithms.1.cpp
+[101/579] Compile Module.GeometryFramework.cpp
+[102/579] Compile Module.GeometryCore.4.cpp
+[103/579] Compile Module.GeometryAlgorithms.2.cpp
+[104/579] Compile Module.GlobalConfigurationData.cpp
+[105/579] Compile Module.GlobalConfigurationDataCore.cpp
+[106/579] Compile Module.GooglePAD.cpp
+[107/579] Compile Module.HTRun.cpp
+[108/579] Compile Module.GeometryCore.1.cpp
+[109/579] Compile Module.HTAnimRun.cpp
+[110/579] Compile Module.HTTPServer.cpp
+[111/579] Compile Module.GeometryCollectionNodes.1.cpp
+[112/579] Compile Module.HTTP.cpp
+[113/579] Compile Module.HairStrandsRuntime.cpp
+[114/579] Compile Module.GeometryCollectionNodes.2.cpp
+[115/579] Compile Module.GeometryScriptingCore.1.cpp
+[116/579] Compile Module.HeadMountedDisplay.cpp
+[117/579] Compile Module.GeometryScriptingCore.3.cpp
+[118/579] Compile Module.GeometryCore.2.cpp
+[119/579] Compile Module.IESFile.cpp
+[120/579] Compile Module.HairStrandsCore.3.cpp
+[121/579] Compile Module.HairStrandsCore.4.cpp
+[122/579] Compile Module.GeometryScriptingCore.2.cpp
+[123/579] Compile Module.HttpReplayStreaming.cpp
+[124/579] Compile Module.IKRigUAF.cpp
+[125/579] Compile Module.HairStrandsCore.2.cpp
+[126/579] Compile Module.HairStrandsCore.5.cpp
+[127/579] Compile Module.HairStrandsSolver.cpp
+[128/579] Compile Module.Icmp.cpp
+[129/579] Compile Module.ISMPool.cpp
+[130/579] Compile Module.ImgMediaFactory.cpp
+[131/579] Compile Module.ImgMediaEngine.cpp
+[132/579] Compile Module.Hotfix.cpp
+[133/579] Compile Module.ImageWriteQueue.cpp
+[134/579] Compile Module.IndexedCacheStorage.cpp
+[135/579] Compile Module.HairStrandsDeformer.cpp
+[136/579] Compile Module.InputDevice.cpp
+[137/579] Compile Module.InputCore.cpp
+[138/579] Compile Module.InputDebugging.cpp
+[139/579] Compile Module.ImageCore.cpp
+[140/579] Compile Module.InterchangeAxFAssets.cpp
+[141/579] Compile Module.InterchangeCommon.cpp
+[142/579] Compile Module.InterchangeAssets.cpp
+[143/579] Compile Module.HairStrandsCore.1.cpp
+[144/579] Compile Module.InteractiveToolsFramework.3.cpp
+[145/579] Compile Module.InterchangeCommonParser.cpp
+[146/579] Compile Module.InstallBundleManager.cpp
+[147/579] Compile Module.InterchangeExport.cpp
+[148/579] Compile Module.InterchangeDispatcher.cpp
+[149/579] Compile Module.InterchangeAnalytics.cpp
+[150/579] Compile Module.InteractiveToolsFramework.1.cpp
+[151/579] Compile Module.ImageWrapper.cpp
+[152/579] Compile Module.ImgMedia.cpp
+[153/579] Compile Module.InterchangeMessages.cpp
+[154/579] Compile Module.InteractiveToolsFramework.2.cpp
+[155/579] Compile Module.IoStoreHttpClient.cpp
+[156/579] Compile Module.IoStoreOnDemandCore.cpp
+[157/579] Compile Module.InterchangeEngine.cpp
+[158/579] Compile Module.IKRig.cpp
+[159/579] Compile Module.InterchangeImport.3.cpp
+[160/579] Compile Module.InterchangeImport.1.cpp
+[161/579] Compile Module.InterchangeNodes.cpp
+[162/579] Compile Module.InterchangeImport.2.cpp
+[163/579] Compile Module.InterchangeImport.4.cpp
+[164/579] Compile Module.IrisCore.1.cpp
+[165/579] Compile Module.IrisCore.7.cpp
+[166/579] Compile Module.IrisCore.2.cpp
+[167/579] Compile Module.IrisCore.6.cpp
+[168/579] Compile Module.InterchangeFactoryNodes.cpp
+[169/579] Compile Module.Landmass.cpp
+[170/579] Compile Module.IrisCore.4.cpp
+[171/579] Compile Module.IrisCore.5.cpp
+[172/579] Compile Module.IrisCore.3.cpp
+[173/579] Compile Module.JsonUtilities.cpp
+[174/579] Compile Module.LFNRS.cpp
+[175/579] Compile Module.Landscape.6.cpp
+[176/579] Compile Module.LauncherChunkInstaller.cpp
+[177/579] Compile Module.IoStoreOnDemand.cpp
+[178/579] Compile Module.Json.cpp
+[179/579] Compile Module.LinuxDeviceProfileSelector.cpp
+[180/579] Compile Module.Landscape.7.cpp
+[181/579] Compile Module.LocalizableMessageBlueprint.cpp
+[182/579] Compile Module.Landscape.1.cpp
+[183/579] Compile Module.LocalizableMessage.cpp
+[184/579] Compile Module.LiveLinkInterface.cpp
+[185/579] Compile Module.LocationServicesBPLibrary.cpp
+[186/579] Compile Module.Landscape.3.cpp
+[187/579] Compile Module.Lobby.cpp
+[188/579] Compile Module.Landscape.5.cpp
+[189/579] Compile Module.LocalizationService.cpp
+[190/579] Compile Module.Launch.cpp
+[191/579] Compile LyraDeathAutomationTest.cpp
+[192/579] Compile LyraDeathTestTypes.cpp
+[193/579] Compile Module.LevelSequence.cpp
+[194/579] Compile Module.LyraGame.4.cpp
+[195/579] Compile Module.InterchangeCore.cpp
+[196/579] Compile Module.Landscape.4.cpp
+[197/579] Compile Module.MP4Utilities.cpp
+[198/579] Compile Module.Landscape.2.cpp
+[199/579] Compile Module.MassCore.cpp
+[200/579] Compile Module.MSQS.cpp
+[201/579] Compile Module.MP4Boxes.cpp
+[202/579] Compile Module.InterchangePipelines.cpp
+[203/579] Compile Module.MP4Muxer.cpp
+[204/579] Compile Module.MassEntity.3.cpp
+[205/579] Compile Module.MRMesh.cpp
+[206/579] Compile Module.MassSignals.cpp
+[207/579] Compile Module.MathCore.cpp
+[208/579] Compile Module.MassEntityTestSuite.3.cpp
+[209/579] Compile Module.Localization.cpp
+[210/579] Compile Module.MediaPlate.cpp
+[211/579] Compile Module.Media.cpp
+[212/579] Compile Module.MediaCompositing.cpp
+[213/579] Compile Module.MassEntityTestSuite.1.cpp
+[214/579] Compile Module.MediaUtils.cpp
+[215/579] Compile Module.MassEntityTestSuite.2.cpp
+[216/579] Compile Module.MediaAssets.cpp
+[217/579] Compile Module.MassEntity.1.cpp
+[218/579] Compile Module.MeshFileUtils.cpp
+[219/579] Compile Module.MassEntity.2.cpp
+[220/579] Compile Module.MessagingCommon.cpp
+[221/579] Compile Module.MeshConversionEngineTypes.cpp
+[222/579] Compile Module.MeshUtilitiesCommon.cpp
+[223/579] Compile Module.LyraGame.1.cpp
+[224/579] Compile Module.LyraGame.2.cpp
+[225/579] Compile Module.Messaging.cpp
+[226/579] Compile Module.MetaHumanSDKRuntime.cpp
+[227/579] Compile Module.MeshConversion.cpp
+[228/579] Compile Module.MeshDescription.cpp
+[229/579] Compile Module.LyraGame.3.cpp
+[230/579] Compile Module.MessageLog.cpp
+[231/579] Compile Module.MetasoundFrontend.2.cpp
+[232/579] Compile Module.MetasoundFrontend.3.cpp
+[233/579] Compile Module.MetasoundGenerator.cpp
+[234/579] Compile Module.MetasoundFrontend.4.cpp
+[235/579] Compile Module.MeshModelingTools.3.cpp
+[236/579] Compile Module.MeshModelingTools.1.cpp
+[237/579] Compile Module.MetasoundFrontend.1.cpp
+[238/579] Compile Module.MetasoundGraphCore.cpp
+[239/579] Compile Module.MetasoundStandardNodes.2.cpp
+[240/579] Compile Module.MeshModelingTools.2.cpp
+[241/579] Compile Module.MobilePatchingUtils.cpp
+[242/579] Compile Module.MetasoundStandardNodes.1.cpp
+[243/579] Compile Module.MetasoundStandardNodes.7.cpp
+[244/579] Compile Module.MetasoundStandardNodes.5.cpp
+[245/579] Compile Module.MetasoundStandardNodes.3.cpp
+[246/579] Compile Module.ModularGameplayActors.cpp
+[247/579] Compile Module.ModelViewViewModel.cpp
+[248/579] Compile Module.MoviePlayerProxy.cpp
+[249/579] Compile Module.ModularGameplay.cpp
+[250/579] Compile Module.ModelingComponents.4.cpp
+[251/579] Compile Module.MetasoundStandardNodes.6.cpp
+[252/579] Compile Module.MetasoundStandardNodes.4.cpp
+[253/579] Compile Module.MetasoundEngine.cpp
+[254/579] Compile Module.MetasoundFrontend.5.cpp
+[255/579] Compile Module.MotionWarping.cpp
+[256/579] Compile Module.MoviePlayer.cpp
+[257/579] Compile Module.MovieSceneCapture.cpp
+[258/579] Compile Module.MovieSceneTracks.5.cpp
+[259/579] Compile Module.ModelingOperators.cpp
+[260/579] Compile Module.ModelingComponents.3.cpp
+[261/579] Compile Module.ModelingComponents.2.cpp
+[262/579] Compile Module.MsQuicRuntime.cpp
+[263/579] Compile Module.MovieScene.1.cpp
+[264/579] Compile Module.MovieScene.6.cpp
+[265/579] Compile Module.MuCO.3.cpp
+[266/579] Compile Module.ModelingComponents.1.cpp
+[267/579] Compile Module.MovieSceneTracks.4.cpp
+[268/579] Compile Module.MovieScene.2.cpp
+[269/579] Compile Module.MovieScene.3.cpp
+[270/579] Compile Module.MovieSceneTracks.2.cpp
+[271/579] Compile Module.MovieScene.4.cpp
+[272/579] Compile Module.MovieScene.5.cpp
+[273/579] Compile Module.MutableAssetUserData.cpp
+[274/579] Compile Module.NNEDenoiserShaders.cpp
+[275/579] Compile Module.MovieSceneTracks.3.cpp
+[276/579] Compile Module.MuR.2.cpp
+[277/579] Compile Module.MuR.5.cpp
+[278/579] Compile Module.MuR.3.cpp
+[279/579] Compile Module.MuCO.2.cpp
+[280/579] Compile Module.NNE.cpp
+[281/579] Compile Module.NNEDenoiser.cpp
+[282/579] Compile Module.MuR.1.cpp
+[283/579] Compile Module.NNERuntimeORT.cpp
+[284/579] Compile Module.MuCO.1.cpp
+[285/579] Compile Module.NamingTokens.cpp
+[286/579] Compile Module.NetCommon.cpp
+[287/579] Compile Module.NavCorridor.cpp
+[288/579] Compile Module.MuR.4.cpp
+[289/579] Compile Module.Navmesh.3.cpp
+[290/579] Compile Module.Networking.cpp
+[291/579] Compile Module.Navmesh.2.cpp
+[292/579] Compile Module.NetworkFile.cpp
+[293/579] Compile Module.Navmesh.1.cpp
+[294/579] Compile Module.NetworkReplayStreaming.cpp
+[295/579] Compile Module.NamingTokensUI.cpp
+[296/579] Compile Module.NFORDenoise.cpp
+[297/579] Compile Module.NiagaraCore.cpp
+[298/579] Compile Module.NiagaraAnimNotifies.cpp
+[299/579] Compile Module.NiagaraVertexFactories.cpp
+[300/579] Compile Module.NiagaraSimCaching.cpp
+[301/579] Compile Module.NetCore.cpp
+[302/579] Compile Module.NavigationSystem.1.cpp
+[303/579] Compile Module.NavigationSystem.2.cpp
+[304/579] Compile Module.NavigationSystem.3.cpp
+[305/579] Compile Module.Niagara.15.cpp
+[306/579] Compile Module.NiagaraShader.cpp
+[307/579] Compile Module.MovieSceneTracks.1.cpp
+[308/579] Compile Module.Niagara.1.cpp
+[309/579] Compile Module.Niagara.11.cpp
+[310/579] Compile Module.Niagara.10.cpp
+[311/579] Compile Module.Niagara.12.cpp
+[312/579] Compile Module.Niagara.13.cpp
+[313/579] Compile Module.NonRealtimeAudioRenderer.cpp
+[314/579] Compile Module.OnlineBase.cpp
+[315/579] Compile Module.NullReplayStreaming.cpp
+[316/579] Compile Module.NullDrv.cpp
+[317/579] Compile Module.Niagara.14.cpp
+[318/579] Compile Module.OnlineFrameworkCommon.cpp
+[319/579] Compile Module.OnlineServicesCommonEngineUtils.cpp
+[320/579] Compile Module.Niagara.6.cpp
+[321/579] Compile Module.Niagara.4.cpp
+[322/579] Compile Module.Niagara.2.cpp
+[323/579] Compile Module.OnlineServicesInterface.cpp
+[324/579] Compile Module.Niagara.7.cpp
+[325/579] Compile Module.Niagara.9.cpp
+[326/579] Compile Module.OnlineServicesCommon.3.cpp
+[327/579] Compile Module.Niagara.5.cpp
+[328/579] Compile Module.Niagara.3.cpp
+[329/579] Compile Module.OnlineSubsystemNull.cpp
+[330/579] Compile Module.OnlineServicesCommon.2.cpp
+[331/579] Compile Module.OodleNetworkPlugin.cpp
+[332/579] Compile Module.Niagara.8.cpp
+[333/579] Compile Module.OnlineSubsystemUtils.2.cpp
+[334/579] Compile Module.OptimusSettings.cpp
+[335/579] Compile Module.OpenExrWrapper.cpp
+[336/579] Compile Module.OpusAudioDecoder.cpp
+[337/579] Compile Module.Overlay.cpp
+[338/579] Compile Module.OnlineSubsystemUtils.3.cpp
+[339/579] Compile Module.OnlineSubsystemSteam.cpp
+[340/579] Compile Module.PBIK.cpp
+[341/579] Compile Module.OnlineSubsystemUtils.1.cpp
+[342/579] Compile Module.PCGCompute.cpp
+[343/579] Compile Module.OnlineServicesNull.cpp
+[344/579] Compile Module.PCG.1.cpp
+[345/579] Compile Module.OnlineSubsystem.cpp
+[346/579] Compile Module.PCG.11.cpp
+[347/579] Compile Module.PCG.10.cpp
+[348/579] Compile Module.PCG.16.cpp
+[349/579] Compile Module.PCG.17.cpp
+[350/579] Compile Module.PCG.15.cpp
+[351/579] Compile Module.PCG.12.cpp
+[352/579] Compile Module.PCG.20.cpp
+[353/579] Compile Module.PCG.14.cpp
+[354/579] Compile Module.PCG.18.cpp
+[355/579] Compile Module.PCG.19.cpp
+[356/579] Compile Module.OnlineServicesCommon.1.cpp
+[357/579] Compile Module.OnlineServicesOSSAdapter.cpp
+[358/579] Compile Module.PacketHandler.cpp
+[359/579] Compile Module.PCG.2.cpp
+[360/579] Compile Module.OptimusCore.cpp
+[361/579] Compile Module.PCG.13.cpp
+[362/579] Compile Module.PatchCheck.cpp
+[363/579] Compile Module.PerfCounters.cpp
+[364/579] Compile Module.Paper2D.cpp
+[365/579] Compile Module.PakFile.cpp
+[366/579] Compile EncryptionContextOpenSSL.cpp
+[367/579] Compile PlatformCryptoAesDecryptorsOpenSSL.cpp
+[368/579] Compile PlatformCryptoAesEncryptorsOpenSSL.cpp
+[369/579] Compile PlatformCryptoContext.cpp
+[370/579] Compile PlatformCryptoUtilsOpenSSL.cpp
+[371/579] Compile Module.PCG.5.cpp
+[372/579] Compile Module.PlatformCryptoTypes.cpp
+[373/579] Compile Module.PlatformCrypto.cpp
+[374/579] Compile Module.PlayTimeLimit.cpp
+[375/579] Compile Module.PlatformDLC.cpp
+[376/579] Compile Module.PCG.8.cpp
+[377/579] Compile Module.PocketWorlds.cpp
+[378/579] Compile Module.PCG.4.cpp
+[379/579] Compile Module.PCG.3.cpp
+[380/579] Compile Module.PreLoadScreen.cpp
+[381/579] Compile Module.PCG.7.cpp
+[382/579] Compile Module.PythonScriptPluginPreload.cpp
+[383/579] Compile Module.PropertyBindingUtils.cpp
+[384/579] Compile Module.PropertyPath.cpp
+[385/579] Compile Module.Party.cpp
+[386/579] Compile Module.ProceduralMeshComponent.cpp
+[387/579] Compile Module.RSA.cpp
+[388/579] Compile Module.PhysicsControl.cpp
+[389/579] Compile Module.RadAudioDecoder.cpp
+[390/579] Compile Module.RawMesh.cpp
+[391/579] Compile Module.ProfileVisualizer.cpp
+[392/579] Compile Module.Projects.cpp
+[393/579] Compile Module.ReliableHComp.cpp
+[394/579] Compile Module.Qos.cpp
+[395/579] Compile Module.Rejoin.cpp
+[396/579] Compile Module.PCG.6.cpp
+[397/579] Compile Module.RHI.3.cpp
+[398/579] Compile Module.PCG.9.cpp
+[399/579] Compile Module.RHI.1.cpp
+[400/579] Compile Module.RenderDocPlugin.cpp
+[401/579] Compile Module.RHI.2.cpp
+[402/579] Compile Module.PlanarCut.cpp
+[403/579] Compile Module.RenderCore.6.cpp
+[404/579] Compile Module.PhysicsCore.cpp
+[405/579] Compile Module.RenderCore.4.cpp
+[406/579] Compile Module.RenderCore.5.cpp
+[407/579] Compile Module.RenderCore.3.cpp
+[408/579] Compile Module.RenderCore.2.cpp
+[409/579] Compile Module.RenderCore.1.cpp
+[410/579] Compile Module.Renderer.11.cpp
+[411/579] Compile Module.Renderer.13.cpp
+[412/579] Compile Module.Renderer.10.cpp
+[413/579] Compile Module.Renderer.1.cpp
+[414/579] Compile Module.Renderer.19.cpp
+[415/579] Compile Module.Renderer.18.cpp
+[416/579] Compile Module.Renderer.12.cpp
+[417/579] Compile Module.Renderer.15.cpp
+[418/579] Compile Module.Renderer.14.cpp
+[419/579] Compile Module.Renderer.17.cpp
+[420/579] Compile Module.Renderer.16.cpp
+[421/579] Compile Module.Renderer.2.cpp
+[422/579] Compile Module.Renderer.25.cpp
+[423/579] Compile Module.Renderer.20.cpp
+[424/579] Compile Module.Renderer.24.cpp
+[425/579] Compile Module.Renderer.21.cpp
+[426/579] Compile Module.Renderer.22.cpp
+[427/579] Compile Module.Renderer.23.cpp
+[428/579] Compile Module.Renderer.27.cpp
+[429/579] Compile Module.Renderer.28.cpp
+[430/579] Compile Module.Renderer.29.cpp
+[431/579] Compile Module.Renderer.31.cpp
+[432/579] Compile Module.Renderer.3.cpp
+[433/579] Compile Module.Renderer.30.cpp
+[434/579] Compile Module.Renderer.33.cpp
+[435/579] Compile Module.Renderer.34.cpp
+[436/579] Compile Module.Renderer.32.cpp
+[437/579] Compile Module.Renderer.36.cpp
+[438/579] Compile Module.RewindDebuggerRuntimeInterface.cpp
+[439/579] Compile Module.Renderer.35.cpp
+[440/579] Compile Module.Renderer.26.cpp
+[441/579] Compile Module.RewindDebuggerRuntime.cpp
+[442/579] Compile Module.RewindDebuggerVLogRuntime.cpp
+[443/579] Compile Module.Renderer.37.cpp
+[444/579] Compile Module.Renderer.4.cpp
+[445/579] Compile Module.Renderer.38.cpp
+[446/579] Compile Module.Renderer.7.cpp
+[447/579] Compile Module.Renderer.5.cpp
+[448/579] Compile Module.RigidPhysics.cpp
+[449/579] Compile Module.Renderer.6.cpp
+[450/579] Compile Module.RuntimeTelemetry.cpp
+[451/579] Compile Module.SQLiteCore.cpp
+[452/579] Compile Module.SSL.cpp
+[453/579] Compile Module.RigLogicModule.cpp
+[454/579] Compile Module.ReplicationGraph.cpp
+[455/579] Compile Module.SandboxFile.cpp
+[456/579] Compile Module.RigVM.4.cpp
+[457/579] Compile Module.SequenceRuntimeRecorder.cpp
+[458/579] Compile Module.Renderer.8.cpp
+[459/579] Compile Module.SerializedRecorderInterface.cpp
+[460/579] Compile Module.Scribble.cpp
+[461/579] Compile Module.RuntimeTests.cpp
+[462/579] Compile Module.SessionMessages.cpp
+[463/579] Compile Module.RigVM.1.cpp
+[464/579] Compile Module.ScreenShotComparisonTools.cpp
+[465/579] Compile Module.Settings.cpp
+[466/579] Compile Module.SessionServices.cpp
+[467/579] Compile Module.Renderer.9.cpp
+[468/579] Compile Module.Serialization.cpp
+[469/579] Compile Module.SignalProcessing.3.cpp
+[470/579] Compile Module.RigVM.2.cpp
+[471/579] Compile Module.ShooterCoreRuntime.cpp
+[472/579] Compile Module.SignalProcessing.2.cpp
+[473/579] Compile Module.SignificanceManager.cpp
+[474/579] Compile Module.SequencerScripting.cpp
+[475/579] Compile Module.SkeletalMerging.cpp
+[476/579] Compile Module.ShooterTestsRuntime.cpp
+[477/579] Compile Module.SignalProcessing.1.cpp
+[478/579] Compile Module.SlateCore.1.cpp
+[479/579] Compile Module.SlateCore.3.cpp
+[480/579] Compile Module.SlateFileDialogs.cpp
+[481/579] Compile Module.RigVM.3.cpp
+[482/579] Compile Module.SlateCore.5.cpp
+[483/579] Compile Module.SlateCore.2.cpp
+[484/579] Compile Module.SkeletalMeshDescription.cpp
+[485/579] Compile Module.SlateCore.4.cpp
+[486/579] Compile Module.Slate.1.cpp
+[487/579] Compile SQLiteEmbedded.c
+[488/579] Compile Module.Sockets.cpp
+[489/579] Compile Module.SoundFields.cpp
+[490/579] Compile Module.SoundFieldRendering.cpp
+[491/579] Compile Module.SoundUtilities.cpp
+[492/579] Compile Module.Spatialization.cpp
+[493/579] Compile Module.StateStream.cpp
+[494/579] Compile Module.RigLogicLib.cpp
+[495/579] Compile Module.Slate.7.cpp
+[496/579] Compile Module.Slate.4.cpp
+[497/579] Compile Module.SteamShared.cpp
+[498/579] Compile Module.StateTreeDeveloper.cpp
+[499/579] Compile Module.StateTreeModule.2.cpp
+[500/579] Compile Module.SourceControl.cpp
+[501/579] Compile Module.SmartObjectsModule.cpp
+[502/579] Compile Module.Slate.2.cpp
+[503/579] Compile Module.StreamingFile.cpp
+[504/579] Compile Module.Slate.6.cpp
+[505/579] Compile Module.SteamSockets.cpp
+[506/579] Compile Module.StorageServerClientDebug.cpp
+[507/579] Compile Module.StudioTelemetry.cpp
+[508/579] Compile Module.Slate.3.cpp
+[509/579] Compile Module.StreamingPauseRendering.cpp
+[510/579] Compile Module.SynthBenchmark.cpp
+[511/579] Compile Module.TakeMovieScene.cpp
+[512/579] Compile Module.TakeRecorderNamingTokens.cpp
+[513/579] Compile Module.StaticMeshDescription.cpp
+[514/579] Compile Module.TcpMessaging.cpp
+[515/579] Compile Module.TelemetryUtils.cpp
+[516/579] Compile Module.StateTreeModule.1.cpp
+[517/579] Compile Module.StorageServerClient.cpp
+[518/579] Compile Module.TargetingSystem.cpp
+[519/579] Compile Module.TextureUtilitiesCommon.cpp
+[520/579] Compile Module.TakesCore.cpp
+[521/579] Compile Module.TmvMediaShaders.cpp
+[522/579] Compile Module.Slate.5.cpp
+[523/579] Compile Module.SlateReflector.cpp
+[524/579] Compile Module.TakeRecorder.cpp
+[525/579] Compile Module.TakeRecorderSources.cpp
+[526/579] Compile Module.TraceUtilities.cpp
+[527/579] Compile Module.TopDownArenaRuntime.cpp
+[528/579] Compile Module.TimeManagement.cpp
+[529/579] Compile Module.TweeningUtils.cpp
+[530/579] Compile Module.TraceBasedDebuggers.cpp
+[531/579] Compile Module.Synthesis.cpp
+[532/579] Compile Module.TraceLog.cpp
+[533/579] Compile Module.TemplateSequence.cpp
+[534/579] Compile Module.TakeTrackRecorders.cpp
+[535/579] Compile Module.TypedElementRuntime.cpp
+[536/579] Compile Module.ToolMenus.cpp
+[537/579] Compile Module.UELibSampleRate.cpp
+[538/579] Compile Module.UIExtension.cpp
+[539/579] Compile Module.TranslationEditor.cpp
+[540/579] Compile Module.UAFAnimGraph.3.cpp
+[541/579] Compile Module.UObjectPlugin.cpp
+[542/579] Compile Module.TmvMedia.cpp
+[543/579] Compile Module.UAF.3.cpp
+[544/579] Compile Module.UAFAnimGraph.1.cpp
+[545/579] Compile Module.UAFAnimGraph.2.cpp
+[546/579] Compile Module.UnixCommonStartup.cpp
+[547/579] Compile Module.UniversalObjectLocator.cpp
+[548/579] Compile Module.ToolWidgets.cpp
+[549/579] Compile Module.VorbisAudioDecoder.cpp
+[550/579] Compile Module.Voice.cpp
+[551/579] Compile Module.VectorVM.cpp
+[552/579] Compile c_loops.cc
+[553/579] Compile Module.UAF.2.cpp
+[554/579] Compile Module.Voronoi.cpp
+[555/579] Compile pre_container.cc
+[556/579] Compile container.cc
+[557/579] Compile v_base.cc
+[558/579] Compile Module.UAF.1.cpp
+[559/579] Compile cell.cc
+[560/579] Compile unitcell.cc
+[561/579] Compile wall.cc
+[562/579] Compile v_compute.cc
+[563/579] Compile Module.VariantManagerContent.cpp
+[564/579] Compile Module.WaveTable.cpp
+[565/579] Compile Module.WidgetCarousel.cpp
+[566/579] Compile Module.TypedElementFramework.cpp
+[567/579] Compile Module.UdpMessaging.cpp
+[568/579] Compile Module.WorldConditions.cpp
+[569/579] Compile Module.WorldMetricsCore.cpp
+[570/579] Compile Module.UMG.3.cpp
+[571/579] Compile Module.Water.3.cpp
+[572/579] Compile Module.WorldMetricsTest.cpp
+[573/579] Compile Module.XmlParser.cpp
+[574/579] Compile Module.UMG.2.cpp
+[575/579] Compile Module.UMG.1.cpp
+[576/579] Compile Module.Water.1.cpp
+[577/579] Compile Module.Water.2.cpp
+[578/579] Link LyraServer
+[579/579] WriteMetadata LyraServer.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 827.20 seconds
+Output binary: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\ShaderCompileWorker.exe
+Output binary: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\UnrealPak.exe
+Output binary: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Binaries\Linux\LyraServer
+Output binary: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\UnrealEditor.exe
+
+Result: Succeeded
+Total execution time: 831.37 seconds
+Trace written to file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\UnrealBuildTool\Trace.uba with size 212.9kb
+Took 832.08s to run dotnet.exe, ExitCode=0
+Running: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\ThirdParty\DotNet\10.0\win-x64\dotnet.exe "C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" BootstrapPackagedGame Win64 Shipping -log="C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\UBA-BootstrapPackagedGame-Win64-Shipping.txt"
+Log file: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\UBA-BootstrapPackagedGame-Win64-Shipping.txt
+Determining max actions to execute in parallel (16 physical cores, 32 logical cores)
+  Executing up to 16 processes, one per physical core
+Using 'git status' to determine working set for adaptive non-unity build (C:\Users\huaqijiang\Documents\Study\UE5).
+Creating makefile for BootstrapPackagedGame (no existing makefile)
+UbaServer - Listening on 0.0.0.0:1345
+Waiting for 'git status' command to complete
+Building BootstrapPackagedGame...
+===== Toolchain Information =====
+Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2)
+Using Visual Studio 14.44.35222 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+=================================
+Using Unreal Build Accelerator local executor to run 6 action(s)
+  CPU 16 physical cores, 32 logical cores
+  Memory 127.85 GB physical, 76.14 GB/135.85 GB committed
+  UBA Storage capacity 40 GB
+[1/6] Copy AutoRTFM.natvis
+[2/6] Copy BootstrapPackagedGame-Win64-Shipping-Default.rc2
+[3/6] Compile Resource [x64] BootstrapPackagedGame-Win64-Shipping-Default.rc2
+[4/6] Compile [x64] Module.BootstrapPackagedGame.cpp
+[5/6] Link [x64] BootstrapPackagedGame-Win64-Shipping.exe
+[6/6] WriteMetadata BootstrapPackagedGame-Win64-Shipping.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 1.91 seconds
+Output binary: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\BootstrapPackagedGame-Win64-Shipping.exe
+
+Result: Succeeded
+Total execution time: 5.24 seconds
+Trace written to file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\UnrealBuildTool\Trace.uba with size 5.9kb
+Took 5.64s to run dotnet.exe, ExitCode=0
+No build products were made
+Build command time: 837.78 s
+********** BUILD COMMAND COMPLETED **********
+********** COOK COMMAND STARTED **********
+HasMapsToCook /Engine/Maps/Entry
+HasMapsToCook /Game/DefaultGameData
+Params.HasMapsToCook /Engine/Maps/Entry
+Params.HasMapsToCook /Game/DefaultGameData
+Running UnrealEditor Cook for project C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject
+Commandlet log file is C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Cook-2026.10.18-15.25.18.txt
+Running: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\UnrealEditor-Cmd.exe "C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" -run=Cook -Map=/Engine/Maps/Entry+/Game/DefaultGameData -TargetPlatform=LinuxServer  -unversioned -CookSkipRequests -unattended -nullrhi -nosound -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase -fileopenlog -abslog="C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Cook-2026.10.18-15.25.18.txt" -stdout -CrashForUAT -unattended -NoLogTimes
+LogInit: Display: Running engine for game: Lyra
+LogCore: Display: Requested channels: 'cpu,gpu,frame,log,bookmark,screenshot,region'
+LogTrace: Display: Control listening on port 1985
+LogCsvProfiler: Display: Metadata set : platform="Windows"
+LogCsvProfiler: Display: Metadata set : config="Development"
+LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+LogCsvProfiler: Display: Metadata set : engineversion="5.8.3-0+UE5"
+LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.3"
+LogCsvProfiler: Display: Metadata set : os="Windows 11 (23H2) [10.0.22631.6199] "
+LogCsvProfiler: Display: Metadata set : cpu="AuthenticAMD|AMD Ryzen Threadripper PRO 5955WX 16-Cores"
+LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+LogCsvProfiler: Display: Metadata set : asan="0"
+LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+LogCsvProfiler: Display: Metadata set : compacttset="0"
+LogCsvProfiler: Display: Metadata set : commandline="" C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject -run=Cook -Map=/Engine/Maps/Entry+/Game/DefaultGameData -TargetPlatform=LinuxServer -unversioned -CookSkipRequests -unattended -nullrhi -nosound -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase -fileopenlog -abslog=C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Cook-2026.10.18-15.25.18.txt -stdout -CrashForUAT -unattended -NoLogTimes""
+LogCsvProfiler: Display: Metadata set : loginid="3c9a5bcd4c537ab98de3b79b68c03e6f"
+LogCsvProfiler: Display: Metadata set : llm="0"
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+LogAssetRegistry: Display: FindShardedCacheFiles: 1 via .ref, 0 via migration fallback, 1 total
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PreLoad): 1 .ref files found, 1 referenced binaries
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 1 total binaries, 1 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+LogAssetRegistry: Display: LoadCacheFiles: loading 1 cache files, memory-mapping=enabled
+LogConfig: Display: Loading IOS ini files took 0.06 seconds
+LogConfig: Display: Loading Android ini files took 0.06 seconds
+LogConfig: Display: Loading VulkanPC ini files took 0.06 seconds
+LogConfig: Display: Loading Mac ini files took 0.06 seconds
+LogConfig: Display: Loading TVOS ini files took 0.07 seconds
+LogConfig: Display: Loading Unix ini files took 0.07 seconds
+LogConfig: Display: Loading Windows ini files took 0.08 seconds
+LogConfig: Display: Loading VisionOS ini files took 0.08 seconds
+LogConfig: Display: Loading LinuxArm64 ini files took 0.08 seconds
+LogConfig: Display: Loading Linux ini files took 0.08 seconds
+LogAssetRegistry: Display: Asset registry cache read as 155.9 MiB from ../../../../../../.codex/worktrees/lyra-remote-evaluation/ModelTest/Intermediate/CachedAssetRegistry/CachedAssetRegistry_0_803132D64BF15869046568B2E0676A7B.bin (memory-mapped=yes)
+LogAsyncCompilation: Display: MemorySharingInfo: UsedMemory=433MiB, MaxMemoryAvailable=139114MiB
+RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogHAL: Display: Platform has ~ 128 GB [137282650112 / 137438953472 / 128], which maps to Largest [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+LogObj: Display: Attempting to load config data for Default__DownlinkBandwidthManagerConfig before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+UnrealBuildTool is up-to-date
+Running UnrealBuildTool: dotnet "..\..\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll" -Mode=ValidatePlatforms -OutputSDKs  -AllPlatforms  -project="C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Lyra.uproject" -log="C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Logs/AutoSDKInfo.txt" -verbose -timestamps
+Log file: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Logs\AutoSDKInfo.txt
+##PlatformValidate: Win64 VALID 10.0.22621.0
+##PlatformValidate: Mac INVALID 26.1.1
+##PlatformValidate: IOS INVALID 26.1.1
+##PlatformValidate: Android INVALID r27c
+##PlatformValidate: Linux VALID v26_clang-20.1.8-rockylinux8
+##PlatformValidate: LinuxArm64 VALID v26_clang-20.1.8-rockylinux8
+##PlatformValidate: TVOS INVALID 26.1.1
+##PlatformValidate: VisionOS INVALID <UNKNOWN>
+Unable to find required SDK version 'MainVersion' for platform VisionOS. Check your SDK.json files
+Trace written to file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\UnrealBuildTool\Trace.uba with size 326b
+LogTextureFormatASTC: Display: ASTCEnc version 5.0.1 library loaded
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatASTC
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatETC2
+LogTextureFormatOodle: Display: Oodle Texture TFO init; latest sdk version = 2.9.16
+LogTextureFormatOodle: Display: Oodle Texture loading DLL: oo2tex_win64_2.9.16.dll
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatOodle
+LogTextureFormatManager: Display: Loaded Base TextureFormat: TextureFormatUncompressed
+LogTargetPlatformManager: Display: Failed to SetupSDK for platform 'Android'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'Linux'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxEditor'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxServer'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxClient'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64Server'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64Client'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_DXT'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_DXTServer'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_DXTClient'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_ASTC'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_ASTCServer'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_ASTCClient'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_ETC2'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_ETC2Server'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_ETC2Client'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_Multi'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_MultiServer'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'LinuxArm64_MultiClient'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'Windows'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsEditor'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsServer'
+LogTargetPlatformManager: Display: Loaded TargetPlatform 'WindowsClient'
+LogTargetPlatformManager: Display: Building Assets For LinuxServer
+LogAudioDebug: Display: Lib vorbis DLL was dynamically loaded.
+LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+LogCsvProfiler: Display: Metadata set : rhiname="Null"
+LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+LogCsvProfiler: Display: Metadata set : shaderplatform="PCD3D_SM6"
+LogCsvProfiler: Display: Metadata set : gpu=""
+LogCsvProfiler: Display: Metadata set : gpudriver=""
+LogZenServiceInstance: Display: Launching zen utility 'C:/Users/huaqijiang/Documents/Study/UE5/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/huaqijiang/Documents/Study/UE5/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Launching executable 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\huaqijiang\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 90680  --child-id Zen_90680_Startup'
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogDerivedDataCache: Display: ZenLocal: Using ZenServer HTTP service at [::1] with namespace ue.ddc. Status: OK!.
+LogDerivedDataCache: Display: ../../../Engine/DerivedDataCache: Performance: Latency=0.08ms. RandomReadSpeed=239.52MBs, RandomWriteSpeed=184.05MBs. Assigned SpeedClass 'Local'
+LogUbaHorde: Display: UBA/Horde Configuration [Uba.Provider.Horde]: Not Enabled
+LogShaderCompilers: Display: No distributed shader compiler controller found
+LogShaderCompilers: Display: Using 29 local workers for shader compilation
+LogShaderCompilers: Display: Compiling shader autogen file: ../../../../../../.codex/worktrees/lyra-remote-evaluation/ModelTest/Intermediate/ShaderAutogen/PCD3D_SM6/AutogenShaderHeaders.ush
+LogShaderCompilers: Display: Autogen file is unchanged, skipping write.
+LogAssetRegistry: Display: AssetDataGatherer spent 0.001s loading caches from ../../../../../../.codex/worktrees/lyra-remote-evaluation/ModelTest/Intermediate/CachedAssetRegistry.
+LogEditorDomain: Display: EditorDomain is Disabled
+LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+LogCsvProfiler: Display: Metadata set : deviceprofile="WindowsEditor"
+LogStreaming: Display: FlushAsyncLoading(1): 1 QueuedPackages, 0 AsyncPackages
+LogTextureEncodingSettings: Display: Texture Encode Speed: Final (cook).
+LogTextureEncodingSettings: Display: Oodle Texture Encode Speed settings: Fast: RDO Off Lambda=0, Effort=Normal Final: RDO On Lambda=30, Effort=Normal
+LogTextureEncodingSettings: Display: Shared linear texture encoding: Enabled
+LogMeshReduction: Display: Using QuadricMeshReduction for automatic static mesh reduction
+LogMeshReduction: Display: Using SkeletalMeshReduction for automatic skeletal mesh reduction
+LogMeshReduction: Display: Using ProxyLODMeshReduction for automatic mesh merging
+LogMeshReduction: Display: No distributed automatic mesh merging module available
+LogVirtualization: Display: VirtualizationSystem name found in ini file: None
+LogVirtualization: Display: FNullVirtualizationSystem mounted, virtualization will be disabled
+LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize started...
+LogWorldPartition: Display: FWorldPartitionClassDescRegistry::Initialize took 2.287 ms
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'BitDepth'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'HPFCutoffFrequency'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'LowRateFrequency'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'LPFCutoffFrequency'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'Pan'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'Pitch'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'SampleRate'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'TimeOfDay'
+LogAudioModulation: Display: Initialized Audio Modulation Parameter 'Volume'
+LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+LogAudio: Display: Registering Engine Module Parameter Interfaces...
+LogSteamShared: Display: Loading Steam SDK 1.64
+LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+LogSemanticSearch: Display: No codebook found, creating flat index
+LogToolsetRegistry: Display: Registering Toolset ToolsetRegistry.AgentSkillToolset
+LogToolsetRegistry: Display: Registering Toolset AIAssistant.AIAssistantToolset
+LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+LogGameFeatures: Display: Game feature 'TopDownArena' transitioned successfully. Ending state: Registered [Registered, Active]
+LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+LogGameFeatures: Display: Game feature 'ShooterCore' transitioned successfully. Ending state: Registered [Registered, Active]
+LogGameFeatures: Display: Game feature 'ShooterExplorer' transitioned successfully. Ending state: Registered [Registered, Active]
+LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+LogGameFeatures: Display: Game feature 'ShooterMaps' transitioned successfully. Ending state: Registered [Registered, Active]
+LogGameFeatures: Display: Game feature 'ShooterTests' transitioned successfully. Ending state: Registered [Registered, Active]
+LogGameFeatures: Display: Total built in plugin load time 0.1204s
+LogLyra: Display: Startup job "InitializeGameplayCueManager()" starting
+LogLyra: Display: Startup job "InitializeGameplayCueManager()" took 0.00 seconds to complete
+LogLyra: Display: Startup job "GetGameData()" starting
+LogLyra: Display: Startup job "GetGameData()" took 0.00 seconds to complete
+LogLyra: Display: All startup jobs took 0.00 seconds to complete
+LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+LogCsvProfiler: Display: Metadata set : raytracing="0"
+LogToolsetRegistry: Display: Registering Toolset EditorToolset.EditorAppToolset
+LogToolsetRegistry: Display: Registering Toolset EditorToolset.LogsToolset
+LogToolsetRegistry: Display: Registering Toolset AutomationTestToolset.AutomationTestToolset
+LogToolsetRegistry: Display: Registering Toolset ConfigSettingsToolset.ConfigSettingsToolset
+LogToolsetRegistry: Display: Registering Toolset GameFeaturesToolset.GameFeaturesToolset
+LogToolsetRegistry: Display: Registering Toolset GameplayTagsToolset.GameplayTagsToolset
+LogToolsetRegistry: Display: Registering Toolset WorldConditionsToolset.WorldConditionTools
+LogToolsetRegistry: Display: Registering Toolset PhysicsToolsets.PhysicsAssetToolset
+LogToolsetRegistry: Display: Registering Toolset PluginToolset.PluginToolset
+LogToolsetRegistry: Display: Registering Toolset SemanticSearchToolset.SemanticSearchToolset
+LogToolsetRegistry: Display: Registering Toolset DataRegistryToolset.DataRegistryTools
+LogToolsetRegistry: Display: Registering Toolset PCGToolset.PCGToolset
+LogToolsetRegistry: Display: Registering Toolset PCGToolset.PCGSpatialToolset
+LogToolsetRegistry: Display: Registering Toolset SlateInspectorToolset.SlateInspectorToolset
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Info
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Component
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Blueprint
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_System
+LogToolsetRegistry: Display: Registering Toolset NiagaraToolsets.NiagaraToolset_Assets
+LogToolsetRegistry: Display: Registering Toolset GASToolsets.GameplayCueToolset
+LogToolsetRegistry: Display: Registering Toolset GASToolsets.AttributeSetToolset
+LogToolsetRegistry: Display: Registering Toolset GASToolsets.AbilitySystemInspectorToolset
+LogToolsetRegistry: Display: Registering Toolset DataflowAgent.DataflowAgentToolset
+LogToolsetRegistry: Display: Registering Toolset UMGToolSet.UMGToolSet
+LogCook: Display: CookProcessCount=1. CookMultiprocess is disabled and the cooker is running as a single process.
+LogCook: Display: CookSettings for Memory:
+	MemoryMaxUsedVirtual 0MiB
+	MemoryMaxUsedPhysical 0MiB
+	MemoryMinFreeVirtual 2048MiB
+	MemoryMinFreePhysical 2048MiB
+	MemoryTriggerGCAtPressureLevel None
+	SoftGCMemoryUseTrigger disabled
+	SoftGCTimeBudgetTrigger enabled (0.05 budget, 30s min period)
+LogCook: Display: SkipOnlyEditorOnly is enabled, unsolicited packages will not be cooked unless they are referenced from the cooked version of the instigator package.
+LogCook: Display: ---- Pre Content Initialisation: End ----
+LogCook: Display: ---- Post Content Initialisation: Start ----
+LogEditorDomain: Display: Cycle detected in parents of class /Script/RigVMDeveloper.RigVMUnitNode. Allow flags for editordomain and incremental cooking will be invalid.
+LogZenStore: Display: Establishing oplog 'Lyra.d1e247ff/EditorDomain'
+LogZenStore: Display: Zen project 'Lyra.d1e247ff' created
+LogZenStore: Display: Zen oplog 'Lyra.d1e247ff/EditorDomain' created
+LogCook: Display: Waiting for Asset Registry
+LogAssetRegistry: Display: Starting OnFilesLoaded.Broadcast
+LogAssetRegistry: Display: Completed OnFilesLoaded.Broadcast: 0.036s
+LogAssetRegistry: Display: Asset registry cache written as 155.9 MiB to ../../../../../../.codex/worktrees/lyra-remote-evaluation/ModelTest/Intermediate/CachedAssetRegistry/CachedAssetRegistry_*.ref
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 1 .ref files found, 1 referenced binaries
+LogAssetRegistry: Display:   CachedAssetRegistry_0_803132D64BF15869046568B2E0676A7B.bin: deleted (orphaned, unreferenced by any .ref)
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 2 total binaries, 1 referenced (kept), 0 old-style pre-migration (kept), 1 orphans deleted, 0 orphans locked (kept)
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 1 .ref files found, 1 referenced binaries
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 1 total binaries, 1 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+LogCook: Display: INCREMENTAL COOK DEPENDENCIES: Enabled. Incremental Cook Dependencies are enabled in Editor.ini:[CookSettings]:LegacyIterative=false.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogZenStore: Display: Establishing oplog 'Lyra.d1e247ff/LinuxServer'
+LogZenStore: Display: Zen project 'Lyra.d1e247ff' already exists
+LogStorageServerPlatformFile: Display: Found 'C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/ue.projectstore'
+LogStorageServerPlatformFile: Display: Using connection settings from ue.projectstore: HostAddrs='[::1]+30.30.62.44' and HostPort='8558'
+LogStorageServerPlatformFile: Display: Found 'C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/ue.projectstore'
+LogStorageServerPlatformFile: Display: Using password authentication from ue.projectstore
+LogStorageServerPlatformFile: Display: Using settings from ue.projectstore: ServerProject='Lyra.d1e247ff' and ServerPlatform='LinuxServer'
+LogStorageServerConnection: Display: Creating zen store connection to [::1]:8558 ("::1").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/Lyra.d1e247ff/oplog/LinuxServer: oplog LinuxServer not found in project Lyra.d1e247ff
+LogStorageServerConnection: Display: Creating zen store connection to 30.30.62.44:8558 ("30.30.62.44").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/Lyra.d1e247ff/oplog/LinuxServer: oplog LinuxServer not found in project Lyra.d1e247ff
+LogStorageServerConnection: Display: Creating zen store connection to hostname://HUAQIJIANG-PC0:8558 ("30.30.62.44").
+LogStorageServerConnection: Display: Storage server returned HTTP 404 for /prj/Lyra.d1e247ff/oplog/LinuxServer: oplog LinuxServer not found in project Lyra.d1e247ff
+LogStorageServerPlatformFile: Display: Failed to initialize connection to any of [ [::1], 30.30.62.44, hostname://HUAQIJIANG-PC0 ]
+LogCook: Display: CalculateGlobalDependenciesHash(LinuxServer):
+LogCook: Display: 	FGuid CookIncrementalVersion = ffa12fdc-c822-1fe2-7757-627a12f1d3a7
+LogCook: Display: 	[Editor]:CookSettings.ProjectCookIncrementalVersion = 00000000-0000-0000-0000-000000000000
+LogCook: Display: 	[Engine]:Core.System.CanStripEditorOnlyExportsAndImports = True
+LogCook: Display: 	[Engine]:Core.System.CanSkipEditorReferencedPackagesWhenCooking = False
+LogCook: Display: 	CanUseUnversionedPropertySerialization = False
+LogCook: Display: 	[Editor]:CookSettings.AutomaticOptionalInclusionAssetType = /Script/Niagara.NiagaraScript, /Script/Niagara.NiagaraEmitter, /Script/Niagara.NiagaraSystem, /Script/NiagaraEditor.NiagaraParameterDefinitions, /Script/Niagara.NiagaraEffectType, /Script/Niagara.NiagaraValidationRuleSet, /Script/OptimusCore.OptimusDeformer
+LogCook: Display: 	IsCookFlagSet(ECookInitializationFlags::Unversioned) = True
+LogCook: Display: 	FCoreRedirects::AppendHashOfGlobalRedirects = 69bad32c2f21f40f29e9fa89addd83a68ed85cc5452515116d17949b8cb0334c
+LogCook: Display: 	GlobalDependenciesHash(LinuxServer) = bea433a2ec34646ba1fe83b76f48212abcb2160de8eaed52c9d7172d09b249c5
+LogCook: Display: FULL COOK: Incremental Cooks are disabled by default in Editor.ini:[CookSettings]:CookIncrementalDefaultIncremental=false, and commandline did not specify -forcerecook=false. Deleting previously cooked packages for platform LinuxServer and recooking all packages discovered in the current cook.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogZenStore: Display: Deleting oplog 'Lyra.d1e247ff/LinuxServer' if it exists
+LogZenStoreWriter: Display: Deleting C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/...
+LogZenStore: Display: Zen oplog 'Lyra.d1e247ff/LinuxServer' created
+LogCook: Display: Sandbox cleanup took 0.011 seconds for platforms LinuxServer
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogCook: Display: Discovering localized assets for cultures: ar, de, en, es, es-419, fr, it, ja, ko, pl, pt, pt-BR, ru, tr, zh, zh-Hans
+LogCook: Display: Found 0 localized assets
+LogCook: Display: ---- Post Content Initialisation: End ----
+LogCook: Display: Cooked packages 0 Packages Remain 2 Total 2
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1609, VirtualMemory=2115MiB, VirtualMemoryAvailable=60304MiB
+LogCook: Display: Garbage collection triggered (Soft). Triggered by conditions:
+  CookSettings.SoftGCTimeTrigger: Periodic triggering of SoftGC: No duration data.
+LogCookCommandlet: Display: GarbageCollection... (Periodic GC)
+LogCook: Display: Cooked packages 8 Packages Remain 0 Total 8
+LogCook: Display: Cook Diagnostics: OpenFileHandles=1370, VirtualMemory=2158MiB, VirtualMemoryAvailable=60249MiB
+LogCook: Display: ---- Finalisation: Start ----
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogCook: Display: CookArtifact 'C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/Lyra/Metadata/ValidationCookArtifact.json' saved.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogAssetRegistryGenerator: Display: Saving asset registry v24.
+LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+LogAssetRegistryGenerator: Display: Generated development asset registry C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/Lyra/Metadata/DevelopmentAssetRegistry.bin num assets 13, size is 76.93kb, XxHash64[LE] = 0xC6A795220C1E616B, waited on hash 0.00 seconds
+LogAssetRegistryGenerator: Display: Generated asset registry num assets 13, size is  3.60kb
+LogCook: Display: Dependent plugin "VTCodecs" referenced by "Pixel Streaming 2" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "OnlineSubsystemGDK" referenced by "Online Framework Plugin" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "UAF" referenced by "IK Rig" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Dependent plugin "UAFAnimGraph" referenced by "IK Rig" wasn't found in enabled plugins list when creating cook metadata file... skipping
+LogCook: Display: Finalize package store(s)...
+LogZenStoreWriter: Display: Flushing...
+LogZenStoreWriter: Display: Saving Zen filesystem manifest 'C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/Lyra/Metadata/zenfs.manifest'
+LogZenStoreWriter: Display: Output:	56103 Public runtime script objects
+LogCook: Display: Cook by the book total time in tick 0.035720s total time 7.187225
+LogCook: Display: Peak Used virtual 2263 MiB Peak Used physical 2416 MiB
+LogCook: Display: Packages Cooked: 8, Packages Incrementally Skipped: 0, Packages Skipped by Platform: 0, Total Packages: 8
+LogCookStats: Display: Hierarchy Timer Information:
+LogCookStats: Display:   Root: 0.000s (0)
+LogCookStats: Display:     CleanSandbox: 0.011s (1)
+LogCookStats: Display:     CollectFilesToCook: 0.000s (1)
+LogCookStats: Display:     GenerateLongPackageName: 0.000s (1)
+LogCookStats: Display:     TickMainCookLoop: 0.036s (2)
+LogCookStats: Display:       PumpPollables: 0.000s (1)
+LogCookStats: Display:       PumpRequests: 0.000s (1)
+LogCookStats: Display:       LoadPackageForCooking: 0.015s (8)
+LogCookStats: Display:       ValidateSourcePackage: 0.000s (8)
+LogCookStats: Display:       SavingPackages: 0.018s (2)
+LogCookStats: Display:         PollPendingCookedPlatformDatas: 0.000s (8)
+LogCookStats: Display:         PrepareSave: 0.000s (2)
+LogCookStats: Display:         PrecachePlatformDataForNextPackage: 0.000s (6)
+LogCookStats: Display:           PrepareSave: 0.000s (6)
+LogCookStats: Display:         SaveCookedPackage: 0.018s (8)
+LogCookStats: Display:           GEditorSavePackage: 0.015s (8)
+LogCookStats: Display:             VerifyCanCookPackage: 0.000s (8)
+LogCookStats: Display:           TargetDomainDependencies: 0.002s (8)
+LogCookStats: Display:         ClearAllCachedCookedPlatformData: 0.000s (8)
+LogCookStats: Display:       PostLoadPackageFixup: 0.000s (1)
+LogCookStats: Display:     CookByTheBookFinished: 0.452s (1)
+LogCookStats: Display:       SavingCurrentIniSettings: 0.025s (1)
+LogCookStats: Display:         ProcessingAccessedStrings: 0.002s (1)
+LogCookStats: Display:       ChunkGeneration: 0.016s (1)
+LogCookStats: Display:       FinishPopulateShaderLibrary: 0.000s (1)
+LogCookStats: Display:       CalculateReferencedSet: 0.000s (1)
+LogCookStats: Display:       CookArtifacts.UpdateOplogPackages: 0.004s (1)
+LogCookStats: Display:       PruneShaderLibrary: 0.000s (1)
+LogCookStats: Display:       GeneratorPreSave: 0.000s (1)
+LogCookStats: Display:       BuildChunkManifest: 0.012s (1)
+LogCookStats: Display:         FixupPackageDependenciesForChunks: 0.008s (1)
+LogCookStats: Display:       SaveManifests: 0.015s (1)
+LogCookStats: Display:       SaveAssetRegistry: 0.012s (1)
+LogCookStats: Display:       WriteCookerOpenOrder: 0.000s (1)
+LogCookStats: Display:       WriteCookMetadata: 0.001s (1)
+LogCookStats: Display:       WriteReferencedSet: 0.000s (1)
+LogCookStats: Display:       FinalizePackageStore: 0.234s (1)
+LogCookStats: Display: Misc Cook Stats
+LogCookStats: Display: ===============
+LogCookStats: Display: Niagara
+LogCookStats: Display:     NiagaraScriptTranslationCount=0
+LogCookStats: Display:     NiagaraCpuScriptCompileCount=0
+LogCookStats: Display:     NiagaraCpuScriptDdcCacheHitCount=0
+LogCookStats: Display:     NiagaraCpuScriptDdcCacheMissCount=0
+LogCookStats: Display:     NiagaraGpuScriptCompileCount=0
+LogCookStats: Display:     NiagaraGpuScriptDdcCacheHitCount=0
+LogCookStats: Display:     NiagaraGpuScriptDdcCacheMissCount=0
+LogCookStats: Display:     NiagaraSystemWaitForCompilationCompleteTime=0.000000
+LogCookStats: Display: Validation
+LogCookStats: Display:     Stats=[]
+LogCookStats: Display: ComputeKernelShader.Misc
+LogCookStats: Display:     ShadersCompiled=0
+LogCookStats: Display: OpenColorIOShader.Misc
+LogCookStats: Display:     ShadersCompiled=0
+LogCookStats: Display: NiagaraShader.Misc
+LogCookStats: Display:     ShadersCompiled=0
+LogCookStats: Display: ShaderCompiler
+LogCookStats: Display:     BlockingTimeSec=0.000020
+LogCookStats: Display:     AsyncCompileTimeSec=0.000000
+LogCookStats: Display:     GlobalBeginCompileShaderTimeSec=0.000000
+LogCookStats: Display:     GlobalBeginCompileShaderCalls=0
+LogCookStats: Display:     ProcessAsyncResultsTimeSec=0.000002
+LogCookStats: Display: GlobalShader.Misc
+LogCookStats: Display:     ShadersCompiled=0
+LogCookStats: Display: Material
+LogCookStats: Display:     FinishCacheShadersSec=0.000000
+LogCookStats: Display: Cook.Profile.Params
+LogCookStats: Display:     CookProject=Lyra
+LogCookStats: Display:     CookCultures=
+LogCookStats: Display:     CookLabel=
+LogCookStats: Display:     TargetPlatforms=LinuxServer
+LogCookStats: Display:     IsCookAll=false
+LogCookStats: Display:     IsCookOnTheFly=false
+LogCookStats: Display:     IsIncrementalCook=false
+LogCookStats: Display:     IsIterativeCook=false
+LogCookStats: Display:     IsFastCook=false
+LogCookStats: Display:     IsUnversioned=true
+LogCookStats: Display: CookOnTheFlyServer.Package.Load
+LogCookStats: Display:     NumRequestedLoads=6
+LogCookStats: Display:     NumPackagesLoaded=1247
+LogCookStats: Display:     NumInlineLoads=1241
+LogCookStats: Display: CookOnTheFlyServer.Package.Save
+LogCookStats: Display:     NumPackagesIncrementallySkipped=0
+LogCookStats: Display: CookOnTheFlyServer.QueueSize
+LogCookStats: Display:     PeakRequest=8
+LogCookStats: Display:     PeakLoad=8
+LogCookStats: Display:     PeakSave=6
+LogCookStats: Display: Package.Load
+LogCookStats: Display:     LoadPackageTimeSec=0.309644
+LogCookStats: Display: Package.Save
+LogCookStats: Display:     NumPackagesSaved=8
+LogCookStats: Display:     SavePackageTimeSec=0.012875
+LogCookStats: Display:     TagPackageExportsPresaveTimeSec=0.000000
+LogCookStats: Display:     TagPackageExportsTimeSec=0.000000
+LogCookStats: Display:     FullyLoadLoadersTimeSec=0.000000
+LogCookStats: Display:     ResetLoadersTimeSec=0.000000
+LogCookStats: Display:     TagPackageExportsGetObjectsWithOuter=0.000000
+LogCookStats: Display:     TagPackageExportsGetObjectsWithMarks=0.000000
+LogCookStats: Display:     SerializeImportsTimeSec=0.000000
+LogCookStats: Display:     SortExportsSeekfreeInnerTimeSec=0.000000
+LogCookStats: Display:     SerializeExportsTimeSec=0.000000
+LogCookStats: Display:     SerializeBulkDataTimeSec=0.000030
+LogCookStats: Display:     AsyncWriteTimeSec=0.000000
+LogCookStats: Display:     MBWritten=0.000000
+LogCookStats: Display: Package.DifferentPackagesSizeMBPerAsset
+LogCookStats: Display: Package.NumberOfDifferencesInPackagesPerAsset
+LogCookStats: Display: Package.PackageDifferencesSizeMBPerAsset
+LogCookStats: Display: Package.DiffTotal
+LogCookStats: Display:     NumberOfDifferentPackages=0
+LogCookStats: Display:     DifferentPackagesSizeMB=0.000000
+LogCookStats: Display:     NumberOfDifferencesInPackages=0
+LogCookStats: Display:     PackageDifferencesSizeMB=0.000000
+LogCookStats: Display: UnversionedProperties
+LogCookStats: Display:     SavedStructs=0
+LogCookStats: Display:     SavedMB=0
+LogCookStats: Display:     EquivalentTaggedMB=0
+LogCookStats: Display:     CompressionRatio=-nan(ind)
+LogCookStats: Display:     BitfieldWasteKB=0
+LogCookStats: Display:
+LogCookStats: Display: Cook Profile
+LogCookStats: Display: ============
+LogCookStats: Display:  0.CookWallTimeSec=21.925654
+LogCookStats: Display:  0. 0.StartupWallTimeSec=14.586542
+LogCookStats: Display:  0. 1.CookProcessingTime=7.339112
+LogCookStats: Display:  0. 1. 1.StartCookByTheBookTimeSec=6.711929
+LogCookStats: Display:  0. 1. 1. 0.BlockOnAssetRegistryTimeSec=1.346360
+LogCookStats: Display:  0. 1. 1. 1.GameCookModificationDelegateTimeSec=0.000000
+LogCookStats: Display:  0. 1. 2.TickCookOnTheSideTimeSec=0.008258
+LogCookStats: Display:  0. 1. 2. 0.TickCookOnTheSideLoadPackagesTimeSec=0.015214
+LogCookStats: Display:  0. 1. 2. 1.TickCookOnTheSideSaveCookedPackageTimeSec=0.018016
+LogCookStats: Display:  0. 1. 2. 1. 0.TickCookOnTheSideResolveRedirectorsTimeSec=0.000000
+LogCookStats: Display:  0. 1. 2. 2.TickCookOnTheSidePrepareSaveTimeSec=0.000170
+LogCookStats: Display:  0. 1. 3.TickLoopGCTimeSec=0.135774
+LogCookStats: Display:  0. 1. 4.TickLoopRecompileShaderRequestsTimeSec=0.000000
+LogCookStats: Display:  0. 1. 5.TickLoopShaderProcessAsyncResultsTimeSec=0.000007
+LogCookStats: Display:  0. 1. 6.TickLoopProcessDeferredCommandsTimeSec=0.000002
+LogCookStats: Display:  0. 1. 7.TickLoopTickCommandletStatsTimeSec=0.000001
+LogCookStats: Display:  0. 1. 8.TickLoopFlushRenderingCommandsTimeSec=0.000205
+LogCookStats: Display:  0. 1. 9.ShaderFlushTimeSec=0.000000
+LogCookStats: Display:  0. 1. 10.ValidationTimeSec=0.000007
+LogCookStats: Display:
+LogCookStats: Display: DDC Summary Stats
+LogCookStats: Display: =================
+LogCookStats: Display: BackEnd         =   Default
+LogCookStats: Display: HasLocalCache   =      true
+LogCookStats: Display: HasSharedCache  =     false
+LogCookStats: Display: HasCloudCache   =     false
+LogCookStats: Display: HasZenCache     =      true
+LogCookStats: Display: TotalGetHits    =       171
+LogCookStats: Display: TotalGetMisses  =       596
+LogCookStats: Display: TotalGets       =       767
+LogCookStats: Display: TotalGetHitPct  =  0.222947
+LogCookStats: Display: GetMissPct      =  0.777053
+LogCookStats: Display: TotalPutHits    =       598
+LogCookStats: Display: TotalPutMisses  =         0
+LogCookStats: Display: TotalPuts       =       598
+LogCookStats: Display: TotalPutHitPct  =  1.000000
+LogCookStats: Display: PutMissPct      =  0.000000
+LogCookStats: Display: LocalGetHits    =       171
+LogCookStats: Display: LocalGetMisses  =       596
+LogCookStats: Display: LocalGetTotal   =       767
+LogCookStats: Display: LocalGetHitPct  =  0.222947
+LogCookStats: Display: SharedGetHits   =         0
+LogCookStats: Display: SharedGetTotal  =         0
+LogCookStats: Display: SharedGetHitPct =  0.000000
+LogCookStats: Display: ZenLocalGetHits =       171
+LogCookStats: Display: ZenLocalGetTotal=       767
+LogCookStats: Display: ZenLocalGetHitPct=  0.222947
+LogCookStats: Display: ZenRemoteGetHits=         0
+LogCookStats: Display: ZenRemoteGetTotal=         0
+LogCookStats: Display: ZenRemoteGetHitPct=  0.000000
+LogCookStats: Display: ZenRemoteReadSpeed=  0.000000
+LogCookStats: Display: ZenRemoteWriteSpeed=  0.000000
+LogCookStats: Display: ZenRemoteLatency=  0.000000
+LogCookStats: Display: CloudGetHits    =         0
+LogCookStats: Display: CloudGetTotal   =         0
+LogCookStats: Display: CloudGetHitPct  =  0.000000
+LogCookStats: Display: LocalLatency    =  0.592744
+LogCookStats: Display: LocalReadSpeed  = 34.113591
+LogCookStats: Display: LocalWriteSpeed =  1.279319
+LogCookStats: Display: SharedLatency   =  0.000000
+LogCookStats: Display: SharedReadSpeed =  0.000000
+LogCookStats: Display: SharedWriteSpeed=  0.000000
+LogCookStats: Display: CloudLatency    =  0.000000
+LogCookStats: Display: CloudReadSpeed  =  0.000000
+LogCookStats: Display: CloudWriteSpeed =  0.000000
+LogCookStats: Display:
+LogCookStats: Display: DDC Resource Stats
+LogCookStats: Display: =======================================================================================================
+LogCookStats: Display: Asset Type                          Total Time (Sec)  GameThread Time (Sec)  Assets Built  MB Processed
+LogCookStats: Display: ----------------------------------  ----------------  ---------------------  ------------  ------------
+LogCookStats: Display: BulkDataList                                    1.32                   0.00           596          0.00
+LogCookStats: Display: StaticMesh                                      0.03                   0.00             0          0.72
+LogCookStats: Display: DistanceField                                   0.02                   0.00             0          0.29
+LogCookStats: Display: NavCollision                                    0.02                   0.00             0          0.02
+LogCookStats: Display: CardRepresentation                              0.02                   0.00             0          0.01
+LogCookStats: Display: BulkDataPayloadId                               0.00                   0.00             2          0.00
+LogCookStats: Display: BodySetup                                       0.00                   0.00             0          0.42
+LogCookStats: Display: SubUV                                           0.00                   0.00             0          0.00
+LogCookStats: Display: SkeletalMesh                                    0.00                   0.00             0          0.00
+LogCookStats: Display:
+LogCookStats: Display: Accumulated DDC Resource Stats Per Asset Type
+LogCookStats: Display: =======================================================================================================
+LogCookStats: Display: AnimationSequence                               0.00                   0.00             0          0.00
+LogCookStats: Display: Audio                                           0.00                   0.00             0          0.00
+LogCookStats: Display: CardRepresentation                              0.02                   0.00             0          0.01
+LogCookStats: Display: DistanceField                                   0.02                   0.00             0          0.29
+LogCookStats: Display: MaterialShader                                  0.00                   0.00             0          0.00
+LogCookStats: Display: MaterialTranslation                             0.00                   0.00             0          0.00
+LogCookStats: Display: NiagaraScript                                   0.00                   0.00             0          0.00
+LogCookStats: Display: SkeletalMesh                                    0.00                   0.00             0          0.00
+LogCookStats: Display: StaticMesh                                      0.03                   0.00             0          0.72
+LogCookStats: Display: Texture                                         0.00                   0.00             0          0.00
+LogCookStats: Display: Other                                           1.34                   0.00           598          0.44
+LogPackageBuildDependencyTracker: Display: Package Accesses (367 referencing packages with a total of 4258 unique accesses)
+LogConfigBuildDependencyTracker: Display: Config Accesses (92 referencing packages with a total of 276 unique accesses). 1874 unique accesses that were not associated with a package.
+LogCook: Display: ---- Finalisation: End ----
+LogCook: Display: Done!
+LogSavePackage: Display: Took 0.000021s to verify the EDL loading graph.
+LogInit: Display:
+LogInit: Display: Success - 0 error(s), 0 warning(s)
+LogInit: Display:
+
+Execution of commandlet took:  7.34 seconds, PeakPhysMemoryMB=2416 MB, PeakVirtMemoryMB=2263 MB
+LogToolsetRegistry: Display: Unregistering Toolset ToolsetRegistry.AgentSkillToolset
+LogToolsetRegistry: Display: Unregistering Toolset AIAssistant.AIAssistantToolset
+LogToolsetRegistry: Display: Unregistering Toolset AutomationTestToolset.AutomationTestToolset
+LogToolsetRegistry: Display: Unregistering Toolset SlateInspectorToolset.SlateInspectorToolset
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles (PostWrite): 1 .ref files found, 1 referenced binaries
+LogAssetRegistry: Display: CleanupOrphanedCacheFiles: 1 total binaries, 1 referenced (kept), 0 old-style pre-migration (kept), 0 orphans deleted, 0 orphans locked (kept)
+LogStreaming: Display: ============ Loader Stats ============
+LogStreaming: Display: Unique Partial Flushes: 0
+LogStreaming: Display: ============ Loader Stats End ============
+LogShaderCompilers: Display: Exiting ShaderCompilingThread
+Took 23.88s to run UnrealEditor-Cmd.exe, ExitCode=0
+Cook command time: 23.96 s
+********** COOK COMMAND COMPLETED **********
+********** STAGE COMMAND STARTED **********
+Creating Staging Manifest...
+Staging all 1 build products
+ Product 0: LyraServer
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\WordCount.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Linux\LinuxEditorPerProjectUserSettings.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\RepairData.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\Engine.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\ToolTips.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\PropertyNames.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\Category.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\PortableObjectExport.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\Keywords.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\PortableObjectImport.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Localization\Editor.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseEditor.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Linux\LinuxEditorGameAgnostic.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseLightmass.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseEditorSettings.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseEditorKeyBindings.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseSourceControlSettings.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BasePakFileRules.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseEditorPerProjectUserSettings.ini
+Excluding config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseUnrealInsightsSettings.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseEngine.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseMaterialExpressions.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseGameUserSettings.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseGame.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseScalability.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseRuntimeOptions.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Unix\UnixEngine.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseInput.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseHardware.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Linux\LinuxEngine.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\PluginBase.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\DefaultEngine.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseCompat.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Base.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Linux\BaseLinuxEngine.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseInstallBundle.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Linux\LinuxGame.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\BaseDeviceProfiles.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\ConsoleVariables.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\ConfigRedirects.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\VulkanPC\DataDrivenPlatformInfo.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Layouts\UE4ClassicLayout.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Layouts\DefaultLayout.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Unix\DataDrivenPlatformInfo.ini
+Including config file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Config\Linux\DataDrivenPlatformInfo.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_ImportDialogueScript.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Custom\EOS\DefaultEngine.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_ImportDialogue.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_Import.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultEditor.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultEditorSettings.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Custom\SteamEOS\DefaultEngine.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Custom\Steam\DefaultGame.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Custom\Steam\DefaultEngine.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_Compile.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultEditorKeyBindings.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Custom\EOS\DefaultGame.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_ExportDialogueScript.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_Gather.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_Export.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_GenerateReports.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_Import.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\EngineOverrides_ImportDialogueScript.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_Compile.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_Export.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_ExportDialogueScript.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_GenerateReports.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_Gather.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Localization\Game_ImportDialogue.ini
+Excluding config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultEditorPerProjectUserSettings.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Linux\LinuxEngine.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultScalability.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\Linux\LinuxGame.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultGameplayTags.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultRuntimeOptions.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultGame.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultEngine.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultInput.ini
+Including config file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Config\DefaultDeviceProfiles.ini
+Unable to find directory "C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Content\DTLS" for staging, retrieved from "/Script/UnrealEd.ProjectPackagingSettings" "DirectoriesToAlwaysStageAsNonUFS"
+Reading oplog from Zen...
+Reading oplog from http://[::1]:8558/prj/Lyra.d1e247ff/oplog/LinuxServer/entries?trim_by_referencedset=true
+Parsed 10 package entries from oplog.
+Cleaning Stage Directory: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\StagedBuilds\LinuxServer
+Creating pak using streaming install manifests.
+DumpManifest: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\PrePak_Server_LinuxServer_NonUFSFiles.txt, NumItems: 30
+DumpManifest: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\PrePak_Server_LinuxServer_NonUFSFilesDebug.txt, NumItems: 7
+DumpManifest: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\PrePak_Server_LinuxServer_UFSFiles.txt, NumItems: 4752
+No matching platform for PakFileRules for Section ExcludeContentForMobile : Linux
+ChunkAssignment op not cached on PackageStoreData
+Reading chunk list file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\Lyra\Metadata\ChunkManifest\pakchunklist.txt which contains 1 entries
+Reading chunk manifest C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\Lyra\Metadata\ChunkManifest\pakchunk0.txt which contains 8 entries
+Creating Pak files utilizing 32 cores
+Using 1 pak order files:
+    C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Build\LinuxServer\FileOpenOrder\EditorOpenOrder.log Priority 0
+Running UnrealPak with arguments: "C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject"  -cryptokeys="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\Lyra\Metadata\Crypto.json" -order="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Build\LinuxServer\FileOpenOrder\EditorOpenOrder.log" -unattended -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken  -ProjectStore="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\ue.projectstore" -platform=Linux  -CreateMultiple="C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\PakCommands.txt"
+Running: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\UnrealPak.exe "C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject"  -cryptokeys="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\Lyra\Metadata\Crypto.json" -order="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Build\LinuxServer\FileOpenOrder\EditorOpenOrder.log" -unattended -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken  -ProjectStore="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\ue.projectstore" -platform=Linux  -CreateMultiple="C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\PakCommands.txt"
+OodleDataCompression: Display: Oodle v2.9.16 format for pak/iostore with method=Kraken, level=4=Normal
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: true, Async Post Load: false, Multithreaded: true
+LogPakFile: Display: ProjectDir: ../../../../../../.codex/worktrees/lyra-remote-evaluation/ModelTest/
+LogPakFile: Display: Parsing crypto keys from a crypto key cache file
+LogPakFile: Display: CompressionFormats in priority order: Oodle, Zlib
+LogZenServiceInstance: Display: Launching zen utility 'C:/Users/huaqijiang/Documents/Study/UE5/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/huaqijiang/Documents/Study/UE5/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Launching executable 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe', working dir 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install', data dir 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Data', args '--port 8558 --data-dir C:\Users\huaqijiang\AppData\Local\UnrealEngine\Common\Zen\Data --http asio --gc-cache-duration-seconds 1209600 --gc-interval-seconds 21600 --gc-low-diskspace-threshold 2147483648 --cache-bucket-limit-overwrites --quiet --restrict-content-types --allow-external-oidctoken-exe=false --plugins-config "C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugins_v1.json" --security-config-path "C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/security-config.json" --owner-pid 113852  --child-id Zen_113852_Startup'
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenStore: Display: Opening oplog Lyra.d1e247ff / LinuxServer
+LogIoStore: Display: Fetched 11 oplog items from Zen in 3.49 seconds
+LogIoStore: Display: Parsed 11 oplog items 0.01 seconds, 5705 chunks
+LogIoStore: Display: Loaded 8 chunk hashes from Zen in 0.00 seconds, 8 hashes updated in 0.00 seconds
+LogPakFile: Display: Oodle enabled on 'NoPluginCompression' files
+LogPakFile: Display: Loading pak order file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Build\LinuxServer\FileOpenOrder\EditorOpenOrder.log...
+LogPakFile: Display: Finished loading pak order file C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Build\LinuxServer\FileOpenOrder\EditorOpenOrder.log.
+LogPakFile: Display: Loading response file C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\ResponseFiles\PakList_pakchunk0-LinuxServer.txt
+LogPakFile: Display: Added 4744 entries to add to pak file.
+LogPakFile: Display: Collecting files to add to pak file...
+LogPakFile: Display: Collected 4744 files in 0.02s.
+LogPakFile: Display: Creating pak C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/StagedBuilds/LinuxServer/Lyra/Content/Paks/pakchunk0-LinuxServer.pak.
+LogPakFile: Display: Created pak file: C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/StagedBuilds/LinuxServer/Lyra/Content/Paks/pakchunk0-LinuxServer.pak
+LogPakFile: Display: CompressionFormat 0 [Oodle] : 1623 files, 130712567 -> 45115361 bytes
+LogPakFile: Display: CompressionFormat 2 [None] : 3121 files, 1124145 -> 1124145 bytes
+LogPakFile: Display: Added 4744 files, 46900348 bytes total
+LogPakFile: Display: PrimaryIndex size: 70618 bytes
+LogPakFile: Display: PathHashIndex size: 156094 bytes
+LogPakFile: Display: FullDirectoryIndex size: 122689 bytes
+LogPakFile: Display: Compression summary: 34.51% of original size. Compressed Size 45115361 bytes, Original Size 130712567 bytes.
+LogPakFile: Display: Encryption - DISABLED
+LogPakFile: Display:
+LogPakFile: Display: Writer and Compression Threads exited.
+LogPakFile: Display: UnrealPak executed in 4.038373 seconds
+Took 5.20s to run UnrealPak.exe, ExitCode=0
+Running UnrealPak with arguments: "C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject -CreateGlobalContainer="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\StagedBuilds\LinuxServer\Lyra\Content\Paks\global.utoc" -ProjectStore="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\ue.projectstore" -CookedDirectory="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer" -Commands="C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt" -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken   -cryptokeys="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\Lyra\Metadata\Crypto.json" -compressionMinBytesSaved=1024 -compressionMinPercentSaved=5 -WriteBackMetadataToAssetRegistry=OriginalFile -platform=Linux  -unattended
+Running: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\UnrealPak.exe "C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject -CreateGlobalContainer="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\StagedBuilds\LinuxServer\Lyra\Content\Paks\global.utoc" -ProjectStore="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\ue.projectstore" -CookedDirectory="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer" -Commands="C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt" -compressionformats=Oodle -compresslevel=4 -compressmethod=Kraken   -cryptokeys="C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\Lyra\Metadata\Crypto.json" -compressionMinBytesSaved=1024 -compressionMinPercentSaved=5 -WriteBackMetadataToAssetRegistry=OriginalFile -platform=Linux  -unattended
+OodleDataCompression: Display: Oodle v2.9.16 format for pak/iostore with method=Kraken, level=4=Normal
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: true, Async Post Load: false, Multithreaded: true
+LogPakFile: Display: ProjectDir: ../../../../../../.codex/worktrees/lyra-remote-evaluation/ModelTest/
+LogIoStore: Display: ==================== IoStore Utils ====================
+LogIoStore: Display: Parsing crypto keys from a crypto key cache file 'C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer\Lyra\Metadata\Crypto.json'
+LogIoStore: Display: Container signing - DISABLED
+LogIoStore: Display: Directory index - ENABLED
+LogIoStore: Display: Using compression format 'Oodle'
+LogConfig: Display: Read in platform Linux ini files took 0.04 seconds
+LogIoStore: Display: Using memory mapping alignment '16384'
+LogIoStore: Display: Using compression block size '65536'
+LogIoStore: Display: Using compression block alignment '65536'
+LogIoStore: Display: Using compression min bytes saved '1024'
+LogIoStore: Display: Using compression min percent saved '5'
+LogIoStore: Display: Using max partition size '0'
+LogIoStore: Display: Not using DDC for compression
+LogIoStore: Display: Container metadata disabled
+LogIoStore: Display: Using command list file: 'C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\IoStoreCommands.txt'
+LogIoStore: Display: Selected Oodle level 4 (Normal) from command line for shaders
+LogZenServiceInstance: Display: Launching zen utility 'C:/Users/huaqijiang/Documents/Study/UE5/Engine/Binaries/Win64/zen.exe service status'.
+LogZenServiceInstance: Display: Writing plugin version info to 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen_plugin_versions.json'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/huaqijiang/Documents/Study/UE5/Engine/Saved/Zen/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Read zen version cache file from 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zen.version', version: '5.8.13-202605190912-windows-x64-release-094f62c2'
+LogZenServiceInstance: Display: Installed service at 'C:/Users/huaqijiang/AppData/Local/UnrealEngine/Common/Zen/Install/zenserver.exe' is up to date
+LogZenServiceInstance: Display: Unreal Zen Storage Server HTTP service at http://[::1]:8558 status: OK!.
+LogZenStore: Display: Opening oplog Lyra.d1e247ff / LinuxServer
+LogIoStore: Display: Fetched 11 oplog items from Zen in 1.15 seconds
+LogIoStore: Display: Parsed 11 oplog items 0.01 seconds, 5705 chunks
+LogIoStore: Display: Loaded 8 chunk hashes from Zen in 0.00 seconds, 8 hashes updated in 0.00 seconds
+LogIoStore: Display: Searching for cooked assets in folder 'C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\Cooked\LinuxServer'
+LogIoStore: Display: Found '0' files
+LogIoStore: Display: Creating container targets...
+LogIoStore: Display: Processing shader libraries, compressing with Oodle Mermaid, level 4 (Normal)
+LogIoStore: Display: Shader library chunk override is disabled
+LogIoStore: Display: Shaders processed in 0.01 seconds
+LogIoStore: Display: Initialized WriteRequestManager with MaxConcurrentSourceReads=16 (32 cores), MaxSourceBufferMemory=3072MiB
+LogIoStore: Display: Processing redirects...
+LogIoStore: Display: Creating disk layout...
+LogIoStore: Display: Ordered 8 packages using fallback bundle order
+LogIoStore: Display: Disabled WriteRequestManager memory throttling, MaxConcurrentSourceReads=16 (32 cores)
+LogIoStore: Display: Writing container(s)...
+LogIoStore: Display: Writing and compressing took 0.01 seconds, writes to disk took 0.00 seconds for 3,705,536 bytes @ 2,203,446,512 bytes per second.
+LogIoStore: Display: global: Found perfect hashmap for 1 items.
+LogIoStore: Display: pakchunk0-LinuxServer: Found perfect hashmap for 9 items.
+LogIoStore: Display: Finalize took 0.0 seconds for 2 writers to write 2,189 bytes, 381,279 bytes per second
+LogIoStore: Display: Writing tocs... [Physical: 301 MiB, Virtual: 3160 MiB]
+LogIoStore: Display: 8 / 10 hashes were loaded from the hash database, by type:
+LogIoStore: Display:     ExportBundleData           8
+LogIoStore: Display: 8 / 10 chunks attempted to compress, by type:
+LogIoStore: Display:     ExportBundleData           8 / 8
+LogIoStore: Display:     ScriptObjects              0 / 1
+LogIoStore: Display:     ContainerHeader            0 / 1
+LogIoStore: Display: Source bytes read:
+LogIoStore: Display:     Zen:                             45,074
+LogIoStore: Display:         ExportBundleData             45,074 bytes over 8 reads
+LogIoStore: Display:     Loose File:                           0
+LogIoStore: Display:     Memory:                               0
+LogIoStore: Display: Adding staging metadata to asset registry...
+LogIoStore: Display: Using input asset registry: C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/Lyra/Metadata/DevelopmentAssetRegistry.bin
+LogIoStore: Display: Added chunk metadata to 8 assets.
+LogIoStore: Display: Assets represent 15,669 bytes of 3,705,456 chunk bytes (0.4%)
+LogIoStore: Display: Remaining data by chunk type:
+LogIoStore: Display:     ScriptObjects           3,689,507
+LogIoStore: Display:     ContainerHeader         280
+LogIoStore: Display: Saved asset registry to disk. (C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Saved/Cooked/LinuxServer/Lyra/Metadata/DevelopmentAssetRegistry.bin)
+LogIoStore: Display: Calculating stats...
+LogIoStore: Display:
+LogIoStore: Display: Container Summary
+LogIoStore: Display: ==================
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Flags      Chunk(s) #       TOC (KiB)       Raw Size (MiB)           Size (MiB)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                         global  -/-/-/-/-               1            0.86                 3.52                 3.52 -
+LogIoStore: Display:          pakchunk0-LinuxServer  C/-/-/I/-               9            1.28                 0.04                 0.02 (64.69% Oodle)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                          Total                         10            2.14                 3.56                 3.53
+LogIoStore: Display:
+LogIoStore: Display: ** Flags: (C)ompressed / (E)ncrypted / (S)igned) / (I)ndexed) / (O)nDemand **
+LogIoStore: Display:
+LogIoStore: Display: Compression block padding:     0.00 MiB
+LogIoStore: Display:
+LogIoStore: Display: Container Directory Index
+LogIoStore: Display: ==========================
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Size (KiB)
+LogIoStore: Display: ----------------------------------------------
+LogIoStore: Display:                         global            0.00
+LogIoStore: Display:          pakchunk0-LinuxServer            0.58
+LogIoStore: Display:
+LogIoStore: Display: Container Patch Report
+LogIoStore: Display: ========================
+LogIoStore: Display:
+LogIoStore: Display:                      Container          Total #       Modified #          Added #   Modified (MiB)      Added (MiB)
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:                         global                1                0                0             0.00             0.00
+LogIoStore: Display:          pakchunk0-LinuxServer                9                0                9             0.00             0.02
+LogIoStore: Display: -------------------------------------------------------------------------------------------------------------------
+LogIoStore: Display:
+LogIoStore: Display: PackageStore
+LogIoStore: Display: =============
+LogIoStore: Display:
+LogIoStore: Display:                      Container      Size (KiB)      Packages #     Localized #
+LogIoStore: Display: ------------------------------------------------------------------------------
+LogIoStore: Display:          pakchunk0-LinuxServer               0               8               0
+LogIoStore: Display: ------------------------------------------------------------------------------
+LogIoStore: Display:                          Total               0               8               0
+LogIoStore: Display:
+LogIoStore: Display:
+LogIoStore: Display: Input:         8 Packages
+LogIoStore: Display: Input:         0   B UExp
+LogIoStore: Display: Input:     44.02 KiB UAsset
+LogIoStore: Display: Input:         0   B UBulk
+LogIoStore: Display: Input:         0   B for 0 Global shaders
+LogIoStore: Display: Input:         0   B for 0 Shared shaders
+LogIoStore: Display: Input:         0   B for 0 Unique shaders
+LogIoStore: Display: Input:         0   B for 0 Inline shaders
+LogIoStore: Display:
+LogIoStore: Display: Output:        3 Imported package entries
+LogIoStore: Display: Output:        5 Packages without imports
+LogIoStore: Display: Output:        0 Public runtime script objects
+LogIoStore: Display: Output:     3.52 MiB InitialLoadData
+LogIoStore: Display:
+LogIoStore: Display: Success
+LogPakFile: Display: UnrealPak executed in 1.306493 seconds
+Took 1.65s to run UnrealPak.exe, ExitCode=0
+DumpManifest: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\FinalCopy_ServerLinux_UFSFiles.txt, NumItems: 4753
+DumpManifest: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\FinalCopy_ServerLinux_NonUFSFiles.txt, NumItems: 30
+DumpManifest: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\FinalCopy_ServerLinux_NonUFSFilesDebug.txt, NumItems: 7
+Copying NonUFSFiles to staging directory: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\StagedBuilds\LinuxServer
+Copying DebugFiles to staging directory: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\StagedBuilds\LinuxServer
+Stage command time: 8.58 s
+********** STAGE COMMAND COMPLETED **********
+********** ARCHIVE COMMAND STARTED **********
+Archiving to D:\ModelTest\Saved\LyraEvaluation\LinuxCandidate-3daa3a3-resumed\archive
+Archive command time: 0.77 s
+********** ARCHIVE COMMAND COMPLETED **********
+BuildCookRun time: 872.52 s
+BUILD SUCCESSFUL
+AutomationTool executed for 0h 14m 34s
+AutomationTool exiting with ExitCode=0 (Success)
