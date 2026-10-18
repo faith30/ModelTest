@@ -2,17 +2,26 @@
 
 本题让远程 VS Code 中的 Claude 插件使用 `deepseek-v4-pro` 修复三个 Lyra C++ 函数。候选通过 Git 提交冻结，在 Windows 完整 Lyra 工程中使用 UE 5.8.3 和 v26 Linux 工具链交叉编译、cook、stage，再通过 Git/LFS 传到 Linux 容器，运行真实 UE 自动化测试并评分。
 
-**当前验证状态：WindowsEditor 参考校准已完成 23/23；Linux 构建产物和目标容器运行尚待验收。不能把本说明、脚本检查或 Windows 校准当作 Linux 部署成功。**
+**当前验证状态：WindowsEditor 参考校准已完成 23/23；候选 `3daa3a3` 与人工缺陷 seed `240a1617` 的真实 UE 5.8.3 LinuxServer 构建、cook、stage 均已成功。目标容器运行仍等待 GitHub 新设备授权，尚无最终 Linux 成绩。构建成功和 Windows 校准均不能作为 Linux 容器运行通过的证明。**
 
 已有校准证据位于 `Saved/LyraEvaluation/windows-golden-v2/index.json` 和 `Saved/LyraEvaluation/windows-golden-v2-score/score.json`。后者明确记录 `calibration_only=true`、`is_final=false`、`final_pass=false`，设备为 `WindowsEditor`。该目录属于本机生成文件，不保证随 Git 传输。
 
+本轮两份 Linux 构建清单均记录 `build_exit_code=0`、`engine_version=5.8.3`、`target_platform=Linux` 和 `runtime_validated=false`：
+
+| 构建对象 | 本机构建证据 |
+| --- | --- |
+| 候选 `3daa3a32b5ddbe106d8c997a6e2514df5fdb0e8d` | `Saved/LyraEvaluation/LinuxCandidate-3daa3a3-resumed/build-manifest.json` |
+| 人工缺陷 seed `240a1617ee9ae96eb841114bf79268bdad6d92d0` | `Saved/LyraEvaluation/LinuxSeed-240a1617/build-manifest.json` |
+
+两份清单同目录的 `build.log` 保存真实构建输出；清单绑定源码、ELF、启动脚本和构建日志哈希。容器执行证据仍待生成。
+
 ## 评测边界
 
-- 这是准备脚本注入三个缺陷的人工修复题，不表示上游 Lyra 原本存在这些缺陷，也不是模型整体编程能力分数。
+- 这是准备脚本注入三处缺陷的人工修复题，`TASK.md` 已明确给出目标函数、状态迁移、标签和回调规格。候选仓库中的 `task_metadata.json` 还通过 `mutation_checks` 提供缺陷 ID 与对应函数等线索，例如 `replication_skips_start`、`start_allows_duplicate`、`finish_clears_dead`。因此本题不是盲测，成绩只反映模型依据这些规格与线索修复本题的表现，不代表综合 UE 开发能力或整体编程能力，也不表示上游 Lyra 原本存在这些缺陷。
 - 正式执行对象是完整 Lyra 中编译出的 `ULyraHealthComponent`，测试使用真实 UWorld、Actor、AbilitySystemComponent、GameplayTag、动态委托和网络更新调用。Python 负责准备、启动和解析报告，不替代 UE 行为。
-- 测试直接驱动 `OnRep_DeathState`。它验证状态迁移及回调副作用，不证明真实网络包、多机复制、动画或完整游戏流程正确。
+- 真实 UE 自动化共 23 例；其中复制状态通知由测试手动调用 `OnRep_DeathState` 驱动，而非通过网络传输触发。测试验证状态迁移、标签、委托及网络更新调用等副作用，不证明真实网络包传输、多机复制、PIE、游戏画面、动画或完整游戏流程正确。
 - Linux 入口是 Development Dedicated Server，使用 NullRHI，不展示 GPU 游戏画面。它与 `Demo/Combat` 的独立 Python 逻辑 demo 是不同的验证路径。
-- Windows 运行只能用于校准。正式成绩要求冻结候选的真实 Linux 构建、目标 Linux 运行、完整 23 项报告和一致的退出状态。
+- Windows 运行只能用于校准，已有 WindowsEditor 23/23 不能作为候选的 Linux 最终成绩。正式成绩要求冻结候选的真实 Linux 构建、目标 Linux 运行、完整 23 项报告和一致的退出状态；当前 Linux 容器执行仍待验收，不据此填写最终分数。
 
 ## 文件用途
 
@@ -126,6 +135,8 @@ python Benchmarks/LyraDeath/apply_candidate.py `
 不要改写清单里的 Windows 路径来模拟 Linux 执行。远端路径、实际运行设备与日志记录在独立的 `runtime.json` 中。
 
 ## 4. 通过 Git/LFS 传输构建产物
+
+本轮产物使用私有仓库 `faith30/ModelTest` 的 `codex/lyra-linux-runtime-3daa3a3` 分支。候选传输提交 `c001e39de063ef8b0a73ffcd6ef2af27d9bbc411` 已推送；目标容器仍等待 GitHub 新设备授权，尚未据此完成取包和运行验收。
 
 源码候选和构建产物都通过 Git 传输。UE 启动需要 ELF、配置、cooked 内容和运行库，不能只传可执行文件。传输仓库或分支由评测者选定，先完成 GitHub 授权，不把令牌写进聊天、命令参数或仓库。
 
