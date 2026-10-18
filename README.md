@@ -8,7 +8,7 @@
 
 首轮产物保存在 `candidate/`、`seed/`，构建证据放入 `evidence/`。候选首次在真实 Linux 启动时因缺少引擎默认材质崩溃，尚未进入测试；无效证据保存在 `evidence/linux/candidate-attempt-01/`，其中零分不是模型成绩。
 
-`candidate-v2/` 修正了 cook 参数，保留引擎启动资源，已完成真实 BuildCookRun；ELF 与冻结候选原包一致。新构建证据与 cook 清单位于 `evidence/candidate-v2/`。正式 Linux 分数仍待完整运行报告确认。重跑时使用新产物目录和新的解包/结果目录，不混用旧包资源。
+`candidate-v2/`、`seed-v2/` 修正了 cook 参数，保留引擎启动资源，均已完成真实 BuildCookRun；各自 ELF 与冻结原包一致。新构建证据与 cook 清单位于 `evidence/candidate-v2/`、`evidence/seed-v2/`。正式 Linux 分数仍待完整运行报告确认。重跑时使用新产物目录和新的解包/结果目录，不混用旧包资源。
 
 本轮是带明确规格和缺陷线索的三处人工修复题，分数仅用于本题。23 项测试使用真实 UE 状态、标签及委托，但由测试直接驱动 OnRep；不证明实际网络传输、PIE 或游戏画面。
 
@@ -19,15 +19,15 @@
 候选：
 
 ```bash
-python3 candidate/extract_runtime.py --artifact-root candidate --output ../lyra-runtime-runs/candidate-3daa3a3-package-01
-python3 candidate/run_linux.py --package-root ../lyra-runtime-runs/candidate-3daa3a3-package-01/LinuxServer --build-manifest candidate/build-manifest.json --output ../lyra-runtime-runs/candidate-3daa3a3-result-01
+python3 candidate-v2/extract_runtime.py --artifact-root candidate-v2 --output ../lyra-runtime-runs/candidate-3daa3a3-package-02
+python3 candidate-v2/run_linux.py --package-root ../lyra-runtime-runs/candidate-3daa3a3-package-02/LinuxServer --build-manifest candidate-v2/build-manifest.json --output ../lyra-runtime-runs/candidate-3daa3a3-result-02
 ```
 
 人工缺陷对照：
 
 ```bash
-python3 seed/extract_runtime.py --artifact-root seed --output ../lyra-runtime-runs/seed-240a161-package-01
-python3 seed/run_linux.py --package-root ../lyra-runtime-runs/seed-240a161-package-01/LinuxServer --build-manifest seed/build-manifest.json --output ../lyra-runtime-runs/seed-240a161-result-01
+python3 seed-v2/extract_runtime.py --artifact-root seed-v2 --output ../lyra-runtime-runs/seed-240a161-package-02
+python3 seed-v2/run_linux.py --package-root ../lyra-runtime-runs/seed-240a161-package-02/LinuxServer --build-manifest seed-v2/build-manifest.json --output ../lyra-runtime-runs/seed-240a161-result-02
 ```
 
 提取脚本会校验分片、运行包和评测脚本哈希，再生成一层 `LinuxServer/`。运行器调用真实服务器执行 23 项 UE Automation 测试，并保存 `result.json`、`runtime.json`、日志及 UE 报告。

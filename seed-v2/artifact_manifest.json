@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "format": "tar.gz",
+  "root": "LinuxServer",
+  "chunk_size": 1073741824,
+  "parts": [
+    {
+      "name": "runtime.tar.gz.part0000",
+      "size": 1073741824,
+      "sha256": "eb2a1aa73880bdf7a22d4b6ac0e65cdcb293f05cbd0a235196e462d10f995818"
+    },
+    {
+      "name": "runtime.tar.gz.part0001",
+      "size": 382556929,
+      "sha256": "f7fb968d3310e9da90556950b49c4ff551de202f34228d3d1571ca1194983731"
+    }
+  ],
+  "archive_size": 1456298753,
+  "archive_sha256": "9d10535fc7f210093341b3e43c9a3e87d22fd25f22bdbe779fc448164b6a2c61",
+  "file_count": 51,
+  "unpacked_size": 2636285248,
+  "files": [
+    {
+      "path": "Engine/Binaries/ThirdParty/MsQuic/v220/linux/libmsquic.so",
+      "size": 23,
+      "mode": 420,
+      "sha256": "51aec15c714c5d96969f6a7608cdefc5c163e7fec0b2e0974ec1382380d11c5e"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/MsQuic/v220/linux/libmsquic.so.2",
+      "size": 9715408,
+      "mode": 493,
+      "sha256": "ed3698c20005885c61a20f04ba772e329f67855713f5fecb26152a8f949ad280"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Steamworks/Steamv164/x86_64-unknown-linux-gnu/libsteam_api.so",
+      "size": 383432,
+      "mode": 493,
+      "sha256": "ec4797f76a206eb0af627af0f0788eb5a2eabf5dee38ee0a6affbaa44a645f4e"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/VkLayer_api_dump.json",
+      "size": 12827,
+      "mode": 420,
+      "sha256": "1dbaf583d539067bd493e660c9050a61b924a5705f76ed5dcedf46b84c56fc4e"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/VkLayer_crash_diagnostic.json",
+      "size": 9526,
+      "mode": 420,
+      "sha256": "c23ced70fba26fd40792268c272ab6b00c6e399111595243d91686e23c54ef3b"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/VkLayer_gfxreconstruct.json",
+      "size": 27233,
+      "mode": 420,
+      "sha256": "89cc075ad60c7819ce085c6b2a656f9cb24f054302b6716fb600a8787185f3d7"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/VkLayer_khronos_profiles.json",
+      "size": 70319,
+      "mode": 420,
+      "sha256": "af7137edbd261196d9de4ca5ca98cea42f7111429582753eb39242382b991278"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/VkLayer_khronos_shader_object.json",
+      "size": 4454,
+      "mode": 420,
+      "sha256": "82d78d0af784614c7e4d5b63bf4ff9ab67f7d06e72780e9e7c3d8249c2c3344e"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/VkLayer_khronos_synchronization2.json",
+      "size": 1909,
+      "mode": 420,
+      "sha256": "673d1aa7a4b74f3f620fe83ab348f2b279e9022ec2782eea6af19f52d481eac8"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/VkLayer_khronos_validation.json",
+      "size": 95918,
+      "mode": 420,
+      "sha256": "64b98c73c709f73c8037347ac97fe9134d0f8c128a005a4898d993e9af3fb55d"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libVkLayer_api_dump.so",
+      "size": 109065264,
+      "mode": 493,
+      "sha256": "1b9871125c6f9afb2b0f09adbe3af3049a20837dca80ccea5d642be4dec31474"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libVkLayer_crash_diagnostic.so",
+      "size": 13228088,
+      "mode": 493,
+      "sha256": "99dda3ecafd809f0de42453536a2ea6299ac6216db9352e301065542e6685fbf"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libVkLayer_gfxreconstruct.so",
+      "size": 99440744,
+      "mode": 493,
+      "sha256": "2e8397383a72eb200e99a560a2b58947b8a0dc6cef3d1fe67245674df0d9e546"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libVkLayer_khronos_profiles.so",
+      "size": 2226960,
+      "mode": 493,
+      "sha256": "e2e9422a15730cd14904a0d27bbd7d463b5598fc7ffa1744d14fc47ce0dc87bf"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libVkLayer_khronos_shader_object.so",
+      "size": 4174536,
+      "mode": 493,
+      "sha256": "da3db6756cccaf502dab09a3de0cece49168654f7735612bb51f7555ef9f7cda"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libVkLayer_khronos_synchronization2.so",
+      "size": 5290240,
+      "mode": 493,
+      "sha256": "daa4bf2da5600deeff440b4c98fc3d68ba04121fdbb2f21d3463126c8d0a2c99"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libVkLayer_khronos_validation.so",
+      "size": 37821704,
+      "mode": 493,
+      "sha256": "cbecbd0d82217a789a3c3e1493cc60cb7cc036df8f22a0501af9b8ca23342e81"
+    },
+    {
+      "path": "Engine/Binaries/ThirdParty/Vulkan/Linux/libvulkan.so",
+      "size": 4210872,
+      "mode": 493,
+      "sha256": "d59b6a2b184887fb6eddea3dd754bd2f5b59abc647577c3cd71bb530213ebbb0"
+    },
+    {
+      "path": "Engine/Config/StagedBuild_Lyra.ini",
+      "size": 3,
+      "mode": 420,
+      "sha256": "f1945cd6c19e56b3c1c78943ef5ec18116907a4ca1efc40a57d48ab1db7adfc5"
+    },
+    {
+      "path": "Engine/Content/Renderer/TessellationTable.bin",
+      "size": 259568,
+      "mode": 420,
+      "sha256": "edc4f3b628a139c5e185bbaeca661c95c1f427368d3b92892c5cff36c56dd941"
+    },
+    {
+      "path": "Engine/Content/SlateDebug/Fonts/LastResort.tps",
+      "size": 916,
+      "mode": 420,
+      "sha256": "1a89a055e643272d999b80b89e7ae84083bd2bbd5fdd5c131b386fb1056be0d9"
+    },
+    {
+      "path": "Engine/Content/SlateDebug/Fonts/LastResort.ttf",
+      "size": 5395052,
+      "mode": 420,
+      "sha256": "fff0f8de0b868b964950fe97c9b60f893e9bc85a4f90b3629c5693db058b97b9"
+    },
+    {
+      "path": "Engine/Extras/GPUDumpViewer/GPUDumpViewer.html",
+      "size": 195428,
+      "mode": 420,
+      "sha256": "eb599b5171e99d7c2e35732abf9525baeb39b9c2ac86619522f307c57cc90384"
+    },
+    {
+      "path": "Engine/Extras/GPUDumpViewer/OpenGPUDumpViewer.bat",
+      "size": 879,
+      "mode": 420,
+      "sha256": "e8f7ef9c88697041bd87902b76e52558979ca866c7450b1da108a94a027f441b"
+    },
+    {
+      "path": "Engine/Extras/GPUDumpViewer/OpenGPUDumpViewer.sh",
+      "size": 2060,
+      "mode": 420,
+      "sha256": "36c1b4731dc096b05bea7024259aa375479ba631c44b7f81f1f10d85fcd3d1f3"
+    },
+    {
+      "path": "Engine/Plugins/NNE/NNERuntimeORT/Binaries/ThirdParty/Onnxruntime/Linux/libonnxruntime.so",
+      "size": 22146944,
+      "mode": 493,
+      "sha256": "bc33abfd6154771fe4cb4268d8a8323ce86ab5ee3e110f87f36d26eb1126079c"
+    },
+    {
+      "path": "Engine/Plugins/NNE/NNERuntimeORT/Binaries/ThirdParty/Onnxruntime/Linux/libonnxruntime.so.1.24",
+      "size": 22146944,
+      "mode": 493,
+      "sha256": "bc33abfd6154771fe4cb4268d8a8323ce86ab5ee3e110f87f36d26eb1126079c"
+    },
+    {
+      "path": "Lyra/Binaries/Linux/LyraServer",
+      "size": 297197104,
+      "mode": 493,
+      "sha256": "9a7233859cbb929d65c691b02515340932b669322aced018afae4fe4b0a79a80"
+    },
+    {
+      "path": "Lyra/Binaries/Linux/LyraServer.debug",
+      "size": 1394903408,
+      "mode": 493,
+      "sha256": "7145bfb7574670c175124553c71edc9442bccd4c685c4a326a41e24a85104c6e"
+    },
+    {
+      "path": "Lyra/Binaries/Linux/LyraServer.sym",
+      "size": 389197780,
+      "mode": 420,
+      "sha256": "f12019626719fde5117a64731f687a85679441803da0d70b5a90c5eb29291ff8"
+    },
+    {
+      "path": "Lyra/Content/Legal/ThirdParty/Licenses/Orbitron_LICENSE.txt",
+      "size": 4097,
+      "mode": 420,
+      "sha256": "a399d8c1ccbfbed4b46838f9df51ce5e6b79170027e836a0d44da853608b3df4"
+    },
+    {
+      "path": "Lyra/Content/Paks/global.ucas",
+      "size": 3689520,
+      "mode": 420,
+      "sha256": "0f9f2190e461e248f12a57a065d7c10c06b1af36ac0ca4bba75d4d10142d2bd3"
+    },
+    {
+      "path": "Lyra/Content/Paks/global.utoc",
+      "size": 878,
+      "mode": 420,
+      "sha256": "2d929e1b2152cd194ac09c5d53ae477708c5c2104d447ab6f485cfa8cd616400"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk0-LinuxServer.pak",
+      "size": 76864065,
+      "mode": 420,
+      "sha256": "d35afb753fd77630c1b3acdb20e72272cfd3edbe3f8d52e35cce4626fb80f7f1"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk0-LinuxServer.ucas",
+      "size": 129167296,
+      "mode": 420,
+      "sha256": "988d4d0f7a2b0c9a847f3f137e0f992aaae638a3428cde160b7aeff3f55a17b2"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk0-LinuxServer.utoc",
+      "size": 364076,
+      "mode": 420,
+      "sha256": "f662a4c46dd9168a54e0297113484105279e6ecf470a802324a7ec9fa945bf94"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk1-LinuxServer.pak",
+      "size": 339,
+      "mode": 420,
+      "sha256": "b203ee8ada96d4441daf80df6226bbeb952eedd3c1e07fbf7a4cf3ace26f7a46"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk1-LinuxServer.ucas",
+      "size": 7767920,
+      "mode": 420,
+      "sha256": "21b3b4ada9da02241a91141194c452b0379594112a3499015652127587f84120"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk1-LinuxServer.utoc",
+      "size": 76766,
+      "mode": 420,
+      "sha256": "49b9823a43ebc40c222dfea7f8372cb104d1d213d63b30ea5c396a2abc924335"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk2-LinuxServer.pak",
+      "size": 339,
+      "mode": 420,
+      "sha256": "666f81fdd7073c2cc6a4c29780817497ab88fd14610e1c9dafcf4346866a9b68"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk2-LinuxServer.ucas",
+      "size": 238944,
+      "mode": 420,
+      "sha256": "bfd11e61063d54a83dffe3c88b7f5bc0ec30ed78d9896dca0e058aeef67a558d"
+    },
+    {
+      "path": "Lyra/Content/Paks/pakchunk2-LinuxServer.utoc",
+      "size": 8542,
+      "mode": 420,
+      "sha256": "e69c74595bf2a1546a46afef8c7f8f1a41a0c99178b694335e91d693ee51e914"
+    },
+    {
+      "path": "Lyra/Content/UI/Foundation/Fonts/Orbitron/Raw/Orbitron-Black.ttf",
+      "size": 23048,
+      "mode": 420,
+      "sha256": "d1df3d932b1cf9069fc0da5e8f40af1ebe72876527adf46f1c62431b1767183c"
+    },
+    {
+      "path": "Lyra/Content/UI/Foundation/Fonts/Orbitron/Raw/Orbitron-Bold.ttf",
+      "size": 24308,
+      "mode": 420,
+      "sha256": "023bc3ce270e5862783ca1e3f360144ff8a1d8d58590c2076634dd01fb36787e"
+    },
+    {
+      "path": "Lyra/Content/UI/Foundation/Fonts/Orbitron/Raw/Orbitron-Medium.ttf",
+      "size": 24412,
+      "mode": 420,
+      "sha256": "0bc0e2d9893d8678b0906979e2fe75a17b3ac4ca3e56e39c07b602d412db8982"
+    },
+    {
+      "path": "Lyra/Content/UI/Foundation/Fonts/Orbitron/Raw/Orbitron.tps",
+      "size": 756,
+      "mode": 420,
+      "sha256": "7c42abf71c49bd3e07163ba51288a5dffb1dc790bd7d2f4dbdfb9865938a149f"
+    },
+    {
+      "path": "LyraServer.sh",
+      "size": 235,
+      "mode": 420,
+      "sha256": "b093b54223e8dd465801afcbb06415d6715cabcd5e66771b2edb5d9438ef276a"
+    },
+    {
+      "path": "Manifest_DebugFiles_Linux.txt",
+      "size": 494,
+      "mode": 420,
+      "sha256": "a3246149221eb1f95e21bec0d737a28c85ccfe865ac53cf11351df3e1459c65c"
+    },
+    {
+      "path": "Manifest_NonUFSFiles_Linux.txt",
+      "size": 2672,
+      "mode": 420,
+      "sha256": "c3b2a209a3fdba45e0ad881dda3fd844b6faede4bc62e4cea0a7063832a9766f"
+    },
+    {
+      "path": "Manifest_UFSFiles_Linux.txt",
+      "size": 800887,
+      "mode": 420,
+      "sha256": "f4e1b0e38bb6bffeedfebbe4f279a3c6d5d1070a82c89982dceba7172ad9ea86"
+    },
+    {
+      "path": "NOTICES.txt",
+      "size": 111,
+      "mode": 420,
+      "sha256": "ba49ae5586f817b36a2772269f71f899cb1f54b5f2720fad951319edd5e140b8"
+    }
+  ],
+  "excluded_saved_files": [],
+  "sidecars": {
+    "run_linux.py": {
+      "size": 19267,
+      "sha256": "4755b05ce39df05b74a32da9916618c4d23e37516ef663c2e60dae5a92234e35"
+    },
+    "score_ue_report.py": {
+      "size": 14851,
+      "sha256": "fd5601aecc2c4722dd64d649749e4b3d56fd1e1125888712ba911d0b88c3ca06"
+    },
+    "extract_runtime.py": {
+      "size": 8205,
+      "sha256": "1a9748134ebfb1db4734e7a6253c8e15dfcf2f93539b55b7468128e35dd32c65"
+    },
+    "build-manifest.json": {
+      "size": 1721,
+      "sha256": "88d228505f6e95f56350556840df2cca6a94ed7ef04fde046ae509595926f63c"
+    },
+    ".gitattributes": {
+      "size": 98,
+      "sha256": "fa8e28462b75659458077960acf23dad9642216bf596db4809781497082e48b9"
+    }
+  }
+}

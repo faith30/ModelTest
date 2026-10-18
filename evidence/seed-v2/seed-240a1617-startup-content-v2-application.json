@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "record_type": "candidate_source_application",
+  "created_at_utc": "2026-10-18T15:27:34.339427+00:00",
+  "candidate_repo": "D:\\ModelTest\\Saved\\LyraEvaluation\\candidate-ue-linux-v1",
+  "seed_sha": "240a1617ee9ae96eb841114bf79268bdad6d92d0",
+  "candidate_sha": "240a1617ee9ae96eb841114bf79268bdad6d92d0",
+  "project": "C:\\Users\\huaqijiang\\.codex\\worktrees\\lyra-remote-evaluation\\ModelTest",
+  "source_path": "Source/LyraGame/Character/LyraHealthComponent.cpp",
+  "source_sha256": "d6a5d72cb47911a90e0e1fc8e3ceb1afed6deac7f966e1255dbf987e4a76eb03",
+  "seed_source_sha256": "d6a5d72cb47911a90e0e1fc8e3ceb1afed6deac7f966e1255dbf987e4a76eb03",
+  "previous_source_sha256": "f1178cf93578df02b8d30374023cf1d84d8d93999685f2d6f4e5a92c7334eb26",
+  "previous_source_matches": [
+    "original_baseline"
+  ],
+  "changed_paths": [],
+  "permitted_functions": [
+    "OnRep_DeathState",
+    "StartDeath",
+    "FinishDeath"
+  ],
+  "candidate_blob_bytes_preserved": true,
+  "source_changed": true,
+  "build_performed": false,
+  "runtime_performed": false,
+  "scope": "Scope-checked source application only; not evidence of UE build or runtime success."
+}
