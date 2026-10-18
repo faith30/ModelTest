@@ -209,6 +209,7 @@ void ULyraHealthComponent::OnRep_DeathState(ELyraDeathState OldDeathState)
 		}
 		else if (NewDeathState == ELyraDeathState::DeathFinished)
 		{
+			StartDeath();
 			FinishDeath();
 		}
 		else
@@ -233,7 +234,7 @@ void ULyraHealthComponent::OnRep_DeathState(ELyraDeathState OldDeathState)
 
 void ULyraHealthComponent::StartDeath()
 {
-	if (DeathState == ELyraDeathState::DeathFinished)
+	if (DeathState != ELyraDeathState::NotDead)
 	{
 		return;
 	}
@@ -264,7 +265,7 @@ void ULyraHealthComponent::FinishDeath()
 
 	if (AbilitySystemComponent)
 	{
-		AbilitySystemComponent->SetLooseGameplayTagCount(LyraGameplayTags::Status_Death_Dead, 0);
+		AbilitySystemComponent->SetLooseGameplayTagCount(LyraGameplayTags::Status_Death_Dead, 1);
 	}
 
 	AActor* Owner = GetOwner();
