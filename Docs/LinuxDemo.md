@@ -4,6 +4,13 @@
 
 功能、命令与验收规则见 [Combat demo](../Demo/Combat/README.md)。独立 demo 不使用 Content，因此不需要安装 Git LFS 或下载约 2.31 GiB 的资产。
 
+## 验证状态（2026-10-18）
+
+- Windows 本地：16 项核心、CLI 和 HTTP 集成测试通过；四个内置场景均能通过 API 重放。
+- 本地真实浏览器：已验证伤害扣血、免疫拦截，以及 lethal 场景治疗后保持 DeathFinished；页面布局已检查。
+- 目标 Linux 容器：已完成环境检查；demo 的 Git 拉取、测试与启动验收等待容器仓库认证完成，尚未宣称通过。
+- UE 编译、编辑器、打包或运行不属于本次独立逻辑样例的验证结果。
+
 ## 首次同步与启动
 
 在容器内先通过已有的 GitHub 授权方式取得 `faith30/ModelTest` 的读取权限。不要把令牌写入 clone URL、提交或文档。
