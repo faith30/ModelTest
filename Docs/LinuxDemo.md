@@ -8,7 +8,9 @@
 
 - Windows 本地：16 项核心、CLI 和 HTTP 集成测试通过；四个内置场景均能通过 API 重放。
 - 本地真实浏览器：已验证伤害扣血、免疫拦截，以及 lethal 场景治疗后保持 DeathFinished；页面布局已检查。
-- 目标 Linux 容器：已完成环境检查；demo 的 Git 拉取、测试与启动验收等待容器仓库认证完成，尚未宣称通过。
+- 目标 Linux 容器：Debian 13、Python 3.12.13；已通过 Git 稀疏克隆到 `/workspace/ModelTest`，验证的实现提交为 `083544ebc9ad023d43ac5695653057f43722e65a`。16 项核心、CLI 和 HTTP 集成测试全部通过，耗时 1.047 秒。
+- Linux 功能验收：normal CLI 的生命值依次为 `100 → 70 → 90 → 100`；lethal JSON 最终为 `health=25`、`death_state=DeathFinished`；`GET /api/health` 返回 `status=ok`、`ue_runtime=false`。
+- Linux Web 验收：通过平台 Ports 入口打开 8000 端口，实际操作伤害后生命值 `100 → 75`，开启免疫后普通伤害保持 75；回放“零血与死亡状态”的 5 步操作后为 `25/100`、`DeathFinished`。验收时服务以后台进程监听 `127.0.0.1:8000`；容器或服务重启后需重新启动。
 - UE 编译、编辑器、打包或运行不属于本次独立逻辑样例的验证结果。
 
 ## 首次同步与启动
@@ -56,9 +58,9 @@ python3 -m unittest discover -s Demo/Combat/tests -v
 | GPU | 未发现 `/dev/dri/*` 或 `/dev/nvidia*` | 当前未向容器暴露 GPU |
 | Vulkan | 未发现标准目录内的 ICD 配置，`vulkaninfo` 不可用 | 未具备已验证的 Vulkan 渲染环境 |
 | 显示 | `DISPLAY` / `WAYLAND_DISPLAY` 均未设置 | 未配置窗口显示通路 |
-| 引擎 | PATH 中无 UnrealEditor，未设置 UE_ROOT，`/opt` 与 `/workspace` 为空 | 未发现可直接使用的 UE 安装；未扫描整个文件系统 |
+| 引擎 | 部署前初次检查时，PATH 中无 UnrealEditor，未设置 UE_ROOT，`/opt` 与 `/workspace` 为空 | 未发现可直接使用的 UE 安装；未扫描整个文件系统；demo 后续已部署到 `/workspace/ModelTest` |
 | Git | 初次检查时 Git 可用，Git LFS 不可用 | 独立 demo 的稀疏克隆不需要 LFS |
-| 仓库访问 | 初次无交互 `git ls-remote` 返回 128，要求 GitHub 用户名认证 | 用户负责通过已有授权方式配置读取权限 |
+| 仓库访问 | 用户完成 GitHub 授权后，目标容器已成功稀疏克隆并读取上述实现提交 | 已验证 demo 的 Git 传输；未下载 Unreal 资产 |
 
 `df` 显示的 overlay 可用空间约 956 GiB 也不能视为平台对该容器承诺的存储配额。
 
