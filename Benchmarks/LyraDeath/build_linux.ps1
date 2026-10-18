@@ -101,7 +101,9 @@ try {
         '-archive'
         "-archivedirectory=$archiveRoot"
         '-MapsToCook=/Engine/Maps/Entry+/Game/DefaultGameData'
-        '-AdditionalCookerOptions=-CookSkipRequests -unattended -nullrhi -nosound'
+        # Keep startup packages: native CDOs request engine assets even with NullRHI.
+        # CookSkipRequests omits WorldGridMaterial and crashes before tests start.
+        '-AdditionalCookerOptions=-unattended -nullrhi -nosound'
         '-ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance'
         '-ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase'
         '-ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase'

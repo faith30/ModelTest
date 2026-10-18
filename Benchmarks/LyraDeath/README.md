@@ -2,18 +2,35 @@
 
 本题让远程 VS Code 中的 Claude 插件使用 `deepseek-v4-pro` 修复三个 Lyra C++ 函数。候选通过 Git 提交冻结，在 Windows 完整 Lyra 工程中使用 UE 5.8.3 和 v26 Linux 工具链交叉编译、cook、stage，再通过 Git/LFS 传到 Linux 容器，运行真实 UE 自动化测试并评分。
 
-**当前验证状态：WindowsEditor 参考校准已完成 23/23；候选 `3daa3a3` 与人工缺陷 seed `240a1617` 的真实 UE 5.8.3 LinuxServer 构建、cook、stage 均已成功。目标容器运行仍等待 GitHub 新设备授权，尚无最终 Linux 成绩。构建成功和 Windows 校准均不能作为 Linux 容器运行通过的证明。**
+**最终实测：`deepseek-v4-pro` 候选 `3daa3a3` 在目标 Linux 容器完成真实 UE 自动化，23/23 通过，100/100 分；人工缺陷 seed `240a1617` 为 7/23 通过、16 项失败，29/100 分。两份结果均为完整、有效的最终 Linux 评测。首轮缺少引擎默认材质导致的启动失败另行保留，不计作模型成绩。**
+
+2026-10-18 的两次正式运行均在 Linux x86_64、非 root UID `996` 下完成，没有超时；候选 UE 进程耗时 `8.582` 秒，seed 为 `8.680` 秒。
+
+| 执行对象 | 有效成绩 | 通过 / 失败 | UE 退出码 | 最终状态 |
+| --- | ---: | ---: | ---: | --- |
+| 候选 `3daa3a3` | 100/100 | 23 / 0 | 0 | `final_pass` |
+| 人工缺陷 seed `240a1617` | 29/100 | 7 / 16 | 255 | `final_test_failure` |
+
+最终结果位于传输仓库 `evidence/linux/candidate/` 和 `evidence/linux/seed/`，本机副本位于 `Saved/LyraEvaluation/linux-runtime-repo/` 下的相同路径。两份 `result.json` 均记录 `valid_evidence=true`、`is_final=true`、`problems=[]`；候选 `final_pass=true`，seed 为 `false`。各目录同时保存 `runtime.json`、`result.md`、完整 `ue-report/index.json` 和实际日志。seed 的包装器退出码 `1` 表示有效报告中的测试失败，符合缺陷对照用途。
 
 已有校准证据位于 `Saved/LyraEvaluation/windows-golden-v2/index.json` 和 `Saved/LyraEvaluation/windows-golden-v2-score/score.json`。后者明确记录 `calibration_only=true`、`is_final=false`、`final_pass=false`，设备为 `WindowsEditor`。该目录属于本机生成文件，不保证随 Git 传输。
 
-本轮两份 Linux 构建清单均记录 `build_exit_code=0`、`engine_version=5.8.3`、`target_platform=Linux` 和 `runtime_validated=false`：
+移除 `-CookSkipRequests` 后，两份 Linux 构建清单均记录 `build_exit_code=0`、`engine_version=5.8.3`、`target_platform=Linux`。清单保留构建时的 `runtime_validated=false`；它只记录构建证据，后续 Linux 执行由独立的 `runtime.json` 和 `result.json` 证明，不回写构建清单：
 
-| 构建对象 | 本机构建证据 |
-| --- | --- |
-| 候选 `3daa3a32b5ddbe106d8c997a6e2514df5fdb0e8d` | `Saved/LyraEvaluation/LinuxCandidate-3daa3a3-resumed/build-manifest.json` |
-| 人工缺陷 seed `240a1617ee9ae96eb841114bf79268bdad6d92d0` | `Saved/LyraEvaluation/LinuxSeed-240a1617/build-manifest.json` |
+| 构建对象 | 本机构建证据 | 构建耗时 |
+| --- | --- | ---: |
+| 候选 `3daa3a32b5ddbe106d8c997a6e2514df5fdb0e8d` | `Saved/LyraEvaluation/LinuxCandidate-3daa3a3-startup-content-v2/build-manifest.json` | 219.875 秒 |
+| 人工缺陷 seed `240a1617ee9ae96eb841114bf79268bdad6d92d0` | `Saved/LyraEvaluation/LinuxSeed-240a1617-startup-content-v2/build-manifest.json` | 185.805 秒 |
 
-两份清单同目录的 `build.log` 保存真实构建输出；清单绑定源码、ELF、启动脚本和构建日志哈希。容器执行证据仍待生成。
+两份清单同目录的 `build.log` 保存真实构建输出；清单绑定源码、ELF、启动脚本和构建日志哈希。
+
+首轮候选运行证据位于传输仓库的 `evidence/linux/candidate-attempt-01/`；本机副本为 `Saved/LyraEvaluation/linux-runtime-repo/evidence/linux/candidate-attempt-01/`：
+
+- `runtime.json` 记录实际平台为 Linux x86_64、非 root UID `996`、进程退出码 `139`、耗时 `3.941` 秒且未超时；没有 Automation 完成标记，也没有 `ue-report/index.json`。
+- `ue.log` 和 `stdout.log` 记录 `/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial` 不存在，随后触发 `GDefaultMaterials[Domain] != nullptr` 断言。首轮 cook 使用 `-CookSkipRequests`，会跳过包含默认材质的启动包收集；当前修正保留 UE 默认启动包收集。
+- `result.json` 明确为 `status=runtime_crash_or_error`、`valid_evidence=false`、`is_final=false`、`final_pass=false`。全部 23 项均为缺失，`score=0` 是无效运行的门禁值，不能作为修复能力评分。
+
+修正构建补齐启动内容后，候选与 seed 已分别完成上述有效 Linux 运行。WindowsEditor 参考校准的 23/23 仅作校准，不参与本轮最终成绩。
 
 ## 评测边界
 
@@ -21,7 +38,7 @@
 - 正式执行对象是完整 Lyra 中编译出的 `ULyraHealthComponent`，测试使用真实 UWorld、Actor、AbilitySystemComponent、GameplayTag、动态委托和网络更新调用。Python 负责准备、启动和解析报告，不替代 UE 行为。
 - 真实 UE 自动化共 23 例；其中复制状态通知由测试手动调用 `OnRep_DeathState` 驱动，而非通过网络传输触发。测试验证状态迁移、标签、委托及网络更新调用等副作用，不证明真实网络包传输、多机复制、PIE、游戏画面、动画或完整游戏流程正确。
 - Linux 入口是 Development Dedicated Server，使用 NullRHI，不展示 GPU 游戏画面。它与 `Demo/Combat` 的独立 Python 逻辑 demo 是不同的验证路径。
-- Windows 运行只能用于校准，已有 WindowsEditor 23/23 不能作为候选的 Linux 最终成绩。正式成绩要求冻结候选的真实 Linux 构建、目标 Linux 运行、完整 23 项报告和一致的退出状态；当前 Linux 容器执行仍待验收，不据此填写最终分数。
+- Windows 运行只能用于校准，已有 WindowsEditor 23/23 不能作为候选的 Linux 最终成绩。正式成绩要求冻结候选的真实 Linux 构建、目标 Linux 运行、完整 23 项报告和一致的退出状态；首轮 Linux 启动失败的无效门禁结果不构成最终分数。
 
 ## 文件用途
 
@@ -104,7 +121,7 @@ python Benchmarks/LyraDeath/apply_candidate.py `
 
 上面的引擎与工具链路径是本机已检查的路径；其他机器需填写自己的实际位置。脚本只在进程范围设置 `LINUX_MULTIARCH_ROOT`，结束时恢复此前值。
 
-脚本调用 `RunUAT.bat BuildCookRun`，目标为 `LyraServer Linux Development`，执行真实 `-build -cook -stage -pak -archive`。Cook 根包为 `/Engine/Maps/Entry` 和 `/Game/DefaultGameData`，使用 `-CookSkipRequests`，并覆盖 GameInstance 为原生 `LyraGameInstance`、GameMode 为 `GameModeBase`，避免自动进入 Lyra Experience/在线比赛。依赖包仍由 UE cook 处理，不能据此声称产物只有两个文件。构建并发参数为 `-MaxParallelActions=12`。
+脚本调用 `RunUAT.bat BuildCookRun`，目标为 `LyraServer Linux Development`，执行真实 `-build -cook -stage -pak -archive`。Cook 根包为 `/Engine/Maps/Entry` 和 `/Game/DefaultGameData`，保留 UE 默认启动包收集，不使用会跳过这些包的 `-CookSkipRequests`。脚本覆盖 GameInstance 为原生 `LyraGameInstance`、GameMode 为 `GameModeBase`，避免自动进入 Lyra Experience/在线比赛。启动包及依赖包仍由 UE cook 处理，不能据此声称产物只有两个文件。构建并发参数为 `-MaxParallelActions=12`。
 
 成功输出包括：
 
@@ -136,7 +153,9 @@ python Benchmarks/LyraDeath/apply_candidate.py `
 
 ## 4. 通过 Git/LFS 传输构建产物
 
-本轮产物使用私有仓库 `faith30/ModelTest` 的 `codex/lyra-linux-runtime-3daa3a3` 分支。候选传输提交 `c001e39de063ef8b0a73ffcd6ef2af27d9bbc411` 已推送；目标容器仍等待 GitHub 新设备授权，尚未据此完成取包和运行验收。
+本轮产物和最终证据使用私有仓库 `faith30/ModelTest` 的 `codex/lyra-linux-runtime-3daa3a3` 分支，完整结果提交为 `fa4e775f76b058c7511a73af93abb8a7b9bc8149`。容器仓库位于 `/workspace/LyraLinuxRuntime`；修正后的包分别位于 `candidate-v2/`、`seed-v2/`，构建证据位于 `evidence/candidate-v2/`、`evidence/seed-v2/`，最终运行证据位于 `evidence/linux/candidate/`、`evidence/linux/seed/`。
+
+首轮候选传输提交 `c001e39de063ef8b0a73ffcd6ef2af27d9bbc411` 对应缺少启动内容的旧包；修正后的候选包从提交 `71bb752d6b640e53fdfda307651b58cfd32840a8` 加入。复跑使用 `candidate-v2/` 和 `seed-v2/`，不使用旧的 `candidate/`、`seed/` 包。
 
 源码候选和构建产物都通过 Git 传输。UE 启动需要 ELF、配置、cooked 内容和运行库，不能只传可执行文件。传输仓库或分支由评测者选定，先完成 GitHub 授权，不把令牌写进聊天、命令参数或仓库。
 
@@ -179,7 +198,7 @@ python3 '<本次产物绝对目录>/extract_runtime.py' \
 
 ## 5. 在目标 Linux 容器运行并取分
 
-先确认运行用户和平台：
+先确认当前终端用户和平台：
 
 ```bash
 id -u
@@ -187,7 +206,31 @@ uname -m
 python3 --version
 ```
 
-用户 ID 必须非 `0`，架构为 `x86_64`。UE 在进入 `main()` 前拒绝 root 运行，包装器会提前报错；应使用容器中的非 root 用户，并确保它能读取包、设置 ELF 执行权限和写入新结果目录。不要依靠 `-AllowRoot`。
+实际运行 UE 的用户 ID 必须非 `0`，架构为 `x86_64`。UE 在进入 `main()` 前拒绝 root 运行，包装器会提前报错；应使用容器中的非 root 用户，并确保它能读取包、设置 ELF 执行权限和写入新结果目录。root 终端可使用下方的 `runuser` 命令切换执行用户，不要依靠 `-AllowRoot`。
+
+本次容器已有 `lyra-eval` 用户（UID `996`），两份校验后的 stage 包分别位于 `/workspace/lyra-runner/candidate-package-02/LinuxServer` 和 `/workspace/lyra-runner/seed-package-02/LinuxServer`。已完成的运行结果保存在 `/workspace/lyra-runner/candidate-result-02` 和 `/workspace/lyra-runner/seed-result-02`。
+
+需要复跑时，可在该容器的 **root 终端**复制以下命令。它们通过 `runuser` 切换为 `lyra-eval` 执行；要求 Python 3.12+、上述包和固定脚本仍在原位置，且 `lyra-eval` 对 `/workspace/lyra-runner` 有写权限。输出使用尚不存在的新目录 `candidate-result-03`、`seed-result-03`；若已存在，改用新的目录名，不覆盖已保存证据：
+
+```bash
+runuser -u lyra-eval -- python3 /workspace/LyraLinuxRuntime/candidate-v2/run_linux.py \
+  --package-root /workspace/lyra-runner/candidate-package-02/LinuxServer \
+  --build-manifest /workspace/LyraLinuxRuntime/candidate-v2/build-manifest.json \
+  --output /workspace/lyra-runner/candidate-result-03 \
+  --score-script /workspace/LyraLinuxRuntime/candidate-v2/score_ue_report.py \
+  --timeout 300
+```
+
+```bash
+runuser -u lyra-eval -- python3 /workspace/LyraLinuxRuntime/seed-v2/run_linux.py \
+  --package-root /workspace/lyra-runner/seed-package-02/LinuxServer \
+  --build-manifest /workspace/LyraLinuxRuntime/seed-v2/build-manifest.json \
+  --output /workspace/lyra-runner/seed-result-03 \
+  --score-script /workspace/LyraLinuxRuntime/seed-v2/score_ue_report.py \
+  --timeout 300
+```
+
+复跑验收以新目录的 `result.json` 为准：候选应为 `final_pass`、100 分、23 项通过，命令退出 `0`；seed 应为 `final_test_failure`、29 分、7 项通过和 16 项失败，命令退出 `1`。seed 的这个非零退出码是有效缺陷对照的正常结果；两份结果都应满足 `valid_evidence=true`、`is_final=true`、`problems=[]`。
 
 将下面路径替换为容器中的真实绝对路径。使用刚校验过的产物目录中的固定评测脚本；输出目录必须是新目录，且在 stage 包之外：
 
