@@ -1,0 +1,4 @@
+runtime.tar.gz.part* filter=lfs diff=lfs merge=lfs -text
+*.py -text
+*.json -text
+*.sh text eol=lf

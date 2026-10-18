@@ -6,7 +6,9 @@
 - 人工缺陷 seed：`240a1617ee9ae96eb841114bf79268bdad6d92d0`
 - 构建方式：使用真实 UE 5.8.3，在 Windows 上交叉编译 Linux x86_64 的 `LyraServer Development`，并 cook、stage 运行内容。
 
-产物分别放入 `candidate/`、`seed/`，构建证据放入 `evidence/`。两份产物均已完成真实 Linux 构建（BuildCookRun 退出码 0），运行成绩仍待目标容器验证；不能将构建成功当作运行成功。
+首轮产物保存在 `candidate/`、`seed/`，构建证据放入 `evidence/`。候选首次在真实 Linux 启动时因缺少引擎默认材质崩溃，尚未进入测试；无效证据保存在 `evidence/linux/candidate-attempt-01/`，其中零分不是模型成绩。
+
+`candidate-v2/` 修正了 cook 参数，保留引擎启动资源，已完成真实 BuildCookRun；ELF 与冻结候选原包一致。新构建证据与 cook 清单位于 `evidence/candidate-v2/`。正式 Linux 分数仍待完整运行报告确认。重跑时使用新产物目录和新的解包/结果目录，不混用旧包资源。
 
 本轮是带明确规格和缺陷线索的三处人工修复题，分数仅用于本题。23 项测试使用真实 UE 状态、标签及委托，但由测试直接驱动 OnRep；不证明实际网络传输、PIE 或游戏画面。
 
