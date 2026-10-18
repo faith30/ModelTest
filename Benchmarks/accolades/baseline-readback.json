@@ -1,0 +1,217 @@
+{
+  "feature": "accolades",
+  "kind": "stripped-baseline-readback",
+  "blueprints": [
+    {
+      "path": "/ShooterCore/Accolades/B_ElimChainProcessor",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterCore/Accolades/B_ElimStreakProcessor",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterCore/Accolades/B_AccoladeRelay",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget",
+      "graphs": [
+        {
+          "name": "CreateAccoladeWidget",
+          "signature_nodes": 2
+        },
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    },
+    {
+      "path": "/ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeToast",
+      "graphs": [
+        {
+          "name": "EventGraph",
+          "signature_nodes": 0
+        }
+      ],
+      "compile_succeeded": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "load /ShooterCore/Accolades/B_ElimChainProcessor",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterCore/Accolades/B_ElimChainProcessor:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterCore/Accolades/B_ElimChainProcessor:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterCore/Accolades/B_ElimChainProcessor",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/B_ElimStreakProcessor",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterCore/Accolades/B_ElimStreakProcessor:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterCore/Accolades/B_ElimStreakProcessor:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterCore/Accolades/B_ElimStreakProcessor",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/B_AccoladeRelay",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterCore/Accolades/B_AccoladeRelay:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterCore/Accolades/B_AccoladeRelay:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterCore/Accolades/B_AccoladeRelay",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget:CreateAccoladeWidget",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget:CreateAccoladeWidget",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeToast",
+      "passed": true
+    },
+    {
+      "name": "no implementation nodes /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeToast:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "no graph comments /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeToast:EventGraph",
+      "passed": true
+    },
+    {
+      "name": "compile /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeToast",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/B_ElimChainProcessor",
+      "passed": true
+    },
+    {
+      "name": "empty chain map",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/B_ElimStreakProcessor",
+      "passed": true
+    },
+    {
+      "name": "empty streak map",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/AccoladeDataRegistry",
+      "passed": true
+    },
+    {
+      "name": "empty data registry sources",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/DT_BasicShooterAccolades",
+      "passed": true
+    },
+    {
+      "name": "empty accolade table",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeToast",
+      "passed": true
+    },
+    {
+      "name": "empty toast widget layout",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/EAS_BasicShooterAcolades",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Accolades/B_EliminationFeedRelay",
+      "passed": true
+    },
+    {
+      "name": "shared blueprint compiles /ShooterCore/Accolades/B_EliminationFeedRelay",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Experiences/LAS_ShooterGame_StandardHUD",
+      "passed": true
+    },
+    {
+      "name": "load /ShooterCore/Experiences/B_ShooterGame_Elimination",
+      "passed": true
+    },
+    {
+      "name": "shared blueprint compiles /ShooterCore/Experiences/B_ShooterGame_Elimination",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "additional_log_checks": "GETALL Animations and Bindings must contain no array elements for W_AccoladeToast.",
+  "passed": true
+}

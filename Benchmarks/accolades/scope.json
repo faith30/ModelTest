@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "feature_id": "accolades",
+  "title": "连杀荣誉与定向 HUD 通知",
+  "branch": "codex/benchmark-accolades",
+  "task": "Benchmarks/accolades/TASK.md",
+  "source_stripped": [
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Public/MessageProcessors/ElimChainProcessor.h",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Private/MessageProcessors/ElimChainProcessor.cpp",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Public/MessageProcessors/ElimStreakProcessor.h",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Private/MessageProcessors/ElimStreakProcessor.cpp",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Public/Accolades/LyraAccoladeHostWidget.h",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Private/Accolades/LyraAccoladeHostWidget.cpp"
+  ],
+  "source_contract_retained": [
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Public/Accolades/LyraAccoladeDefinition.h",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Private/Accolades/LyraAccoladeDefinition.cpp"
+  ],
+  "reflection_contract": {
+    "classes": [
+      "UElimChainProcessor",
+      "UElimStreakProcessor",
+      "ULyraAccoladeHostWidget",
+      "ULyraAccoladeDefinition"
+    ],
+    "structs": [
+      "FPlayerElimChainInfo",
+      "FPendingAccoladeEntry",
+      "FLyraAccoladeDefinitionRow"
+    ],
+    "blueprint_properties": [
+      "UElimChainProcessor.ChainTimeLimit",
+      "UElimChainProcessor.ElimChainTags",
+      "UElimStreakProcessor.ElimStreakTags",
+      "ULyraAccoladeHostWidget.LocationName",
+      "FPendingAccoladeEntry.Row",
+      "FPendingAccoladeEntry.Sound",
+      "FPendingAccoladeEntry.Icon",
+      "FPendingAccoladeEntry.AllocatedWidget"
+    ],
+    "blueprint_events": [
+      "ULyraAccoladeHostWidget.CreateAccoladeWidget",
+      "ULyraAccoladeHostWidget.DestroyAccoladeWidget"
+    ],
+    "intent": "保留已序列化类、行结构与蓝图签名，移除业务实现和运行状态；仅保留 Super 生命周期与异步清理骨架。"
+  },
+  "asset_shell_plan": [
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/B_ElimChainProcessor.uasset",
+      "package": "/ShooterCore/Accolades/B_ElimChainProcessor",
+      "action": "clear_blueprint_logic_and_defaults",
+      "properties_to_clear": [
+        "ElimChainTags"
+      ],
+      "intent": "保留原父类和资源路径，清空功能阈值映射。"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/B_ElimStreakProcessor.uasset",
+      "package": "/ShooterCore/Accolades/B_ElimStreakProcessor",
+      "action": "clear_blueprint_logic_and_defaults",
+      "properties_to_clear": [
+        "ElimStreakTags"
+      ],
+      "intent": "保留原父类和资源路径，清空功能阈值映射。"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/B_AccoladeRelay.uasset",
+      "package": "/ShooterCore/Accolades/B_AccoladeRelay",
+      "action": "clear_blueprint_logic",
+      "intent": "清空消息监听与网络衔接图；保留组件类供 Experience 引用。"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/DT_BasicShooterAccolades.uasset",
+      "package": "/ShooterCore/Accolades/DT_BasicShooterAccolades",
+      "action": "empty_data_table_rows",
+      "intent": "保留 FLyraAccoladeDefinitionRow 行结构，移除全部荣誉行。"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/AccoladeDataRegistry.uasset",
+      "package": "/ShooterCore/Accolades/AccoladeDataRegistry",
+      "action": "clear_data_registry_sources",
+      "intent": "保留注册类型和行结构，清空数据源以要求实现者完成资源配置。"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/UserInterface/Notifications/Accolades/W_AccoladeHostWidget.uasset",
+      "package": "/ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeHostWidget",
+      "action": "clear_widget_blueprint_logic",
+      "intent": "保留 ULyraAccoladeHostWidget 父类、空的布局容器及反射事件签名；清空创建、销毁、声音与通知处理图。"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/UserInterface/Notifications/Accolades/W_AccoladeToast.uasset",
+      "package": "/ShooterCore/UserInterface/Notifications/Accolades/W_AccoladeToast",
+      "action": "recreate_empty_widget_blueprint_same_parent_and_path",
+      "intent": "通过 UE 原生删除/创建工厂重建为同路径、同 UserWidget 父类的空 Widget Blueprint；专属图、布局、动画与变量已移除，独立回读通过。"
+    }
+  ],
+  "integration_assets_retained": [
+    "Plugins/GameFeatures/ShooterCore/Content/Accolades/EAS_BasicShooterAcolades.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/Experiences/LAS_ShooterGame_StandardHUD.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/ShooterCore.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/Experiences/B_ShooterGame_Elimination.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/Experiences/B_LyraShooterGame_ControlPoints.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/Experiences/B_ShooterGame_Perf.uasset",
+    "Plugins/GameFeatures/ShooterTests/Content/System/Experiences/B_BasicShooterTest.uasset",
+    "Plugins/GameFeatures/ShooterTests/Content/System/Experiences/B_AutomatedShooterTest.uasset"
+  ],
+  "protected_shared_files": [
+    "Source/LyraGame/Messages/GameplayMessageProcessor.h",
+    "Source/LyraGame/Messages/GameplayMessageProcessor.cpp",
+    "Source/LyraGame/Messages/LyraNotificationMessage.h",
+    "Source/LyraGame/Messages/LyraVerbMessage.h",
+    "Source/LyraGame/Player/LyraPlayerState.h",
+    "Source/LyraGame/Player/LyraPlayerState.cpp",
+    "Source/LyraGame/Character/LyraHealthComponent.cpp",
+    "Source/LyraGame/AbilitySystem/Attributes/LyraHealthSet.cpp",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Public/MessageProcessors/AssistProcessor.h",
+    "Plugins/GameFeatures/ShooterCore/Source/ShooterCoreRuntime/Private/MessageProcessors/AssistProcessor.cpp",
+    "Plugins/GameFeatures/ShooterCore/Content/Accolades/B_EliminationFeedRelay.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/Game/B_ShooterGameScoring_Base.uasset",
+    "Plugins/GameFeatures/TopDownArena/Content/Game/Modes/B_TopDownArena_GameComponent_Base.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/Elimination/UI/W_SB_PlayerRow_TDM.uasset",
+    "Plugins/GameFeatures/ShooterCore/Content/ControlPoint/UI/W_SB_PlayerRow_CP.uasset",
+    "Plugins/GameFeatures/ShooterCore/Config/Tags/ShooterCoreTags.ini"
+  ],
+  "reusable_content_retained": [
+    "Content/UI/Hud/Art/*Accolade*.uasset",
+    "Content/Audio/MetaSounds/sfx_KillingSpree_nl_meta_Preset.uasset",
+    "Content/UI/Foundation/Fonts/Orbitron.uasset"
+  ],
+  "dependency_notes": [
+    "EAS_BasicShooterAcolades 同时注入公共 AssistProcessor，不得整体清空或删除。",
+    "B_EliminationFeedRelay 虽在 Accolades 目录，仍属于公共击杀播报；不能按目录递归删除。",
+    "StandardHUD 引用荣誉 Host Widget；ShooterCore 注册荣誉 Registry；资源路径必须保持可解析。",
+    "共享体验和测试体验引用荣誉 EAS；反射外壳和资源空壳共同保持这条接入链完整。"
+  ],
+  "verification_boundary": {
+    "source_checks": "git diff --check、改动范围与残留业务函数检查通过。",
+    "asset_checks": "UE 原生资源编辑、保存及独立进程重新加载/蓝图编译通过；Toast 采用同路径同父类空蓝图替换。",
+    "build_or_runtime_claim": "LyraGame、LyraEditor、ShooterCoreRuntime 模块构建通过；本分支未做完整Target、PIE、多人或打包。详见 baseline-validation.json。"
+  },
+  "asset_preparation_status": "completed_and_independently_read_back",
+  "baseline_validation": "baseline-validation.json",
+  "toast_reference_check": "清图后 UE Asset Registry 对 Toast 的包引用查询为空；仅重建本题 Toast 包，其他资源保留兼容接口。"
+}

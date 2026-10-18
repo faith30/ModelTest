@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "feature": "accolades",
+  "state": "stripped_starter",
+  "engine": "5.8.3",
+  "source_reference_commit": "6527fa085dd5b0ae5317b158589e5bbb75a8c835",
+  "source_files_stripped": 6,
+  "assets_stripped": 7,
+  "preparation": "UE native graph editing, data editing, Blueprint compilation and package saves; Toast recreated as an empty same-parent package through the native factory.",
+  "project_modules_build": {
+    "result": "passed",
+    "exit_code": 0,
+    "target": "LyraEditor Win64 Development",
+    "modules": [
+      "LyraGame",
+      "LyraEditor",
+      "ShooterCoreRuntime"
+    ],
+    "final_pass_actions": 47,
+    "log_sha256": "2cd2cebc89055c96eabd16c8204b97680cc6089f4b4e5601314e1b1f0daff82f"
+  },
+  "full_target_build": {
+    "result": "not_run",
+    "note": "Not attempted for this branch. The other two baseline builds established that the shared UnrealEditor-NetCore.dll was locked by the existing editor/debugger; this branch used the project-module build and passed."
+  },
+  "asset_readback": {
+    "result": "passed",
+    "separate_process": true,
+    "uses_rebuilt_branch_project_modules": true,
+    "assertions_passed": 38,
+    "shell_blueprints_compiled": 5,
+    "errors": [],
+    "empty_toast_animations_and_bindings_confirmed_in_native_GETALL": true
+  },
+  "gameplay_validation": {
+    "PIE": "not_run",
+    "multiplayer": "not_run",
+    "packaging": "not_run"
+  },
+  "files": [
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/AccoladeDataRegistry.uasset",
+      "bytes": 1926,
+      "sha256": "2805d9d6f4463b90eecc01b1b862426875ae5546369de3971719d3ef05edbb30"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/B_AccoladeRelay.uasset",
+      "bytes": 6410,
+      "sha256": "5272ab65788a42e83c0e9f4cbe9e450dc1439ce96f08544e9bbe200b36029bd2"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/B_ElimChainProcessor.uasset",
+      "bytes": 6456,
+      "sha256": "419fa4cf87081071b411e014aeb7b2883057235ee06724d41244da1c541aa65f"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/B_ElimStreakProcessor.uasset",
+      "bytes": 6474,
+      "sha256": "9d379a96fb9dcb25ef81a9fb147ccd71bd2850626f4ae1c7cbced431c9db4d85"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/Accolades/DT_BasicShooterAccolades.uasset",
+      "bytes": 1890,
+      "sha256": "96dfac69b23f7225267370e317739b06cf667dcd437a1a4709168909c0153719"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/UserInterface/Notifications/Accolades/W_AccoladeHostWidget.uasset",
+      "bytes": 23408,
+      "sha256": "79f286e0cdf07069573f49277462ec0ad4b08302bd4086e5a2d6e1d93edd433e"
+    },
+    {
+      "path": "Plugins/GameFeatures/ShooterCore/Content/UserInterface/Notifications/Accolades/W_AccoladeToast.uasset",
+      "bytes": 6826,
+      "sha256": "5827d407dc41a7244ba89815c16d60a5e40fb4ebb2c2d7c192716bb0e484ac3e"
+    }
+  ]
+}
