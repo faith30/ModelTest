@@ -1,5 +1,7 @@
 # Lyra 死亡状态 Linux 运行产物
 
+**远程真实 UE 验收已完成：deepseek-v4-pro 修复版 23/23、100/100；人工缺陷对照版 7/23、29/100。两份执行证据均有效。** 见 [完整结果与容器复跑命令](RESULTS.md)。
+
 本目录用于通过 Git / Git LFS 传输真实 UE 运行包与评测证据。固定版本：
 
 - 候选：`3daa3a32b5ddbe106d8c997a6e2514df5fdb0e8d`
@@ -8,7 +10,7 @@
 
 首轮产物保存在 `candidate/`、`seed/`，构建证据放入 `evidence/`。候选首次在真实 Linux 启动时因缺少引擎默认材质崩溃，尚未进入测试；无效证据保存在 `evidence/linux/candidate-attempt-01/`，其中零分不是模型成绩。
 
-`candidate-v2/`、`seed-v2/` 修正了 cook 参数，保留引擎启动资源，均已完成真实 BuildCookRun；各自 ELF 与冻结原包一致。新构建证据与 cook 清单位于 `evidence/candidate-v2/`、`evidence/seed-v2/`。正式 Linux 分数仍待完整运行报告确认。重跑时使用新产物目录和新的解包/结果目录，不混用旧包资源。
+`candidate-v2/`、`seed-v2/` 修正了 cook 参数，保留引擎启动资源，均已完成真实 BuildCookRun 和远程 Linux 执行；各自 ELF 与冻结原包一致。新构建证据与 cook 清单位于 `evidence/candidate-v2/`、`evidence/seed-v2/`，最终运行证据位于 `evidence/linux/candidate/`、`evidence/linux/seed/`。重跑时使用新产物目录和新的解包/结果目录，不混用旧包资源。
 
 本轮是带明确规格和缺陷线索的三处人工修复题，分数仅用于本题。23 项测试使用真实 UE 状态、标签及委托，但由测试直接驱动 OnRep；不证明实际网络传输、PIE 或游戏画面。
 
