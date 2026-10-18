@@ -1,0 +1,251 @@
+Log started at 10/18/2026 15:28:09 (2026-10-18T07:28:09Z)
+No project argument provided while trying to parse Project File. Attempting fallback parsing to attempt to find a Project File.
+-Target argument detected in original command line args. Will attempt to subparse in search of ProjectFile.
+Resolved project argument C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject
+-Target argument detected in original command line args. Will attempt to subparse in search of ProjectFile.
+Resolved project argument C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject
+-Target argument detected in original command line args. Will attempt to subparse in search of ProjectFile.
+Resolved project argument C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject
+-Target argument detected in original command line args. Will attempt to subparse in search of ProjectFile.
+Resolved project argument C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject
+Resolved project argument C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject to C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Lyra.uproject through -Target resolution.
+No config file at C:\Users\huaqijiang\Documents\Study\UE5\Engine\Restricted\NotForLicensees\Programs\UnrealBuildTool\BuildConfiguration.xml
+No config file at C:\ProgramData\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+No config file at C:\Users\huaqijiang\AppData\Local\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+No config file at C:\Users\huaqijiang\Documents\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+Configuration will be read from:
+  C:\Users\huaqijiang\Documents\Study\UE5\Engine\Saved\UnrealBuildTool\BuildConfiguration.xml
+  C:\Users\huaqijiang\AppData\Roaming\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+Reading configuration file from cache (C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\XmlConfigCache.bin): C:\Users\huaqijiang\Documents\Study\UE5\Engine\Saved\UnrealBuildTool\BuildConfiguration.xml
+Reading configuration file from cache (C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\XmlConfigCache.bin): C:\Users\huaqijiang\AppData\Roaming\Unreal Engine\UnrealBuildTool\BuildConfiguration.xml
+Reading configuration file from cache (C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\XmlConfigCache.bin): C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Saved\UnrealBuildTool\BuildConfiguration.xml
+Reading configuration file from cache (C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\XmlConfigCache.bin): C:\Users\huaqijiang\Documents\Study\UE5\Engine\Intermediate\Build\UnrealBuildTool.Env.BuildConfiguration.xml
+Log file: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\UBA-LyraEditor-Win64-Development.txt
+
+Setting temp directory to 'C:\Users\huaqijiang\AppData\Local\Temp\UnrealBuildTool\28800c49'
+    Registering build platform: UnrealBuildTool.AndroidPlatformFactory
+Unable to find valid SDK(s) for Android:
+  Found Sdk Version, MinRequired=r27c, MaxRequired=r29.
+  Found AutoSdk Version, Required=r27c.
+        Registering build platform: Android - buildable: False
+    Registering build platform: UnrealBuildTool.IOSPlatformFactory
+Unable to find valid SDK(s) for IOS:
+  Found Sdk Version, MinRequired=1100.0.0.0, MaxRequired=8999.0.
+  Found AutoSdk Version, Required=26.1.1.
+        Registering build platform: IOS - buildable: False
+    Registering build platform: UnrealBuildTool.LinuxPlatformFactory
+Linux Installed SDK(s): Version_Sdk=v26_clang-20.1.8-rockylinux8, CurrentVersion_Sdk=v26_clang-20.1.8-rockylinux8, Version_AutoSdk=v26_clang-20.1.8-rockylinux8, CurrentVersion_AutoSdk=
+        Registering build platform: Linux - buildable: True
+LinuxArm64 Installed SDK(s): Version_Sdk=v26_clang-20.1.8-rockylinux8, CurrentVersion_Sdk=v26_clang-20.1.8-rockylinux8, Version_AutoSdk=v26_clang-20.1.8-rockylinux8, CurrentVersion_AutoSdk=
+        Registering build platform: LinuxArm64 - buildable: True
+    Registering build platform: UnrealBuildTool.MacPlatformFactory
+Unable to find valid SDK(s) for Mac:
+  Found Sdk Version, MinRequired=1100.0.0.0, MaxRequired=8999.0.
+  Found AutoSdk Version, Required=26.1.1.
+        Registering build platform: Mac - buildable: False
+    Registering build platform: UnrealBuildTool.TVOSPlatformFactory
+Unable to find valid SDK(s) for TVOS:
+  Found Sdk Version, MinRequired=1100.0.0.0, MaxRequired=8999.0.
+  Found AutoSdk Version, Required=26.1.1.
+        Registering build platform: TVOS - buildable: False
+    Registering build platform: UnrealBuildTool.WindowsPlatformFactory
+Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (1)
+Found Windows 10 SDK root at C:\Program Files (x86)\Windows Kits\10 (2)
+Found Windows 10 SDK version 10.0.18362.0 at C:\Program Files (x86)\Windows Kits\10
+Found Universal CRT version 10.0.18362.0 at C:\Program Files (x86)\Windows Kits\10
+Found Windows 10 SDK version 10.0.19041.0 at C:\Program Files (x86)\Windows Kits\10
+Found Universal CRT version 10.0.19041.0 at C:\Program Files (x86)\Windows Kits\10
+Found Windows 10 SDK version 10.0.22621.0 at C:\Program Files (x86)\Windows Kits\10
+Found Universal CRT version 10.0.22621.0 at C:\Program Files (x86)\Windows Kits\10
+Found Windows 10 SDK version 10.0.26100.0 at C:\Program Files (x86)\Windows Kits\10
+Found Universal CRT version 10.0.26100.0 at C:\Program Files (x86)\Windows Kits\10
+Win64 Installed SDK(s): MinVersion_Sdk=10.0.19041.0, MaxVersion_Sdk=10.9.99999.0, CurrentVersion_Sdk=10.0.22621.0, Version_AutoSdk=10.0.22621.0, CurrentVersion_AutoSdk=
+        Registering build platform: Win64 - buildable: True
+    Registering build platform: UnrealBuildTool.VisionOSPlatformFactory
+        Registering build platform: VisionOS - buildable: False
+Command line: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\DotNET\UnrealBuildTool\UnrealBuildTool.dll "-Target=LyraEditor Win64 Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" "-Target=ShaderCompileWorker Win64 Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" "-Target=UnrealPak Win64 Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject" "-Target=LyraServer Linux Development -Project=C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Lyra.uproject  -remoteini=\"C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\"  -MaxParallelActions=12 -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase " -log=C:\Users\huaqijiang\Documents\Study\UE5\Engine\Programs\AutomationTool\Saved\Logs\UBA-LyraEditor-Win64-Development.txt
+Executing up to 12 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (C:\Users\huaqijiang\Documents\Study\UE5).
+Using 'git status' to determine working set for adaptive non-unity build (C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest).
+Ignoring unknown platform 'XB1' (referenced via a project's plugin descriptor for 'PlayFabParty')
+Ignoring unknown platform 'XSX' (referenced via a project's plugin descriptor for 'PlayFabParty')
+Ignoring unknown platform 'WinGDK' (referenced via a project's plugin descriptor for 'PlayFabParty')
+Ignoring unknown platform 'WinGDK' (referenced via a project's plugin descriptor for 'XInputDevice')
+Ignoring unknown platform 'WinGDK' (referenced via a project's plugin descriptor for 'GameInputWindows')
+UbaStorageServer - Database loaded from C:\ProgramData\Epic\UnrealBuildAccelerator\cas\casdb (v32) in 4ms (contained 0 entries estimated to 0b)
+UbaServer - Listening on 0.0.0.0:1345
+Compiling GameFeaturePlugins in branch UE5
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterCore
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterExplorer
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterMaps
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterCore
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterExplorer
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterTests
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterMaps
+ConfigureGameFeaturePlugins() has decided to ignore feature ShooterTests
+ConfigureGameFeaturePlugins() has decided to ignore feature TopDownArena
+ConfigureGameFeaturePlugins() has decided to ignore feature TopDownArena
+Waiting for 'git status' command to complete
+Waiting for 'git status' command to complete
+C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Source\LyraGame\Character\LyraHealthComponent.cpp was not part of source working set and should be
+Invalidating makefile for LyraEditor (working set of source files changed)
+Building ShaderCompileWorker - ShaderCompileWorker - Win64 - Development
+Building UnrealPak - UnrealPak - Win64 - Development
+C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Source\LyraGame\Character\LyraHealthComponent.cpp was not part of source working set and should be
+Invalidating makefile for LyraServer (working set of source files changed)
+Generated code is up to date.
+Generated code is up to date.
+Compiler: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cl.exe
+Linker: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\link.exe
+Library Manager: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\link.exe
+Resource Compiler: C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\rc.exe
+Resource Converter: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207\bin\Hostx64\x64\cvtres.exe
+Using EngineIncludeOrderVersion.Unreal5_8 for target LyraEditor.Target.cs
+Building UnrealEditor - LyraEditor - Win64 - Development
+VerseVMBytecodeGenerator.Generate, generating CPP headers in: 'C:\Users\huaqijiang\Documents\Study\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode'
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\Documents\Study\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode\VVMBytecodeOps.gen.h'
+Using EngineIncludeOrderVersion.Unreal5_8 for target LyraServer.Target.cs
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\Documents\Study\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode\VVMBytecodesAndCaptures.gen.h'
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\Documents\Study\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode\VVMMakeCapturesFuncs.gen.h'
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\Documents\Study\UE5\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\CoreUObject\VerseVMBytecode\VVMCaptureSwitch.gen.h'
+Building LyraServer - LyraServer - Linux - Development
+VerseVMBytecodeGenerator.Generate, generating CPP headers in: 'C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\LyraServer\Inc\CoreUObject\VerseVMBytecode'
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\LyraServer\Inc\CoreUObject\VerseVMBytecode\VVMBytecodeOps.gen.h'
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\LyraServer\Inc\CoreUObject\VerseVMBytecode\VVMBytecodesAndCaptures.gen.h'
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\LyraServer\Inc\CoreUObject\VerseVMBytecode\VVMMakeCapturesFuncs.gen.h'
+	Writing out generated header file. Changed:False Path:'C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\LyraServer\Inc\CoreUObject\VerseVMBytecode\VVMCaptureSwitch.gen.h'
+Generated code is up to date.
+Generated code is up to date.
+Found 4 shared PCH headers (listed in order of preference):
+	Engine
+	Slate
+	CoreUObject
+	Core
+Found 5 shared PCH headers (listed in order of preference):
+	UnrealEd
+	Engine
+	Slate
+	CoreUObject
+	Core
+Updating C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\x64\LyraServer\Development\LyraGame\Module.LyraGame.1.cpp: contents have changed. Saving previous version to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\x64\LyraServer\Development\LyraGame\Module.LyraGame.1.cpp.old.
+Updating C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\LiveCodingInfo.json: contents have changed. Saving previous version to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\LiveCodingInfo.json.old.
+Updating C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\Module.LyraGame.1.cpp: contents have changed. Saving previous version to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\Module.LyraGame.1.cpp.old.
+Updating C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\UnrealEditor-LyraGame.dll.rsp: contents have changed. Saving previous version to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\UnrealEditor-LyraGame.dll.rsp.old.
+Updating C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\UnrealEditor-LyraGame.lib.rsp: contents have changed. Saving previous version to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\UnrealEditor-LyraGame.lib.rsp.old.
+Updating C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\x64\LyraServer\Development\LyraServer.link.rsp: contents have changed. Saving previous version to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\x64\LyraServer\Development\LyraServer.link.rsp.old.
+Updating C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\x64\LyraServer\Development\LyraServer.rsp: contents have changed. Saving previous version to C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Linux\x64\LyraServer\Development\LyraServer.rsp.old.
+Checking for live coding mutex: Global\LiveCoding_C++Users+huaqijiang+Documents+Study+UE5+Engine+Binaries+Win64+ShaderCompileWorker.exe
+Checking for live coding mutex: Global\LiveCoding_C++Users+huaqijiang+Documents+Study+UE5+Engine+Binaries+Win64+UnrealPak.exe
+Checking for live coding mutex: Global\LiveCoding_C++Users+huaqijiang+.codex+worktrees+lyra-remote-evaluation+ModelTest+Binaries+Linux+LyraServer
+Checking for live coding mutex: Global\LiveCoding_C++Users+huaqijiang+Documents+Study+UE5+Engine+Binaries+Win64+UnrealEditor.exe
+Deleting outdated item: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Binaries\Win64\UnrealEditor-LyraGame.pdb
+Deleting outdated item: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Intermediate\Build\Win64\x64\UnrealEditor\Development\LyraGame\UnrealEditor-LyraGame.lib
+Building ShaderCompileWorker, UnrealPak, LyraServer and LyraEditor...
+===== Toolchain Information =====
+ShaderCompileWorker Win64 Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+  Using Visual Studio 14.44.35222 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+UnrealPak Win64 Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+  Using Visual Studio 14.44.35222 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+LyraServer Linux Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+  Using Clang compiler 20.1.8 (D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu\bin\clang++.exe)
+    clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-pc-windows-msvc Thread model: posix InstalledDir: D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu\bin
+  Using Clang archiver (D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu\bin\llvm-ar.exe)
+    LLVM (http://llvm.org/):   LLVM version 20.1.8   Optimized build.
+  Using toolchain located at 'D:\ModelTest\Saved\LyraEvaluation\Toolchains\v26_clang-20.1.8-rockylinux8\x86_64-unknown-linux-gnu'
+  Using bundled libc++ standard C++ library.
+  Compressing debug files
+  [Adaptive Build] Excluded from LyraGame unity file: LyraHealthComponent.cpp, LyraDeathAutomationTest.cpp, LyraDeathTestTypes.cpp
+LyraEditor Win64 Development:
+  Using ISPC compiler (C:\Users\huaqijiang\Documents\Study\UE5\Engine\Source\ThirdParty\Intel\ISPC\bin\Windows\ispc.exe)
+    Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20250404, LLVM 18.1.2) 
+  Using Visual Studio 14.44.35222 toolchain (C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.44.35207) and Windows 10.0.22621.0 SDK (C:\Program Files (x86)\Windows Kits\10).
+  [Adaptive Build] Excluded from LyraGame unity file: LyraHealthComponent.cpp, LyraDeathAutomationTest.cpp, LyraDeathTestTypes.cpp
+=================================
+Using Unreal Build Accelerator local executor to run 9 action(s)
+  CPU 16 physical cores, 32 logical cores
+  Memory 127.85 GB physical, 78 GB/135.85 GB committed
+  UBA Storage capacity 40 GB
+  UBA RootDir C:\ProgramData\Epic\UnrealBuildAccelerator
+Cache bucket 3312365509 used. Action: Compile [x64] LyraHealthComponent.cpp (LyraEditor-Win64-Development)
+Cache bucket 416513229 used. Action: Link [x64] UnrealEditor-LyraGame.dll (LyraEditor-Win64-Development)
+Cache bucket 3833261444 used. Action: Compile LyraHealthComponent.cpp (LyraServer-Linux-Development)
+Cache bucket 2093953799 used. Action: Link LyraServer (LyraServer-Linux-Development)
+All processes queued
+** For LyraServer-Linux-Development **
+[1/9] Compile LyraHealthComponent.cpp
+** For LyraEditor-Win64-Development **
+[2/9] Compile [x64] LyraHealthComponent.cpp
+[3/9] Compile [x64] Module.LyraGame.1.cpp
+[4/9] Link [x64] UnrealEditor-LyraGame.lib
+  正在创建库 C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraGame/UnrealEditor-LyraGame.lib 和对象 C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Intermediate/Build/Win64/x64/UnrealEditor/Development/LyraGame/UnrealEditor-LyraGame.exp
+[5/9] Link [x64] UnrealEditor-LyraGame.dll
+[6/9] WriteMetadata LyraEditor.target [NoUba]
+** For LyraServer-Linux-Development **
+[7/9] Compile Module.LyraGame.1.cpp
+[8/9] Link LyraServer
+[9/9] WriteMetadata LyraServer.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 112.24 seconds
+Output binary: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\ShaderCompileWorker.exe
+Output binary: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\UnrealPak.exe
+Output binary: C:\Users\huaqijiang\.codex\worktrees\lyra-remote-evaluation\ModelTest\Binaries\Linux\LyraServer
+Output binary: C:\Users\huaqijiang\Documents\Study\UE5\Engine\Binaries\Win64\UnrealEditor.exe
+UbaStorageServer - Database saved in 1ms (0 file entries, 0 cas entries. deleted 0 dropped cas files)
+WriteFileIfChanged() wrote 0 changed files of 1 requested writes.
+
+Timeline:
+[  0.000]  +0.344 Main
+   0.013          [  0.013]  +0.107 Apply XmlConfig
+   0.021             0.021          [  0.008]  +0.017 Find target files
+   0.129          [  0.129]  +0.054 AddTelemetry
+   0.203          [  0.203]  +0.140 RegisterPlatforms
+[  0.360]  +0.024 ParseCommandLine
+[  0.438]  +0.219 LoadMakefile
+   0.438          [  0.000]  +0.103 LoadMakefile
+   0.438             0.000          [  0.000]  +0.114 LoadMakefile
+   0.555          [  0.117]  +0.000 FindPlugins
+   0.555             0.117          [  0.000]  +0.000 FindPlugins
+   0.558          [  0.119]  +0.016 EngineRulesFetchDirs
+   0.564             0.125          [  0.006]  +2.359 MakefileValid
+[  0.658]  +2.265 <unknown>
+[  2.923]  +0.013 UnrealPak Win64 Development
+   2.928          [  0.004]  +1.829 LyraServer Linux Development
+   2.937             0.013          [  0.009]  +0.017 UHTWait
+   2.954             0.030          [  0.026]  +1.056 <unknown>
+   4.011             1.087          [  1.083]  +0.074 UHTModules
+   4.121             1.197          [  1.193]  +0.038 UHTModules
+   4.179             1.255          [  1.250]  +0.017 UHTManifest
+   4.197             1.273          [  1.268]  +0.009 UHTTimestamps
+   4.206             1.282          [  1.278]  +0.548 <unknown>
+   4.755             1.831          [  1.826]  +0.000 WaitOnWrites
+   4.757             1.833          [  1.828]  +0.000 WaitOnWrites
+[  2.937]  +1.820 <unknown>
+[  4.757]  +0.000 UHTWait
+   4.757          [  0.000]  +0.127 SavingMakefile
+   4.775             0.017          [  0.017]  +0.402 SavingMakefile
+[  4.758]  +0.563 <unknown>
+[  5.322]  +0.002 GatherOutdatedActions
+[  5.324]  +0.002 GatherOutdatedActions
+[  5.327]  +0.002 GatherOutdatedActions
+[  5.332]  +0.007 LinkActions
+   5.332          [  0.000]  +0.000 DetectActionGraphCycles
+[  5.341]  +0.001 DeleteOutdatedProducedItems
+[  5.343]  +0.015 SaveActionHistory
+[  5.359]  +0.000 CreateDirectoriesForProducedItems
+[  5.372]  +0.299 GarbageCollect
+[  5.671]+111.937 <unknown>
+[117.608]  +0.000 Deploying targets
+[117.610]  +0.000 DisconnectCache
+[117.619]  +0.127 SaveCasTable
+[117.750]  +0.407 Saving caches
+[118.158]  +0.002 TelemetryService.FlushEvents
+[118.161]
+
+Result: Succeeded
+Total execution time: 118.16 seconds

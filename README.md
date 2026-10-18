@@ -6,7 +6,9 @@
 - 人工缺陷 seed：`240a1617ee9ae96eb841114bf79268bdad6d92d0`
 - 构建方式：使用真实 UE 5.8.3，在 Windows 上交叉编译 Linux x86_64 的 `LyraServer Development`，并 cook、stage 运行内容。
 
-产物分别放入 `candidate/`、`seed/`，构建及运行证据放入 `evidence/`。候选已完成真实 Linux 构建，运行成绩仍待目标容器验证；不能将构建成功当作运行成功。
+产物分别放入 `candidate/`、`seed/`，构建证据放入 `evidence/`。两份产物均已完成真实 Linux 构建（BuildCookRun 退出码 0），运行成绩仍待目标容器验证；不能将构建成功当作运行成功。
+
+本轮是带明确规格和缺陷线索的三处人工修复题，分数仅用于本题。23 项测试使用真实 UE 状态、标签及委托，但由测试直接驱动 OnRep；不证明实际网络传输、PIE 或游戏画面。
 
 ## Linux 运行
 
