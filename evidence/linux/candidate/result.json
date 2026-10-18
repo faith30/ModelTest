@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "candidate_sha": "3daa3a32b5ddbe106d8c997a6e2514df5fdb0e8d",
+  "status": "final_pass",
+  "valid_evidence": true,
+  "is_final": true,
+  "final_pass": true,
+  "score": 100.0,
+  "expected_case_count": 23,
+  "runtime_exit_code": 0,
+  "problems": [],
+  "groups": [
+    {
+      "name": "DirectFinished",
+      "maximum": 20,
+      "observed_score": 20.0,
+      "passed": 4,
+      "total": 4,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        }
+      ],
+      "score": 20.0
+    },
+    {
+      "name": "StepSequence",
+      "maximum": 20,
+      "observed_score": 20.0,
+      "passed": 4,
+      "total": 4,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStart",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        }
+      ],
+      "score": 20.0
+    },
+    {
+      "name": "Idempotence",
+      "maximum": 20,
+      "observed_score": 20.0,
+      "passed": 5,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.FinishBeforeStart",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.DuplicateStart",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.DuplicateFinish",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.StartAfterFinished",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.RepeatedSequence",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        }
+      ],
+      "score": 20.0
+    },
+    {
+      "name": "PredictionAhead",
+      "maximum": 20,
+      "observed_score": 20.0,
+      "passed": 5,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        }
+      ],
+      "score": 20.0
+    },
+    {
+      "name": "ASCNull",
+      "maximum": 20,
+      "observed_score": 20.0,
+      "passed": 5,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.LocalSequence",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.DirectFinished",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.FinishBeforeStart",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.DuplicateMethods",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.PredictionAhead",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        }
+      ],
+      "score": 20.0
+    }
+  ],
+  "scope": "Real Linux UE Automation execution; this does not prove multi-machine replication or game presentation.",
+  "provenance_boundary": "Evaluator-produced build and report required. File hashes do not independently attest execution.",
+  "report_score_path": "report-score/score.json",
+  "runtime_path": "runtime.json",
+  "observed_case_score": 100.0,
+  "passed_case_count": 23,
+  "runtime_sha256": "e9ed894d2aa39605b461d6dcb5e42668dd1c2dd41221857d5a706e64f30c24b1",
+  "report_sha256": "9aac8bd87b6208aae25ac968ac4a94d3d182c68f6324db0ccf0fe83d3e082452",
+  "binary_sha256": "434f9cb3e4c93225170ac7338d3fa4d3973d6cd2639c9ff6866390c8dc62e439"
+}

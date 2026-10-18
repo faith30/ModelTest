@@ -1,0 +1,673 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "edge-1-debea7fa",
+			"instance": "01A14FA63C137D8D95F1851DE978A053",
+			"instanceName": "edge-1-debea7fa-15138",
+			"platform": "LinuxServer",
+			"oSVersion": "Debian GNU/Linux 13 (trixie) 6.14.0-37-generic",
+			"model": "Default",
+			"gPU": "UnknownVendor PCI-id: 1013-00b8 (1af4-1100)",
+			"cPUModel": "AMD EPYC 9K65 192-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.10.18-15.34.25",
+	"succeeded": 23,
+	"succeededWithWarnings": 0,
+	"failed": 0,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 0.76722896099090576,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "DirectFinished",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.DirectFinished",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033311232924461365,
+			"dateTime": "2026.10.18-15.34.22",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.DirectFinished State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateMethods",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.DuplicateMethods",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033400606364011765,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.DuplicateMethods State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishBeforeStart",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.FinishBeforeStart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033374208956956863,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.FinishBeforeStart State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LocalSequence",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.LocalSequence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033345982432365417,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.LocalSequence State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PredictionAhead",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.PredictionAhead",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033276576548814774,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.PredictionAhead State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AfterPrematureFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033364269882440567,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.AfterPrematureFinish State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateFinishedSnapshot",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033446222543716431,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.DuplicateFinishedSnapshot State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SkipStartedNotification",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033360030502080917,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.SkipStartedNotification State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ThenDuplicateMethods",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033370211720466614,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.ThenDuplicateMethods State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.DuplicateFinish",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033342503011226654,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.DuplicateFinish State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.23"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateStart",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.DuplicateStart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.0334034264087677,
+			"dateTime": "2026.10.18-15.34.23",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.DuplicateStart State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishBeforeStart",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.FinishBeforeStart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033262856304645538,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.FinishBeforeStart State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RepeatedSequence",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.RepeatedSequence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033422596752643585,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.RepeatedSequence State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StartAfterFinished",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.StartAfterFinished",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033317193388938904,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.StartAfterFinished State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishedReceivesNotDead",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033401768654584885,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.FinishedReceivesNotDead State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishedReceivesStarted",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033394817262887955,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.FinishedReceivesStarted State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RepeatedOlderState",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033356759697198868,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.RepeatedOlderState State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StartedReceivesNotDead",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033304214477539062,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.StartedReceivesNotDead State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TwoOlderStates",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033353880047798157,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.TwoOlderStates State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LocalStartReplicatedFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033388558775186539,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.LocalStartReplicatedFinish State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.24"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReplicatedStart",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.ReplicatedStart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033344022929668427,
+			"dateTime": "2026.10.18-15.34.24",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.ReplicatedStart State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.25"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReplicatedStartAndFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033316124230623245,
+			"dateTime": "2026.10.18-15.34.25",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.ReplicatedStartAndFinish State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.25"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReplicatedStartLocalFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA63C137D8D95F1851DE978A053"
+			],
+			"duration": 0.033370848745107651,
+			"dateTime": "2026.10.18-15.34.25",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.ReplicatedStartLocalFinish State=2 Started=1 Finished=1 Dying=1 Dead=1 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.34.25"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		}
+	]
+}
