@@ -1,0 +1,45 @@
+{
+  "normal": {
+    "title": "受伤与治疗",
+    "description": "普通伤害降低生命值，治疗受到生命上限限制。",
+    "initial": {"health": 100, "max_health": 100, "damage_immunity": false},
+    "actions": [
+      {"type": "damage", "amount": 30},
+      {"type": "heal", "amount": 20},
+      {"type": "heal", "amount": 50}
+    ]
+  },
+  "immunity": {
+    "title": "免疫与自毁标记",
+    "description": "免疫阻止普通伤害；显式传入 100 点带自毁标记的伤害可绕过免疫。此动作只模拟 HealthSet 标记规则。",
+    "initial": {"health": 100, "max_health": 100, "damage_immunity": false},
+    "actions": [
+      {"type": "set_immunity", "enabled": true},
+      {"type": "damage", "amount": 30},
+      {"type": "damage", "amount": 100, "self_destruct": true}
+    ]
+  },
+  "lethal": {
+    "title": "零血与死亡状态",
+    "description": "零血和死亡状态分别维护：显式开始与结束死亡；之后治疗能回升生命值，但不会复活或重置死亡状态。",
+    "initial": {"health": 100, "max_health": 100, "damage_immunity": false},
+    "actions": [
+      {"type": "damage", "amount": 150},
+      {"type": "damage", "amount": 10},
+      {"type": "start_death"},
+      {"type": "finish_death"},
+      {"type": "heal", "amount": 25}
+    ]
+  },
+  "max_health": {
+    "title": "生命上限变化",
+    "description": "降低上限会压低超限生命值；增加上限不会补血；上限最小为 1。",
+    "initial": {"health": 100, "max_health": 100, "damage_immunity": false},
+    "actions": [
+      {"type": "set_max_health", "value": 40},
+      {"type": "set_max_health", "value": 200},
+      {"type": "set_max_health", "value": 0},
+      {"type": "set_max_health", "value": -5}
+    ]
+  }
+}

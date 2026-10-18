@@ -26,6 +26,15 @@ Lyra Starter Game 官方 C++ 工程：使用 Unreal Engine **5.8.3** 发布版�
 
 ## 使用
 
+Linux 容器中可运行独立的[生命值与战斗逻辑 demo](Demo/Combat/README.md)：只需要 Python 3.9+，支持命令行和 Web 页面。该样例不启动 UE 引擎或加载 Content。Git 稀疏克隆和容器启动步骤见 [Linux demo 部署说明](Docs/LinuxDemo.md)。
+
+```bash
+python3 Demo/Combat/demo.py scenario --name normal
+python3 Demo/Combat/demo.py serve --port 8000
+```
+
+完整 Unreal 工程的使用方式：
+
 1. 安装 Unreal Engine 5.8.3、对应 C++ 开发工具和 Git LFS。
 2. 克隆仓库后运行 `git lfs install` 和 `git lfs pull`。
 3. 将 `Lyra.uproject` 关联到对应引擎安装，生成项目文件并构建 `LyraEditor`，再打开项目。

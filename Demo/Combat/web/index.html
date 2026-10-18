@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Combat Lab · 生命值与战斗逻辑</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到实验面板</a>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="演示说明">
+        <a class="brand" href="./" aria-label="Combat Lab 首页"><span class="brand-mark" aria-hidden="true">+</span><span>COMBAT LAB<small>生命值与战斗逻辑</small></span></a>
+        <div class="sidebar-intro"><span class="eyebrow">INTERACTIVE DEMO</span><p>每一次操作，<br>都有可追溯的结果。</p></div>
+        <div class="sidebar-links"><a href="#overview">01 <span>状态总览</span></a><a href="#controls">02 <span>战斗操作</span></a><a href="#timeline">03 <span>事件时间线</span></a></div>
+        <div class="sidebar-note"><span class="small-label">同样可以在终端运行</span><code>python3 Demo/Combat/demo.py scenario --name normal</code><p>Python 标准库 · Linux / Windows</p></div>
+      </aside>
+
+      <main id="main" class="main">
+        <header class="page-header"><div><p class="eyebrow">STATE · ACTION · EVENT</p><h1>生命值与战斗逻辑</h1><p class="lede">调整数值，执行操作，观察生命值与死亡阶段如何变化。</p></div><div class="connection" id="connectionStatus" role="status">正在连接</div></header>
+        <p class="scope-note"><span class="scope-tag">演示范围</span>独立的 Python 参考逻辑；不运行 UE 引擎，也不验证 UE 网络复制或游戏画面。</p>
+        <div class="error-banner" id="errorBanner" role="alert" hidden></div>
+        <p class="sr-only" id="liveStatus" aria-live="polite"></p>
+
+        <section id="overview" class="card overview" aria-labelledby="overviewTitle">
+          <div class="section-heading"><div><p class="eyebrow">CURRENT STATE</p><h2 id="overviewTitle">当前状态</h2></div><span class="state-pill" id="lifeBadge">生命值充足</span></div>
+          <div class="health-heading"><span>生命值 <span class="muted">/ Health</span></span><div class="health-numbers"><output id="healthValue">100</output><span>/ <span id="maxHealthValue">100</span></span></div></div>
+          <div class="health-track" id="healthBar" role="progressbar" aria-label="当前生命值" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><div class="health-fill" id="healthFill"></div></div>
+          <div class="health-scale"><span>0</span><span id="healthPercent">100%</span></div>
+          <div class="state-grid"><div><span class="metric-label">伤害免疫</span><strong id="immunityValue">关闭</strong><span class="metric-detail">Damage immunity</span></div><div><span class="metric-label">死亡阶段</span><strong id="deathValue">未开始死亡</strong><span class="metric-detail" id="deathCode">NotDead</span></div><div><span class="metric-label">已执行操作</span><strong><span id="stepCount">0</span><span class="metric-unit"> / 200</span></strong><span class="metric-detail">完整历史可回放</span></div></div>
+        </section>
+
+        <div class="workspace-grid">
+          <section id="controls" class="card controls" aria-labelledby="controlsTitle">
+            <div class="section-heading"><div><p class="eyebrow">TAKE AN ACTION</p><h2 id="controlsTitle">战斗操作</h2></div><button class="text-button" id="resetButton" type="button">重置实验</button></div>
+            <fieldset id="actionControls" disabled><legend class="sr-only">战斗操作</legend>
+              <form id="combatForm"><label class="field-label" for="amount">伤害 / 治疗数值</label><div class="number-field"><input id="amount" type="number" value="25" min="0" step="any" required inputmode="decimal"><span>HP</span></div><div class="button-pair"><button class="button damage-button" type="submit" name="action" value="damage">造成伤害</button><button class="button heal-button" type="submit" name="action" value="heal">恢复生命值</button></div><label class="checkbox-label"><input id="selfDestruct" type="checkbox"><span>自毁伤害标记（绕过免疫）</span></label><p class="helper">仅影响伤害免疫判定，仍使用上方数值。</p></form>
+              <div class="control-divider"></div>
+              <label class="toggle-row" for="immunityToggle"><span><strong>伤害免疫</strong><small>开启后拦截普通伤害</small></span><input class="switch-input" id="immunityToggle" type="checkbox" role="switch"></label>
+              <div class="control-divider"></div>
+              <form id="maxHealthForm"><label class="field-label" for="maxHealth">最大生命值</label><div class="inline-form"><div class="number-field"><input id="maxHealth" type="number" value="100" min="0" step="any" required inputmode="decimal"><span>HP</span></div><button class="button secondary-button" type="submit">应用</button></div><p class="helper">最小有效上限为 1；降低上限会约束当前生命值。</p></form>
+              <div class="control-divider"></div>
+              <span class="field-label">死亡阶段</span><div class="button-pair"><button class="button secondary-button" id="startDeathButton" type="button">开始死亡</button><button class="button secondary-button" id="finishDeathButton" type="button">完成死亡</button></div><p class="helper">死亡阶段由独立操作推进。治疗不会自动重置死亡阶段。</p>
+            </fieldset>
+          </section>
+
+          <div class="right-column">
+            <section class="card scenario-card" aria-labelledby="scenarioTitle"><div class="section-heading"><div><p class="eyebrow">BUILT-IN SCENARIOS</p><h2 id="scenarioTitle">场景回放</h2></div><span class="small-tag">可重复验证</span></div><fieldset id="scenarioControls" disabled><legend class="sr-only">选择场景</legend><label class="sr-only" for="scenarioSelect">内置场景</label><div class="scenario-row"><select id="scenarioSelect"><option value="">正在加载场景…</option></select><button class="button primary-button" id="replayButton" type="button">回放场景</button></div><p class="scenario-description" id="scenarioDescription">加载后可查看预设操作及其结果。</p><p class="helper">回放会替换当前实验状态与操作历史。</p></fieldset></section>
+            <section id="timeline" class="card timeline-card" aria-labelledby="timelineTitle"><div class="section-heading"><div><p class="eyebrow">EVENT TIMELINE</p><h2 id="timelineTitle">事件时间线</h2></div><span class="small-tag" id="timelineCount">0 次操作</span></div><div class="empty-state" id="emptyState"><span class="empty-symbol" aria-hidden="true">↳</span><h3>从一次操作开始</h3><p>造成伤害、恢复生命值，或回放一个内置场景。<br>这里会记录每一步的前后状态与事件。</p></div><ol class="timeline" id="eventList"></ol><p class="history-note">每次请求从初始状态重放全部操作，最多 200 次。达到上限后请重置实验或回放场景。</p></section>
+          </div>
+        </div>
+        <footer>Combat Lab <span>·</span> 独立逻辑演示 <span>·</span> Git 传输 / Python 运行</footer>
+      </main>
+    </div>
+  </body>
+</html>
