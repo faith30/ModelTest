@@ -1,0 +1,1365 @@
+﻿Log file open, 10/18/26 15:38:08
+LogInit: Running DelayedAutoRegister Phase StartOfEnginePreInit
+LogCore: Display: UTS: The Unreal Trace Server binary is not available ('../../../Engine/Binaries/Linux/UnrealTraceServer')
+LogTrace: Initializing trace...
+LogTrace: Finished trace initialization.
+LogCsvProfiler: Display: Metadata set : platform="Linux"
+LogCsvProfiler: Display: Metadata set : config="Development"
+LogCsvProfiler: Display: Metadata set : buildversion="UE5-CL-0"
+LogCsvProfiler: Display: Metadata set : engineversion="5.8.3-0+UE5"
+LogCsvProfiler: Display: Metadata set : enginereleaseversion="5.8.3"
+LogCsvProfiler: Display: Metadata set : os="Debian GNU/Linux 13 (trixie) 6.14.0-37-generic"
+LogCsvProfiler: Display: Metadata set : cpu="AuthenticAMD|AMD EPYC 9K65 192-Core Processor"
+LogCsvProfiler: Display: Metadata set : pgoenabled="0"
+LogCsvProfiler: Display: Metadata set : pgoprofilingenabled="0"
+LogCsvProfiler: Display: Metadata set : ltoenabled="0"
+LogCsvProfiler: Display: Metadata set : asan="0"
+LogCsvProfiler: Display: Metadata set : mergedmodules="0"
+LogCsvProfiler: Display: Metadata set : compacttset="0"
+LogCsvProfiler: Display: Metadata set : commandline="" Lyra /Engine/Maps/Entry?game=/Script/Engine.GameModeBase -nullrhi -nosound -unattended -stdout -FullStdOutLogOutput -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase -ExecCmds="Automation RunTests StartsWith:Lyra.Benchmark.Death; Quit" -ReportExportPath=/workspace/lyra-runner/seed-result-02/ue-report -abslog=/workspace/lyra-runner/seed-result-02/ue.log""
+LogCsvProfiler: Display: Metadata set : loginid="20bdbc2520594073bf5731f2b3c12e68-000003e4"
+LogCsvProfiler: Display: Metadata set : llm="0"
+LogPakFile: Initializing PakPlatformFile
+LogIoDispatcher: Display: Mounted container '../../../Lyra/Content/Paks/global.utoc', Id='ffffffffffffffff', Order=0, Slot=0, Options=(None), Flags=(), HasSoftRefs=False
+LogPakFile: Display: Initialized I/O dispatcher file backend. Mounted the global container: ../../../Lyra/Content/Paks/global.utoc
+LogPakFile: Display: Found Pak file ../../../Lyra/Content/Paks/pakchunk2-LinuxServer.pak attempting to mount.
+LogPakFile: Display: Mounting pak file ../../../Lyra/Content/Paks/pakchunk2-LinuxServer.pak.
+LogIoDispatcher: Display: Mounted container '../../../Lyra/Content/Paks/pakchunk2-LinuxServer.utoc', Id='9c553648bf30fd5d', Order=3, Slot=0, Options=(None), Flags=(Compressed|Indexed), HasSoftRefs=False
+LogFilePackageStore: Mounting container: Id=9c553648bf30fd5d, Order=3, NumPackages=75
+LogPakFile: Display: Mounted IoStore container "../../../Lyra/Content/Paks/pakchunk2-LinuxServer.utoc"
+LogPakFile: Display: Mounted Pak file '../../../Lyra/Content/Paks/pakchunk2-LinuxServer.pak', mount point: '/'
+LogPakFile: Display: Found Pak file ../../../Lyra/Content/Paks/pakchunk1-LinuxServer.pak attempting to mount.
+LogPakFile: Display: Mounting pak file ../../../Lyra/Content/Paks/pakchunk1-LinuxServer.pak.
+LogIoDispatcher: Display: Mounted container '../../../Lyra/Content/Paks/pakchunk1-LinuxServer.utoc', Id='1c21040c837533d0', Order=3, Slot=0, Options=(None), Flags=(Compressed|Indexed), HasSoftRefs=False
+LogFilePackageStore: Mounting container: Id=1c21040c837533d0, Order=3, NumPackages=704
+LogPakFile: Display: Mounted IoStore container "../../../Lyra/Content/Paks/pakchunk1-LinuxServer.utoc"
+LogPakFile: Display: Mounted Pak file '../../../Lyra/Content/Paks/pakchunk1-LinuxServer.pak', mount point: '/'
+LogPakFile: Display: Found Pak file ../../../Lyra/Content/Paks/pakchunk0-LinuxServer.pak attempting to mount.
+LogPakFile: Display: Mounting pak file ../../../Lyra/Content/Paks/pakchunk0-LinuxServer.pak.
+LogIoDispatcher: Display: Mounted container '../../../Lyra/Content/Paks/pakchunk0-LinuxServer.utoc', Id='df31806680c1a9fa', Order=3, Slot=0, Options=(None), Flags=(Compressed|Indexed), HasSoftRefs=False
+LogFilePackageStore: Mounting container: Id=df31806680c1a9fa, Order=3, NumPackages=3077
+LogPakFile: Display: Mounted IoStore container "../../../Lyra/Content/Paks/pakchunk0-LinuxServer.utoc"
+LogPakFile: Display: Mounted Pak file '../../../Lyra/Content/Paks/pakchunk0-LinuxServer.pak', mount point: '../../../'
+LogCsvProfiler: Display: Metadata set : zenstreaming="0"
+LogInit: Running DelayedAutoRegister Phase FileSystemReady
+LogInit: Running DelayedAutoRegister Phase TaskGraphSystemReady
+LogStats: Stats thread started at 0.099022
+LogInit: Running DelayedAutoRegister Phase StatSystemReady
+LogCsvProfiler: Display: Metadata set : systemresolution.resx="1280"
+LogCsvProfiler: Display: Metadata set : systemresolution.resy="720"
+LogICUInternationalization: ICU TimeZone Detection - Raw Offset: +0:00, Platform Override: ''
+LogInit: Session CrashGUID >====================================================
+         Session CrashGUID >   UECC-Linux-01A14FA9C4F07B6D8A311E065E37948E
+         Session CrashGUID >====================================================
+LogInit: Running DelayedAutoRegister Phase IniSystemReady
+LogAudio: Display: Audio Device Manager not initializing due to all audio being disabled. If this is not intentional, please check command line arguments for "-nosound".
+LogPluginManager: Mounting Project plugin AsyncMixin
+LogPluginManager: Mounting Project plugin CommonGame
+LogPluginManager: Mounting Project plugin CommonLoadingScreen
+LogPluginManager: Mounting Project plugin CommonStartupLoadingScreen
+LogPluginManager: Mounting Project plugin CommonUser
+LogPluginManager: Mounting Project plugin GameSettings
+LogPluginManager: Mounting Project plugin GameSubtitles
+LogPluginManager: Mounting Project plugin GameplayMessageRouter
+LogPluginManager: Mounting Project plugin LyraExampleContent
+LogPluginManager: Mounting Project plugin LyraExtTool
+LogPluginManager: Mounting Project plugin ModularGameplayActors
+LogPluginManager: Mounting Project plugin PocketWorlds
+LogPluginManager: Mounting Project plugin UIExtension
+LogPluginManager: Mounting Engine plugin Paper2D
+LogPluginManager: Mounting Engine plugin AISupport
+LogPluginManager: Mounting Engine plugin EnvironmentQueryEditor
+LogPluginManager: Mounting Engine plugin ACLPlugin
+LogPluginManager: Mounting Engine plugin AnimationData
+LogPluginManager: Mounting Engine plugin AnimationLocomotionLibrary
+LogPluginManager: Mounting Engine plugin AnimationModifierLibrary
+LogPluginManager: Mounting Engine plugin AnimationWarping
+LogPluginManager: Mounting Engine plugin AnimatorKit
+LogPluginManager: Mounting Engine plugin ControlRigModules
+LogPluginManager: Mounting Engine plugin ControlRigSpline
+LogPluginManager: Mounting Engine plugin ControlRig
+LogPluginManager: Mounting Engine plugin DeformerGraph
+LogPluginManager: Mounting Engine plugin EaseCurveTool
+LogPluginManager: Mounting Engine plugin GameplayInsights
+LogPluginManager: Mounting Engine plugin IKRig
+LogPluginManager: Mounting Engine plugin MotionWarping
+LogAssetRegistry: Premade AssetRegistry loaded from '../../../Lyra/AssetRegistry.bin'.
+LogPluginManager: Mounting Engine plugin PhysicsControl
+LogPluginManager: Mounting Engine plugin RigLogic
+LogPluginManager: Mounting Engine plugin SkeletalMeshModelingTools
+LogPluginManager: Mounting Engine plugin TweeningUtils
+LogPluginManager: Mounting Engine plugin AudioGameplayVolume
+LogPluginManager: Mounting Engine plugin AudioGameplay
+LogPluginManager: Mounting Engine plugin AudioInsightsRuntime
+LogPluginManager: Mounting Engine plugin AudioInsights
+LogPluginManager: Mounting Engine plugin AudioModulationInsights
+LogPluginManager: Mounting Engine plugin BaseMaterial
+LogPluginManager: Mounting Engine plugin Bridge
+LogPluginManager: Mounting Engine plugin CameraShakePreviewer
+LogPluginManager: Mounting Engine plugin EngineCameras
+LogPluginManager: Mounting Engine plugin GameplayCameras
+LogPluginManager: Mounting Engine plugin ChaosCloth
+LogPluginManager: Mounting Engine plugin ChaosVD
+LogPluginManager: Mounting Engine plugin CompositeCore
+LogPluginManager: Mounting Engine plugin OodleNetwork
+LogPluginManager: Mounting Engine plugin Dataflow
+LogPluginManager: Mounting Engine plugin AnimationSharing
+LogPluginManager: Mounting Engine plugin ConcertMain
+LogPluginManager: Mounting Engine plugin ConcertSyncClient
+LogPluginManager: Mounting Engine plugin ConcertSyncCore
+LogPluginManager: Mounting Engine plugin ConcertSharedSlate
+LogPluginManager: Mounting Engine plugin NamingTokens
+LogPluginManager: Mounting Engine plugin PluginUtils
+LogPluginManager: Mounting Engine plugin ProjectLauncher
+LogPluginManager: Mounting Engine plugin RenderDocPlugin
+LogPluginManager: Mounting Engine plugin FileSandbox
+LogPluginManager: Mounting Engine plugin UObjectPlugin
+LogPluginManager: Mounting Engine plugin AssetManagerEditor
+LogPluginManager: Mounting Engine plugin AssetReferenceRestrictions
+LogPluginManager: Mounting Engine plugin AssetSearch
+LogPluginManager: Mounting Engine plugin BlueprintHeaderView
+LogPluginManager: Mounting Engine plugin BlueprintMaterialTextureNodes
+LogPluginManager: Mounting Engine plugin ColorGrading
+LogPluginManager: Mounting Engine plugin ConsoleVariables
+LogPluginManager: Mounting Engine plugin ContentBrowserAssetDataSource
+LogPluginManager: Mounting Engine plugin CurveEditorTools
+LogPluginManager: Mounting Engine plugin DataValidation
+LogPluginManager: Mounting Engine plugin EditorScriptingUtilities
+LogPluginManager: Mounting Engine plugin EngineAssetDefinitions
+LogPluginManager: Mounting Engine plugin FacialAnimation
+LogPluginManager: Mounting Engine plugin GameplayTagsEditor
+LogPluginManager: Mounting Engine plugin GeometryMode
+LogPluginManager: Mounting Engine plugin MaterialAssetWizard
+LogPluginManager: Mounting Engine plugin ModelingToolsEditorMode
+LogPluginManager: Mounting Engine plugin LightMixer
+LogPluginManager: Mounting Engine plugin ObjectMixer
+LogPluginManager: Mounting Engine plugin ProxyLODPlugin
+LogPluginManager: Mounting Engine plugin SequencerAnimTools
+LogPluginManager: Mounting Engine plugin SpeedTreeImporter
+LogPluginManager: Mounting Engine plugin UMGWidgetPreview
+LogPluginManager: Mounting Engine plugin UVEditor
+LogPluginManager: Mounting Engine plugin EnhancedInput
+LogPluginManager: Mounting Engine plugin DatasmithContent
+LogPluginManager: Mounting Engine plugin GLTFExporter
+LogPluginManager: Mounting Engine plugin VariantManagerContent
+LogPluginManager: Mounting Engine plugin VariantManager
+LogPluginManager: Mounting Engine plugin AIAssistant
+LogPluginManager: Mounting Engine plugin ActorPalette
+LogPluginManager: Mounting Engine plugin ContextualAnimation
+LogPluginManager: Mounting Engine plugin Scribble
+LogPluginManager: Mounting Engine plugin AsyncMessageSystemTests
+LogPluginManager: Mounting Engine plugin AsyncMessageSystem
+LogPluginManager: Mounting Engine plugin AutomationUtils
+LogPluginManager: Mounting Engine plugin BackChannel
+LogPluginManager: Mounting Engine plugin Buoyancy
+LogPluginManager: Mounting Engine plugin ChaosCaching
+LogPluginManager: Mounting Engine plugin ChaosEditor
+LogPluginManager: Mounting Engine plugin ChaosNiagara
+LogPluginManager: Mounting Engine plugin ChaosSolverPlugin
+LogPluginManager: Mounting Engine plugin ChaosUserDataPT
+LogPluginManager: Mounting Engine plugin CharacterAI
+LogPluginManager: Mounting Engine plugin CommonConversation
+LogPluginManager: Mounting Engine plugin ControlFlows
+LogPluginManager: Mounting Engine plugin ControlRigPhysics
+LogPluginManager: Mounting Engine plugin EditorDataStorageFeatures
+LogPluginManager: Mounting Engine plugin EditorDataStorage
+LogPluginManager: Mounting Engine plugin EditorPerformance
+LogPluginManager: Mounting Engine plugin EditorTRSGizmo
+LogPluginManager: Mounting Engine plugin Fracture
+LogPluginManager: Mounting Engine plugin FullBodyIK
+LogPluginManager: Mounting Engine plugin GameplayBehaviors
+LogPluginManager: Mounting Engine plugin TargetingSystem
+LogPluginManager: Mounting Engine plugin Gauntlet
+LogPluginManager: Mounting Engine plugin GeometryCollectionPlugin
+LogPluginManager: Mounting Engine plugin GeometryDataflow
+LogPluginManager: Mounting Engine plugin GizmoFramework
+LogPluginManager: Mounting Engine plugin GlobalConfigurationData
+LogPluginManager: Mounting Engine plugin InterchangeAxfAssets
+LogPluginManager: Mounting Engine plugin Landmass
+LogPluginManager: Mounting Engine plugin LevelSequenceNavigatorBridge
+LogPluginManager: Mounting Engine plugin LocalizableMessage
+LogPluginManager: Mounting Engine plugin MutableAssetUserData
+LogPluginManager: Mounting Engine plugin NFORDenoise
+LogPluginManager: Mounting Engine plugin PlanarCut
+LogPluginManager: Mounting Engine plugin PlatformCrypto
+LogPluginManager: Mounting Engine plugin PlatformDLC
+LogPluginManager: Mounting Engine plugin PythonScriptPlugin
+LogPluginManager: Mounting Engine plugin RuntimeTelemetry
+LogPluginManager: Mounting Engine plugin SemanticSearch
+LogPluginManager: Mounting Engine plugin ToolPresets
+LogPluginManager: Mounting Engine plugin ToolsetRegistry
+LogPluginManager: Mounting Engine plugin AIModuleToolset
+LogPluginManager: Mounting Engine plugin AllToolsets
+LogPluginManager: Mounting Engine plugin AnimationAssistantToolset
+LogPluginManager: Mounting Engine plugin AutomationTestToolset
+LogPluginManager: Mounting Engine plugin ConfigSettingsToolset
+LogPluginManager: Mounting Engine plugin ConversationToolset
+LogPluginManager: Mounting Engine plugin DataRegistryToolset
+LogPluginManager: Mounting Engine plugin DataflowAgent
+LogPluginManager: Mounting Engine plugin EditorToolset
+LogPluginManager: Mounting Engine plugin GASToolsets
+LogPluginManager: Mounting Engine plugin GameFeaturesToolset
+LogPluginManager: Mounting Engine plugin GameplayTagsToolset
+LogPluginManager: Mounting Engine plugin MCPClientToolset
+LogPluginManager: Mounting Engine plugin NiagaraToolsets
+LogPluginManager: Mounting Engine plugin PCGToolset
+LogPluginManager: Mounting Engine plugin PhysicsToolsets
+LogPluginManager: Mounting Engine plugin PluginToolset
+LogPluginManager: Mounting Engine plugin SemanticSearchToolset
+LogPluginManager: Mounting Engine plugin SlateInspectorToolset
+LogPluginManager: Mounting Engine plugin StateTreeToolset
+LogPluginManager: Mounting Engine plugin UMGToolSet
+LogPluginManager: Mounting Engine plugin WorldConditionsToolset
+LogPluginManager: Mounting Engine plugin Volumetrics
+LogPluginManager: Mounting Engine plugin Water
+LogPluginManager: Mounting Engine plugin Cascade
+LogPluginManager: Mounting Engine plugin NiagaraPreviewContent
+LogPluginManager: Mounting Engine plugin NiagaraSimCaching
+LogPluginManager: Mounting Engine plugin Niagara
+LogPluginManager: Mounting Engine plugin Fab
+LogPluginManager: Mounting Engine plugin AlembicImporter
+LogPluginManager: Mounting Engine plugin InterchangeAssets
+LogPluginManager: Mounting Engine plugin InterchangeEditor
+LogPluginManager: Mounting Engine plugin Interchange
+LogPluginManager: Mounting Engine plugin AvfMedia
+LogPluginManager: Mounting Engine plugin ImgMedia
+LogPluginManager: Mounting Engine plugin MP4Utilities
+LogPluginManager: Mounting Engine plugin MediaCompositing
+LogPluginManager: Mounting Engine plugin MediaPlate
+LogPluginManager: Mounting Engine plugin TmvMedia
+LogPluginManager: Mounting Engine plugin MeshPainting
+LogPluginManager: Mounting Engine plugin TcpMessaging
+LogPluginManager: Mounting Engine plugin UdpMessaging
+LogPluginManager: Mounting Engine plugin MetaHumanSDK
+LogPluginManager: Mounting Engine plugin ActorSequence
+LogPluginManager: Mounting Engine plugin LevelSequenceEditor
+LogPluginManager: Mounting Engine plugin SequenceValidator
+LogPluginManager: Mounting Engine plugin SequencerScripting
+LogPluginManager: Mounting Engine plugin TemplateSequence
+LogPluginManager: Mounting Engine plugin Mutable
+LogPluginManager: Mounting Engine plugin NNEDenoiser
+LogPluginManager: Mounting Engine plugin NNERuntimeORT
+LogPluginManager: Mounting Engine plugin OnlineBase
+LogPluginManager: Mounting Engine plugin OnlineFrameworkCommon
+LogPluginManager: Mounting Engine plugin OnlineFramework
+LogPluginManager: Mounting Engine plugin OnlineServicesNull
+LogPluginManager: Mounting Engine plugin OnlineServicesOSSAdapter
+LogPluginManager: Mounting Engine plugin OnlineServices
+LogPluginManager: Mounting Engine plugin OnlineSubsystemNull
+LogPluginManager: Mounting Engine plugin OnlineSubsystemSteam
+LogPluginManager: Mounting Engine plugin OnlineSubsystemUtils
+LogPluginManager: Mounting Engine plugin OnlineSubsystem
+LogPluginManager: Mounting Engine plugin SocketSubsystemSteamIP
+LogPluginManager: Mounting Engine plugin PCG
+LogPluginManager: Mounting Engine plugin AutomatedPerfTestTools
+LogPluginManager: Mounting Engine plugin AutomatedPerfTesting
+LogPluginManager: Mounting Engine plugin LauncherChunkInstaller
+LogPluginManager: Mounting Engine plugin ActorLayerUtilities
+LogPluginManager: Mounting Engine plugin AndroidFileServer
+LogPluginManager: Mounting Engine plugin AndroidPermission
+LogPluginManager: Mounting Engine plugin AppleImageUtils
+LogPluginManager: Mounting Engine plugin ArchVisCharacter
+LogPluginManager: Mounting Engine plugin AssetTags
+LogPluginManager: Mounting Engine plugin AudioCapture
+LogPluginManager: Mounting Engine plugin AudioModulation
+LogPluginManager: Mounting Engine plugin AudioSynesthesia
+LogPluginManager: Mounting Engine plugin AudioWidgets
+LogPluginManager: Mounting Engine plugin CableComponent
+LogPluginManager: Mounting Engine plugin ChunkDownloader
+LogPluginManager: Mounting Engine plugin CommonUI
+LogPluginManager: Mounting Engine plugin ComputeFramework
+LogPluginManager: Mounting Engine plugin CustomMeshComponent
+LogPluginManager: Mounting Engine plugin DataRegistry
+LogPluginManager: Mounting Engine plugin SQLiteCore
+LogPluginManager: Mounting Engine plugin ExampleDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin GameFeatures
+LogPluginManager: Mounting Engine plugin GameplayAbilities
+LogPluginManager: Mounting Engine plugin GameplayBehaviorSmartObjects
+LogPluginManager: Mounting Engine plugin GameplayInteractions
+LogPluginManager: Mounting Engine plugin GameplayStateTree
+LogPluginManager: Mounting Engine plugin GeometryCache
+LogPluginManager: Mounting Engine plugin GeometryProcessing
+LogPluginManager: Mounting Engine plugin GeometryScripting
+LogPluginManager: Mounting Engine plugin GooglePAD
+LogPluginManager: Mounting Engine plugin HairStrands
+LogPluginManager: Mounting Engine plugin InputDebugging
+LogPluginManager: Mounting Engine plugin LinuxDeviceProfileSelector
+LogPluginManager: Mounting Engine plugin LocationServicesBPLibrary
+LogPluginManager: Mounting Engine plugin MeshModelingToolset
+LogPluginManager: Mounting Engine plugin Metasound
+LogPluginManager: Mounting Engine plugin MobilePatchingUtils
+LogPluginManager: Mounting Engine plugin ModelViewViewModel
+LogPluginManager: Mounting Engine plugin ModularGameplay
+LogPluginManager: Mounting Engine plugin MsQuic
+LogPluginManager: Mounting Engine plugin NavCorridor
+LogPluginManager: Mounting Engine plugin Reflex
+LogPluginManager: Mounting Engine plugin AESGCMHandlerComponent
+LogPluginManager: Mounting Engine plugin DTLSHandlerComponent
+LogPluginManager: Mounting Engine plugin ProceduralMeshComponent
+LogPluginManager: Mounting Engine plugin PropertyAccessEditor
+LogPluginManager: Mounting Engine plugin PropertyBindingUtils
+LogPluginManager: Mounting Engine plugin ReplicationGraph
+LogPluginManager: Mounting Engine plugin RigVM
+LogPluginManager: Mounting Engine plugin SignificanceManager
+LogPluginManager: Mounting Engine plugin SkeletalMerging
+LogPluginManager: Mounting Engine plugin SmartObjects
+LogPluginManager: Mounting Engine plugin SoundFields
+LogPluginManager: Mounting Engine plugin SoundUtilities
+LogPluginManager: Mounting Engine plugin Spatialization
+LogPluginManager: Mounting Engine plugin StateTree
+LogPluginManager: Mounting Engine plugin SteamShared
+LogPluginManager: Mounting Engine plugin SteamSockets
+LogPluginManager: Mounting Engine plugin Synthesis
+LogPluginManager: Mounting Engine plugin WaveTable
+LogPluginManager: Mounting Engine plugin WorldConditions
+LogPluginManager: Mounting Engine plugin CQTestEnhancedInput
+LogPluginManager: Mounting Engine plugin CQTest
+LogPluginManager: Mounting Engine plugin FunctionalTestingEditor
+LogPluginManager: Mounting Engine plugin InterchangeTests
+LogPluginManager: Mounting Engine plugin RuntimeTests
+LogPluginManager: Mounting Engine plugin TraceUtilities
+LogPluginManager: Mounting Engine plugin Takes
+LogPluginManager: Mounting Engine plugin WorldMetrics
+LogInit: Running DelayedAutoRegister Phase EarliestPossiblePluginsLoaded
+LogConfig: Applying CVar settings from Section [/Script/CompositeCore.CompositeCorePluginSettings] File [Engine]
+LogConfig: Applying CVar settings from Section [/Script/RenderDocPlugin.RenderDocPluginSettings] File [Engine]
+RenderDocPlugin: Display: RenderDoc plugin will not be loaded. Use '-AttachRenderDoc' on the cmd line or enable 'renderdoc.AutoAttach' in the plugin settings.
+LogNFORDenoise: NFORDenoise function starting up
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Log is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.CSV is disabled for this application
+LogAnalytics: Display: Provider StudioTelemetry.Provider.Horde is disabled for this application
+LogStudioTelemetry: Started StudioTelemetry Session
+LogOnlineServices: RegisterServicesFactory Type=Null Priority=0
+LogInit: Using libcurl 8.15.0
+LogInit:  - built for x86_64-unknown-linux-gnu
+LogInit:  - supports SSL with OpenSSL/1.1.1t
+LogInit:  - supports HTTP deflate (compression) using libz 1.3
+LogInit:  - other features:
+LogInit:      CURL_VERSION_SSL
+LogInit:      CURL_VERSION_LIBZ
+LogInit:      CURL_VERSION_IPV6
+LogInit:      CURL_VERSION_ASYNCHDNS
+LogInit:      CURL_VERSION_LARGEFILE
+LogInit:      CURL_VERSION_TLSAUTH_SRP
+LogInit:      CURL_VERSION_HTTP2
+LogInit:  CurlRequestOptions (configurable via config and command line):
+LogInit:  - bVerifyPeer = true  - Libcurl will verify peer certificate
+LogInit:  - bUseHttpProxy = false  - Libcurl will NOT use HTTP proxy
+LogInit:  - CVarHttpReuseConnectionEnabled = true  - Libcurl will reuse connections
+LogInit:  - MaxHostConnections = 16  - Libcurl will limit the number of connections to a host
+LogInit:  - LocalHostAddr = Default
+LogInit:  - BufferSize = 65536
+LogInit: CreateHttpThread using FCurlMultiPollEventLoopHttpThread
+LogInit: Creating http thread with maximum 251 concurrent requests
+LogOnline: OSS: Created online subsystem instance for: NULL
+LogOnline: OSS: TryLoadSubsystemAndSetDefault: Loaded subsystem for type [NULL]
+LogInit: ExecutableName: LyraServer
+LogInit: Build: UE5-CL-0
+LogInit: Platform=LinuxServer
+LogInit: MachineId=20bdbc2520594073bf5731f2b3c12e68-000003e4
+LogInit: DeviceId=
+LogInit: Engine Version: 5.8.3-0+UE5
+LogInit: Compatible Engine Version: 5.8.0-0+UE5
+LogInit: Net CL: 0
+LogInit: OS: Debian GNU/Linux 13 (trixie) (6.14.0-37-generic), CPU: AMD EPYC 9K65 192-Core Processor, GPU: UnknownVendor PCI-id: 1013-00b8 (1af4-1100)
+LogInit: CPU Model ID: 1a000, microcode revision: 1000065
+LogInit: Compiled (64-bit): Oct 18 2026 12:54:11
+LogInit: Architecture: x64
+LogInit: Compiled with Clang: 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+LogInit: Build Configuration: Development
+LogInit: Branch Name: UE5
+LogInit: Command Line: /Engine/Maps/Entry?game=/Script/Engine.GameModeBase -nullrhi -nosound -unattended -stdout -FullStdOutLogOutput -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GameInstanceClass=/Script/LyraGame.LyraGameInstance -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultGameMode=/Script/Engine.GameModeBase -ini:Engine:[/Script/EngineSettings.GameMapsSettings]:GlobalDefaultServerGameMode=/Script/Engine.GameModeBase -ExecCmds="Automation RunTests StartsWith:Lyra.Benchmark.Death; Quit" -ReportExportPath=/workspace/lyra-runner/seed-result-02/ue-report -abslog=/workspace/lyra-runner/seed-result-02/ue.log
+LogInit: Base Directory: /workspace/lyra-runner/seed-package-02/LinuxServer/Lyra/Binaries/Linux/
+LogInit: Allocator: Binned2
+LogInit: Installed Engine Build: 0
+LogInit: This binary is optimized with LTO: no, PGO: no, instrumented for PGO data collection: no
+LogDevObjectVersion: Number of dev versions registered: 44
+LogDevObjectVersion:   Dev-Blueprints (B0D832E4-1F89-4F0D-ACCF-7EB736FD4AA2): 10
+LogDevObjectVersion:   Dev-Build (E1C64328-A22C-4D53-A36C-8E866417BD8C): 0
+LogDevObjectVersion:   Dev-Core (375EC13C-06E4-48FB-B500-84F0262A717E): 4
+LogDevObjectVersion:   Dev-Editor (E4B068ED-F494-42E9-A231-DA0B2E46BB41): 40
+LogDevObjectVersion:   Dev-Framework (CFFC743F-43B0-4480-9391-14DF171D2073): 37
+LogDevObjectVersion:   Dev-Mobile (B02B49B5-BB20-44E9-A304-32B752E40360): 3
+LogDevObjectVersion:   Dev-Networking (A4E4105C-59A1-49B5-A7C5-40C4547EDFEE): 0
+LogDevObjectVersion:   Dev-Online (39C831C9-5AE6-47DC-9A44-9C173E1C8E7C): 0
+LogDevObjectVersion:   Dev-Physics (78F01B33-EBEA-4F98-B9B4-84EACCB95AA2): 20
+LogDevObjectVersion:   Dev-Platform (6631380F-2D4D-43E0-8009-CF276956A95A): 0
+LogDevObjectVersion:   Dev-Rendering (12F88B9F-8875-4AFC-A67C-D90C383ABD29): 49
+LogDevObjectVersion:   Dev-Sequencer (7B5AE74C-D270-4C10-A958-57980B212A5A): 13
+LogDevObjectVersion:   Dev-VR (D7296918-1DD6-4BDD-9DE2-64A83CC13884): 3
+LogDevObjectVersion:   Dev-LoadTimes (C2A15278-BFE7-4AFE-6C17-90FF531DF755): 1
+LogDevObjectVersion:   Private-Geometry (6EACA3D4-40EC-4CC1-B786-8BED09428FC5): 3
+LogDevObjectVersion:   Dev-AnimPhys (29E575DD-E0A3-4627-9D10-D276232CDCEA): 17
+LogDevObjectVersion:   Dev-Anim (AF43A65D-7FD3-4947-9873-3E8ED9C1BB05): 15
+LogDevObjectVersion:   Dev-ReflectionCapture (6B266CEC-1EC7-4B8F-A30B-E4D90942FC07): 1
+LogDevObjectVersion:   Dev-Automation (0DF73D61-A23F-47EA-B727-89E90C41499A): 1
+LogDevObjectVersion:   FortniteMain (601D1886-AC64-4F84-AA16-D3DE0DEAC7D6): 268
+LogDevObjectVersion:   FortniteValkyrie (8DBC2C5B-54A7-43E0-A768-FCBB7DA29060): 8
+LogDevObjectVersion:   FortniteSeason (5B4C06B7-2463-4AF8-805B-BF70CDF5D0DD): 15
+LogDevObjectVersion:   FortniteRelease (E7086368-6B23-4C58-8439-1B7016265E91): 20
+LogDevObjectVersion:   Dev-Enterprise (9DFFBCD6-494F-0158-E221-12823C92A888): 11
+LogDevObjectVersion:   Dev-Niagara (F2AED0AC-9AFE-416F-8664-AA7FFA26D6FC): 1
+LogDevObjectVersion:   Dev-Destruction (174F1F0B-B4C6-45A5-B13F-2EE8D0FB917D): 10
+LogDevObjectVersion:   Dev-Physics-Ext (35F94A83-E258-406C-A318-09F59610247C): 41
+LogDevObjectVersion:   Dev-PhysicsMaterial-Chaos (B68FC16E-8B1B-42E2-B453-215C058844FE): 1
+LogDevObjectVersion:   Dev-CineCamera (B2E18506-4273-CFC2-A54E-F4BB758BBA07): 1
+LogDevObjectVersion:   Dev-VirtualProduction (64F58936-FD1B-42BA-BA96-7289D5D0FA4E): 1
+LogDevObjectVersion:   UE5-Main (697DD581-E64F-41AB-AA4A-51ECBEB7B628): 123
+LogDevObjectVersion:   UE5-Release (D89B5E42-24BD-4D46-8412-ACA8DF641779): 68
+LogDevObjectVersion:   UE5-SpecialProject (59DA5D52-1232-4948-B878-597870B8E98B): 9
+LogDevObjectVersion:   Dev-MediaFramework (6F0ED827-A609-4895-9C91-998D90180EA4): 2
+LogDevObjectVersion:   Dev-NaniteResearch (30D58BE3-95EA-4282-A6E3-B159D8EBB06A): 1
+LogDevObjectVersion:   Dev-ComputeFramework (6304A3E7-0059-4F59-8CFC-21BD7721FD4E): 0
+LogDevObjectVersion:   Dev-RigVM (DC49959B-53C0-4DE7-9156-EA885E7C5D39): 25
+LogDevObjectVersion:   Dev-ControlRig (A7820CFB-20A7-4359-8C54-2C149623CF50): 43
+LogDevObjectVersion:   Dev-IKRig (F6DFBB78-BB50-A0E4-4018-B84D60CBAF23): 14
+LogDevObjectVersion:   Dev-PhysicsControl (E68A5C1A-42C3-CA0D-B014-41B228C1F2DD): 33
+LogDevObjectVersion:   Dev-RigPhysics (B7F3D285-4A1C-5E08-2D6B-9F71C50E8A14): 6
+LogDevObjectVersion:   Dev-Optimus (93EDE1AA-10CA-7375-4DF9-8A2849B157A0): 14
+LogDevObjectVersion:   FN-Main-InterchangePipeline (B69D2E47-E2A8-4003-BF77-18A492C4D899): 2
+LogDevObjectVersion:   Dev-Scribble (DC49359B-53C0-4DE7-9126-EA885E1C5D39): 0
+LogCsvProfiler: Config enabled category LyraPerformance
+LogInit: Presizing for max 2097152 objects, including 1 objects not considered by GC.
+LogStreaming: Display: AsyncLoading2 - Created: Async Loading Thread: false, Async Post Load: false, Multithreaded: false
+LogInit: Object subsystem initialized
+LogConfig: Set CVar [[con.DebugEarlyDefault:1]]
+LogConfig: CVar [[con.DebugLateDefault:1]] deferred - dummy variable created
+LogConfig: CVar [[con.DebugLateCheat:1]] deferred - dummy variable created
+LogConfig: CVar [[LogNamedEventFilters:Frame *]] deferred - dummy variable created
+LogConfig: Set CVar [[net.SubObjects.DefaultUseSubObjectReplicationList:1]]
+LogConfig: Set CVar [[r.setres:1280x720]]
+LogConfig: Set CVar [[fx.NiagaraAllowRuntimeScalabilityChanges:1]]
+LogConfig: CVar [[QualityLevelMapping:high]] deferred - dummy variable created
+LogConfig: Set CVar [[r.Shadow.DetectVertexShaderLayerAtRuntime:1]]
+LogConfig: Set CVar [[APT.DynamicRes.LockedScreenPercentage:60]]
+[2026.10.18-15.38.08:643][  0]LogConfig: CVar [[con.DebugLateDefault:1]] deferred - dummy variable created
+[2026.10.18-15.38.08:643][  0]LogConfig: CVar [[con.DebugLateCheat:1]] deferred - dummy variable created
+[2026.10.18-15.38.08:643][  0]LogConfig: CVar [[LogNamedEventFilters:Frame *]] deferred - dummy variable created
+[2026.10.18-15.38.08:643][  0]LogConfig: CVar [[QualityLevelMapping:high]] deferred - dummy variable created
+[2026.10.18-15.38.08:643][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererSettings] File [Engine]
+[2026.10.18-15.38.08:643][  0]LogConfig: CVar [[VisualizeCalibrationColorMaterialPath:/Engine/EngineMaterials/PPM_DefaultCalibrationColor.PPM_DefaultCalibrationColor]] deferred - dummy variable created
+[2026.10.18-15.38.08:643][  0]LogConfig: CVar [[VisualizeCalibrationGrayscaleMaterialPath:/Engine/EngineMaterials/PPM_DefaultCalibrationGrayscale.PPM_DefaultCalibrationGrayscale]] deferred - dummy variable created
+[2026.10.18-15.38.08:643][  0]LogConfig: Set CVar [[r.GPUCrashDebugging:0]]
+[2026.10.18-15.38.08:643][  0]LogConfig: CVar [[MaxSkinBones:(Default=65536,PerPlatform=(("Mobile", 256)))]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Substrate.RoughDiffuse:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Substrate.ShadingQuality:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Substrate.TileCoord8bits:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Substrate.Glints:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Substrate.ClosuresPerPixel:4]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Refraction.Blur:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.SkinCache.CompileShaders:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.DefaultFeature.AutoExposure.ExtendDefaultLuminanceRange:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.VirtualTextures:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.VirtualTexturedLightmaps:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[r.SupportMaterialLayers:1]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.GPUSkin.Support16BitBoneIndex:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.CustomDepth:3]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.GenerateMeshDistanceFields:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.AllowStaticLighting:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.ClearCoatNormal:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Shadow.Virtual.Enable:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.AntiAliasingMethod:4]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.DefaultFeature.MotionBlur:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.SupportSkyAtmosphereAffectsHeightFog:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.ReflectionMethod:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.DynamicGlobalIlluminationMethod:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.NumBufferedOcclusionQueries:2]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.InstanceCulling.OcclusionCull:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[r.Lumen.TranslucencyReflections.Enable:1]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.ReflectionCaptureResolution:256]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.RayTracing:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Lumen.HardwareRayTracing:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.RayTracing.Shadows:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.RayTracing.Skylight:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.GPUScene.ParallelUpdate:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.GPUSkin.UnlimitedBoneInfluences:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.SkinCache.DefaultBehavior:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Mobile.EnableStaticAndCSMShadowReceivers:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Mobile.FloatPrecisionMode:2]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Mobile.AllowDistanceFieldShadows:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Mobile.DisableVertexFog:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.MeshStreaming:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[r.RayTracing.Geometry.NiagaraMeshes:0]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.RayTracing.Geometry.NiagaraRibbons:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.RayTracing.Geometry.NiagaraSprites:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Substrate.ProjectGBufferFormat:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Substrate:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[r.Shaders.RemoveUnusedInterpolators:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.RendererOverrideSettings] File [Engine]
+[2026.10.18-15.38.08:644][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.StreamingSettings] File [Engine]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.MinBulkDataSizeForAsyncLoading:131072]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.AsyncLoadingThreadEnabled:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.EventDrivenLoaderEnabled:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.WarnIfTimeLimitExceeded:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.TimeLimitExceededMultiplier:1.5]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.TimeLimitExceededMinTime:0.005]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.UseBackgroundLevelStreaming:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.PriorityAsyncLoadingExtraTime:15.0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.LevelStreamingActorsUpdateTimeLimit:5.0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.PriorityLevelStreamingActorsUpdateExtraTime:5.0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.LevelStreamingComponentsRegistrationGranularity:10]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.UnregisterComponentsTimeLimit:1.0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.LevelStreamingComponentsUnregistrationGranularity:5]]
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[s.MaxPackageSummarySize:16384]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[s.FlushStreamingOnExit:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[FixedBootOrder:/Script/Engine/Default__SoundBase]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[FixedBootOrder:/Script/Engine/Default__MaterialInterface]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[FixedBootOrder:/Script/Engine/Default__DeviceProfileManager]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.GarbageCollectionSettings] File [Engine]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.MaxObjectsNotConsideredByGC:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.NumRetriesBeforeForcingGC:10]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.AllowParallelGC:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.TimeBetweenPurgingPendingKillObjects:61.1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.MaxObjectsInEditor:25165824]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.IncrementalBeginDestroyEnabled:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.CreateGCClusters:1]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.MinGCClusterSize:5]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.AssetClustreringEnabled:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.ActorClusteringEnabled:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.VerifyUObjectsAreNotFGCObjects:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Set CVar [[gc.GarbageEliminationEnabled:0]]
+[2026.10.18-15.38.08:644][  0]LogConfig: Applying CVar settings from Section [/Script/Engine.NetworkSettings] File [Engine]
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[NetworkEmulationProfiles:(ProfileName="Average",ToolTip="Simulates average internet conditions")]] deferred - dummy variable created
+[2026.10.18-15.38.08:644][  0]LogConfig: CVar [[NetworkEmulationProfiles:(ProfileName="Bad",ToolTip="Simulates laggy internet conditions")]] deferred - dummy variable created
+[2026.10.18-15.38.08:645][  0]LogConfig: CVar [[NetworkEmulationProfiles:(ProfileName="BufferBloat",ToolTip="Simulates a connection affected by buffer bloat (in and out)")]] deferred - dummy variable created
+[2026.10.18-15.38.08:645][  0]LogConfig: Applying CVar settings from Section [ViewDistanceQuality@3] File [Scalability]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.SkeletalMeshLODBias:0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.ViewDistanceScale:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[foliage.DensityScale:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[grass.DensityScale:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Applying CVar settings from Section [AntiAliasingQuality@3] File [Scalability]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.FXAA.Quality:4]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TemporalAA.Quality:2]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TSR.History.R11G11B10:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TSR.History.ScreenPercentage:200]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TSR.History.UpdateQuality:3]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TSR.ShadingRejection.Flickering:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TSR.RejectionAntiAliasingQuality:2]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TSR.ReprojectionField:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.TSR.Resurrection:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Applying CVar settings from Section [ShadowQuality@3] File [Scalability]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LightFunctionQuality:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.ShadowQuality:5]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.CSM.MaxCascades:10]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.MaxResolution:2048]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.MaxCSMResolution:2048]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.RadiusThreshold:0.01]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.DistanceScale:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.CSM.TransitionScale:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.PreShadowResolutionFactor:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.DistanceFieldShadowing:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.VolumetricFog:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.VolumetricFog.GridPixelSize:8]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.VolumetricFog.GridSizeZ:128]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.VolumetricFog.HistoryMissSupersampleCount:4]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LightMaxDrawDistanceScale:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.CapsuleShadows:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.MaxPhysicalPages:4096]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.ResolutionLodBiasDirectional:-1.5]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.ResolutionLodBiasDirectionalMoving:-1.5]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.ResolutionLodBiasLocal:0.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.ResolutionLodBiasLocalMoving:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.SMRT.RayCountDirectional:8]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.SMRT.SamplesPerRayDirectional:4]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.SMRT.RayCountLocal:8]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.SMRT.SamplesPerRayLocal:4]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Shadow.Virtual.MarkCoarsePagesLocal:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.NumSamplesPerPixel:4]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.DownsampleMode:2]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.ScreenTraces.Quality:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.FrontLayerTranslucency.Allow:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.FrontLayerTranslucency.SpecularOnly:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.FrontLayerTranslucency.SoftShadows:0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.FrontLayerTranslucency.TexturedRectLights:0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.Spatial.UseHistorySpatialVariance:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.Volume.GridPixelSize:8]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.MegaLights.Volume.GridSizeZ:128]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Applying CVar settings from Section [GlobalIlluminationQuality@3] File [Scalability]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.DistanceFieldAO:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.SkylightIntensityMultiplier:1.0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.AOQuality:2]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.DiffuseIndirect.Allow:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.FinalGatherMethod:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.SurfaceCache.AtlasSize:4096]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.SurfaceCache.CardTexelDensityScale:100]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.SurfaceCache.CardMinResolution:2]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.SurfaceCache.CardMaxResolution:512]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.DirectLighting.MaxLightsPerTile:8]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.DirectLighting.UpdateFactor:32]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.Radiosity.UpdateFactor:64]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.Radiosity.ProbeSpacing:4]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.LumenScene.Radiosity.HemisphereProbeResolution:4]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.TraceMeshSDFs.Allow:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.RadianceCache.ProbeResolution:32]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.RadianceCache.NumProbesToTraceBudget:150]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.DownsampleFactor:16]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.NumAdaptiveProbes:8]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.TracingOctahedronResolution:8]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.IrradianceFormat:0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.StochasticInterpolation:0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.FullResolutionJitterWidth:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.TwoSidedFoliageBackfaceDiffuse:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.ScreenTraces.HZBTraversal.FullResDepth:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.ShortRangeAO.DownsampleFactor:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.ShortRangeAO.HorizonSearch.SliceCount:2]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.ShortRangeAO.BentNormal:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.ShortRangeAO.HorizonSearch.HZB:0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.ShortRangeAO.HorizonSearch.ForegroundSampleRejectPower:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.ShortRangeAO.FoliageOcclusionStrength:.7]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.GridPixelSize:32]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.TraceFromVolume:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.ShareRadianceCacheWithOpaque:0]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.SpatialFilter:1]]
+[2026.10.18-15.38.08:645][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.TracingOctahedronResolution:3]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.RadianceCache.ProbeResolution:8]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.RadianceCache.GridResolution:24]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyVolume.RadianceCache.NumProbesToTraceBudget:100]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.HardwareRayTracing.HitLighting.Allowed:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: CVar [[r.RayTracing.Scene.BuildMode:1]] deferred - dummy variable created
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.RayTracing.Geometry.SkeletalMeshes:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.MeshCardRepresentation.SkeletalMesh:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: CVar [[r.RayTracing.DynamicGeometry.MaxUpdatePrimitivesPerFrame:-1]] deferred - dummy variable created
+[2026.10.18-15.38.08:646][  0]LogConfig: Applying CVar settings from Section [ReflectionQuality@3] File [Scalability]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SSR.Quality:3]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SSR.HalfResSceneColor:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.Reflections.Allow:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.Reflections.DownsampleFactor:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.Reflections.MaxRoughnessToTraceForFoliage:0.4]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.ScreenProbeGather.MaxRoughnessToEvaluateRoughSpecularForFoliage:0.8]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.Reflections.ScreenSpaceReconstruction.NumSamples:5]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.Reflections.ScreenSpaceReconstruction.MinWeight:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyReflections.FrontLayer.Allow:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Lumen.TranslucencyReflections.FrontLayer.Enable:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Applying CVar settings from Section [PostProcessQuality@3] File [Scalability]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.MotionBlurQuality:4]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.MotionBlur.HalfResGather:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.AmbientOcclusionMipLevelFactor:0.4]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.AmbientOcclusionMaxQuality:100]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.AmbientOcclusionLevels:-1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.AmbientOcclusionRadiusScale:1.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DepthOfFieldQuality:2]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.RenderTargetPoolMin:400]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.LensFlareQuality:2]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SceneColorFringeQuality:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.EyeAdaptationQuality:2]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.BloomQuality:5]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Bloom.ScreenPercentage:50.000]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.FastBlurThreshold:100]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Upscale.Quality:3]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.LightShaftQuality:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Filter.SizeScale:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.LUT.Shaper:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.LUT.Size:32]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Tonemapper.Quality:5]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Gather.ResolutionDivisor:2         ; lower gathering resolution]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Gather.AccumulatorQuality:1        ; higher gathering accumulator quality]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Gather.PostfilterMethod:1          ; Median3x3 postfilering method]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Gather.EnableBokehSettings:0       ; no bokeh simulation when gathering]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Gather.RingCount:4                 ; medium number of samples when gathering]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Scatter.ForegroundCompositing:1    ; additive foreground scattering]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Scatter.BackgroundCompositing:2    ; additive background scattering]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Scatter.EnableBokehSettings:1      ; bokeh simulation when scattering]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Scatter.MaxSpriteRatio:0.1         ; only a maximum of 10% of scattered bokeh]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Recombine.Quality:1                ; cheap slight out of focus]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Recombine.EnableBokehSettings:0    ; no bokeh simulation on slight out of focus]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.TemporalAAQuality:1                ; more stable temporal accumulation]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Kernel.MaxForegroundRadius:0.025]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DOF.Kernel.MaxBackgroundRadius:0.025]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Applying CVar settings from Section [TextureQuality@3] File [Scalability]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Streaming.MipBias:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Streaming.AmortizeCPUToGPUCopy:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Streaming.MaxNumTexturesToStreamPerFrame:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Streaming.Boost:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.MaxAnisotropy:8]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.VT.MaxAnisotropy:8]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Streaming.LimitPoolSizeToVRAM:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Streaming.PoolSize:1000]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.Streaming.MaxEffectiveScreenSize:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Applying CVar settings from Section [EffectsQuality@3] File [Scalability]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.TranslucencyLightingVolume.Dim:64]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.RefractionQuality:2]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SceneColorFormat:4]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.DetailMode:3]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.TranslucencyLightingVolume.Blur:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.MaterialQualityLevel:1 ; High quality]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SSS.Scale:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SSS.SampleSet:2]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SSS.Quality:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SSS.HalfRes:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SSGI.Quality:3]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.EmitterSpawnRateScale:1.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.ParticleLightQuality:2]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.FastApplyOnOpaque:1 ; Always have FastSkyLUT 1 in this case to avoid wrong sky]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.SampleCountMaxPerSlice:4]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.AerialPerspectiveLUT.DepthResolution:16.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.FastSkyLUT:1]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMin:4.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.FastSkyLUT.SampleCountMax:128.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.SampleCountMin:4.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.SampleCountMax:128.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat:0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.TransmittanceLUT.SampleCount:10.0]]
+[2026.10.18-15.38.08:646][  0]LogConfig: Set CVar [[r.SkyAtmosphere.MultiScatteringLUT.SampleCount:15.0]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.Fog.SeparateComposition:-1	; Allow fog separate composition when FSSS is enabled.]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[fx.Niagara.QualityLevel:3]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.Refraction.OffsetQuality:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HeterogeneousVolumes.Allowed:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HeterogeneousVolumes.DownsampleFactor:2]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HeterogeneousVolumes.MaxStepCount:256]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HeterogeneousVolumes.Shadows.Resolution:512]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HeterogeneousVolumes.Shadows.Precision:0]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HeterogeneousVolumes.UseExistenceMask:0]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Applying CVar settings from Section [FoliageQuality@3] File [Scalability]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[pcg.Quality:3]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Applying CVar settings from Section [ShadingQuality@3] File [Scalability]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HairStrands.SkyLighting.IntegrationType:2]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HairStrands.SkyAO.SampleCount:4]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.HairStrands.Visibility.MSAA.SamplePerPixel:4]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.AnisotropicMaterials:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Applying CVar settings from Section [LandscapeQuality@3] File [Scalability]
+[2026.10.18-15.38.08:647][  0]LogLinux: Selected Device Profile: [LinuxServer]
+[2026.10.18-15.38.08:647][  0]LogInit: Selected Device Profile: [LinuxServer]
+[2026.10.18-15.38.08:647][  0]LogHAL: Display: Platform has ~ 31 GB [33123217408 / 34359738368 / 31], which maps to Larger [LargestMinGB=32, LargerMinGB=12, DefaultMinGB=8, SmallerMinGB=6, SmallestMinGB=0)
+[2026.10.18-15.38.08:647][  0]LogDeviceProfileManager: Going up to parent DeviceProfile [Linux]
+[2026.10.18-15.38.08:647][  0]LogDeviceProfileManager: Going up to parent DeviceProfile []
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[dp.AllowScalabilityGroupsToChangeAtRuntime:1]]
+[2026.10.18-15.38.08:647][  0]LogDeviceProfileManager: Pushing Device Profile CVar: [[AsyncTraceDelegateHitchThresholdMS:-1 -> 7.0]]
+[2026.10.18-15.38.08:647][  0]LogDeviceProfileManager: Pushing Device Profile CVar: [[UI.SlateSDFText.RasterizationMode:Bitmap -> Msdf]]
+[2026.10.18-15.38.08:647][  0]LogDeviceProfileManager: Pushing Device Profile CVar: [[UI.SlateSDFText.ResolutionLevel:2 -> 2]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Applying CVar settings from Section [Startup] File [../../../Engine/Config/ConsoleVariables.ini]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[p.chaos.AllowCreatePhysxBodies:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[fx.SkipVectorVMBackendOptimizations:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Applying CVar settings from Section [Startup_Linux] File [../../../Engine/Config/ConsoleVariables.ini]
+[2026.10.18-15.38.08:647][  0]LogConfig: Applying CVar settings from Section [ConsoleVariables] File [Engine]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[net.MaxRPCPerNetUpdate:10]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[net.PingExcludeFrameTime:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[net.AllowAsyncLoading:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[net.DelayUnmappedRPCs:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[net.AllowPIESeamlessTravel:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[a.EnableQueuedAnimEventsOnServer:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[gpad.DefaultLeftStickInnerDeadZone:0.24]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[gpad.DefaultRightStickInnerDeadZone:0.27]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[demo.RecordHz:60.0]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[demo.RecordHzWhenNotRelevant:10.0]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[tick.AllowBatchedTicks:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[tick.CreateTaskSyncManager:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[ini.UseNewDynamicLayers:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[r.AllowHDR:1]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[g.TimeoutForBlockOnRenderFence:60000]]
+[2026.10.18-15.38.08:647][  0]LogConfig: Set CVar [[memory.MemoryPressureCriticalThresholdPercent:10]]
+[2026.10.18-15.38.08:647][  0]LogConfig: CVar [[r.CEFGPUAcceleration:1]] deferred - dummy variable created
+[2026.10.18-15.38.08:647][  0]LogInit: Unix hardware info:
+[2026.10.18-15.38.08:647][  0]LogInit:  - we are the first instance of this executable
+[2026.10.18-15.38.08:647][  0]LogInit:  - this process' id (pid) is 17895, parent process' id (ppid) is 17888
+[2026.10.18-15.38.08:648][  0]LogInit:  - we are not running under debugger
+[2026.10.18-15.38.08:648][  0]LogInit:  - machine network name is 'edge-1-debea7fa'
+[2026.10.18-15.38.08:648][  0]LogInit:  - user name is 'lyraeval' (lyra-eval)
+[2026.10.18-15.38.08:648][  0]LogInit:  - we're logged in locally
+[2026.10.18-15.38.08:648][  0]LogInit:  - we're running without rendering
+[2026.10.18-15.38.08:648][  0]LogInit:  - CPU: AuthenticAMD 'AMD EPYC 9K65 192-Core Processor' (signature: 0xB00F00)
+[2026.10.18-15.38.08:648][  0]LogInit:  - Number of physical cores available for the process: 4
+[2026.10.18-15.38.08:648][  0]LogInit:  - Number of logical cores available for the process: 8
+[2026.10.18-15.38.08:648][  0]LogInit:  - GPU Brand Info: UnknownVendor PCI-id: 1013-00b8 (1af4-1100)
+[2026.10.18-15.38.08:648][  0]LogInit:  - Memory allocator used: Binned2
+[2026.10.18-15.38.08:648][  0]LogInit:  - This is an internal build.
+[2026.10.18-15.38.08:648][  0]LogCore: Benchmarking clocks:
+[2026.10.18-15.38.08:648][  0]LogCore:  - CLOCK_MONOTONIC (id=1), resolution 0.000000001s, can sustain 30507245 (30507K, 31M) calls per second without zero deltas.
+[2026.10.18-15.38.08:648][  0]LogCore:  - CLOCK_MONOTONIC_COARSE (id=6), resolution 0.001000000s, can sustain 225617500 (225618K, 226M) calls per second with 99.999512% zero deltas.
+[2026.10.18-15.38.08:648][  0]LogCore:  - CLOCK_MONOTONIC_RAW (id=4), resolution 0.000000001s, can sustain 30347318 (30347K, 30M) calls per second without zero deltas.
+[2026.10.18-15.38.08:648][  0]LogCore:  - CLOCK_REALTIME (id=0), resolution 0.000000001s, can sustain 30151914 (30152K, 30M) calls per second with 87.118727% zero deltas.
+[2026.10.18-15.38.08:648][  0]LogCore: Selected CLOCK_MONOTONIC (1) as the best available clock.
+[2026.10.18-15.38.08:648][  0]LogInit: Unix-specific commandline switches:
+[2026.10.18-15.38.08:648][  0]LogInit:  -ansimalloc - use malloc()/free() from libc (useful for tools like valgrind and electric fence)
+[2026.10.18-15.38.08:648][  0]LogInit:  -jemalloc - use jemalloc for all memory allocation
+[2026.10.18-15.38.08:648][  0]LogInit:  -binnedmalloc - use binned malloc  for all memory allocation
+[2026.10.18-15.38.08:648][  0]LogInit:  -filemapcachesize=NUMBER - set the size for case-sensitive file mapping cache
+[2026.10.18-15.38.08:648][  0]LogInit:  -useksm - uses kernel same-page mapping (KSM) for mapped memory (OFF)
+[2026.10.18-15.38.08:648][  0]LogInit:  -ksmmergeall - marks all mmap'd memory pages suitable for KSM (OFF)
+[2026.10.18-15.38.08:648][  0]LogInit:  -preloadmodulesymbols - Loads the main module symbols file into memory (OFF)
+[2026.10.18-15.38.08:648][  0]LogInit:  -sigdfl=SIGNAL - Allows a specific signal to be set to its default handler rather then ignoring the signal
+[2026.10.18-15.38.08:648][  0]LogInit:  -crashhandlerstacksize - Allows setting crash handler stack sizes (204800)
+[2026.10.18-15.38.08:648][  0]LogInit:  -noexclusivelockonwrite - disables marking files created by the engine as exclusive locked while the engine has them opened
+[2026.10.18-15.38.08:648][  0]LogInit:  -httpproxy=ADDRESS:PORT - redirects HTTP requests to a proxy (only supported if compiled with libcurl)
+[2026.10.18-15.38.08:648][  0]LogInit:  -reuseconn - allow libcurl to reuse HTTP connections (only matters if compiled with libcurl)
+[2026.10.18-15.38.08:648][  0]LogInit:  -virtmemkb=NUMBER - sets process virtual memory (address space) limit (overrides VirtualMemoryLimitInKB value from .ini)
+[2026.10.18-15.38.08:648][  0]LogInit:  -allowsyscallfilterfile=PATH_TO_FILE - sets up a system call filter allow list. any invalid syscall in this list *will* cause a crash
+[2026.10.18-15.38.08:648][  0]LogInit:  - Physical RAM available (not considering process quota): 31 GB (31588 MB, 32346892 KB, 33123217408 bytes)
+[2026.10.18-15.38.08:648][  0]LogInit:  - VirtualMemoryAllocator pools will grow at scale 1
+[2026.10.18-15.38.08:648][  0]LogInit:  - MemoryRangeDecommit() will will evict the memory from RAM (re-run with -novmapoolevict to change)
+[2026.10.18-15.38.08:648][  0]LogInit:  - PageSize 4096
+[2026.10.18-15.38.08:648][  0]LogInit:  - BinnedPageSize 65536
+[2026.10.18-15.38.08:648][  0]LogCsvProfiler: Display: Metadata set : extradevelopmentmemorymb="0"
+[2026.10.18-15.38.08:653][  0]LogSpline: Registered spline type: TypeId=0x54E3AD22, Impl=MultiSpline, Value=Vector
+[2026.10.18-15.38.08:653][  0]LogChaosDD: Chaos Debug Draw Startup
+[2026.10.18-15.38.08:653][  0]LogInit: Physics initialised using underlying interface: Chaos
+[2026.10.18-15.38.08:653][  0]LogInit: Using OS detected language (en-US-POSIX).
+[2026.10.18-15.38.08:653][  0]LogInit: Using OS detected locale (en-US-POSIX).
+[2026.10.18-15.38.08:654][  0]LogTextLocalizationManager: No specific localization for 'en-US-POSIX' exists, so 'en' will be used for the language.
+[2026.10.18-15.38.08:657][  0]LogObj: Display: Attempting to load config data for Default__SlateThemeManager before the Class has been constructed/registered/linked (likely during module loading or early startup). This will result in the load silently failing and should be fixed.
+[2026.10.18-15.38.08:673][  0]LogInit: Running DelayedAutoRegister Phase PreRHIInit
+[2026.10.18-15.38.08:674][  0]LogRHI: Render tracing channels set: 'Submission' -> 0xf
+[2026.10.18-15.38.08:674][  0]LogCsvProfiler: Display: Metadata set : verbatimrhiname="Null"
+[2026.10.18-15.38.08:674][  0]LogCsvProfiler: Display: Metadata set : rhiname="Null"
+[2026.10.18-15.38.08:674][  0]LogCsvProfiler: Display: Metadata set : rhifeaturelevel="SM6"
+[2026.10.18-15.38.08:674][  0]LogCsvProfiler: Display: Metadata set : shaderplatform="VULKAN_SM6"
+[2026.10.18-15.38.08:674][  0]LogCsvProfiler: Display: Metadata set : gpu=""
+[2026.10.18-15.38.08:674][  0]LogCsvProfiler: Display: Metadata set : gpudriver=""
+[2026.10.18-15.38.08:674][  0]LogInit: Initializing FReadOnlyCVARCache
+[2026.10.18-15.38.08:675][  0]LogConfig: Display: Branch Engine had commandline override(s), so override NoReplay mode. This will use a bit more memory, but is needed for plugin/GFP handling.
+[2026.10.18-15.38.08:682][  0]LogRendererCore: Ray tracing is disabled. Reason: not supported by current RHI.
+[2026.10.18-15.38.08:682][  0]LogInit: Running DelayedAutoRegister Phase ShaderTypesReady
+[2026.10.18-15.38.08:689][  0]LogInit: Using OS detected language (en-US-POSIX).
+[2026.10.18-15.38.08:689][  0]LogInit: Using OS detected locale (en-US-POSIX).
+[2026.10.18-15.38.08:689][  0]LogTextLocalizationManager: No specific localization for 'en-US-POSIX' exists, so 'en' will be used for the language.
+[2026.10.18-15.38.08:689][  0]LogAssetRegistry: ActiveMountsLoading is disabled.
+[2026.10.18-15.38.08:689][  0]LogAssetRegistry: FAssetRegistry took 0.0001 seconds to start up
+[2026.10.18-15.38.08:691][  0]LogInit: Running DelayedAutoRegister Phase PreObjectSystemReady
+[2026.10.18-15.38.08:879][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64Editor not found.
+[2026.10.18-15.38.08:879][  0]LogDeviceProfileManager: Display: Deviceprofile LinuxArm64 not found.
+[2026.10.18-15.38.08:880][  0]LogLinux: Selected Device Profile: [LinuxServer]
+[2026.10.18-15.38.08:880][  0]LogDeviceProfileManager: Active device profile: [0x703e38edf488][0x703dff488020 82] LinuxServer
+[2026.10.18-15.38.08:880][  0]LogCsvProfiler: Display: Metadata set : deviceprofile="LinuxServer"
+[2026.10.18-15.38.08:880][  0]LogInit: Running DelayedAutoRegister Phase DeviceProfileManagerReady
+[2026.10.18-15.38.08:882][  0]LogStreaming: Display: FlushAsyncLoading(8): 8 QueuedPackages, 0 AsyncPackages
+[2026.10.18-15.38.08:883][  0]LogFilePackageStore: Updated: NewPackages=3856, OldPackages=0, TotalPackages=3856
+[2026.10.18-15.38.08:906][  0]LogStats: UGameplayTagsManager::InitializeManager -  0.001 s
+[2026.10.18-15.38.08:909][  0]LogStreaming: Display: Partially loaded package /Engine/EngineMaterials/WorldGridMaterial (state: WaitingForIo) to avoid deadlock when it was recursively flushed by package /Paper2D/DefaultSpriteMaterial (state: PostLoad). UniqueCallstack(-1).
+[2026.10.18-15.38.08:909][  0]LogStreaming: Display: Partially loaded package /Engine/EngineMaterials/DefaultDeferredDecalMaterial (state: WaitingForIo) to avoid deadlock when it was recursively flushed by package /Paper2D/DefaultSpriteMaterial (state: PostLoad). UniqueCallstack(-1).
+[2026.10.18-15.38.08:909][  0]LogStreaming: Display: Partially loaded package /Engine/EngineMaterials/DefaultLightFunctionMaterial (state: WaitingForIo) to avoid deadlock when it was recursively flushed by package /Paper2D/DefaultSpriteMaterial (state: PostLoad). UniqueCallstack(-1).
+[2026.10.18-15.38.08:909][  0]LogStreaming: Display: Partially loaded package /Engine/EngineMaterials/DefaultPostProcessMaterial (state: WaitingForIo) to avoid deadlock when it was recursively flushed by package /Paper2D/DefaultSpriteMaterial (state: PostLoad). UniqueCallstack(-1).
+[2026.10.18-15.38.08:913][  0]LogMetaSound: Display: MetaSound Page Target Initialized to 'Default'
+[2026.10.18-15.38.08:915][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.10.18-15.38.08:928][  0]LogConfig: Applying CVar settings from Section [/Script/CQTest.CQTestSettings] File [Engine]
+[2026.10.18-15.38.08:930][  0]LogConfig: Applying CVar settings from Section [/Script/NNEDenoiser.NNEDenoiserSettings] File [Engine]
+[2026.10.18-15.38.08:934][  0]LogAudioCaptureCore: Display: No Audio Capture implementations found. Audio input will be silent.
+[2026.10.18-15.38.08:941][  0]LogInit: Running DelayedAutoRegister Phase ObjectSystemReady
+[2026.10.18-15.38.08:942][  0]LogPackageLocalizationCache: Processed 115 localized package path(s) for 1 prioritized culture(s) in 0.000209 seconds
+[2026.10.18-15.38.08:942][  0]LogModuleManager: StartProcessingNewlyLoadedObjects
+[2026.10.18-15.38.08:944][  0]LogGauntlet: Display: Gauntlet Initialized
+[2026.10.18-15.38.08:944][  0]LogNiagaraDebuggerClient: Niagara Debugger Client Initialized | Session: E081E60AB8D64F37800000000000AF00 | Instance: 01A14FA9C47374BA92C215ADBC784D64 (edge-1-debea7fa-17895).
+[2026.10.18-15.38.08:949][  0]LogNNERuntimeORT: MakeRuntimeORTDml:
+[2026.10.18-15.38.08:949][  0]LogNNERuntimeORT:   DirectML:  no
+[2026.10.18-15.38.08:950][  0]LogNNERuntimeORT:   RHI D3D12: no
+[2026.10.18-15.38.08:950][  0]LogNNERuntimeORT:   D3D12:     n/a (checked in CanCreateModelGPU)
+[2026.10.18-15.38.08:950][  0]LogNNERuntimeORT: Interface availability:
+[2026.10.18-15.38.08:950][  0]LogNNERuntimeORT:   GPU: n/a (checked in CanCreateModelGPU)
+[2026.10.18-15.38.08:950][  0]LogNNERuntimeORT:   RDG: no
+[2026.10.18-15.38.08:950][  0]LogNNERuntimeORT: NNERuntimeORTDml is not available!
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'BitDepth'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'HPFCutoffFrequency'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'LowRateFrequency'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'LPFCutoffFrequency'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'Pan'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'Pitch'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'SampleRate'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'TimeOfDay'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Display: Initialized Audio Modulation Parameter 'Volume'
+[2026.10.18-15.38.08:950][  0]LogAudioModulation: Registering Modulation MetaSound Nodes...
+[2026.10.18-15.38.08:958][  0]LogAudio: Display: Registering Engine Module Parameter Interfaces...
+[2026.10.18-15.38.08:959][  0]LogMetaSound: MetaSound Engine Initialized
+[2026.10.18-15.38.08:959][  0]LogAudioModulation: Audio Modulation Initialized
+[2026.10.18-15.38.08:961][  0]AudioGameplayLog: StartupModule
+[2026.10.18-15.38.08:968][  0]LogAndroidPermission: UAndroidPermissionCallbackProxy::GetInstance
+[2026.10.18-15.38.08:969][  0]LogSockets: SteamSockets: Disabled due to no Steam OSS running.
+[2026.10.18-15.38.08:981][  0]LogUObjectArray: 39898 objects as part of root set at end of initial load.
+[2026.10.18-15.38.08:981][  0]LogUObjectArray: 13 objects are not in the root set, but can never be destroyed because they are in the DisregardForGC set.
+[2026.10.18-15.38.08:981][  0]LogUObjectArray: CloseDisregardForGC: 39898/39898 objects in disregard for GC pool
+[2026.10.18-15.38.08:999][  0]LogEngine: Initializing Engine...
+[2026.10.18-15.38.08:999][  0]LogGameFeatures: Initializing game features subsystem
+[2026.10.18-15.38.09:005][  0]LogGameFeatures: Scanning for built-in game feature plugins
+[2026.10.18-15.38.09:005][  0]LogGameFeatures: Loading 271 BuiltIn GameFeaturePlugins. Not Amortized. [AsyncMixin, CommonGame, CommonLoadingScreen, CommonStartupLoadingScreen, CommonUser, TopDownArena, ShooterTests, ShooterMaps, ShooterExplorer, GameSettings, GameSubtitles, GameplayMessageRouter, LyraExampleContent, LyraExtTool, ModularGameplayActors, PocketWorlds, UIExtension, Paper2D, AISupport, EnvironmentQueryEditor, ACLPlugin, AnimationData, AnimationLocomotionLibrary, AnimationModifierLibrary, AnimationWarping, AnimatorKit, ControlRigModules, ControlRigSpline, ControlRig, DeformerGraph, EaseCurveTool, GameplayInsights, IKRig, MotionWarping, PhysicsControl, RigLogic, SkeletalMeshModelingTools, TweeningUtils, AudioGameplayVolume, AudioGameplay, AudioInsightsRuntime, AudioInsights, AudioModulationInsights, BaseMaterial, Bridge, CameraShakePreviewer, EngineCameras, GameplayCameras, ChaosCloth, ChaosVD, CompositeCore, OodleNetwork, Dataflow, AnimationSharing, ConcertMain, ConcertSyncClient, ConcertSyncCore, ConcertSharedSlate, NamingTokens, PluginUtils, ProjectLauncher, RenderDocPlugin, FileSandbox, UObjectPlugin, AssetManagerEditor, AssetReferenceRestrictions, AssetSearch, BlueprintHeaderView, BlueprintMaterialTextureNodes, ColorGrading, ConsoleVariables, ContentBrowserAssetDataSource, CurveEditorTools, DataValidation, EditorScriptingUtilities, EngineAssetDefinitions, FacialAnimation, GameplayTagsEditor, GeometryMode, MaterialAssetWizard, ModelingToolsEditorMode, LightMixer, ObjectMixer, ProxyLODPlugin, SequencerAnimTools, SpeedTreeImporter, UMGWidgetPreview, UVEditor, EnhancedInput, DatasmithContent, GLTFExporter, VariantManagerContent, VariantManager, AIAssistant, ActorPalette, ContextualAnimation, Scribble, AsyncMessageSystemTests, AsyncMessageSystem, AutomationUtils, BackChannel, Buoyancy, ChaosCaching, ChaosEditor, ChaosNiagara, ChaosSolverPlugin, ChaosUserDataPT, CharacterAI, CommonConversation, ControlFlows, ControlRigPhysics, EditorDataStorageFeatures, EditorDataStorage, EditorPerformance, EditorTRSGizmo, Fracture, FullBodyIK, GameplayBehaviors, TargetingSystem, Gauntlet, GeometryCollectionPlugin, GeometryDataflow, GizmoFramework, GlobalConfigurationData, InterchangeAxfAssets, Landmass, LevelSequenceNavigatorBridge, LocalizableMessage, MutableAssetUserData, NFORDenoise, PlanarCut, PlatformCrypto, PlatformDLC, PythonScriptPlugin, RuntimeTelemetry, SemanticSearch, ToolPresets, ToolsetRegistry, AIModuleToolset, AllToolsets, AnimationAssistantToolset, AutomationTestToolset, ConfigSettingsToolset, ConversationToolset, DataRegistryToolset, DataflowAgent, EditorToolset, GASToolsets, GameFeaturesToolset, GameplayTagsToolset, MCPClientToolset, NiagaraToolsets, PCGToolset, PhysicsToolsets, PluginToolset, SemanticSearchToolset, SlateInspectorToolset, StateTreeToolset, UMGToolSet, WorldConditionsToolset, Volumetrics, Water, Cascade, NiagaraPreviewContent, NiagaraSimCaching, Niagara, Fab, AlembicImporter, InterchangeAssets, InterchangeEditor, Interchange, AvfMedia, ImgMedia, MP4Utilities, MediaCompositing, MediaPlate, TmvMedia, ShooterCore, MeshPainting, TcpMessaging, UdpMessaging, MetaHumanSDK, ActorSequence, LevelSequenceEditor, SequenceValidator, SequencerScripting, TemplateSequence, Mutable, NNEDenoiser, NNERuntimeORT, OnlineBase, OnlineFrameworkCommon, OnlineFramework, OnlineServicesNull, OnlineServicesOSSAdapter, OnlineServices, OnlineSubsystemNull, OnlineSubsystemSteam, OnlineSubsystemUtils, OnlineSubsystem, SocketSubsystemSteamIP, PCG, AutomatedPerfTestTools, AutomatedPerfTesting, LauncherChunkInstaller, ActorLayerUtilities, AndroidFileServer, AndroidPermission, AppleImageUtils, ArchVisCharacter, AssetTags, AudioCapture, AudioModulation, AudioSynesthesia, AudioWidgets, CableComponent, ChunkDownloader, CommonUI, ComputeFramework, CustomMeshComponent, DataRegistry, SQLiteCore, ExampleDeviceProfileSelector, GameFeatures, GameplayAbilities, GameplayBehaviorSmartObjects, GameplayInteractions, GameplayStateTree, GeometryCache, GeometryProcessing, GeometryScripting, GooglePAD, HairStrands, InputDebugging, LinuxDeviceProfileSelector, LocationServicesBPLibrary, MeshModelingToolset, Metasound, MobilePatchingUtils, ModelViewViewModel, ModularGameplay, MsQuic, NavCorridor, Reflex, AESGCMHandlerComponent, DTLSHandlerComponent, ProceduralMeshComponent, PropertyAccessEditor, PropertyBindingUtils, ReplicationGraph, RigVM, SignificanceManager, SkeletalMerging, SmartObjects, SoundFields, SoundUtilities, Spatialization, StateTree, SteamShared, SteamSockets, Synthesis, WaveTable, WorldConditions, CQTestEnhancedInput, CQTest, FunctionalTestingEditor, InterchangeTests, RuntimeTests, TraceUtilities, Takes, WorldMetrics].
+[2026.10.18-15.38.09:006][  0]LogPakFile: New pak file ../../../Lyra/Content/Paks/pakchunk0-LinuxServer.pak added to pak precacher.
+[2026.10.18-15.38.09:008][  0]LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+[2026.10.18-15.38.09:009][  0]LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+[2026.10.18-15.38.09:009][  0]LogGameFeatures: Display: Game feature 'TopDownArena' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.10.18-15.38.09:012][  0]LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+[2026.10.18-15.38.09:013][  0]LogGameFeatures: Display: Game feature 'ShooterCore' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.10.18-15.38.09:018][  0]LogGameFeatures: Display: Game feature 'ShooterTests' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.10.18-15.38.09:022][  0]LogAbilitySystem: Display: Processing InitializeRuntimeObjectLibrary.
+[2026.10.18-15.38.09:023][  0]LogGameFeatures: Display: Game feature 'ShooterMaps' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.10.18-15.38.09:024][  0]LogGameFeatures: Display: Game feature 'ShooterExplorer' transitioned successfully. Ending state: Registered [Registered, Active]
+[2026.10.18-15.38.09:024][  0]LogGameFeatures: Display: Total built in plugin load time 0.0194s
+[2026.10.18-15.38.09:024][  0]LogStats: BuiltInGameFeaturePlugins loaded. -  0.019 s
+[2026.10.18-15.38.09:025][  0]LogLyra: Display: Startup job "InitializeGameplayCueManager()" starting
+[2026.10.18-15.38.09:025][  0]LogLyra: Display: Startup job "InitializeGameplayCueManager()" took 0.00 seconds to complete
+[2026.10.18-15.38.09:025][  0]LogLyra: Display: Startup job "GetGameData()" starting
+[2026.10.18-15.38.09:025][  0]LogLyra: Loading GameData: /Game/DefaultGameData.DefaultGameData ...
+[2026.10.18-15.38.09:025][  0]LogStats:             ... GameData loaded! -  0.000 s
+[2026.10.18-15.38.09:025][  0]LogLyra: Display: Startup job "GetGameData()" took 0.00 seconds to complete
+[2026.10.18-15.38.09:025][  0]LogLyra: Display: All startup jobs took 0.00 seconds to complete
+[2026.10.18-15.38.09:025][  0]LogNetVersion: Set ProjectVersion to 1.0.0.0. Version Checksum will be recalculated on next use.
+[2026.10.18-15.38.09:025][  0]LogInit: Texture streaming: Disabled
+[2026.10.18-15.38.09:025][  0]LogCsvProfiler: Display: Metadata set : largeworldcoordinates="1"
+[2026.10.18-15.38.09:029][  0]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.09:030][  0]LogNiagara: UAV Float16 is not supported, compressed GPU emitters will be disabled.
+[2026.10.18-15.38.09:034][  0]LogChartCreation: Started creating FPS charts at 203477.360707 seconds
+[2026.10.18-15.38.09:034][  0]LogInit: Display: Game Engine Initialized.
+[2026.10.18-15.38.09:034][  0]LogMutable: Creating Mutable Customizable Object System.
+[2026.10.18-15.38.09:044][  0]LogInit: Display: Starting Game.
+[2026.10.18-15.38.09:044][  0]LogGlobalStatus: Browse Started Browse: "/Engine/Maps/Entry?Name=Player?game=/Script/Engine.GameModeBase"
+[2026.10.18-15.38.09:044][  0]LogNet: Browse: /Engine/Maps/Entry?Name=Player?game=/Script/Engine.GameModeBase
+[2026.10.18-15.38.09:083][  0]LogLoad: LoadMap: /Engine/Maps/Entry?Name=Player?game=/Script/Engine.GameModeBase
+[2026.10.18-15.38.09:083][  0]LogWorld: BeginTearingDown for /Temp/Untitled_0
+[2026.10.18-15.38.09:083][  0]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.09:095][  0]LogUObjectHash: Compacting FUObjectHashTables data took   3.19ms
+[2026.10.18-15.38.09:098][  0]LogChaosDD: Creating Chaos Debug Draw Scene for world Entry
+[2026.10.18-15.38.09:102][  0]LogLoad: Game class is 'GameModeBase'
+[2026.10.18-15.38.09:102][  0]LogCsvProfiler: Display: Metadata set : iris="0"
+[2026.10.18-15.38.09:102][  0]LogLyraRepGraph: Display: Replication graph is disabled via LyraReplicationGraphSettings.
+[2026.10.18-15.38.09:102][  0]LogNetCore: DDoS detection status: detection enabled: 0 analytics enabled: 0
+[2026.10.18-15.38.09:102][  0]LogNet: InitBase GameNetDriver (NetDriverDefinition GameNetDriver) using replication model Generic
+[2026.10.18-15.38.09:103][  0]LogInit: BSD IPv4/6: Socket queue. Rx: 524288 (config 262144) Tx: 262144 (config 131072)
+[2026.10.18-15.38.09:103][  0]LogNet: Created socket for bind address: 0.0.0.0:7777
+[2026.10.18-15.38.09:103][  0]PacketHandlerLog: Loaded PacketHandler component: Engine.EngineHandlerComponentFactory (StatelessConnectHandlerComponent)
+[2026.10.18-15.38.09:103][  0]LogNet: Name:GameNetDriver Def:GameNetDriver IpNetDriver_2147482369 IpNetDriver listening on port 7777
+[2026.10.18-15.38.09:103][  0]LogWorld: Bringing World /Engine/Maps/Entry.Entry up for play (max tick rate 30) at 2026.10.18-15.38.09
+[2026.10.18-15.38.09:103][  0]LogCommonUser: Player login Completed - System:NULL, UserIdx:0, Successful:1, NewStatus:LoggedIn, NewId:edge-1-debea7fa-20BDBC2520594073BF5731F2B3C12E68-000003E4, ErrorIfAny:
+[2026.10.18-15.38.09:103][  0]LogWorld: Bringing up level for play took: 0.000344
+[2026.10.18-15.38.09:103][  0]LogLoad: Took 0.020714 seconds to LoadMap(/Engine/Maps/Entry)
+[2026.10.18-15.38.09:103][  0]LogGlobalStatus: LoadMap Load map complete /Engine/Maps/Entry
+[2026.10.18-15.38.09:104][  0]LogPakFile: AllPaks IndexSizes: DirectoryHashSize=96, PathHashSize=48, EntriesSize=73728, DirTreeIndexSize=366960, TotalSize=440832
+[2026.10.18-15.38.09:104][  0]LogInit: Running DelayedAutoRegister Phase EndOfEngineInit
+[2026.10.18-15.38.09:105][  0]LogInit: Display: Engine is initialized. Leaving FEngineLoop::Init()
+[2026.10.18-15.38.09:105][  0]LogLoad: (Engine Initialization) Total time: 0.73 seconds
+[2026.10.18-15.38.09:139][  0]Automation: RunTests='StartsWith:Lyra.Benchmark.Death' Queued.
+[2026.10.18-15.38.09:139][  0]Automation: Quit Command Queued.
+[2026.10.18-15.38.09:139][  0]LogTrace: Display: Control listening on port 1985
+[2026.10.18-15.38.09:172][  1]LogAutomationCommandLine: Display: Ready to start automation
+[2026.10.18-15.38.14:216][152]LogConfig: Branch 'GameplayTags' had been unloaded. Reloading on-demand took 0.38ms
+[2026.10.18-15.38.14:216][152]LogConfig: Reload Context for thread GameThread: Action=GetSection Section=AutomationTestFallbackHierarchy Key=
+[2026.10.18-15.38.14:249][153]LogAutomationWorker: Received FindWorkersMessage from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:282][154]LogAutomationController: Received FindWorkersResponseMessage from 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:282][154]LogAutomationController: Requesting test list from 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:283][154]LogAutomationWorker: Received RequestTestsMessage from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:292][154]LogAutomationWorker: Set 1551 tests to 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:316][155]LogAutomationController: Received RequestTestsReplyCompleteMessage from 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:318][155]LogAutomationController: 1551 tests available on 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: Found 23 automation tests based on 'StartsWith:Lyra.Benchmark.Death'
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.ASCNull.DirectFinished
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.ASCNull.DuplicateMethods
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.ASCNull.FinishBeforeStart
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.ASCNull.LocalSequence
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.ASCNull.PredictionAhead
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.Idempotence.DuplicateFinish
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.Idempotence.DuplicateStart
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.Idempotence.FinishBeforeStart
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.Idempotence.RepeatedSequence
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.Idempotence.StartAfterFinished
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.StepSequence.ReplicatedStart
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish
+[2026.10.18-15.38.14:327][155]LogAutomationCommandLine: Display: 	Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish
+[2026.10.18-15.38.14:327][155]LogAutomationController: Sending StopTests to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:328][155]LogAutomationController: Display: Loading results html template...
+[2026.10.18-15.38.14:328][155]LogAutomationController: Error: Failed to load test report html template - No report will be generated.
+[2026.10.18-15.38.14:328][155]LogAutomationController: Sending StartTestSession to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:328][155]LogAutomationController: Display: Clearing ../../../Lyra/Saved/Automation/Logs/ and ../../../Lyra/Saved/Automation/Tmp/
+[2026.10.18-15.38.14:329][155]LogAutomationWorker: Received StopTests from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:329][155]LogAutomationWorker: Received StartTestSession from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:329][155]LogAutomationController: Sending RunTest DirectFinished to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:329][155]LogAutomationController: Display: Test Started. Name={DirectFinished} Path={Lyra.Benchmark.Death.ASCNull.DirectFinished}
+[2026.10.18-15.38.14:349][156]LogAutomationWorker: Received RunTests DirectFinished from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:350][156]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.14:352][156]LogWorld: Bringing World /Temp/Untitled_1.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.14
+[2026.10.18-15.38.14:352][156]LogWorld: Bringing up level for play took: 0.000065
+[2026.10.18-15.38.14:352][156]LogOutputDevice: Warning: 
+
+Script Stack (0 frames) :
+
+[2026.10.18-15.38.14:355][156]LogStats: FPlatformStackWalk::StackWalkAndDump -  0.003 s
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: === Handled ensure: ===
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: 
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: Ensure condition failed: (DeathState == NewDeathState)  [File:C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp] [Line: 231] 
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: LyraHealthComponent: Death transition failed [0] -> [2] for owner [LyraDeathTestActor_2147482235].
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: Stack: 
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x0000000011c2d46d LyraServer!ULyraHealthComponent::OnRep_DeathState(ELyraDeathState)::$_0::operator()() const [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp:231]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000d753696 LyraServer!ULyraHealthComponent::OnRep_DeathState(ELyraDeathState) [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp:231]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000d755cf6 LyraServer!FLyraDeathAutomationTest::RunTest(FString const&) [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp:136]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x00000000054dfe13 LyraServer!FAutomationTestFramework::InternalStartTest(FString const&, FString const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Core/Private/Misc/AutomationTest.cpp:1316]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x00000000054df237 LyraServer!FAutomationTestFramework::StartTestByName(FString const&, int, FString const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Core/Private/Misc/AutomationTest.cpp:653]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000c2f6f98 LyraServer!FAutomationWorkerModule::HandleRunTestsMessage(FAutomationWorkerRunTests const&, TSharedRef<IMessageContext, (ESPMode)1> const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/AutomationWorker/Private/AutomationWorkerModule.cpp:699]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x00000000067abfa9 LyraServer!FMessageEndpoint::ProcessMessage(TSharedRef<IMessageContext, (ESPMode)1> const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/MessagingCommon/Public/MessageEndpoint.h:1022]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000c2f5331 LyraServer!FMessageEndpoint::ProcessInbox() [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/MessagingCommon/Public/MessageEndpoint.h:449]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000c3fe441 LyraServer!FEngineLoop::Tick() [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Launch/Private/LaunchEngineLoop.cpp:6043]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000c40054a LyraServer!GuardedMain(char16_t const*) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Launch/Private/Launch.cpp:60]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000c36c359 LyraServer!CommonUnixMain(int, char**, int (*)(char16_t const*), void (*)()) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Unix/UnixCommonStartup/Private/UnixCommonStartup.cpp:324]
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x0000703e5b016ca8 libc.so.6!UnknownFunction(0x29ca7)
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x0000703e5b016d65 libc.so.6!__libc_start_main(+0x84)
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: [Callstack] 0x000000000512702a LyraServer!_start(+0x29)
+[2026.10.18-15.38.14:356][156]LogOutputDevice: Error: 
+[2026.10.18-15.38.14:667][156]LogStats:                SubmitErrorReport -  0.000 s
+[2026.10.18-15.38.14:679][156]LogHAL: Error: FUnixPlatformProcess::CreateProc: File does not exist (/workspace/lyra-runner/seed-package-02/LinuxServer/Engine/Binaries/Linux/CrashReportClient)
+[2026.10.18-15.38.14:679][156]LogStats:                    SendNewReport -  0.012 s
+[2026.10.18-15.38.14:679][156]LogStats:             FDebug::EnsureFailed -  0.326 s
+[2026.10.18-15.38.14:680][156]LogWorld: BeginTearingDown for /Temp/Untitled_1
+[2026.10.18-15.38.14:680][156]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.14:714][158]LogAutomationController: Error: Test Completed. Result={Fail} Name={DirectFinished} Path={Lyra.Benchmark.Death.ASCNull.DirectFinished}
+[2026.10.18-15.38.14:714][158]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.ASCNull.DirectFinished
+[2026.10.18-15.38.14:714][158]LogAutomationController: Error: LogOutputDevice: === Handled ensure: === [log] 
+[2026.10.18-15.38.14:714][158]LogAutomationController: Error: LogOutputDevice:  [log] 
+[2026.10.18-15.38.14:714][158]LogAutomationController: Error: LogOutputDevice: Ensure condition failed: (DeathState == NewDeathState)  [File:C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp] [Line: 231]  [log] 
+[2026.10.18-15.38.14:714][158]LogAutomationController: Error: LogOutputDevice: LyraHealthComponent: Death transition failed [0] -> [2] for owner [LyraDeathTestActor_2147482235]. [log] 
+[2026.10.18-15.38.14:714][158]LogAutomationController: Error: LogOutputDevice: Stack:  [log] 
+[2026.10.18-15.38.14:714][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x0000000011c2d46d LyraServer!ULyraHealthComponent::OnRep_DeathState(ELyraDeathState)::$_0::operator()() const [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp:231] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000d753696 LyraServer!ULyraHealthComponent::OnRep_DeathState(ELyraDeathState) [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp:231] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000d755cf6 LyraServer!FLyraDeathAutomationTest::RunTest(FString const&) [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp:136] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x00000000054dfe13 LyraServer!FAutomationTestFramework::InternalStartTest(FString const&, FString const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Core/Private/Misc/AutomationTest.cpp:1316] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x00000000054df237 LyraServer!FAutomationTestFramework::StartTestByName(FString const&, int, FString const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Core/Private/Misc/AutomationTest.cpp:653] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000c2f6f98 LyraServer!FAutomationWorkerModule::HandleRunTestsMessage(FAutomationWorkerRunTests const&, TSharedRef<IMessageContext, (ESPMode)1> const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/AutomationWorker/Private/AutomationWorkerModule.cpp:699] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x00000000067abfa9 LyraServer!FMessageEndpoint::ProcessMessage(TSharedRef<IMessageContext, (ESPMode)1> const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/MessagingCommon/Public/MessageEndpoint.h:1022] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000c2f5331 LyraServer!FMessageEndpoint::ProcessInbox() [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/MessagingCommon/Public/MessageEndpoint.h:449] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000c3fe441 LyraServer!FEngineLoop::Tick() [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Launch/Private/LaunchEngineLoop.cpp:6043] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000c40054a LyraServer!GuardedMain(char16_t const*) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Launch/Private/Launch.cpp:60] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000c36c359 LyraServer!CommonUnixMain(int, char**, int (*)(char16_t const*), void (*)()) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Unix/UnixCommonStartup/Private/UnixCommonStartup.cpp:324] [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x0000703e5b016ca8 libc.so.6!UnknownFunction(0x29ca7) [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x0000703e5b016d65 libc.so.6!__libc_start_main(+0x84) [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice: [Callstack] 0x000000000512702a LyraServer!_start(+0x29) [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogOutputDevice:  [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: LogHAL: FUnixPlatformProcess::CreateProc: File does not exist (/workspace/lyra-runner/seed-package-02/LinuxServer/Engine/Binaries/Linux/CrashReportClient) [log] 
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: Death state: The two values are not equal. [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Containers/Array.h(1244)]
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: Expected 'Start delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(150)]
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: Expected 'Finish delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(151)]
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: Expected 'ForceNetUpdate invocation count' to be 2, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(155)]
+[2026.10.18-15.38.14:715][158]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Start:1:Dying=0:Dead=0 | ForceNetUpdate | Finish:2:Dying=0:Dead=0 | ForceNetUpdate", but it was "". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.14:715][158]LogAutomationController: [LyraDeathBenchmark] Case=ASCNull.DirectFinished State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false
+[2026.10.18-15.38.14:715][158]LogAutomationController: EndEvents: Lyra.Benchmark.Death.ASCNull.DirectFinished
+[2026.10.18-15.38.14:715][158]LogAutomationController: Sending RunTest DuplicateMethods to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:715][158]LogAutomationController: Display: Test Started. Name={DuplicateMethods} Path={Lyra.Benchmark.Death.ASCNull.DuplicateMethods}
+[2026.10.18-15.38.14:748][159]LogAutomationWorker: Received RunTests DuplicateMethods from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:748][159]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.14:750][159]LogWorld: Bringing World /Temp/Untitled_2.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.14
+[2026.10.18-15.38.14:750][159]LogWorld: Bringing up level for play took: 0.000078
+[2026.10.18-15.38.14:751][159]LogWorld: BeginTearingDown for /Temp/Untitled_2
+[2026.10.18-15.38.14:751][159]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.14:815][161]LogAutomationController: Error: Test Completed. Result={Fail} Name={DuplicateMethods} Path={Lyra.Benchmark.Death.ASCNull.DuplicateMethods}
+[2026.10.18-15.38.14:815][161]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.ASCNull.DuplicateMethods
+[2026.10.18-15.38.14:815][161]LogAutomationController: Error: Expected 'Start delegate count' to be 1, but it was 2. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(150)]
+[2026.10.18-15.38.14:815][161]LogAutomationController: Error: Expected 'ForceNetUpdate invocation count' to be 2, but it was 3. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(155)]
+[2026.10.18-15.38.14:815][161]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Start:1:Dying=0:Dead=0 | ForceNetUpdate | Finish:2:Dying=0:Dead=0 | ForceNetUpdate", but it was "Start:1:Dying=0:Dead=0 | ForceNetUpdate | Start:1:Dying=0:Dead=0 | ForceNetUpdate | Finish:2:Dying=0:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.14:815][161]LogAutomationController: [LyraDeathBenchmark] Case=ASCNull.DuplicateMethods State=2 Started=2 Finished=1 Dying=0 Dead=0 ForceNetUpdate=3 Passed=false
+[2026.10.18-15.38.14:815][161]LogAutomationController: EndEvents: Lyra.Benchmark.Death.ASCNull.DuplicateMethods
+[2026.10.18-15.38.14:815][161]LogAutomationController: Sending RunTest FinishBeforeStart to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:815][161]LogAutomationController: Display: Test Started. Name={FinishBeforeStart} Path={Lyra.Benchmark.Death.ASCNull.FinishBeforeStart}
+[2026.10.18-15.38.14:848][162]LogAutomationWorker: Received RunTests FinishBeforeStart from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:848][162]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.14:850][162]LogWorld: Bringing World /Temp/Untitled_3.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.14
+[2026.10.18-15.38.14:851][162]LogWorld: Bringing up level for play took: 0.000068
+[2026.10.18-15.38.14:851][162]LogWorld: BeginTearingDown for /Temp/Untitled_3
+[2026.10.18-15.38.14:851][162]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.14:915][164]LogAutomationController: Display: Test Completed. Result={Success} Name={FinishBeforeStart} Path={Lyra.Benchmark.Death.ASCNull.FinishBeforeStart}
+[2026.10.18-15.38.14:915][164]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.ASCNull.FinishBeforeStart
+[2026.10.18-15.38.14:915][164]LogAutomationController: [LyraDeathBenchmark] Case=ASCNull.FinishBeforeStart State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=true
+[2026.10.18-15.38.14:915][164]LogAutomationController: EndEvents: Lyra.Benchmark.Death.ASCNull.FinishBeforeStart
+[2026.10.18-15.38.14:915][164]LogAutomationController: Sending RunTest LocalSequence to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.14:915][164]LogAutomationController: Display: Test Started. Name={LocalSequence} Path={Lyra.Benchmark.Death.ASCNull.LocalSequence}
+[2026.10.18-15.38.14:949][165]LogAutomationWorker: Received RunTests LocalSequence from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.14:949][165]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.14:952][165]LogWorld: Bringing World /Temp/Untitled_4.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.14
+[2026.10.18-15.38.14:952][165]LogWorld: Bringing up level for play took: 0.000089
+[2026.10.18-15.38.14:952][165]LogWorld: BeginTearingDown for /Temp/Untitled_4
+[2026.10.18-15.38.14:952][165]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:015][167]LogAutomationController: Display: Test Completed. Result={Success} Name={LocalSequence} Path={Lyra.Benchmark.Death.ASCNull.LocalSequence}
+[2026.10.18-15.38.15:015][167]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.ASCNull.LocalSequence
+[2026.10.18-15.38.15:015][167]LogAutomationController: [LyraDeathBenchmark] Case=ASCNull.LocalSequence State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true
+[2026.10.18-15.38.15:015][167]LogAutomationController: EndEvents: Lyra.Benchmark.Death.ASCNull.LocalSequence
+[2026.10.18-15.38.15:016][167]LogAutomationController: Sending RunTest PredictionAhead to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:016][167]LogAutomationController: Display: Test Started. Name={PredictionAhead} Path={Lyra.Benchmark.Death.ASCNull.PredictionAhead}
+[2026.10.18-15.38.15:049][168]LogAutomationWorker: Received RunTests PredictionAhead from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:049][168]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:052][168]LogWorld: Bringing World /Temp/Untitled_5.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:052][168]LogWorld: Bringing up level for play took: 0.000066
+[2026.10.18-15.38.15:052][168]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [2] -> [0] for owner [LyraDeathTestActor_2147481975].
+[2026.10.18-15.38.15:052][168]LogWorld: BeginTearingDown for /Temp/Untitled_5
+[2026.10.18-15.38.15:052][168]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:115][170]LogAutomationController: Display: Test Completed. Result={Success} Name={PredictionAhead} Path={Lyra.Benchmark.Death.ASCNull.PredictionAhead}
+[2026.10.18-15.38.15:115][170]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.ASCNull.PredictionAhead
+[2026.10.18-15.38.15:115][170]LogAutomationController: [LyraDeathBenchmark] Case=ASCNull.PredictionAhead State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true
+[2026.10.18-15.38.15:115][170]LogAutomationController: EndEvents: Lyra.Benchmark.Death.ASCNull.PredictionAhead
+[2026.10.18-15.38.15:116][170]LogAutomationController: Sending RunTest AfterPrematureFinish to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:116][170]LogAutomationController: Display: Test Started. Name={AfterPrematureFinish} Path={Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish}
+[2026.10.18-15.38.15:149][171]LogAutomationWorker: Received RunTests AfterPrematureFinish from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:149][171]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:151][171]LogWorld: Bringing World /Temp/Untitled_6.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:151][171]LogWorld: Bringing up level for play took: 0.000062
+[2026.10.18-15.38.15:153][171]LogWorld: BeginTearingDown for /Temp/Untitled_6
+[2026.10.18-15.38.15:153][171]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Test Completed. Result={Fail} Name={AfterPrematureFinish} Path={Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish}
+[2026.10.18-15.38.15:216][173]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Death state: The two values are not equal. [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Containers/Array.h(1244)]
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Expected 'Start delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(150)]
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Expected 'Finish delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(151)]
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Expected 'Dying tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(153)]
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Expected 'ForceNetUpdate invocation count' to be 2, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(155)]
+[2026.10.18-15.38.15:216][173]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.15:216][173]LogAutomationController: [LyraDeathBenchmark] Case=DirectFinished.AfterPrematureFinish State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false
+[2026.10.18-15.38.15:216][173]LogAutomationController: EndEvents: Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish
+[2026.10.18-15.38.15:216][173]LogAutomationController: Sending RunTest DuplicateFinishedSnapshot to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:216][173]LogAutomationController: Display: Test Started. Name={DuplicateFinishedSnapshot} Path={Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot}
+[2026.10.18-15.38.15:249][174]LogAutomationWorker: Received RunTests DuplicateFinishedSnapshot from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:249][174]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:251][174]LogWorld: Bringing World /Temp/Untitled_7.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:251][174]LogWorld: Bringing up level for play took: 0.000060
+[2026.10.18-15.38.15:253][174]LogWorld: BeginTearingDown for /Temp/Untitled_7
+[2026.10.18-15.38.15:253][174]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:316][176]LogAutomationController: Error: Test Completed. Result={Fail} Name={DuplicateFinishedSnapshot} Path={Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot}
+[2026.10.18-15.38.15:316][176]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot
+[2026.10.18-15.38.15:316][176]LogAutomationController: Error: Expected 'Start delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(150)]
+[2026.10.18-15.38.15:316][176]LogAutomationController: Error: Expected 'Finish delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(151)]
+[2026.10.18-15.38.15:316][176]LogAutomationController: Error: Expected 'Dying tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(153)]
+[2026.10.18-15.38.15:316][176]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.15:316][176]LogAutomationController: Error: Expected 'ForceNetUpdate invocation count' to be 2, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(155)]
+[2026.10.18-15.38.15:316][176]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.15:316][176]LogAutomationController: [LyraDeathBenchmark] Case=DirectFinished.DuplicateFinishedSnapshot State=2 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false
+[2026.10.18-15.38.15:316][176]LogAutomationController: EndEvents: Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot
+[2026.10.18-15.38.15:316][176]LogAutomationController: Sending RunTest SkipStartedNotification to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:316][176]LogAutomationController: Display: Test Started. Name={SkipStartedNotification} Path={Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification}
+[2026.10.18-15.38.15:349][177]LogAutomationWorker: Received RunTests SkipStartedNotification from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:350][177]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:352][177]LogWorld: Bringing World /Temp/Untitled_8.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:352][177]LogWorld: Bringing up level for play took: 0.000061
+[2026.10.18-15.38.15:353][177]LogWorld: BeginTearingDown for /Temp/Untitled_8
+[2026.10.18-15.38.15:353][177]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Test Completed. Result={Fail} Name={SkipStartedNotification} Path={Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification}
+[2026.10.18-15.38.15:416][179]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Death state: The two values are not equal. [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Containers/Array.h(1244)]
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Expected 'Start delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(150)]
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Expected 'Finish delegate count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(151)]
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Expected 'Dying tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(153)]
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Expected 'ForceNetUpdate invocation count' to be 2, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(155)]
+[2026.10.18-15.38.15:416][179]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.15:416][179]LogAutomationController: [LyraDeathBenchmark] Case=DirectFinished.SkipStartedNotification State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false
+[2026.10.18-15.38.15:416][179]LogAutomationController: EndEvents: Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification
+[2026.10.18-15.38.15:417][179]LogAutomationController: Sending RunTest ThenDuplicateMethods to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:417][179]LogAutomationController: Display: Test Started. Name={ThenDuplicateMethods} Path={Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods}
+[2026.10.18-15.38.15:450][180]LogAutomationWorker: Received RunTests ThenDuplicateMethods from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:450][180]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:452][180]LogWorld: Bringing World /Temp/Untitled_9.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:452][180]LogWorld: Bringing up level for play took: 0.000060
+[2026.10.18-15.38.15:452][180]LogWorld: BeginTearingDown for /Temp/Untitled_9
+[2026.10.18-15.38.15:452][180]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:516][182]LogAutomationController: Error: Test Completed. Result={Fail} Name={ThenDuplicateMethods} Path={Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods}
+[2026.10.18-15.38.15:516][182]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods
+[2026.10.18-15.38.15:516][182]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.15:516][182]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.15:516][182]LogAutomationController: [LyraDeathBenchmark] Case=DirectFinished.ThenDuplicateMethods State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.15:516][182]LogAutomationController: EndEvents: Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods
+[2026.10.18-15.38.15:517][182]LogAutomationController: Sending RunTest DuplicateFinish to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:517][182]LogAutomationController: Display: Test Started. Name={DuplicateFinish} Path={Lyra.Benchmark.Death.Idempotence.DuplicateFinish}
+[2026.10.18-15.38.15:550][183]LogAutomationWorker: Received RunTests DuplicateFinish from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:550][183]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:552][183]LogWorld: Bringing World /Temp/Untitled_10.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:552][183]LogWorld: Bringing up level for play took: 0.000065
+[2026.10.18-15.38.15:553][183]LogWorld: BeginTearingDown for /Temp/Untitled_10
+[2026.10.18-15.38.15:553][183]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:616][185]LogAutomationController: Error: Test Completed. Result={Fail} Name={DuplicateFinish} Path={Lyra.Benchmark.Death.Idempotence.DuplicateFinish}
+[2026.10.18-15.38.15:616][185]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.Idempotence.DuplicateFinish
+[2026.10.18-15.38.15:616][185]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.15:616][185]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.15:616][185]LogAutomationController: [LyraDeathBenchmark] Case=Idempotence.DuplicateFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.15:616][185]LogAutomationController: EndEvents: Lyra.Benchmark.Death.Idempotence.DuplicateFinish
+[2026.10.18-15.38.15:617][185]LogAutomationController: Sending RunTest DuplicateStart to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:617][185]LogAutomationController: Display: Test Started. Name={DuplicateStart} Path={Lyra.Benchmark.Death.Idempotence.DuplicateStart}
+[2026.10.18-15.38.15:650][186]LogAutomationWorker: Received RunTests DuplicateStart from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:650][186]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:652][186]LogWorld: Bringing World /Temp/Untitled_11.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:652][186]LogWorld: Bringing up level for play took: 0.000058
+[2026.10.18-15.38.15:653][186]LogWorld: BeginTearingDown for /Temp/Untitled_11
+[2026.10.18-15.38.15:653][186]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:717][188]LogAutomationController: Error: Test Completed. Result={Fail} Name={DuplicateStart} Path={Lyra.Benchmark.Death.Idempotence.DuplicateStart}
+[2026.10.18-15.38.15:717][188]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.Idempotence.DuplicateStart
+[2026.10.18-15.38.15:717][188]LogAutomationController: Error: Expected 'Start delegate count' to be 1, but it was 2. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(150)]
+[2026.10.18-15.38.15:717][188]LogAutomationController: Error: Expected 'ForceNetUpdate invocation count' to be 1, but it was 2. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(155)]
+[2026.10.18-15.38.15:717][188]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Start:1:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.15:717][188]LogAutomationController: [LyraDeathBenchmark] Case=Idempotence.DuplicateStart State=1 Started=2 Finished=0 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.15:717][188]LogAutomationController: EndEvents: Lyra.Benchmark.Death.Idempotence.DuplicateStart
+[2026.10.18-15.38.15:717][188]LogAutomationController: Sending RunTest FinishBeforeStart to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:717][188]LogAutomationController: Display: Test Started. Name={FinishBeforeStart} Path={Lyra.Benchmark.Death.Idempotence.FinishBeforeStart}
+[2026.10.18-15.38.15:750][189]LogAutomationWorker: Received RunTests FinishBeforeStart from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:750][189]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:753][189]LogWorld: Bringing World /Temp/Untitled_12.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:753][189]LogWorld: Bringing up level for play took: 0.000088
+[2026.10.18-15.38.15:753][189]LogWorld: BeginTearingDown for /Temp/Untitled_12
+[2026.10.18-15.38.15:753][189]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:817][191]LogAutomationController: Display: Test Completed. Result={Success} Name={FinishBeforeStart} Path={Lyra.Benchmark.Death.Idempotence.FinishBeforeStart}
+[2026.10.18-15.38.15:817][191]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.Idempotence.FinishBeforeStart
+[2026.10.18-15.38.15:817][191]LogAutomationController: [LyraDeathBenchmark] Case=Idempotence.FinishBeforeStart State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=true
+[2026.10.18-15.38.15:817][191]LogAutomationController: EndEvents: Lyra.Benchmark.Death.Idempotence.FinishBeforeStart
+[2026.10.18-15.38.15:817][191]LogAutomationController: Sending RunTest RepeatedSequence to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:817][191]LogAutomationController: Display: Test Started. Name={RepeatedSequence} Path={Lyra.Benchmark.Death.Idempotence.RepeatedSequence}
+[2026.10.18-15.38.15:850][192]LogAutomationWorker: Received RunTests RepeatedSequence from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:851][192]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:853][192]LogWorld: Bringing World /Temp/Untitled_13.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:853][192]LogWorld: Bringing up level for play took: 0.000068
+[2026.10.18-15.38.15:853][192]LogWorld: BeginTearingDown for /Temp/Untitled_13
+[2026.10.18-15.38.15:853][192]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.15:917][194]LogAutomationController: Error: Test Completed. Result={Fail} Name={RepeatedSequence} Path={Lyra.Benchmark.Death.Idempotence.RepeatedSequence}
+[2026.10.18-15.38.15:917][194]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.Idempotence.RepeatedSequence
+[2026.10.18-15.38.15:917][194]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.15:917][194]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.15:917][194]LogAutomationController: [LyraDeathBenchmark] Case=Idempotence.RepeatedSequence State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.15:917][194]LogAutomationController: EndEvents: Lyra.Benchmark.Death.Idempotence.RepeatedSequence
+[2026.10.18-15.38.15:917][194]LogAutomationController: Sending RunTest StartAfterFinished to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.15:917][194]LogAutomationController: Display: Test Started. Name={StartAfterFinished} Path={Lyra.Benchmark.Death.Idempotence.StartAfterFinished}
+[2026.10.18-15.38.15:951][195]LogAutomationWorker: Received RunTests StartAfterFinished from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.15:951][195]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.15:953][195]LogWorld: Bringing World /Temp/Untitled_14.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.15
+[2026.10.18-15.38.15:953][195]LogWorld: Bringing up level for play took: 0.000060
+[2026.10.18-15.38.15:953][195]LogWorld: BeginTearingDown for /Temp/Untitled_14
+[2026.10.18-15.38.15:953][195]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:017][197]LogAutomationController: Error: Test Completed. Result={Fail} Name={StartAfterFinished} Path={Lyra.Benchmark.Death.Idempotence.StartAfterFinished}
+[2026.10.18-15.38.16:017][197]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.Idempotence.StartAfterFinished
+[2026.10.18-15.38.16:017][197]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.16:017][197]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.16:017][197]LogAutomationController: [LyraDeathBenchmark] Case=Idempotence.StartAfterFinished State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.16:017][197]LogAutomationController: EndEvents: Lyra.Benchmark.Death.Idempotence.StartAfterFinished
+[2026.10.18-15.38.16:018][197]LogAutomationController: Sending RunTest FinishedReceivesNotDead to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:018][197]LogAutomationController: Display: Test Started. Name={FinishedReceivesNotDead} Path={Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead}
+[2026.10.18-15.38.16:051][198]LogAutomationWorker: Received RunTests FinishedReceivesNotDead from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:051][198]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:053][198]LogWorld: Bringing World /Temp/Untitled_15.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:053][198]LogWorld: Bringing up level for play took: 0.000064
+[2026.10.18-15.38.16:053][198]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [2] -> [0] for owner [LyraDeathTestActor_2147481325].
+[2026.10.18-15.38.16:054][198]LogWorld: BeginTearingDown for /Temp/Untitled_15
+[2026.10.18-15.38.16:054][198]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:117][200]LogAutomationController: Error: Test Completed. Result={Fail} Name={FinishedReceivesNotDead} Path={Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead}
+[2026.10.18-15.38.16:117][200]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead
+[2026.10.18-15.38.16:117][200]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.16:117][200]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.16:117][200]LogAutomationController: [LyraDeathBenchmark] Case=PredictionAhead.FinishedReceivesNotDead State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.16:117][200]LogAutomationController: EndEvents: Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead
+[2026.10.18-15.38.16:118][200]LogAutomationController: Sending RunTest FinishedReceivesStarted to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:118][200]LogAutomationController: Display: Test Started. Name={FinishedReceivesStarted} Path={Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted}
+[2026.10.18-15.38.16:151][201]LogAutomationWorker: Received RunTests FinishedReceivesStarted from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:151][201]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:153][201]LogWorld: Bringing World /Temp/Untitled_16.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:153][201]LogWorld: Bringing up level for play took: 0.000068
+[2026.10.18-15.38.16:153][201]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [2] -> [1] for owner [LyraDeathTestActor_2147481260].
+[2026.10.18-15.38.16:154][201]LogWorld: BeginTearingDown for /Temp/Untitled_16
+[2026.10.18-15.38.16:154][201]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:218][203]LogAutomationController: Error: Test Completed. Result={Fail} Name={FinishedReceivesStarted} Path={Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted}
+[2026.10.18-15.38.16:218][203]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted
+[2026.10.18-15.38.16:218][203]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.16:218][203]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.16:218][203]LogAutomationController: [LyraDeathBenchmark] Case=PredictionAhead.FinishedReceivesStarted State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.16:218][203]LogAutomationController: EndEvents: Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted
+[2026.10.18-15.38.16:218][203]LogAutomationController: Sending RunTest RepeatedOlderState to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:218][203]LogAutomationController: Display: Test Started. Name={RepeatedOlderState} Path={Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState}
+[2026.10.18-15.38.16:251][204]LogAutomationWorker: Received RunTests RepeatedOlderState from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:251][204]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:253][204]LogWorld: Bringing World /Temp/Untitled_17.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:254][204]LogWorld: Bringing up level for play took: 0.000063
+[2026.10.18-15.38.16:254][204]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [1] -> [0] for owner [LyraDeathTestActor_2147481195].
+[2026.10.18-15.38.16:254][204]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [1] -> [0] for owner [LyraDeathTestActor_2147481195].
+[2026.10.18-15.38.16:254][204]LogWorld: BeginTearingDown for /Temp/Untitled_17
+[2026.10.18-15.38.16:254][204]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:318][206]LogAutomationController: Display: Test Completed. Result={Success} Name={RepeatedOlderState} Path={Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState}
+[2026.10.18-15.38.16:318][206]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState
+[2026.10.18-15.38.16:318][206]LogAutomationController: [LyraDeathBenchmark] Case=PredictionAhead.RepeatedOlderState State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true
+[2026.10.18-15.38.16:318][206]LogAutomationController: EndEvents: Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState
+[2026.10.18-15.38.16:318][206]LogAutomationController: Sending RunTest StartedReceivesNotDead to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:318][206]LogAutomationController: Display: Test Started. Name={StartedReceivesNotDead} Path={Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead}
+[2026.10.18-15.38.16:351][207]LogAutomationWorker: Received RunTests StartedReceivesNotDead from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:352][207]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:354][207]LogWorld: Bringing World /Temp/Untitled_18.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:354][207]LogWorld: Bringing up level for play took: 0.000062
+[2026.10.18-15.38.16:354][207]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [1] -> [0] for owner [LyraDeathTestActor_2147481130].
+[2026.10.18-15.38.16:354][207]LogWorld: BeginTearingDown for /Temp/Untitled_18
+[2026.10.18-15.38.16:354][207]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:385][208]LogAutomationController: Display: Test Completed. Result={Success} Name={StartedReceivesNotDead} Path={Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead}
+[2026.10.18-15.38.16:385][208]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead
+[2026.10.18-15.38.16:385][208]LogAutomationController: [LyraDeathBenchmark] Case=PredictionAhead.StartedReceivesNotDead State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true
+[2026.10.18-15.38.16:385][208]LogAutomationController: EndEvents: Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead
+[2026.10.18-15.38.16:385][208]LogAutomationController: Sending RunTest TwoOlderStates to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:385][208]LogAutomationController: Display: Test Started. Name={TwoOlderStates} Path={Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates}
+[2026.10.18-15.38.16:418][209]LogAutomationWorker: Received RunTests TwoOlderStates from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:418][209]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:420][209]LogWorld: Bringing World /Temp/Untitled_19.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:420][209]LogWorld: Bringing up level for play took: 0.000062
+[2026.10.18-15.38.16:421][209]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [2] -> [1] for owner [LyraDeathTestActor_2147481065].
+[2026.10.18-15.38.16:421][209]LogLyra: Warning: LyraHealthComponent: Predicted past server death state [2] -> [0] for owner [LyraDeathTestActor_2147481065].
+[2026.10.18-15.38.16:421][209]LogWorld: BeginTearingDown for /Temp/Untitled_19
+[2026.10.18-15.38.16:421][209]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:485][211]LogAutomationController: Error: Test Completed. Result={Fail} Name={TwoOlderStates} Path={Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates}
+[2026.10.18-15.38.16:485][211]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates
+[2026.10.18-15.38.16:485][211]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.16:485][211]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.16:485][211]LogAutomationController: [LyraDeathBenchmark] Case=PredictionAhead.TwoOlderStates State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.16:485][211]LogAutomationController: EndEvents: Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates
+[2026.10.18-15.38.16:485][211]LogAutomationController: Sending RunTest LocalStartReplicatedFinish to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:485][211]LogAutomationController: Display: Test Started. Name={LocalStartReplicatedFinish} Path={Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish}
+[2026.10.18-15.38.16:518][212]LogAutomationWorker: Received RunTests LocalStartReplicatedFinish from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:519][212]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:521][212]LogWorld: Bringing World /Temp/Untitled_20.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:521][212]LogWorld: Bringing up level for play took: 0.000067
+[2026.10.18-15.38.16:521][212]LogWorld: BeginTearingDown for /Temp/Untitled_20
+[2026.10.18-15.38.16:522][212]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:585][214]LogAutomationController: Error: Test Completed. Result={Fail} Name={LocalStartReplicatedFinish} Path={Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish}
+[2026.10.18-15.38.16:585][214]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish
+[2026.10.18-15.38.16:585][214]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.16:585][214]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.16:585][214]LogAutomationController: [LyraDeathBenchmark] Case=StepSequence.LocalStartReplicatedFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.16:585][214]LogAutomationController: EndEvents: Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish
+[2026.10.18-15.38.16:586][214]LogAutomationController: Sending RunTest ReplicatedStart to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:586][214]LogAutomationController: Display: Test Started. Name={ReplicatedStart} Path={Lyra.Benchmark.Death.StepSequence.ReplicatedStart}
+[2026.10.18-15.38.16:619][215]LogAutomationWorker: Received RunTests ReplicatedStart from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:619][215]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:621][215]LogWorld: Bringing World /Temp/Untitled_21.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:621][215]LogWorld: Bringing up level for play took: 0.000074
+[2026.10.18-15.38.16:621][215]LogWorld: BeginTearingDown for /Temp/Untitled_21
+[2026.10.18-15.38.16:621][215]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:685][217]LogAutomationController: Display: Test Completed. Result={Success} Name={ReplicatedStart} Path={Lyra.Benchmark.Death.StepSequence.ReplicatedStart}
+[2026.10.18-15.38.16:685][217]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.StepSequence.ReplicatedStart
+[2026.10.18-15.38.16:685][217]LogAutomationController: [LyraDeathBenchmark] Case=StepSequence.ReplicatedStart State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true
+[2026.10.18-15.38.16:685][217]LogAutomationController: EndEvents: Lyra.Benchmark.Death.StepSequence.ReplicatedStart
+[2026.10.18-15.38.16:686][217]LogAutomationController: Sending RunTest ReplicatedStartAndFinish to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:686][217]LogAutomationController: Display: Test Started. Name={ReplicatedStartAndFinish} Path={Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish}
+[2026.10.18-15.38.16:719][218]LogAutomationWorker: Received RunTests ReplicatedStartAndFinish from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:719][218]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:721][218]LogWorld: Bringing World /Temp/Untitled_22.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:721][218]LogWorld: Bringing up level for play took: 0.000057
+[2026.10.18-15.38.16:722][218]LogWorld: BeginTearingDown for /Temp/Untitled_22
+[2026.10.18-15.38.16:722][218]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:785][220]LogAutomationController: Error: Test Completed. Result={Fail} Name={ReplicatedStartAndFinish} Path={Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish}
+[2026.10.18-15.38.16:785][220]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish
+[2026.10.18-15.38.16:786][220]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.16:786][220]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.16:786][220]LogAutomationController: [LyraDeathBenchmark] Case=StepSequence.ReplicatedStartAndFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.16:786][220]LogAutomationController: EndEvents: Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish
+[2026.10.18-15.38.16:786][220]LogAutomationController: Sending RunTest ReplicatedStartLocalFinish to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:786][220]LogAutomationController: Display: Test Started. Name={ReplicatedStartLocalFinish} Path={Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish}
+[2026.10.18-15.38.16:819][221]LogAutomationWorker: Received RunTests ReplicatedStartLocalFinish from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:819][221]LogChaosDD: Creating Chaos Debug Draw Scene for world Untitled
+[2026.10.18-15.38.16:821][221]LogWorld: Bringing World /Temp/Untitled_23.Untitled up for play (max tick rate 30) at 2026.10.18-15.38.16
+[2026.10.18-15.38.16:821][221]LogWorld: Bringing up level for play took: 0.000060
+[2026.10.18-15.38.16:822][221]LogWorld: BeginTearingDown for /Temp/Untitled_23
+[2026.10.18-15.38.16:822][221]LogWorld: UWorld::CleanupWorld for Untitled, bSessionEnded=true, bCleanupResources=true
+[2026.10.18-15.38.16:886][223]LogAutomationController: Error: Test Completed. Result={Fail} Name={ReplicatedStartLocalFinish} Path={Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish}
+[2026.10.18-15.38.16:886][223]LogAutomationController: BeginEvents: Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish
+[2026.10.18-15.38.16:886][223]LogAutomationController: Error: Expected 'Dead tag count' to be 1, but it was 0. [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp(154)]
+[2026.10.18-15.38.16:886][223]LogAutomationController: Error: Expected 'Real tag/delegate/update order and callback state' to be "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate", but it was "Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate". [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h(1999)]
+[2026.10.18-15.38.16:886][223]LogAutomationController: [LyraDeathBenchmark] Case=StepSequence.ReplicatedStartLocalFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false
+[2026.10.18-15.38.16:886][223]LogAutomationController: EndEvents: Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish
+[2026.10.18-15.38.16:886][223]LogAutomationController: Display: Exporting Automation Report.
+[2026.10.18-15.38.16:886][223]LogAutomationController: Display: Converting results to json object...
+[2026.10.18-15.38.16:888][223]LogAutomationController: Writing reports to /workspace/lyra-runner/seed-result-02/ue-report...
+[2026.10.18-15.38.16:888][223]LogAutomationController: Display: Successfully wrote json results file!
+[2026.10.18-15.38.16:888][223]LogAutomationController: Exported report to '/workspace/lyra-runner/seed-result-02/ue-report' in 0.00 Seconds
+[2026.10.18-15.38.16:888][223]LogAutomationController: Display: Report can be opened in the editor at '/workspace/lyra-runner/seed-result-02/ue-report'
+[2026.10.18-15.38.16:888][223]LogAutomationController: Sending StopTestSession to 01A14FA9C74F74D8BE8487DA66834A48
+[2026.10.18-15.38.16:919][224]LogAutomationWorker: Received StopTestSession from 01A14FA9C7507B138BA2DD650B12DD91
+[2026.10.18-15.38.16:919][224]LogAutomationCommandLine: Display: Setting GIsCriticalError due to test failures (will cause non-zero exit code).
+[2026.10.18-15.38.16:919][224]LogAutomationCommandLine: Shutting down. GIsCriticalError=1
+[2026.10.18-15.38.16:919][224]LogAutomationCommandLine: Display: **** TEST COMPLETE. EXIT CODE: -1 ****
+[2026.10.18-15.38.16:919][224]LogCore: FUnixPlatformMisc::RequestExit(bForce=true, ReturnCode=255, CallSite=<NoCallSiteInfo>)
+[2026.10.18-15.38.16:919][224]LogCore: FUnixPlatformMisc::RequestExit(1, <NoCallSiteInfo>)

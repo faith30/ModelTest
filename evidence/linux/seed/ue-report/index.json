@@ -1,0 +1,1537 @@
+﻿{
+	"devices": [
+		{
+			"deviceName": "edge-1-debea7fa",
+			"instance": "01A14FA9C47374BA92C215ADBC784D64",
+			"instanceName": "edge-1-debea7fa-17895",
+			"platform": "LinuxServer",
+			"oSVersion": "Debian GNU/Linux 13 (trixie) 6.14.0-37-generic",
+			"model": "Default",
+			"gPU": "UnknownVendor PCI-id: 1013-00b8 (1af4-1100)",
+			"cPUModel": "AMD EPYC 9K65 192-Core Processor",
+			"rAMInGB": 31,
+			"renderMode": "SM6",
+			"rHI": "",
+			"appInstanceLog": ""
+		}
+	],
+	"reportCreatedOn": "2026.10.18-15.38.16",
+	"succeeded": 7,
+	"succeededWithWarnings": 0,
+	"failed": 16,
+	"notRun": 0,
+	"inProcess": 0,
+	"totalDuration": 1.0657176971435547,
+	"comparisonExported": false,
+	"comparisonExportDirectory": "",
+	"tests": [
+		{
+			"testDisplayName": "DirectFinished",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.DirectFinished",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.3315797746181488,
+			"dateTime": "2026.10.18-15.38.14",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: === Handled ensure: ===",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: ",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: Ensure condition failed: (DeathState == NewDeathState)  [File:C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp] [Line: 231] ",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: LyraHealthComponent: Death transition failed [0] -> [2] for owner [LyraDeathTestActor_2147482235].",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: Stack: ",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x0000000011c2d46d LyraServer!ULyraHealthComponent::OnRep_DeathState(ELyraDeathState)::$_0::operator()() const [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp:231]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000d753696 LyraServer!ULyraHealthComponent::OnRep_DeathState(ELyraDeathState) [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Character/LyraHealthComponent.cpp:231]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000d755cf6 LyraServer!FLyraDeathAutomationTest::RunTest(FString const&) [C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp:136]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x00000000054dfe13 LyraServer!FAutomationTestFramework::InternalStartTest(FString const&, FString const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Core/Private/Misc/AutomationTest.cpp:1316]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x00000000054df237 LyraServer!FAutomationTestFramework::StartTestByName(FString const&, int, FString const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Core/Private/Misc/AutomationTest.cpp:653]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000c2f6f98 LyraServer!FAutomationWorkerModule::HandleRunTestsMessage(FAutomationWorkerRunTests const&, TSharedRef<IMessageContext, (ESPMode)1> const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/AutomationWorker/Private/AutomationWorkerModule.cpp:699]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x00000000067abfa9 LyraServer!FMessageEndpoint::ProcessMessage(TSharedRef<IMessageContext, (ESPMode)1> const&) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/MessagingCommon/Public/MessageEndpoint.h:1022]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000c2f5331 LyraServer!FMessageEndpoint::ProcessInbox() [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/MessagingCommon/Public/MessageEndpoint.h:449]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000c3fe441 LyraServer!FEngineLoop::Tick() [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Launch/Private/LaunchEngineLoop.cpp:6043]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000c40054a LyraServer!GuardedMain(char16_t const*) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Launch/Private/Launch.cpp:60]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000c36c359 LyraServer!CommonUnixMain(int, char**, int (*)(char16_t const*), void (*)()) [C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/./Runtime/Unix/UnixCommonStartup/Private/UnixCommonStartup.cpp:324]",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x0000703e5b016ca8 libc.so.6!UnknownFunction(0x29ca7)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x0000703e5b016d65 libc.so.6!__libc_start_main(+0x84)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: [Callstack] 0x000000000512702a LyraServer!_start(+0x29)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogOutputDevice: ",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "LogHAL: FUnixPlatformProcess::CreateProc: File does not exist (/workspace/lyra-runner/seed-package-02/LinuxServer/Engine/Binaries/Linux/CrashReportClient)",
+						"context": "log",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Death state: The two values are not equal.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Containers/Array.h",
+					"lineNumber": 1244,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Start delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 150,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Finish delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 151,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'ForceNetUpdate invocation count' to be 2, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 155,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Start:1:Dying=0:Dead=0 | ForceNetUpdate | Finish:2:Dying=0:Dead=0 | ForceNetUpdate\", but it was \"\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.DirectFinished State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				}
+			],
+			"warnings": 0,
+			"errors": 26,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateMethods",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.DuplicateMethods",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.03338811919093132,
+			"dateTime": "2026.10.18-15.38.14",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Start delegate count' to be 1, but it was 2.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 150,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'ForceNetUpdate invocation count' to be 2, but it was 3.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 155,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Start:1:Dying=0:Dead=0 | ForceNetUpdate | Finish:2:Dying=0:Dead=0 | ForceNetUpdate\", but it was \"Start:1:Dying=0:Dead=0 | ForceNetUpdate | Start:1:Dying=0:Dead=0 | ForceNetUpdate | Finish:2:Dying=0:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.14"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.DuplicateMethods State=2 Started=2 Finished=1 Dying=0 Dead=0 ForceNetUpdate=3 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				}
+			],
+			"warnings": 0,
+			"errors": 3,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishBeforeStart",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.FinishBeforeStart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033529799431562424,
+			"dateTime": "2026.10.18-15.38.14",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.FinishBeforeStart State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LocalSequence",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.LocalSequence",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033325143158435822,
+			"dateTime": "2026.10.18-15.38.14",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.LocalSequence State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.14"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "PredictionAhead",
+			"fullTestPath": "Lyra.Benchmark.Death.ASCNull.PredictionAhead",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.03321240097284317,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=ASCNull.PredictionAhead State=2 Started=1 Finished=1 Dying=0 Dead=0 ForceNetUpdate=2 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "AfterPrematureFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033380720764398575,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Death state: The two values are not equal.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Containers/Array.h",
+					"lineNumber": 1244,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Start delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 150,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Finish delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 151,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dying tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 153,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'ForceNetUpdate invocation count' to be 2, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 155,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.AfterPrematureFinish State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 7,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateFinishedSnapshot",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033349521458148956,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Start delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 150,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Finish delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 151,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dying tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 153,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'ForceNetUpdate invocation count' to be 2, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 155,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.DuplicateFinishedSnapshot State=2 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 6,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "SkipStartedNotification",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033276326954364777,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Death state: The two values are not equal.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Containers/Array.h",
+					"lineNumber": 1244,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Start delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 150,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Finish delegate count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 151,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dying tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 153,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'ForceNetUpdate invocation count' to be 2, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 155,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.SkipStartedNotification State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 7,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ThenDuplicateMethods",
+			"fullTestPath": "Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033436376601457596,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=DirectFinished.ThenDuplicateMethods State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.DuplicateFinish",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033327333629131317,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.DuplicateFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "DuplicateStart",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.DuplicateStart",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033382199704647064,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Start delegate count' to be 1, but it was 2.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 150,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'ForceNetUpdate invocation count' to be 1, but it was 2.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 155,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Start:1:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.DuplicateStart State=1 Started=2 Finished=0 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 3,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishBeforeStart",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.FinishBeforeStart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.0333249531686306,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.FinishBeforeStart State=0 Started=0 Finished=0 Dying=0 Dead=0 ForceNetUpdate=0 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RepeatedSequence",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.RepeatedSequence",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.03335794061422348,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.RepeatedSequence State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StartAfterFinished",
+			"fullTestPath": "Lyra.Benchmark.Death.Idempotence.StartAfterFinished",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033440954983234406,
+			"dateTime": "2026.10.18-15.38.15",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.15"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=Idempotence.StartAfterFinished State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.15"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishedReceivesNotDead",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033408418297767639,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.FinishedReceivesNotDead State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "FinishedReceivesStarted",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033468961715698242,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.FinishedReceivesStarted State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "RepeatedOlderState",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033396176993846893,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.RepeatedOlderState State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "StartedReceivesNotDead",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033315535634756088,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.StartedReceivesNotDead State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "TwoOlderStates",
+			"fullTestPath": "Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033379968255758286,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=PredictionAhead.TwoOlderStates State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "LocalStartReplicatedFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033353552222251892,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.LocalStartReplicatedFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReplicatedStart",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.ReplicatedStart",
+			"tags": [],
+			"state": "Success",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.03329150378704071,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.ReplicatedStart State=1 Started=1 Finished=0 Dying=1 Dead=0 ForceNetUpdate=1 Passed=true",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 0,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReplicatedStartAndFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033365081995725632,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.ReplicatedStartAndFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		},
+		{
+			"testDisplayName": "ReplicatedStartLocalFinish",
+			"fullTestPath": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish",
+			"tags": [],
+			"state": "Fail",
+			"deviceInstance": [
+				"01A14FA9C47374BA92C215ADBC784D64"
+			],
+			"duration": 0.033426996320486069,
+			"dateTime": "2026.10.18-15.38.16",
+			"entries": [
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Dead tag count' to be 1, but it was 0.",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/.codex/worktrees/lyra-remote-evaluation/ModelTest/Source/LyraGame/Tests/LyraDeathAutomationTest.cpp",
+					"lineNumber": 154,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Error",
+						"message": "Expected 'Real tag/delegate/update order and callback state' to be \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Tag:Dead=1 | Finish:2:Dying=1:Dead=1 | ForceNetUpdate\", but it was \"Tag:Dying=1 | Start:1:Dying=1:Dead=0 | ForceNetUpdate | Finish:2:Dying=1:Dead=0 | ForceNetUpdate\".",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "C:/Users/huaqijiang/Documents/Study/UE5/Engine/Source/Runtime/Core/Public/Misc/AutomationTest.h",
+					"lineNumber": 1999,
+					"timestamp": "2026.10.18-15.38.16"
+				},
+				{
+					"event":
+					{
+						"type": "Info",
+						"message": "[LyraDeathBenchmark] Case=StepSequence.ReplicatedStartLocalFinish State=2 Started=1 Finished=1 Dying=1 Dead=0 ForceNetUpdate=2 Passed=false",
+						"context": "",
+						"artifact": "00000000000000000000000000000000"
+					},
+					"filename": "",
+					"lineNumber": -1,
+					"timestamp": "2026.10.18-15.38.16"
+				}
+			],
+			"warnings": 0,
+			"errors": 2,
+			"artifacts": []
+		}
+	]
+}

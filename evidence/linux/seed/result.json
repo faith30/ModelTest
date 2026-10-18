@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "candidate_sha": "240a1617ee9ae96eb841114bf79268bdad6d92d0",
+  "status": "final_test_failure",
+  "valid_evidence": true,
+  "is_final": true,
+  "final_pass": false,
+  "score": 29.0,
+  "expected_case_count": 23,
+  "runtime_exit_code": 255,
+  "problems": [],
+  "groups": [
+    {
+      "name": "DirectFinished",
+      "maximum": 20,
+      "observed_score": 0.0,
+      "passed": 0,
+      "total": 4,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification",
+          "passed": false,
+          "state": "Fail",
+          "errors": 7,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot",
+          "passed": false,
+          "state": "Fail",
+          "errors": 6,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish",
+          "passed": false,
+          "state": "Fail",
+          "errors": 7,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        }
+      ],
+      "score": 0.0
+    },
+    {
+      "name": "StepSequence",
+      "maximum": 20,
+      "observed_score": 5.0,
+      "passed": 1,
+      "total": 4,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStart",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        }
+      ],
+      "score": 5.0
+    },
+    {
+      "name": "Idempotence",
+      "maximum": 20,
+      "observed_score": 4.0,
+      "passed": 1,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.FinishBeforeStart",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.DuplicateStart",
+          "passed": false,
+          "state": "Fail",
+          "errors": 3,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.DuplicateFinish",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.StartAfterFinished",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.RepeatedSequence",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        }
+      ],
+      "score": 4.0
+    },
+    {
+      "name": "PredictionAhead",
+      "maximum": 20,
+      "observed_score": 8.0,
+      "passed": 2,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates",
+          "passed": false,
+          "state": "Fail",
+          "errors": 2,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        }
+      ],
+      "score": 8.0
+    },
+    {
+      "name": "ASCNull",
+      "maximum": 20,
+      "observed_score": 12.0,
+      "passed": 3,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.LocalSequence",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.DirectFinished",
+          "passed": false,
+          "state": "Fail",
+          "errors": 26,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.FinishBeforeStart",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.DuplicateMethods",
+          "passed": false,
+          "state": "Fail",
+          "errors": 3,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ],
+          "reason": "state must be Success and errors must be 0"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.PredictionAhead",
+          "passed": true,
+          "state": "Success",
+          "errors": 0,
+          "warnings": 0,
+          "platforms": [
+            "LinuxServer"
+          ]
+        }
+      ],
+      "score": 12.0
+    }
+  ],
+  "scope": "Real Linux UE Automation execution; this does not prove multi-machine replication or game presentation.",
+  "provenance_boundary": "Evaluator-produced build and report required. File hashes do not independently attest execution.",
+  "report_score_path": "report-score/score.json",
+  "runtime_path": "runtime.json",
+  "observed_case_score": 29.0,
+  "passed_case_count": 7,
+  "runtime_sha256": "a806b1c256b472c341dd8de85eddb299e456c0335020b94550e4f8887597f956",
+  "report_sha256": "0838911dabf00477f2da816f0ecf213da83d57e24905ab6b4a3be6ebefaadb42",
+  "binary_sha256": "9a7233859cbb929d65c691b02515340932b669322aced018afae4fe4b0a79a80"
+}
