@@ -1,0 +1,14 @@
+{
+  "container_id": "a685f7f9e4bb4a2abe281440b6e4223f",
+  "uname": [
+    "Linux",
+    "edge-1-debea7fa",
+    "6.14.0-37-generic",
+    "#37~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Nov 20 10:25:38 UTC 2",
+    "x86_64",
+    ""
+  ],
+  "cpu_max": "200000 100000",
+  "memory_max": "4294967296",
+  "artifact_commit": "c91280727aedc04df1966732d53f7b6edef7b376"
+}

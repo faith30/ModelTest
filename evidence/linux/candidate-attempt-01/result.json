@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "candidate_sha": "3daa3a32b5ddbe106d8c997a6e2514df5fdb0e8d",
+  "status": "runtime_crash_or_error",
+  "valid_evidence": false,
+  "is_final": false,
+  "final_pass": false,
+  "score": 0,
+  "expected_case_count": 23,
+  "runtime_exit_code": 139,
+  "problems": [
+    "Unexpected UE process exit code: 139",
+    "UE report/build evidence did not pass the trusted scorer",
+    "Scorer result is not a final Linux evaluation",
+    "A complete terminal report for all 23 fixed cases is required",
+    "Trusted scorer exit code is inconsistent with the report: 2",
+    "UE exit code must be 255 for the observed case results",
+    "UE stdout must contain exactly one matching Automation TEST COMPLETE marker"
+  ],
+  "groups": [
+    {
+      "name": "DirectFinished",
+      "maximum": 20,
+      "observed_score": 0.0,
+      "passed": 0,
+      "total": 4,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.SkipStartedNotification",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.DuplicateFinishedSnapshot",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.ThenDuplicateMethods",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.DirectFinished.AfterPrematureFinish",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        }
+      ],
+      "score": 0
+    },
+    {
+      "name": "StepSequence",
+      "maximum": 20,
+      "observed_score": 0.0,
+      "passed": 0,
+      "total": 4,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStart",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartAndFinish",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.LocalStartReplicatedFinish",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.StepSequence.ReplicatedStartLocalFinish",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        }
+      ],
+      "score": 0
+    },
+    {
+      "name": "Idempotence",
+      "maximum": 20,
+      "observed_score": 0.0,
+      "passed": 0,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.FinishBeforeStart",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.DuplicateStart",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.DuplicateFinish",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.StartAfterFinished",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.Idempotence.RepeatedSequence",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        }
+      ],
+      "score": 0
+    },
+    {
+      "name": "PredictionAhead",
+      "maximum": 20,
+      "observed_score": 0.0,
+      "passed": 0,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.StartedReceivesNotDead",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesStarted",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.FinishedReceivesNotDead",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.RepeatedOlderState",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.PredictionAhead.TwoOlderStates",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        }
+      ],
+      "score": 0
+    },
+    {
+      "name": "ASCNull",
+      "maximum": 20,
+      "observed_score": 0.0,
+      "passed": 0,
+      "total": 5,
+      "cases": [
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.LocalSequence",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.DirectFinished",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.FinishBeforeStart",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.DuplicateMethods",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        },
+        {
+          "full_test_path": "Lyra.Benchmark.Death.ASCNull.PredictionAhead",
+          "passed": false,
+          "state": null,
+          "errors": null,
+          "warnings": null,
+          "platforms": [],
+          "reason": "missing"
+        }
+      ],
+      "score": 0
+    }
+  ],
+  "scope": "Real Linux UE Automation execution; this does not prove multi-machine replication or game presentation.",
+  "provenance_boundary": "Evaluator-produced build and report required. File hashes do not independently attest execution.",
+  "report_score_path": "report-score/score.json",
+  "runtime_path": "runtime.json",
+  "observed_case_score": 0.0,
+  "passed_case_count": 0,
+  "runtime_sha256": "980cffd6a3f5a73f3e92cb04c02e015a55aed128dc70e050cf3bf044189df29b",
+  "report_sha256": null,
+  "binary_sha256": "434f9cb3e4c93225170ac7338d3fa4d3973d6cd2639c9ff6866390c8dc62e439"
+}
