@@ -20,4 +20,17 @@
 
 `ue-lean-install.json` 的状态反映解压完成时刻，因此保留 `extracted_not_yet_runtime_verified`；随后真实启动成功的证据是 `editor-probe-lean-01/result.json` 及原始 UE 日志。
 
-该探针只证明真实 UE 启动与 Python API 暴露，不证明 Lyra 已编译、三题功能通过、UI / 音频表现或多人行为。后续仍需恢复环境、分别准备原始基线、给予每题完整 2700 秒预算、冻结模型交付，再执行独立验收及原评分规则。
+最初的编辑器启动探针只证明真实 UE 启动与 Python API 暴露，不能单独证明 Lyra 编译或功能通过。
+
+## 后续真实 Lyra 基线构建与加载
+
+中国时间 2026-10-20 01:15 归档的[汇总](lyra-baseline-summary.json)记录了后续验证。第一题固定基线仍为 `dcba4d7625373ed1f128af1de54e4e376b0fb4af`，8,689 个 LFS 文件已恢复并校验，正式任务计时未启动。
+
+- 首次冷构建使用 512 MiB .NET GC 堆上限，反复出现 `System.OutOfMemoryException`。组织者停止了该次构建；后代进程清理完成，cgroup OOM / OOM kill 均为 0。见 [build-01](interaction-baseline-lean-build-01/run.json)。这不是模型作答失败。
+- 将 GC 堆上限改为 `0x40000000`（1 GiB），保留单并发、`-NoPCH -NoSharedPCH -NoUBA -BytesPerUnityCPP=131072` 后，[build-02](interaction-baseline-lean-build-02/run.json) 完成 61/61 项，退出码 0，耗时 481.096 秒，最大 RSS 1,664,152 KiB，清理完成。重试可能复用前次生成的缓存，不能称为全无缓存构建。
+- 随后的[真实加载探针](interaction-baseline-lean-load-01/probe.json)在非 root UE 5.8.3 进程内核对了 `LyraGame` / `LyraEditor` 实际可执行映射和模块哈希，并加载原生交互类、DefaultGameData、GA_Interact 和 L_InventoryTestMap。退出码 0，耗时 36.758 秒，最大 RSS 2,256,388 KiB。
+- 构建与加载的 OOM / OOM kill 增量都为 0；cgroup 内存采样接近或达到 4 GiB 上限，包含其他进程与可回收文件缓存。单进程 RSS 不能代表容器总内存，尚未证明多个编辑器或多人客户端可并行运行。
+
+以上只证明当前固定基线的构建、模块和资源加载，不验证游戏功能、UI、实际音频或多人行为，不产生三题分数。模型修改后仍须重新构建并独立验收。
+
+01:16 后通过同容器 Claude 插件发送了[只读环境确认](plugin-confirmation-prompt.txt)，用于核对与此前成功的小快照相同的保存流程。当前仍须验证含引擎快照可恢复，再给予每题完整 2700 秒预算、冻结模型交付并按原评分规则评估。
