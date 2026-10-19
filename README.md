@@ -52,42 +52,40 @@ install -d -o lyra-eval -g lyra-eval /workspace/lyra-results
 runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/headless_ue.py doctor \
   --engine /workspace/UE_5.8.3 \
   --project /workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject
-
-runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/headless_ue.py build \
-  --engine /workspace/UE_5.8.3 \
-  --project /workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject \
-  --output /workspace/lyra-results/interaction-baseline-build-01
 ```
 
 若你已使用非 root 用户登录，直接执行 Python 命令，不需要 `runuser`。Git 操作也应使用工程属主账户，避免 Git dubious-ownership；不要通过全局 `safe.directory=*` 关闭保护。专用用户需要自己的 Git 登录时，用该用户的正常 GitHub 授权流程。
 
 `doctor` 只检查文件和环境，不证明 UE 已经启动。`build` 调用真实 `Build.sh`，默认单并发，保存命令、耗时、退出码和日志。缺引擎、版本不匹配或 root 运行会明确拒绝；缺依赖、OOM、超时等必须按环境阻塞记录。
 
-## 3. 在 Claude 插件开始一题
+### 先做最小编辑器启动探针
 
-### 可选：先做最小编辑器启动探针
-
-在非 root 终端执行以下命令。它只打开最小纯内容项目并查询真实引擎版本及 Python API，不编译 Lyra、不修改资产、不计分。先复制模板是为了让编辑器缓存写到独立输出位置。
+执行以下命令。它只打开最小纯内容项目并查询真实引擎版本及 Python API，不编译 Lyra、不修改资产、不计分。运行器复制模板，使编辑器缓存写到独立输出位置，并限制运行时间为 300 秒。
 
 ```bash
-export UE_ROOT=/workspace/UE_5.8.3
-export KIT=/workspace/lyra-feature-kit
-export PROBE_OUT=/workspace/lyra-results/editor-probe-01
-mkdir "$PROBE_OUT"
-mkdir "$PROBE_OUT/project"
-cp "$KIT/editor-probe/Probe.uproject" "$PROBE_OUT/project/Probe.uproject"
-export LYRA_EDITOR_PROBE_OUTPUT="$PROBE_OUT/probe.json"
-timeout --signal=TERM --kill-after=10s 300 /usr/bin/time -v \
-  -o "$PROBE_OUT/memory.txt" \
-  "$UE_ROOT/Engine/Binaries/Linux/UnrealEditor" "$PROBE_OUT/project/Probe.uproject" \
-  -run=pythonscript "-script=$KIT/editor_probe.py" \
-  -unattended -nullrhi -nosound -NoShaderCompile -NoSourceControl \
-  "-abslog=$PROBE_OUT/ue.log" > "$PROBE_OUT/stdout.log" 2>&1
-echo "UE probe exit: $?"
-cat "$PROBE_OUT/probe.json"
+runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_editor_probe.py \
+  --engine /workspace/UE_5.8.3 \
+  --output /workspace/lyra-results/editor-probe-01
 ```
 
-同时检查退出码为 0、`probe.json` 的 `status=completed`、`executed_in_real_unreal=true` 以及 `memory.txt` 的 Maximum resident set size。任一文件缺失或状态不符都不算探针通过。最小探针成功不证明 Lyra 构建或完整场景在 4 GiB 内能完成；仍需上面的基线构建和对应自动化验证。
+同时检查运行器退出码为 0、结果通过，以及 `probe.json` 的 `status=completed`、`executed_in_real_unreal=true`。原始 UE 日志、退出码、超时信息和内存诊断会保存在输出目录。cgroup 采样包括容器内其他进程和文件缓存；`memory.peak` 是容器生命周期峰值。不能把这些数值当作 UE 独占内存，也不能仅凭退出 137 判定 OOM。需比较运行前后 `memory.events` 的 `oom/oom_kill` 增量；超时或强杀时 GNU time 的最终 RSS 文件可能不完整。
+
+最小模板只启用 PythonScriptPlugin 和 EditorScriptingUtilities。原始 Lyra 起点还启用了 AIAssistant、ToolsetRegistry、AllToolsets 等插件；应检查官方包中这些插件和递归依赖是否齐全。可选 API 的 `hasattr=false` 也可能是插件未加载，不能直接证明包缺文件。不要静默禁用原始起点插件后仍声称环境一致。
+
+### 再构建真实 Lyra 基线
+
+最小探针成功不证明 Lyra 构建或完整场景在 4 GiB 内能完成。确认插件齐全后再构建，避免与下载、解压等大任务同时进行：
+
+```bash
+runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/headless_ue.py build \
+  --engine /workspace/UE_5.8.3 \
+  --project /workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject \
+  --output /workspace/lyra-results/interaction-baseline-build-01
+```
+
+`-MaxParallelActions=1` 只限制构建动作并发；单个编译或链接任务仍可能超过可用内存。构建成功后仍需实际 Lyra 加载、资源回读和对应自动化验证。
+
+## 3. 在 Claude 插件开始一题
 
 ### 开始计时
 

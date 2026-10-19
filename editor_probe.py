@@ -61,11 +61,15 @@ def main():
                 raise RuntimeError("Required Unreal SystemLibrary query APIs are unavailable.")
             # These two read-only calls are the only Unreal API invocations.
             report["engine_version"] = str(unreal.SystemLibrary.get_engine_version())
-            report["project_directory"] = str(unreal.SystemLibrary.get_project_directory())
+            project_directory = str(unreal.SystemLibrary.get_project_directory())
             if not report["engine_version"].startswith("5.8.3"):
                 raise RuntimeError("Expected UE 5.8.3; found " + report["engine_version"])
-            if not report["project_directory"]:
+            if not project_directory:
                 raise RuntimeError("Unreal returned an empty project directory.")
+            # Resolve in the real UE process: it can change its working directory
+            # while initializing, and FPaths may return a relative project path.
+            report["project_directory_raw"] = project_directory
+            report["project_directory"] = os.path.abspath(project_directory)
             checks = {
                 "PythonScriptLibrary": (
                     "is_python_available", "is_python_initialized", "execute_python_command"
