@@ -1,0 +1,81 @@
+Setting up bundled DotNet SDK
+Running command : dotnet Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll LyraEditor Linux Development -Project=/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=1 -NoPCH -NoSharedPCH -NoUBA -BytesPerUnityCPP=131072
+Log file: /workspace/lyra-home/.config/Epic/UnrealBuildTool/Log.txt
+Executing up to 1 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (/workspace/lyra-runs/interaction-deepseek-r1).
+UbaStorageServer - FileMapping backing: disk /workspace/lyra-home/.epic/UnrealBuildAccelerator/uba_filemap (/dev/shm 64MB < floor 1024MB; memfd: pidfd_getfd errno=1) - this works but is slower. Container? memfd needs CAP_SYS_PTRACE (or a seccomp profile allowing pidfd_getfd); alternatively raise --shm-size to use /dev/shm.
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+Creating makefile for LyraEditor (command line arguments changed)
+Compiling GameFeaturePlugins in branch ++UE5+Release-5.8
+Building LyraEditor...
+===== Toolchain Information =====
+Using ISPC compiler (/workspace/UE_5.8.3/Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20240919, LLVM 18.1.6)
+Using Clang compiler 20.1.8 (/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++)
+  clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-unknown-linux-gnu Thread model: posix InstalledDir: /workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin
+Using Clang archiver (/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/llvm-ar)
+  LLVM (http://llvm.org/):   LLVM version 20.1.8   Optimized build.
+Using toolchain located at '/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu'
+Using bundled libc++ standard C++ library.
+Compressing debug files
+=================================
+Using Unreal Build Accelerator local executor to run 49 action(s)
+  CPU 1 physical cores, 2 logical cores
+  Memory 512 MB physical, 5.24 GB/15.42 GB committed
+  UBA Storage capacity 40 GB
+[1/49] Link libUnrealEditor-CommonLoadingScreen.so [NoUba]
+[2/49] Compile Module.CommonUser.1.cpp [NoUba]
+[3/49] Compile Module.CommonUser.2.cpp [NoUba]
+[4/49] Link libUnrealEditor-CommonUser.so [NoUba]
+[5/49] Link libUnrealEditor-GameplayMessageRuntime.so [NoUba]
+[6/49] Compile Module.LyraGame.1.cpp [NoUba]
+[7/49] Compile Module.LyraGame.2.cpp [NoUba]
+[8/49] Compile Module.LyraGame.3.cpp [NoUba]
+[9/49] Compile Module.LyraGame.4.cpp [NoUba]
+[10/49] Compile Module.LyraGame.5.cpp [NoUba]
+[11/49] Compile Module.LyraGame.6.cpp [NoUba]
+[12/49] Compile Module.LyraGame.7.cpp [NoUba]
+[13/49] Compile Module.LyraGame.8.cpp [NoUba]
+[14/49] Compile Module.LyraGame.9.cpp [NoUba]
+[15/49] Link libUnrealEditor-GameSettings.so [NoUba]
+[16/49] Link libUnrealEditor-GameSubtitles.so [NoUba]
+[17/49] Link libUnrealEditor-LyraGame.so [NoUba]
+[18/49] Compile AssetTypeActions_LyraContextEffectsLibrary.cpp [NoUba]
+[19/49] Compile CheckChaosMeshCollision.cpp [NoUba]
+[20/49] Compile ContentValidationCommandlet.cpp [NoUba]
+[21/49] Compile CreateRedirectorPackage.cpp [NoUba]
+[22/49] Compile DiffCollectionReferenceSupport.cpp [NoUba]
+[23/49] Compile EditorValidator.cpp [NoUba]
+[24/49] Compile EditorValidator_Blueprints.cpp [NoUba]
+[25/49] Compile EditorValidator_Load.cpp [NoUba]
+[26/49] Compile EditorValidator_MaterialFunctions.cpp [NoUba]
+[27/49] Compile EditorValidator_SourceControl.cpp [NoUba]
+[28/49] Compile GameEditorStyle.cpp [NoUba]
+[29/49] Compile LyraContextEffectsLibraryFactory.cpp [NoUba]
+[30/49] Compile LyraEditor.cpp [NoUba]
+[31/49] Compile LyraEditorEngine.cpp [NoUba]
+[32/49] Compile Module.LyraEditor.gen.cpp [NoUba]
+[33/49] Compile PerModuleInline.gen.cpp [NoUba]
+[34/49] Link libUnrealEditor-LyraEditor.so [NoUba]
+[35/49] Compile Module.CommonStartupLoadingScreen.cpp [NoUba]
+[36/49] Link libUnrealEditor-CommonStartupLoadingScreen.so [NoUba]
+[37/49] Compile Module.ShooterCoreRuntime.cpp [NoUba]
+[38/49] Link libUnrealEditor-ShooterCoreRuntime.so [NoUba]
+[39/49] Compile Module.ShooterTestsRuntime.cpp [NoUba]
+[40/49] Link libUnrealEditor-ShooterTestsRuntime.so [NoUba]
+[41/49] Compile Module.TopDownArenaRuntime.cpp [NoUba]
+[42/49] Link libUnrealEditor-TopDownArenaRuntime.so [NoUba]
+[43/49] Compile Module.GameplayMessageNodes.cpp [NoUba]
+[44/49] Link libUnrealEditor-GameplayMessageNodes.so [NoUba]
+[45/49] Compile Module.LyraExtTool.cpp [NoUba]
+[46/49] Link libUnrealEditor-LyraExtTool.so [NoUba]
+[47/49] Compile Module.PocketWorlds.cpp [NoUba]
+[48/49] Link libUnrealEditor-PocketWorlds.so [NoUba]
+[49/49] WriteMetadata LyraEditor.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 401.13 seconds
+Output binary: /workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor
+
+Result: Succeeded
+Total execution time: 405.85 seconds
+Trace written to file /workspace/lyra-home/.config/Epic/UnrealBuildTool/Trace.uba with size 30.0kb

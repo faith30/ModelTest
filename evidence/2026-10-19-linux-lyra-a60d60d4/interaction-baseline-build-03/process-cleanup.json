@@ -1,0 +1,63 @@
+{
+  "complete": true,
+  "root_pid": 36611,
+  "subreaper_enabled": true,
+  "observed": [
+    {
+      "pid": 36642,
+      "ppid": 36611,
+      "pgid": 36642,
+      "sid": 36619,
+      "starttime": 28518303,
+      "state": "Z"
+    },
+    {
+      "pid": 41926,
+      "ppid": 36611,
+      "pgid": 41926,
+      "sid": 41909,
+      "starttime": 28558811,
+      "state": "Z"
+    },
+    {
+      "pid": 42014,
+      "ppid": 36611,
+      "pgid": 36642,
+      "sid": 36619,
+      "starttime": 28558875,
+      "state": "Z"
+    }
+  ],
+  "signals": [
+    {
+      "pid": 36642,
+      "starttime": 28518303,
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 42014,
+      "starttime": 28558875,
+      "signal": "SIGTERM"
+    }
+  ],
+  "reaped": [
+    {
+      "pid": 41926,
+      "starttime": 28558811,
+      "wait_status": 0
+    },
+    {
+      "pid": 36642,
+      "starttime": 28518303,
+      "wait_status": 15
+    },
+    {
+      "pid": 42014,
+      "starttime": 28558875,
+      "wait_status": 15
+    }
+  ],
+  "remaining": [],
+  "errors": [],
+  "boundary": "Tracks only this wrapper's descendants. SIGTERM/SIGINT, timeout and normal completion are handled; wrapper SIGKILL or container termination cannot run cleanup."
+}

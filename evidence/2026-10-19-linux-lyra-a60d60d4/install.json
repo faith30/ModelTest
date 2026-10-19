@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-10-19T14:16:06.734940+00:00",
+  "container_id": "a60d60d4667e4b99b1811a3a20c2e696",
+  "os": "Linux-6.14.0-37-generic-x86_64-with-glibc2.41",
+  "engine_root": "/workspace/UE_5.8.3",
+  "engine_build_version": {
+    "MajorVersion": 5,
+    "MinorVersion": 8,
+    "PatchVersion": 3,
+    "Changelist": 58210709,
+    "CompatibleChangelist": 55116800,
+    "IsLicenseeVersion": 0,
+    "IsPromotedBuild": 1,
+    "BranchName": "++UE5+Release-5.8"
+  },
+  "installer_bytes": 39818576005,
+  "engine_apparent_bytes": 76967228329,
+  "workspace_free_bytes": 904696332288,
+  "limits": {
+    "cpu.max": "200000 100000",
+    "memory.max": "4294967296",
+    "memory.swap.max": "0"
+  },
+  "snapshot_request_result": {
+    "ok": true,
+    "snapshot_id": "e9215c81-1d97-4f41-ad7c-a84c19dc5657_user_checkpoint_1ea36435"
+  },
+  "snapshot_ui_verified_restorable": false,
+  "snapshot_ui_observation": "No available snapshots after request; engine restore has not been demonstrated"
+}

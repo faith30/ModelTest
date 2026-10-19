@@ -1,0 +1,248 @@
+CLEANUP_3_CASES_VERIFIED
+Mon Oct 19 14:19:54 UTC 2026
+Running real UE; logs: /workspace/lyra-results/interaction-baseline-build-03
+{
+  "schema_version": 1,
+  "action": "build",
+  "passed": true,
+  "run": {
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "-o",
+      "/workspace/lyra-results/interaction-baseline-build-03/memory.txt",
+      "bash",
+      "/workspace/UE_5.8.3/Engine/Build/BatchFiles/Linux/Build.sh",
+      "LyraEditor",
+      "Linux",
+      "Development",
+      "-Project=/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject",
+      "-WaitMutex",
+      "-NoHotReloadFromIDE",
+      "-MaxParallelActions=1",
+      "-NoPCH",
+      "-NoSharedPCH",
+      "-NoUBA",
+      "-BytesPerUnityCPP=131072"
+    ],
+    "cwd": "/workspace/lyra-runs/interaction-deepseek-r1",
+    "started_at": "2026-10-19T14:19:54.408326+00:00",
+    "timeout_seconds": 1800,
+    "exit_code": 0,
+    "timed_out": false,
+    "interrupted": false,
+    "launch_error": null,
+    "stdout": "stdout.log",
+    "pid": 36619,
+    "finished_at": "2026-10-19T14:26:40.600573+00:00",
+    "elapsed_seconds": 406.192,
+    "build_environment": {
+      "DOTNET_gcServer": "0",
+      "DOTNET_GCHeapHardLimit": "0x20000000",
+      "DOTNET_GCConserveMemory": "7"
+    },
+    "process_cleanup": {
+      "complete": true,
+      "root_pid": 36611,
+      "subreaper_enabled": true,
+      "observed": [
+        {
+          "pid": 36642,
+          "ppid": 36611,
+          "pgid": 36642,
+          "sid": 36619,
+          "starttime": 28518303,
+          "state": "Z"
+        },
+        {
+          "pid": 41926,
+          "ppid": 36611,
+          "pgid": 41926,
+          "sid": 41909,
+          "starttime": 28558811,
+          "state": "Z"
+        },
+        {
+          "pid": 42014,
+          "ppid": 36611,
+          "pgid": 36642,
+          "sid": 36619,
+          "starttime": 28558875,
+          "state": "Z"
+        }
+      ],
+      "signals": [
+        {
+          "pid": 36642,
+          "starttime": 28518303,
+          "signal": "SIGTERM"
+        },
+        {
+          "pid": 42014,
+          "starttime": 28558875,
+          "signal": "SIGTERM"
+        }
+      ],
+      "reaped": [
+        {
+          "pid": 41926,
+          "starttime": 28558811,
+          "wait_status": 0
+        },
+        {
+          "pid": 36642,
+          "starttime": 28518303,
+          "wait_status": 15
+        },
+        {
+          "pid": 42014,
+          "starttime": 28558875,
+          "wait_status": 15
+        }
+      ],
+      "remaining": [],
+      "errors": [],
+      "boundary": "Tracks only this wrapper's descendants. SIGTERM/SIGINT, timeout and normal completion are handled; wrapper SIGKILL or container termination cannot run cleanup."
+    },
+    "cgroup_events_delta": {
+      "oom_kill": 0,
+      "max": 2171,
+      "oom_group_kill": 0,
+      "high": 0,
+      "oom": 0,
+      "low": 0
+    },
+    "cgroup_local_events_delta": {
+      "oom_kill": 0,
+      "max": 2171,
+      "oom_group_kill": 0,
+      "high": 0,
+      "oom": 0,
+      "low": 0
+    },
+    "memory": {
+      "sample_count": 406,
+      "sampling_errors": [],
+      "max_sampled_cgroup_memory_current_bytes": 4294942720,
+      "time_max_resident_set_kbytes": 1613620,
+      "time_report_available": true,
+      "boundary": "Cgroup values include all processes and file cache; 1-second samples can miss peaks. memory.peak is a cgroup lifetime value and was not reset. GNU time max RSS is not simultaneous aggregate cgroup memory. Timeout or signals can prevent its final report. Exit -9/137 alone does not prove OOM; event deltas are shared-cgroup evidence, not per-process attribution."
+    },
+    "build_scope": "The complete LyraEditor Linux Development target via headless_ue build; existing build caches may be reused. No feature runtime tests or benchmark score."
+  },
+  "engine_version": "5.8.3",
+  "scope": "Actual process result only; no benchmark score or visual/audio acceptance is inferred.",
+  "status": "passed"
+}
+Running actual Lyra baseline loading; evidence: /workspace/lyra-results/lyra-load-03
+{
+  "schema_version": 1,
+  "status": "passed",
+  "passed": true,
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/workspace/lyra-results/lyra-load-03/memory.txt",
+    "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject",
+    "-run=pythonscript",
+    "-EnablePlugins=PythonScriptPlugin,EditorScriptingUtilities",
+    "-script=/workspace/lyra-results/lyra-load-03/lyra_probe_inside_ue.py",
+    "-unattended",
+    "-nullrhi",
+    "-nosound",
+    "-NoSourceControl",
+    "-abslog=/workspace/lyra-results/lyra-load-03/ue.log"
+  ],
+  "cwd": "/workspace/lyra-runs/interaction-deepseek-r1",
+  "started_at": "2026-10-19T14:26:40.845507+00:00",
+  "timeout_seconds": 600,
+  "exit_code": 0,
+  "timed_out": false,
+  "interrupted": false,
+  "launch_error": null,
+  "probe_script_sha256": "7fdcd7133f8c7bbb515537fd1db2a4ad454246351a60acfcdc370371a7d7a227",
+  "project_file_sha256": "776d9915742439890194490c8572ee4ccfef0ac198a67f0b72c9bc0b64d30971",
+  "time_process_id": 42038,
+  "finished_at": "2026-10-19T14:27:32.241958+00:00",
+  "elapsed_seconds": 51.396,
+  "cgroup_events_delta": {
+    "low": 0,
+    "max": 24880,
+    "high": 0,
+    "oom_group_kill": 0,
+    "oom_kill": 0,
+    "oom": 0
+  },
+  "cgroup_local_events_delta": {
+    "low": 0,
+    "max": 24880,
+    "high": 0,
+    "oom_group_kill": 0,
+    "oom_kill": 0,
+    "oom": 0
+  },
+  "memory": {
+    "sample_count": 52,
+    "max_sampled_cgroup_memory_current_bytes": 4294959104,
+    "time_max_resident_set_kbytes": 1874492,
+    "time_report_available": true,
+    "boundary": "Cgroup includes all processes and file cache; samples can miss peaks. memory.peak is lifetime, not this run. GNU time RSS is not aggregate container memory and can be absent after timeout. Exit -9/137 alone is not proof of OOM; event deltas do not attribute an OOM to a specific process."
+  },
+  "probe_validation": {
+    "valid": true,
+    "problems": [],
+    "probe": {
+      "schema_version": 1,
+      "probe": "real_lyra_baseline_load",
+      "status": "completed",
+      "executed_in_real_unreal": true,
+      "engine_version": "5.8.3-58210709+++UE5+Release-5.8",
+      "project_directory": "/workspace/lyra-runs/interaction-deepseek-r1",
+      "process_id": 42039,
+      "effective_uid": 1000,
+      "executable": "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+      "native_class": "/Script/LyraGame.LyraGameplayAbility_Interact",
+      "loaded_modules": {
+        "LyraGame": {
+          "path": "/workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraGame.so",
+          "sha256": "c346a5b5caa0ba7ac50f731d1a9f5a3bf28156636cb2f2f5e181ccb7df94cfb1",
+          "executable_mapping_lines": [
+            "718156b2f000-718156d41000 r-xp 0035d000 00:39 303830746                  /workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraGame.so"
+          ]
+        },
+        "LyraEditor": {
+          "path": "/workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraEditor.so",
+          "sha256": "8c1d24b1774ae747af0e4daae8ac53d0212fbbca505f70be4d9bfc7c6da1b1f7",
+          "executable_mapping_lines": [
+            "71815594d000-718155974000 r-xp 0002e000 00:39 303830751                  /workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraEditor.so"
+          ]
+        }
+      },
+      "assets": [
+        {
+          "requested_path": "/Game/DefaultGameData.DefaultGameData",
+          "loaded_path": "/Game/DefaultGameData.DefaultGameData",
+          "class": "LyraGameData"
+        },
+        {
+          "requested_path": "/ShooterExplorer/Input/Abilities/GA_Interact.GA_Interact",
+          "loaded_path": "/ShooterExplorer/Input/Abilities/GA_Interact.GA_Interact",
+          "class": "Blueprint"
+        },
+        {
+          "requested_path": "/ShooterExplorer/Maps/L_InventoryTestMap.L_InventoryTestMap",
+          "loaded_path": "/ShooterExplorer/Maps/L_InventoryTestMap.L_InventoryTestMap",
+          "class": "World"
+        }
+      ],
+      "boundary": "Actual baseline module/asset loading only. No save, gameplay, Experience activation, visual/audio acceptance, or score.",
+      "raw_project_directory": "/workspace/lyra-runs/interaction-deepseek-r1/"
+    }
+  },
+  "project_file_unchanged": true,
+  "probe_script_unchanged": true,
+  "scope": "Actual Lyra baseline project, native modules and specified asset loading only. No gameplay, Experience activation, functional acceptance, asset saving, or benchmark score."
+}
+REAL_LYRA_SMALL_BATCH_PASSED

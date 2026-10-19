@@ -1,0 +1,23 @@
+	Command being timed: "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd /workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject -run=pythonscript -EnablePlugins=PythonScriptPlugin,EditorScriptingUtilities -script=/workspace/lyra-results/lyra-load-03/lyra_probe_inside_ue.py -unattended -nullrhi -nosound -NoSourceControl -abslog=/workspace/lyra-results/lyra-load-03/ue.log"
+	User time (seconds): 25.92
+	System time (seconds): 8.20
+	Percent of CPU this job got: 66%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:51.38
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 1874492
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 38025
+	Minor (reclaiming a frame) page faults: 557504
+	Voluntary context switches: 111108
+	Involuntary context switches: 5257
+	Swaps: 0
+	File system inputs: 11619536
+	File system outputs: 15368
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
