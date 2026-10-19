@@ -12,13 +12,15 @@
 
 ## 当前状态与内存限制
 
-旧容器 `25343ccf` 已停止且无可恢复快照。新容器 `a60d60d4` 已完成 GitHub 认证、官方 UE 5.8.3 下载与解压，并恢复精确 interaction 基线及 8689 个 LFS 文件。当前容器的最小真实 UE 无窗口探针已通过：退出 0，8.32 秒，GNU time 最大 RSS 1178120 KiB，OOM 增量为 0。完整 Lyra 默认单并发构建在 SharedPCH 阶段失败，退出 6，146.822 秒，编译器被信号 9 终止，同时 cgroup 的 `oom` 增加 2、`oom_kill` 增加 1。低内存第二轮推进到 19/54 后因持续内存压力，由操作方中止以缩小编译批次；该轮没有新增 OOM，不能记为源码编译失败或超时。[本轮原始证据](evidence/2026-10-19-linux-lyra-a60d60d4/)。**完整 Lyra 构建和加载仍未验证通过，模型计时尚未开始。**
+新容器 `a60d60d4` 已完成官方 UE 5.8.3 安装，恢复精确 interaction 基线及 8689 个 LFS 文件，并在 2026-10-19 22:27（北京时间）完成 **真实 LyraEditor Linux 构建和真实 Lyra 项目的无窗口加载探针**。第三轮采用下文低内存参数和 `--unity-bytes 131072`：49 个构建动作完成，退出 0，406.192 秒；随后加载探针退出 0，51.396 秒，实际确认 LyraGame/LyraEditor 模块、交互原生类、DefaultGameData、GA_Interact 和 L_InventoryTestMap。两步 `oom/oom_kill` 增量均为 0。GNU time 最大 RSS 分别为 1613620 和 1874492 KiB；整容器采样仍接近 4 GiB，不能把单命令 RSS 当作总内存余量。[本轮原始证据](evidence/2026-10-19-linux-lyra-a60d60d4/)。**这证明本次基线编译和指定模块/资源加载通过，不证明三题功能正确；模型计时尚未开始。**
+
+保留的失败与调整记录：默认单并发构建在 SharedPCH 阶段退出 6，146.822 秒，编译器被信号 9 终止，同时 `oom` 增加 2、`oom_kill` 增加 1。低内存第二轮推进到 19/54 后因持续内存压力，由操作方中止以缩小批次，没有新增 OOM；不能记为源码错误或超时。第三轮复用了前两轮可用缓存，并非全新冷构建。当前容器的最小纯内容 UE 探针也通过（退出 0、8.32 秒），但它的范围小于真实 Lyra 加载探针。
 
 新容器已实测 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）。平台手动 `snap` 已返回 `ok=true` 及快照编号，但刷新后快照列表仍显示没有可用快照，尚未验证引擎恢复成功，不能把它当作已经完成的备份。结束容器前应把所需代码和证据保存到 Git。
 
 历史证据：2026-10-19 19:27（北京时间）曾在旧容器以非 root 用户完成 **真实 UE 5.8.3 最小无窗口编辑器探针**：退出 0，耗时 9.572 秒，GNU time 最大 RSS 993032 KiB（约 970 MiB），cgroup 的 `oom/oom_kill` 增量均为 0。[完整结果](evidence/2026-10-19-linux-editor/result.json)、[UE 日志](evidence/2026-10-19-linux-editor/ue.log)和[内存记录](evidence/2026-10-19-linux-editor/memory.txt)已随本分支保存。约 970 MiB 是该命令的 RSS 指标，不是整容器总量；容器总量含后台服务和文件缓存，采样曾接近 4 GiB。第一次探针因缺系统动态库退出 127，补齐依赖后重测成功；两次均未观察到 OOM 增量。
 
-**历史探针只证明当时的最小项目能启动，不证明当前容器已就绪，也不证明完整 Lyra 构建、加载或三题功能验收通过。** 旧容器中曾准备好的 `interaction-deepseek-r1` 同样需要在新容器重新核实或拉取，不能据旧状态直接开始计时。
+**上述历史探针仅证明旧容器当时的最小项目能启动；当前容器的编译和加载结论以本轮证据为准，两者均不等于三题功能验收。** 旧容器 `25343ccf` 已停止且无可恢复快照，后续新建或恢复容器仍需重新核对实际文件、登录和运行状态，不能依据旧结果直接开始计时。
 
 ### 每次进入或恢复容器后先检查
 
@@ -120,7 +122,7 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_lyra_build.py \
 
 检查命令退出码、`result.json` 的 `passed`、`run.exit_code`、超时和启动错误，再阅读 `stdout.log` 中的编译结果。构建证据包括 `doctor.json`、`run.json`、`result.json`、`stdout.log`、`exit-code.txt`、`memory.txt`、`memory-samples.jsonl`、`cgroup-before.json` 和 `cgroup-after.json`。构建通过只证明该次目标构建调用成功，不代表游戏运行或功能验收通过；内存采样的范围与局限同最小探针，不能仅凭 137 判定 OOM。
 
-### 可选：4 GiB 环境下的低内存重试
+### 本轮通过的 4 GiB 构建配置
 
 保留上一轮日志，确认没有其他构建任务仍在运行，再使用新的输出目录重试：
 
@@ -133,12 +135,14 @@ runuser -u lyra-eval -- env \
   --engine /workspace/UE_5.8.3 \
   --project /workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject \
   --output /workspace/lyra-results/interaction-baseline-build-lowmem-01 \
-  --no-pch --no-shared-pch --no-uba --timeout 2700
+  --no-pch --no-shared-pch --no-uba --unity-bytes 131072 --timeout 1800
 ```
 
-`0x20000000` 为 512 MiB，限制的是 .NET GC 管理的堆，并非整个 UBT 进程的 RSS，更不限制 Clang、链接器或整容器总内存。`--no-pch` 绕过全部预编译头，`--no-shared-pch` 显式禁用共享预编译头；UE 5.8.3 的 `--no-uba` 只关闭 detour，仍可能使用 UBAExecutor。这些设置可能降低部分内存需求，也可能使构建更慢，不能保证在 4 GiB 或 2700 秒内成功。
+`0x20000000` 为 512 MiB，限制的是 .NET GC 管理的堆，并非整个 UBT 进程的 RSS，更不限制 Clang、链接器或整容器总内存。`--no-pch` 绕过全部预编译头，`--no-shared-pch` 显式禁用共享预编译头；UE 5.8.3 的 `--no-uba` 只关闭 detour，仍可能使用 UBAExecutor。本轮该配置已通过，但不保证其他项目状态、冷缓存或不同后台负载下也能在 4 GiB 和 1800 秒内成功。
 
 运行器会在测量记录中保存追加参数后的完整构建命令，`build_environment` 仅记录上述三个 DOTNET 环境变量。仍按本次实际退出码、日志和 cgroup 增量判定结果，不将重试配置本身视为通过证据。
+
+`--unity-bytes 131072` 对应真实 UBT 参数 `-BytesPerUnityCPP=131072`，把默认约 384 KiB 的源码合并目标缩到 128 KiB；它不是内存硬上限，可能增加编译动作。本轮第三次实测复用了前两轮留下的可用构建缓存。操作方中止的旧轮次已保留原因，不能标记为源码错误、OOM 或自动超时。构建运行器还会清理另建进程组的后代；三种假子进程自检已在本容器通过，不属于 UE 功能测试。
 
 ### 构建通过后加载真实 Lyra 项目
 
