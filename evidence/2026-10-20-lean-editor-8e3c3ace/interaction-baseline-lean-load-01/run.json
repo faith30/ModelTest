@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "passed": true,
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/workspace/lyra-results/interaction-baseline-lean-load-01/memory.txt",
+    "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject",
+    "-run=pythonscript",
+    "-EnablePlugins=PythonScriptPlugin,EditorScriptingUtilities",
+    "-script=/workspace/lyra-results/interaction-baseline-lean-load-01/lyra_probe_inside_ue.py",
+    "-unattended",
+    "-nullrhi",
+    "-nosound",
+    "-NoSourceControl",
+    "-abslog=/workspace/lyra-results/interaction-baseline-lean-load-01/ue.log"
+  ],
+  "cwd": "/workspace/lyra-runs/interaction-deepseek-r1",
+  "started_at": "2026-10-19T17:12:53.597864+00:00",
+  "timeout_seconds": 600,
+  "exit_code": 0,
+  "timed_out": false,
+  "interrupted": false,
+  "launch_error": null,
+  "probe_script_sha256": "7fdcd7133f8c7bbb515537fd1db2a4ad454246351a60acfcdc370371a7d7a227",
+  "project_file_sha256": "776d9915742439890194490c8572ee4ccfef0ac198a67f0b72c9bc0b64d30971",
+  "time_process_id": 25515,
+  "finished_at": "2026-10-19T17:13:30.355708+00:00",
+  "elapsed_seconds": 36.758,
+  "cgroup_events_delta": {
+    "oom_group_kill": 0,
+    "oom": 0,
+    "high": 0,
+    "max": 8882,
+    "oom_kill": 0,
+    "low": 0
+  },
+  "cgroup_local_events_delta": {
+    "oom_group_kill": 0,
+    "oom": 0,
+    "high": 0,
+    "max": 8882,
+    "oom_kill": 0,
+    "low": 0
+  },
+  "memory": {
+    "sample_count": 37,
+    "max_sampled_cgroup_memory_current_bytes": 4294963200,
+    "time_max_resident_set_kbytes": 2256388,
+    "time_report_available": true,
+    "boundary": "Cgroup includes all processes and file cache; samples can miss peaks. memory.peak is lifetime, not this run. GNU time RSS is not aggregate container memory and can be absent after timeout. Exit -9/137 alone is not proof of OOM; event deltas do not attribute an OOM to a specific process."
+  },
+  "probe_validation": {
+    "valid": true,
+    "problems": [],
+    "probe": {
+      "schema_version": 1,
+      "probe": "real_lyra_baseline_load",
+      "status": "completed",
+      "executed_in_real_unreal": true,
+      "engine_version": "5.8.3-58210709+++UE5+Release-5.8",
+      "project_directory": "/workspace/lyra-runs/interaction-deepseek-r1",
+      "process_id": 25516,
+      "effective_uid": 1000,
+      "executable": "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+      "native_class": "/Script/LyraGame.LyraGameplayAbility_Interact",
+      "loaded_modules": {
+        "LyraGame": {
+          "path": "/workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraGame.so",
+          "sha256": "c346a5b5caa0ba7ac50f731d1a9f5a3bf28156636cb2f2f5e181ccb7df94cfb1",
+          "executable_mapping_lines": [
+            "7fa140640000-7fa140852000 r-xp 0035d000 00:7a 781290818                  /workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraGame.so"
+          ]
+        },
+        "LyraEditor": {
+          "path": "/workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraEditor.so",
+          "sha256": "8c1d24b1774ae747af0e4daae8ac53d0212fbbca505f70be4d9bfc7c6da1b1f7",
+          "executable_mapping_lines": [
+            "7fa13f488000-7fa13f4af000 r-xp 0002e000 00:7a 781290825                  /workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraEditor.so"
+          ]
+        }
+      },
+      "assets": [
+        {
+          "requested_path": "/Game/DefaultGameData.DefaultGameData",
+          "loaded_path": "/Game/DefaultGameData.DefaultGameData",
+          "class": "LyraGameData"
+        },
+        {
+          "requested_path": "/ShooterExplorer/Input/Abilities/GA_Interact.GA_Interact",
+          "loaded_path": "/ShooterExplorer/Input/Abilities/GA_Interact.GA_Interact",
+          "class": "Blueprint"
+        },
+        {
+          "requested_path": "/ShooterExplorer/Maps/L_InventoryTestMap.L_InventoryTestMap",
+          "loaded_path": "/ShooterExplorer/Maps/L_InventoryTestMap.L_InventoryTestMap",
+          "class": "World"
+        }
+      ],
+      "boundary": "Actual baseline module/asset loading only. No save, gameplay, Experience activation, visual/audio acceptance, or score.",
+      "raw_project_directory": "/workspace/lyra-runs/interaction-deepseek-r1/"
+    }
+  },
+  "project_file_unchanged": true,
+  "probe_script_unchanged": true,
+  "scope": "Actual Lyra baseline project, native modules and specified asset loading only. No gameplay, Experience activation, functional acceptance, asset saving, or benchmark score."
+}

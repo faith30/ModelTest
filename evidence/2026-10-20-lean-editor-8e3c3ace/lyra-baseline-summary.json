@@ -1,0 +1,34 @@
+{
+  "recorded_at_utc": "2026-10-19T17:15:24.853392+00:00",
+  "container_id": "8e3c3aceaa504364833a5085188dff19",
+  "baseline_sha": "dcba4d7625373ed1f128af1de54e4e376b0fb4af",
+  "lfs_files_verified": 8689,
+  "first_build": "stopped after repeated managed System.OutOfMemoryException with 512 MiB heap; cgroup oom and oom_kill zero; descendants cleaned",
+  "retry_dotnet_heap_bytes": 1073741824,
+  "build_exit_code": 0,
+  "build_elapsed_seconds": 481.096,
+  "build_max_rss_kib": 1664152,
+  "build_oom_events": {
+    "high": 0,
+    "oom_group_kill": 0,
+    "oom_kill": 0,
+    "oom": 0,
+    "low": 0,
+    "max": 7811
+  },
+  "load_passed": true,
+  "load_exit_code": 0,
+  "load_elapsed_seconds": 36.758,
+  "load_max_rss_kib": 2256388,
+  "load_oom_events": {
+    "oom_group_kill": 0,
+    "oom": 0,
+    "high": 0,
+    "max": 8882,
+    "oom_kill": 0,
+    "low": 0
+  },
+  "feature_timer_started": false,
+  "feature_scores": null,
+  "large_snapshot_restore_verified": false
+}

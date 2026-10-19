@@ -1,0 +1,21 @@
+{
+  "output": "/workspace/lyra-results/interaction-baseline-lean-load-01/probe.json",
+  "project_directory": "/workspace/lyra-runs/interaction-deepseek-r1",
+  "editor": "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+  "native_class": "/Script/LyraGame.LyraGameplayAbility_Interact",
+  "assets": [
+    "/Game/DefaultGameData.DefaultGameData",
+    "/ShooterExplorer/Input/Abilities/GA_Interact.GA_Interact",
+    "/ShooterExplorer/Maps/L_InventoryTestMap.L_InventoryTestMap"
+  ],
+  "modules": {
+    "LyraGame": {
+      "path": "/workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraGame.so",
+      "sha256": "c346a5b5caa0ba7ac50f731d1a9f5a3bf28156636cb2f2f5e181ccb7df94cfb1"
+    },
+    "LyraEditor": {
+      "path": "/workspace/lyra-runs/interaction-deepseek-r1/Binaries/Linux/libUnrealEditor-LyraEditor.so",
+      "sha256": "8c1d24b1774ae747af0e4daae8ac53d0212fbbca505f70be4d9bfc7c6da1b1f7"
+    }
+  }
+}

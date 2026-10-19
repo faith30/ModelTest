@@ -1,0 +1,1 @@
+{"reason": "Repeated System.OutOfMemoryException with 512 MiB .NET heap; stop infrastructure warm build before retry", "utc": "2026-10-19T17:02:50.990559+00:00", "signal": "SIGTERM", "pid": 18571}

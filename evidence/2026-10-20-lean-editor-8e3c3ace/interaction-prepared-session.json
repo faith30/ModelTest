@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "feature": "interaction",
+  "name": "deepseek-r1",
+  "model": "deepseek-v4-pro",
+  "workspace": "/workspace/lyra-runs/interaction-deepseek-r1",
+  "origin_url": "https://github.com/faith30/ModelTest.git",
+  "result_branch": "codex/deepseek-interaction-deepseek-r1",
+  "baseline_branch": "codex/deepseek-start-interaction",
+  "starting_commit": "dcba4d7625373ed1f128af1de54e4e376b0fb4af",
+  "wall_time_seconds": 2700,
+  "prepared_at_utc": "2026-10-19T16:58:58+00:00",
+  "prompt_file": "/workspace/lyra-runs/interaction-deepseek-r1.prompt.txt",
+  "prompt_sha256": "2a6c9e651e328d9cb56ae8736e33fe67e28ba547ae59b801f0e2f13c8ce2d562",
+  "task_file": "Benchmarks/interaction/TASK.md",
+  "protected_blobs": {
+    "Benchmarks/interaction/TASK.md": "1ae707e91d130939b2264e4f2a0d9fe2e957c7a3",
+    "Benchmarks/interaction/scope.json": "5374c98a6f8cc1c683920312b90faeb16cf16bb2",
+    "Benchmarks/interaction/baseline-readback.json": "6278180d8fb587d9bace9a3cd62698b32dcbe186",
+    "Benchmarks/interaction/baseline-validation.json": "0fc8be45db55ab54306154daa37fbc800ce16173"
+  },
+  "lfs_files_checked": 8689,
+  "environment": {
+    "system": "Linux",
+    "machine": "x86_64",
+    "python": "3.12.13",
+    "ue_executable_on_path": null,
+    "ue_compilation": "not_verified",
+    "ue_runtime": "not_verified"
+  },
+  "notes": [
+    "The origin remote was removed to reduce accidental access to other branches; this is not a security sandbox.",
+    "No model, UE compilation, runtime test, or scoring was performed by prepare."
+  ]
+}

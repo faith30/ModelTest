@@ -1,0 +1,25 @@
+Setting up bundled DotNet SDK
+Running command : dotnet Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll LyraEditor Linux Development -Project=/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=1 -NoPCH -NoSharedPCH -NoUBA -BytesPerUnityCPP=131072
+Log file: /workspace/lyra-home/.config/Epic/UnrealBuildTool/Log.txt
+Executing up to 1 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (/workspace/lyra-runs/interaction-deepseek-r1).
+Creating makefile for LyraEditor (no existing makefile)
+Cloud - HttpConnection: socket recv error after reading 0 bytes - Resource temporarily unavailable (169.254.169.254 latest/api/token)
+Cloud - HttpConnection: socket recv error after reading 0 bytes - Resource temporarily unavailable (169.254.169.254 computeMetadata/v1/instance/service-accounts/default/identity?audience=https://example.com)
+UbaStorageServer - FileMapping backing: disk /workspace/lyra-home/.epic/UnrealBuildAccelerator/uba_filemap (/dev/shm 64MB < floor 1024MB; memfd: pidfd_getfd errno=1) - this works but is slower. Container? memfd needs CAP_SYS_PTRACE (or a seccomp profile allowing pidfd_getfd); alternatively raise --shm-size to use /dev/shm.
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+Compiling GameFeaturePlugins in branch ++UE5+Release-5.8
+UHT compiled-in object format Default
+/workspace/UE_5.8.3/Engine/Plugins/FX/Niagara/Source/NiagaraAnimNotifies/Public/AnimNotify_PlayNiagaraEffect.h(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Plugins/MovieScene/MovieRenderPipeline/Source/MovieRenderPipelineCore/Public/MoviePipelineGameOverrideSetting.h(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.
+/workspace/UE_5.8.3/Engine/Source/UnknownSource(1): Internal Compiler Error: System.OutOfMemoryException - Exception of type 'System.OutOfMemoryException' was thrown.

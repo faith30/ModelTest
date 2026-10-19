@@ -1,0 +1,94 @@
+Setting up bundled DotNet SDK
+Running command : dotnet Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll LyraEditor Linux Development -Project=/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=1 -NoPCH -NoSharedPCH -NoUBA -BytesPerUnityCPP=131072
+Log file: /workspace/lyra-home/.config/Epic/UnrealBuildTool/Log.txt
+Executing up to 1 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (/workspace/lyra-runs/interaction-deepseek-r1).
+UbaStorageServer - FileMapping backing: disk /workspace/lyra-home/.epic/UnrealBuildAccelerator/uba_filemap (/dev/shm 64MB < floor 1024MB; memfd: pidfd_getfd errno=1) - this works but is slower. Container? memfd needs CAP_SYS_PTRACE (or a seccomp profile allowing pidfd_getfd); alternatively raise --shm-size to use /dev/shm.
+UbaSessionServer - Disable remote execution (remote sessions will finish current processes)
+Compiling GameFeaturePlugins in branch ++UE5+Release-5.8
+UHT compiled-in object format Default
+UHT processed LyraEditor in 9.6706046 seconds (672 generated files written)
+Building LyraEditor...
+===== Toolchain Information =====
+Using ISPC compiler (/workspace/UE_5.8.3/Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20240919, LLVM 18.1.6)
+Using Clang compiler 20.1.8 (/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++)
+  clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-unknown-linux-gnu Thread model: posix InstalledDir: /workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin
+Using Clang archiver (/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/llvm-ar)
+  LLVM (http://llvm.org/):   LLVM version 20.1.8   Optimized build.
+Using toolchain located at '/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu'
+Using bundled libc++ standard C++ library.
+Compressing debug files
+=================================
+Using Unreal Build Accelerator local executor to run 61 action(s)
+  CPU 1 physical cores, 2 logical cores
+  Memory 1 GB physical, 6.15 GB/15.42 GB committed
+  UBA Storage capacity 40 GB
+[1/61] Compile Module.CommonUser.1.cpp [NoUba]
+[2/61] Compile Module.CommonUser.2.cpp [NoUba]
+[3/61] Link libUnrealEditor-CommonUser.so [NoUba]
+[4/61] Compile Module.ModularGameplayActors.cpp [NoUba]
+[5/61] Link libUnrealEditor-ModularGameplayActors.so [NoUba]
+[6/61] Compile Module.CommonGame.cpp [NoUba]
+[7/61] Link libUnrealEditor-CommonGame.so [NoUba]
+[8/61] Compile Module.CommonLoadingScreen.cpp [NoUba]
+[9/61] Link libUnrealEditor-CommonLoadingScreen.so [NoUba]
+[10/61] Compile Module.GameplayMessageRuntime.cpp [NoUba]
+[11/61] Link libUnrealEditor-GameplayMessageRuntime.so [NoUba]
+[12/61] Compile Module.AsyncMixin.cpp [NoUba]
+[13/61] Link libUnrealEditor-AsyncMixin.so [NoUba]
+[14/61] Compile Module.GameSettings.cpp [NoUba]
+[15/61] Link libUnrealEditor-GameSettings.so [NoUba]
+[16/61] Compile Module.GameSubtitles.cpp [NoUba]
+[17/61] Link libUnrealEditor-GameSubtitles.so [NoUba]
+[18/61] Compile Module.UIExtension.cpp [NoUba]
+[19/61] Link libUnrealEditor-UIExtension.so [NoUba]
+[20/61] Compile Module.LyraGame.1.cpp [NoUba]
+[21/61] Compile Module.LyraGame.2.cpp [NoUba]
+[22/61] Compile Module.LyraGame.3.cpp [NoUba]
+[23/61] Compile Module.LyraGame.4.cpp [NoUba]
+[24/61] Compile Module.LyraGame.5.cpp [NoUba]
+[25/61] Compile Module.LyraGame.6.cpp [NoUba]
+[26/61] Compile Module.LyraGame.7.cpp [NoUba]
+[27/61] Compile Module.LyraGame.8.cpp [NoUba]
+[28/61] Compile Module.LyraGame.9.cpp [NoUba]
+[29/61] Link libUnrealEditor-LyraGame.so [NoUba]
+[30/61] Compile AssetTypeActions_LyraContextEffectsLibrary.cpp [NoUba]
+[31/61] Compile CheckChaosMeshCollision.cpp [NoUba]
+[32/61] Compile ContentValidationCommandlet.cpp [NoUba]
+[33/61] Compile CreateRedirectorPackage.cpp [NoUba]
+[34/61] Compile DiffCollectionReferenceSupport.cpp [NoUba]
+[35/61] Compile EditorValidator.cpp [NoUba]
+[36/61] Compile EditorValidator_Blueprints.cpp [NoUba]
+[37/61] Compile EditorValidator_Load.cpp [NoUba]
+[38/61] Compile EditorValidator_MaterialFunctions.cpp [NoUba]
+[39/61] Compile EditorValidator_SourceControl.cpp [NoUba]
+[40/61] Compile GameEditorStyle.cpp [NoUba]
+[41/61] Compile LyraContextEffectsLibraryFactory.cpp [NoUba]
+[42/61] Compile LyraEditor.cpp [NoUba]
+[43/61] Compile LyraEditorEngine.cpp [NoUba]
+[44/61] Compile Module.LyraEditor.gen.cpp [NoUba]
+[45/61] Compile PerModuleInline.gen.cpp [NoUba]
+[46/61] Link libUnrealEditor-LyraEditor.so [NoUba]
+[47/61] Compile Module.CommonStartupLoadingScreen.cpp [NoUba]
+[48/61] Link libUnrealEditor-CommonStartupLoadingScreen.so [NoUba]
+[49/61] Compile Module.ShooterCoreRuntime.cpp [NoUba]
+[50/61] Link libUnrealEditor-ShooterCoreRuntime.so [NoUba]
+[51/61] Compile Module.ShooterTestsRuntime.cpp [NoUba]
+[52/61] Link libUnrealEditor-ShooterTestsRuntime.so [NoUba]
+[53/61] Compile Module.TopDownArenaRuntime.cpp [NoUba]
+[54/61] Link libUnrealEditor-TopDownArenaRuntime.so [NoUba]
+[55/61] Compile Module.GameplayMessageNodes.cpp [NoUba]
+[56/61] Link libUnrealEditor-GameplayMessageNodes.so [NoUba]
+[57/61] Compile Module.LyraExtTool.cpp [NoUba]
+[58/61] Link libUnrealEditor-LyraExtTool.so [NoUba]
+[59/61] Compile Module.PocketWorlds.cpp [NoUba]
+[60/61] Link libUnrealEditor-PocketWorlds.so [NoUba]
+[61/61] WriteMetadata LyraEditor.target [NoUba]
+
+Total time in Unreal Build Accelerator local executor: 468.90 seconds
+Output binary: /workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor
+
+Result: Succeeded
+Total execution time: 480.85 seconds
+Trace written to file /workspace/lyra-home/.config/Epic/UnrealBuildTool/Trace.uba with size 35.4kb

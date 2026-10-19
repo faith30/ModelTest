@@ -1,0 +1,81 @@
+{
+  "complete": true,
+  "root_pid": 18571,
+  "subreaper_enabled": true,
+  "observed": [
+    {
+      "pid": 19999,
+      "ppid": 18571,
+      "pgid": 18599,
+      "sid": 18573,
+      "starttime": 29495954,
+      "state": "Z"
+    },
+    {
+      "pid": 18581,
+      "ppid": 18571,
+      "pgid": 18581,
+      "sid": 18573,
+      "starttime": 29480601,
+      "state": "Z"
+    },
+    {
+      "pid": 18574,
+      "ppid": 18571,
+      "pgid": 18573,
+      "sid": 18573,
+      "starttime": 29480576,
+      "state": "Z"
+    },
+    {
+      "pid": 18599,
+      "ppid": 18571,
+      "pgid": 18599,
+      "sid": 18573,
+      "starttime": 29480703,
+      "state": "Z"
+    }
+  ],
+  "signals": [
+    {
+      "pid": 18599,
+      "starttime": 29480703,
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 18581,
+      "starttime": 29480601,
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 19999,
+      "starttime": 29495954,
+      "signal": "SIGTERM"
+    }
+  ],
+  "reaped": [
+    {
+      "pid": 18574,
+      "starttime": 29480576,
+      "wait_status": 15
+    },
+    {
+      "pid": 18599,
+      "starttime": 29480703,
+      "wait_status": 15
+    },
+    {
+      "pid": 19999,
+      "starttime": 29495954,
+      "wait_status": 15
+    },
+    {
+      "pid": 18581,
+      "starttime": 29480601,
+      "wait_status": 15
+    }
+  ],
+  "remaining": [],
+  "errors": [],
+  "boundary": "Tracks only this wrapper's descendants. SIGTERM/SIGINT, timeout and normal completion are handled; wrapper SIGKILL or container termination cannot run cleanup."
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "action": "build",
+  "passed": true,
+  "run": {
+    "command": [
+      "/usr/bin/time",
+      "-v",
+      "-o",
+      "/workspace/lyra-results/interaction-baseline-lean-build-02/memory.txt",
+      "bash",
+      "/workspace/UE_5.8.3/Engine/Build/BatchFiles/Linux/Build.sh",
+      "LyraEditor",
+      "Linux",
+      "Development",
+      "-Project=/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject",
+      "-WaitMutex",
+      "-NoHotReloadFromIDE",
+      "-MaxParallelActions=1",
+      "-NoPCH",
+      "-NoSharedPCH",
+      "-NoUBA",
+      "-BytesPerUnityCPP=131072"
+    ],
+    "cwd": "/workspace/lyra-runs/interaction-deepseek-r1",
+    "started_at": "2026-10-19T17:03:59.411405+00:00",
+    "timeout_seconds": 1800,
+    "exit_code": 0,
+    "timed_out": false,
+    "interrupted": false,
+    "launch_error": null,
+    "stdout": "stdout.log",
+    "pid": 20357,
+    "finished_at": "2026-10-19T17:12:00.507852+00:00",
+    "elapsed_seconds": 481.096,
+    "build_environment": {
+      "DOTNET_gcServer": "0",
+      "DOTNET_GCHeapHardLimit": "0x40000000",
+      "DOTNET_GCConserveMemory": "7"
+    },
+    "process_cleanup": {
+      "complete": true,
+      "root_pid": 20354,
+      "subreaper_enabled": true,
+      "observed": [
+        {
+          "pid": 25202,
+          "ppid": 20354,
+          "pgid": 25202,
+          "sid": 25191,
+          "starttime": 29550791,
+          "state": "Z"
+        },
+        {
+          "pid": 20380,
+          "ppid": 20354,
+          "pgid": 20380,
+          "sid": 20357,
+          "starttime": 29502785,
+          "state": "Z"
+        },
+        {
+          "pid": 25293,
+          "ppid": 20354,
+          "pgid": 20380,
+          "sid": 20357,
+          "starttime": 29550869,
+          "state": "Z"
+        }
+      ],
+      "signals": [
+        {
+          "pid": 20380,
+          "starttime": 29502785,
+          "signal": "SIGTERM"
+        },
+        {
+          "pid": 25293,
+          "starttime": 29550869,
+          "signal": "SIGTERM"
+        }
+      ],
+      "reaped": [
+        {
+          "pid": 25202,
+          "starttime": 29550791,
+          "wait_status": 0
+        },
+        {
+          "pid": 20380,
+          "starttime": 29502785,
+          "wait_status": 15
+        },
+        {
+          "pid": 25293,
+          "starttime": 29550869,
+          "wait_status": 15
+        }
+      ],
+      "remaining": [],
+      "errors": [],
+      "boundary": "Tracks only this wrapper's descendants. SIGTERM/SIGINT, timeout and normal completion are handled; wrapper SIGKILL or container termination cannot run cleanup."
+    },
+    "cgroup_events_delta": {
+      "high": 0,
+      "oom_group_kill": 0,
+      "oom_kill": 0,
+      "oom": 0,
+      "low": 0,
+      "max": 7811
+    },
+    "cgroup_local_events_delta": {
+      "high": 0,
+      "oom_group_kill": 0,
+      "oom_kill": 0,
+      "oom": 0,
+      "low": 0,
+      "max": 7811
+    },
+    "memory": {
+      "sample_count": 481,
+      "sampling_errors": [],
+      "max_sampled_cgroup_memory_current_bytes": 4294967296,
+      "time_max_resident_set_kbytes": 1664152,
+      "time_report_available": true,
+      "boundary": "Cgroup values include all processes and file cache; 1-second samples can miss peaks. memory.peak is a cgroup lifetime value and was not reset. GNU time max RSS is not simultaneous aggregate cgroup memory. Timeout or signals can prevent its final report. Exit -9/137 alone does not prove OOM; event deltas are shared-cgroup evidence, not per-process attribution."
+    },
+    "build_scope": "The complete LyraEditor Linux Development target via headless_ue build; existing build caches may be reused. No feature runtime tests or benchmark score."
+  },
+  "engine_version": "5.8.3",
+  "scope": "Actual process result only; no benchmark score or visual/audio acceptance is inferred.",
+  "status": "passed"
+}
