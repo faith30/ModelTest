@@ -1,0 +1,62 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/workspace/lyra-results/interaction-baseline-build-02/memory.txt",
+    "bash",
+    "/workspace/UE_5.8.3/Engine/Build/BatchFiles/Linux/Build.sh",
+    "LyraEditor",
+    "Linux",
+    "Development",
+    "-Project=/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject",
+    "-WaitMutex",
+    "-NoHotReloadFromIDE",
+    "-MaxParallelActions=1",
+    "-NoPCH",
+    "-NoSharedPCH",
+    "-NoUBA"
+  ],
+  "cwd": "/workspace/lyra-runs/interaction-deepseek-r1",
+  "started_at": "2026-10-19T14:04:11.942377+00:00",
+  "timeout_seconds": 2700,
+  "exit_code": 143,
+  "timed_out": false,
+  "interrupted": false,
+  "launch_error": null,
+  "stdout": "stdout.log",
+  "pid": 27018,
+  "finished_at": "2026-10-19T14:13:25.125069+00:00",
+  "elapsed_seconds": 553.183,
+  "build_environment": {
+    "DOTNET_gcServer": "0",
+    "DOTNET_GCHeapHardLimit": "0x20000000",
+    "DOTNET_GCConserveMemory": "7"
+  },
+  "remaining_group_cleanup_signals": [],
+  "cgroup_events_delta": {
+    "oom": 0,
+    "oom_group_kill": 0,
+    "max": 330746,
+    "oom_kill": 0,
+    "high": 0,
+    "low": 0
+  },
+  "cgroup_local_events_delta": {
+    "oom": 0,
+    "oom_group_kill": 0,
+    "max": 330746,
+    "oom_kill": 0,
+    "high": 0,
+    "low": 0
+  },
+  "memory": {
+    "sample_count": 553,
+    "sampling_errors": [],
+    "max_sampled_cgroup_memory_current_bytes": 4294967296,
+    "time_max_resident_set_kbytes": 1696016,
+    "time_report_available": true,
+    "boundary": "Cgroup values include all processes and file cache; 1-second samples can miss peaks. memory.peak is a cgroup lifetime value and was not reset. GNU time max RSS is not simultaneous aggregate cgroup memory. Timeout or signals can prevent its final report. Exit -9/137 alone does not prove OOM; event deltas are shared-cgroup evidence, not per-process attribution."
+  },
+  "build_scope": "The complete LyraEditor Linux Development target via headless_ue build; existing build caches may be reused. No feature runtime tests or benchmark score."
+}

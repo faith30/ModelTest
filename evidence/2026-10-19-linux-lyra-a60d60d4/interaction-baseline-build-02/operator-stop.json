@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-19T14:13:25.092652+00:00",
+  "reason": "Stopped by operator to reduce unity batch size after sustained cgroup memory pressure; not an OOM or timeout verdict",
+  "process_groups": [
+    29369,
+    27026,
+    27044
+  ]
+}
