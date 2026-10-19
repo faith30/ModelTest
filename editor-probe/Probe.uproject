@@ -1,0 +1,18 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "",
+  "Category": "Diagnostics",
+  "Description": "Content-only project for a read-only UE 5.8.3 Python API diagnostic.",
+  "DisableEnginePluginsByDefault": true,
+  "Modules": [],
+  "Plugins": [
+    {
+      "Name": "PythonScriptPlugin",
+      "Enabled": true
+    },
+    {
+      "Name": "EditorScriptingUtilities",
+      "Enabled": true
+    }
+  ]
+}

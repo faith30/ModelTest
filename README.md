@@ -16,7 +16,7 @@
 
 无窗口模式仍是真实 UE：Linux Editor 加 `-unattended -nullrhi -nosound` 可以执行适用的 commandlet、资源脚本与 Automation。它节省渲染开销，但不消除编译器、链接器、编辑器和资源加载的内存需求。4 GiB 不作为脚本的硬性拒绝条件；是否足够须由实际启动、构建和内存峰值证明。不能把没有启动 UE 的测试替身算作 UE 验证。
 
-优先安装匹配版本的 Linux **预编译 Editor**，再编 Lyra 项目。当前 Windows 引擎和 Windows-host 的 `clang++.exe` 不能直接在 Linux 运行。官方 Linux 下载需要 Epic 账户和许可；必须确认提供准确 UE 5.8.3，并检查 PythonScriptPlugin、EditorScriptingUtilities、BlueprintEditorLibrary/UMG 工具是否齐全。不要假定预编译包包含全部实验插件。
+优先安装匹配版本的 Linux **预编译 Editor**，再编 Lyra 项目。当前 Windows 引擎和 Windows-host 的 `clang++.exe` 不能直接在 Linux 运行。2026-10-19 已在官方账户下载页确认 `Linux_Unreal_Engine_5.8.3.zip`，标注约 37.08 GB，上传日期 2026-09-22。安装后仍需检查 PythonScriptPlugin、EditorScriptingUtilities、BlueprintEditorLibrary/UMG 工具是否齐全；不要假定预编译包包含全部实验插件。
 
 - [官方 Linux 安装说明](https://dev.epicgames.com/documentation/en-us/unreal-engine/linux-development-quickstart-for-unreal-engine)
 - [官方 Linux 下载](https://www.unrealengine.com/en-US/linux)
@@ -64,6 +64,32 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/headless_ue.py build
 `doctor` 只检查文件和环境，不证明 UE 已经启动。`build` 调用真实 `Build.sh`，默认单并发，保存命令、耗时、退出码和日志。缺引擎、版本不匹配或 root 运行会明确拒绝；缺依赖、OOM、超时等必须按环境阻塞记录。
 
 ## 3. 在 Claude 插件开始一题
+
+### 可选：先做最小编辑器启动探针
+
+在非 root 终端执行以下命令。它只打开最小纯内容项目并查询真实引擎版本及 Python API，不编译 Lyra、不修改资产、不计分。先复制模板是为了让编辑器缓存写到独立输出位置。
+
+```bash
+export UE_ROOT=/workspace/UE_5.8.3
+export KIT=/workspace/lyra-feature-kit
+export PROBE_OUT=/workspace/lyra-results/editor-probe-01
+mkdir "$PROBE_OUT"
+mkdir "$PROBE_OUT/project"
+cp "$KIT/editor-probe/Probe.uproject" "$PROBE_OUT/project/Probe.uproject"
+export LYRA_EDITOR_PROBE_OUTPUT="$PROBE_OUT/probe.json"
+timeout --signal=TERM --kill-after=10s 300 /usr/bin/time -v \
+  -o "$PROBE_OUT/memory.txt" \
+  "$UE_ROOT/Engine/Binaries/Linux/UnrealEditor" "$PROBE_OUT/project/Probe.uproject" \
+  -run=pythonscript "-script=$KIT/editor_probe.py" \
+  -unattended -nullrhi -nosound -NoShaderCompile -NoSourceControl \
+  "-abslog=$PROBE_OUT/ue.log" > "$PROBE_OUT/stdout.log" 2>&1
+echo "UE probe exit: $?"
+cat "$PROBE_OUT/probe.json"
+```
+
+同时检查退出码为 0、`probe.json` 的 `status=completed`、`executed_in_real_unreal=true` 以及 `memory.txt` 的 Maximum resident set size。任一文件缺失或状态不符都不算探针通过。最小探针成功不证明 Lyra 构建或完整场景在 4 GiB 内能完成；仍需上面的基线构建和对应自动化验证。
+
+### 开始计时
 
 只有基线构建和所需资源工具验证成功后才开始正式计时。VS Code 只打开这一题的目录，不把其他候选、原工程或评估器一起打开。在 Claude 插件选择 `deepseek-v4-pro`、开启全新会话；记录平台实际支持的推理档位，不假定它与 GPT 的 high 等价。
 
