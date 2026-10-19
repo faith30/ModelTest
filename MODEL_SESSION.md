@@ -18,7 +18,7 @@ python3 /workspace/lyra-feature-kit/run_model_session.py \
   --model deepseek-v4-pro --print --output-format json
 ```
 
-本次成功的 Read 确认记录为监督器 `uid=0/euid=0`，只验证了该身份下的平台 shell 包装；没有证明 `lyra-eval` 登录 shell 同样能加载函数、访问 CLI 配置或接续 session。正式平台 CLI 可按已核实的 root 包装运行，不为切换 CLI 用户而绕过平台函数或迁移凭据。UE 与构建必须另用 `runuser -u lyra-eval -- ...` 等现场已核实的非 root 调用，并事先配好工程/输出权限。输出目录必须是工程之外的新目录，拒绝覆盖。`--seconds` 的短预算只用于自测，不能算正式 45 分钟。
+本次 Read 工具调用及进程退出成功的记录为监督器 `uid=0/euid=0`，只验证了该身份下的 CLI 调用与清理，没有证明平台轮次已经结束；也没有证明 `lyra-eval` 登录 shell 同样能加载函数、访问 CLI 配置或接续 session。CLI 执行身份可沿用已核实的 root 包装，但正式平台采集路径仍待验证，不为切换 CLI 用户而绕过平台函数或迁移凭据。UE 与构建必须另用 `runuser -u lyra-eval -- ...` 等现场已核实的非 root 调用，并事先配好工程/输出权限。输出目录必须是工程之外的新目录，拒绝覆盖。`--seconds` 的短预算只用于自测，不能算正式 45 分钟。
 
 输出：原样 `prompt.txt`、直接流入文件的 `stdout.log` / `stderr.log`、`run.json`。报告包括完整 argv、Prompt SHA-256、启动/截止/停止请求/观察到停止的 UTC、单调时钟用时与 overshoot、子进程身份和信号、清理残留、前后 Git HEAD/分支/状态。`run.json` 初始为 `not_started` 或 `running`，只有最终写入后才有完成状态；进程被 `SIGKILL` 或容器销毁时不能假定最终报告存在。
 
@@ -37,3 +37,7 @@ python3 -B /workspace/lyra-feature-kit/test_run_model_session.py
 2026-10-20 的现场验证记录见 [证据说明](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)：[11 项自测](evidence/2026-10-20-lean-editor-8e3c3ace/model-session-self-test.log) 在远程 Linux 全部通过，其中 7 项为真实 Linux 进程场景，均未调用模型或 UE。另一次实际 DeepSeek CLI 环境确认使用 `--tools Read --allowedTools Read --permission-mode default`，300 秒上限下约 11.6 秒正常结束，退出码 0、清理完成，见 [监督记录](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-confirm-01/run.json) 和 [实际回复](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-confirm-01/stdout.log)。这只验证 Read 确认轮；正式任务的 Bash/Edit 权限仍需现场核验。
 
 平台完整轨迹的最终回复已另存为[截图](evidence/2026-10-20-lean-editor-8e3c3ace/platform-claude-response.png)。快照状态截图记录的中国时间 00:40，含引擎的大快照仍为“等快照”，尚未证明可恢复。以上自测和确认轮都不是 45 分钟功能测试，不产生题目分数。
+
+随后平台 UI 的现场观察进一步区分了 session 与 Turn 状态：成功的小快照实验来自 VS Code Claude 插件，session 前缀 `67d71a47` 的 Turn 1 显示中国时间 2026-10-19 23:45:38 至 23:45:43、耗时 5.0 秒并完成 Snapshot。CLI session `aaa514c7-ae0f-4a96-a119-d85ed090c849` 虽显示 session/pipeline completed 且保存了 raw response，Turn 1 仍显示 2026-10-20 00:38:08 至 `-`、进行中，至 01:09 仍为“等快照”。因此 `--print` 调用返回 0、`wait` 返回以及 `cleanup.complete=true` 均不能当作平台 Turn 结束或快照生成的验证；这些差异尚无已确认的根因。
+
+当前下一步是：在本轮真实 Lyra 构建与加载核验完成后，用同容器 VS Code Claude 插件的新 session（前缀 `d5bee8fd`）发送只读环境确认，再分别核对 Turn 结束、Snapshot 生成及可恢复状态。这是待执行的环境验证，不启动正式 45 分钟任务。插件的小快照成功不能代替含引擎环境的验证，CLI 监督器的测试也不能证明插件 UI 任务及其后台写入进程已受同样监督；正式入口及其停止边界仍须按实际运行方式核实。
