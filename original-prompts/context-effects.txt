@@ -1,0 +1,119 @@
+这是一次单模型、独立的真实工程开发测试。请在当前工作目录和当前 Git 分支内完成下方完整需求，交付代码、真实保存的 Unreal 资源以及设计和验证记录。
+
+开发总时限为45分钟，包括阅读、设计、实现、增量编译、资源编辑及你自己的验证。外部控制器会在2700秒停止该次运行。请自行安排时间，尽早形成可检查的交付，并在结束前提交所有相关改动；未完成的部分如实记录。
+
+从当前工程调查开始，按模块设计后实现。你可以使用当前分支已有公共代码、素材以及本机引擎源码。不得查找或恢复本题原版答案，不得读取其他仓库、分支、原项目、其他参赛目录、个人配置、记忆、聊天记录或评估器。不得尝试绕过文件或网络隔离。不要使用另一个模型或代理。没有用户澄清环节，常规实现选择请自行判断并记录假设。
+
+可以执行构建、Editor和自动化验证；必须区分静态检查、C++编译、蓝图编译、资产回读、单机和多人运行。不得把未执行项目写成通过，也不得只交生成脚本替代需求中的落盘资源。不要修改TASK、scope或基线验证文件来改变题目。最终请简短列出提交、实现范围、证据位置以及未完成/未验证项目。
+
+
+## 统一环境
+
+- Windows 11，UE 5.8.3，PowerShell、Python、Git/Git LFS、Visual Studio C++工具链已安装。
+- 引擎根：`C:/Users/huaqijiang/Documents/Study/UE5`。可使用其 `Engine` 下的源码、工具和原生编辑器API；其他工程和引擎Samples不是可用资料。
+- 初始Binaries来自本题已经剥离功能的基线，只用于启动资源工具。改动C++之后必须重新构建，初始DLL不代表你的实现已完成。
+- 同题两份工程的tracked文件和起始提交相同，模块均从相同基线源码预热构建。独立单根Git历史，无remote；当前分支已经建立。
+- 工程改动只写入本次工作目录。可以让原生构建工具正常写入构建缓存，不能修改引擎源码、个人配置或其他工程。两模型均使用相同常规CLI工具权限和完整日志审计，无操作系统读取隔离。不得联网获取本题原实现或向外部模型寻求实现；如运行验证受环境阻塞，请保留具体命令及错误，不能声称通过。
+
+从当前工作目录执行项目模块构建的例子：
+
+```powershell
+$engineRoot = 'C:/Users/huaqijiang/Documents/Study/UE5'
+$projectFile = (Resolve-Path './Lyra.uproject').Path
+& "$engineRoot/Engine/Build/BatchFiles/Build.bat" LyraEditor Win64 Development "-Project=$projectFile" -Module=LyraGame+LyraEditor+ShooterCoreRuntime -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=16 "-Log=$((Get-Location).Path)/Saved/BenchmarkBuild.log"
+```
+
+原生Python资源工具的调用例子（先创建你自己的脚本）：
+
+```powershell
+$engineRoot = 'C:/Users/huaqijiang/Documents/Study/UE5'
+$projectFile = (Resolve-Path './Lyra.uproject').Path
+$scriptFile = (Resolve-Path './your_script.py').Path
+& "$engineRoot/Engine/Binaries/Win64/UnrealEditor-Cmd.exe" $projectFile -EnablePlugins=PythonScriptPlugin -run=pythonscript "-script=$scriptFile" -unattended -nullrhi -nosound -NoShaderCompile -NoSourceControl -ddc=NoZenLocalFallback "-LocalDataCachePath=$((Get-Location).Path)/DerivedDataCache"
+```
+
+上述无渲染/无音频命令适合资源加载、编辑和编译，不足以证明最终视觉、音效或PIE运行结果。需要可视化/音频验证时选择合适的Editor启动方式。
+
+当前引擎包含BlueprintEditorLibrary、BlueprintGraphEditor以及UMGToolSet等原生编辑工具，可通过引擎源码或Python反射调查。资源写入应使用原生Editor API并保存后独立回读。
+
+`Benchmarks/tools/verify_assets.py` 只验证题目起点是否已清空，不是完成后的功能通过测试。
+
+
+以下为完整且固定的开发需求：
+
+# 模型开发题：按场景上下文播放角色脚步与落地反馈
+
+## 任务
+
+在当前 Lyra 项目中实现一套可配置的 Context Effects 系统。角色在不同表面行走、落地时，应根据动画事件、表面材质和角色上下文选择声音与 Niagara 效果。策划应能通过蓝图、效果库和项目配置扩展行为，不必为每种表面修改 C++。
+
+本分支是统一起点。相关 C++ 反射类型、属性、函数签名和资源路径保留为兼容契约，核心运行逻辑已剥离；专属蓝图和效果库是待实现的资源外壳。保留的原始动画、声音、Niagara、材质、标签表以及编辑器资源创建工具是公共素材与框架。应提交真实可保存的蓝图和配置资源，只有代码或只写制作说明不能完成本题。
+
+开发、资源制作、验证和报告均在本分支完成。不得从其他分支、Git 历史或原工程恢复被移除的实现；可使用本分支的公共框架、引擎源码与官方文档。允许调整私有实现，但不得破坏公共反射契约或批量修改无关资源。
+
+## 功能要求
+
+### 事件、上下文与运行生命周期
+
+1. 由 `UAnimNotify_LyraContextEffects` 发起动作事件。事件携带效果标签、附着骨骼或插槽、位置/旋转偏移、VFX 缩放、音量、音高以及可选地面 Trace 结果。Trace 支持配置通道、终点偏移和忽略拥有者，并能取得物理材质。
+2. 接收者可以是拥有者 Actor，也可以是实现 `LyraContextEffectsInterface` 的组件。有效接收者各收到一次事件；空 Mesh、空拥有者或 Trace 未命中时不得崩溃。
+3. `ULyraContextEffectComponent` 合并调用上下文与角色当前上下文，并按配置将命中表面转为 GameplayTag。组件进入世界时注册默认效果库，离开时注销；运行中可替换上下文和效果库。两个角色的配置必须相互独立，切换为空库后不得继续播放旧库效果。
+4. World Subsystem 管理每个角色的效果库并生成声音、Niagara。禁止用固定角色名或全局单一库绕过角色注册；退出/重进关卡及角色销毁后不能遗留有效角色注册。
+5. 专用服务器无需生成视听表现。客户端/本地表现不得因 Actor 和组件重复转发造成同一路效果重复播放，不得引入逐帧扫描全部角色或无上限的失效组件缓存。
+
+### 效果库与匹配规则
+
+1. 效果库可包含多个“效果标签 + 所需上下文标签 + 资源列表”条目，资源列表支持 SoundBase 和 NiagaraSystem 软引用。
+2. 效果标签采用精确匹配；条目的每个上下文标签必须在请求中精确存在。空上下文条目仅匹配空上下文请求。多个满足条件的条目均可贡献效果，互不满足的条目不得误播。
+3. 提供明确的加载状态，加载完成后可查询和播放；重复注册/加载/切换不得重复累加旧结果。加载失败或类型错误的资源不应阻断其他有效条目。
+4. 未映射表面、未匹配事件、空配置和失效软引用均应安全处理。无结果的输出数组为空；表面查询失败时不保留上次成功的输出标签。
+5. 通过现有 LyraEditor 资源工厂创建/编辑效果库应继续可用。实现动画编辑器预览，支持选择库、预览上下文或物理表面；预览配置不应污染运行时角色的注册状态。
+
+### 必须交付的蓝图与资源配置
+
+在复用公共素材的前提下，至少完成以下内容：
+
+- **默认角色效果库**：配置 `/Game/ContextEffects/CFX_DefaultSkin`，覆盖 Walk、Land 两类事件与 Default、Concrete、Glass 三类表面的全部 6 个组合。Concrete 与 Glass 的声音需要可辨别；至少一个条目使用真实 Niagara 资源。不得把全部差异硬编码在 C++ 中。
+- **第二套效果库**：在 `/Game/Benchmarks/ContextEffects/` 创建独立库，至少配置 2 个可辨别条目，用于验证两个角色与运行时切库。第二库必须有实际数据，不能只是复制空壳。
+- **表面映射配置**：在项目设置中配置 Default、Concrete、Glass 到现有 `SurfaceType.*` 标签的映射。共享物理材质及标签表可以复用。
+- **脚步蓝图**：完成 `/Game/Effects/Blueprints/B_FootStep` 的有效事件图，处理接口事件、命中位置/法线和左右脚信息，并驱动脚印或其他可观察的 Niagara 表现。保留现有变量、接口和类路径供角色蓝图调用。要有实质蓝图逻辑，不能只把所有输入转给一个完成全部工作的 C++ 包装函数。
+- **动画制作蓝图**：完成 `/Game/Characters/Heroes/Mannequin/Animations/AnimModifiers/FootstepEffectTagModifier`，可为验证动画创建或更新 ContextFX Notify，并写入标签、左右脚插槽与 Trace 参数。重复应用结果应稳定，不重复叠加 Notify。可保留原有函数签名并重建函数体。
+- **验证资源**：在 `/Game/Benchmarks/ContextEffects/` 创建 `L_ContextEffectsValidation` 和可交互的验证蓝图，布置 Default、Concrete、Glass 三块可辨认表面及两种角色配置；支持触发 Walk/Land、替换库、清空库、修改角色上下文。复制步行和落地各一份动画用于验证 Modifier，保留原始共享动画。
+
+蓝图、效果库、验证地图和配置均须实际保存到项目，提交资源清单及关键配置证据。允许复用现有声波、MetaSound、Niagara、物理材质和网格；不要求制作新的美术或录音。
+
+## 保留边界
+
+- 保留 Context Effects 的原生类名、USTRUCT/UENUM 名称、公开属性与 UFUNCTION 签名；同名资源外壳可编辑但不可删除后换成不兼容类型。
+- 保留 `B_Hero_Default` 及其死亡、生成等公共逻辑；只做确有必要的局部接入，不整图覆盖。
+- 保留 `B_WeaponDecals`、武器反馈、Gameplay Ability、输入、团队、角色外观等无关系统。
+- 不批量修改原有 Locomotion 动画、公共 `AN_FootPlant_Left/Right`、物理材质、场景材质或 GameplayTag 表。验证时使用复制的动画与专属验证地图。
+- 不用空实现、固定返回值、删除校验或直接自动恢复旧资源来满足验收。
+
+## 验收与评分（100 分）
+
+| 验收项 | 分值 | 可观察标准 |
+| --- | ---: | --- |
+| Notify 与上下文链路 | 20 | 两只脚/落地事件正确传递；Actor/组件接入有效；Trace、插槽、偏移、缩放、音量、音高确实影响结果；每次事件无重复表现。 |
+| 库查询与加载 | 15 | 精确效果标签、上下文子集及空上下文规则通过正反例；两个匹配条目均有效；无匹配/坏路径安全；反复加载不累积。 |
+| 生命周期与切换 | 15 | 两角色隔离；替换/清空库与上下文立即生效；销毁/重生与重进关卡不遗留旧状态；无持续增长的失效缓存。 |
+| 蓝图实质实现 | 20 | B_FootStep 有可运行图逻辑；Modifier 可生成正确 Notify 且重复应用稳定；公开变量/接口兼容；蓝图编译无错误。 |
+| 多资源配置与编辑器流程 | 20 | 默认库 6 组合、第二库 2 条目、表面映射、Niagara、验证地图/动画均落盘；工厂可新建库；编辑器预览有效且不污染游戏。 |
+| 可复现证据与回归 | 10 | 提供资源路径、测试步骤、结果及日志/截图；正常角色移动和无关武器反馈未受影响；明确区分静态检查与实际运行。 |
+
+以下条件为完成门槛：项目代码构建通过，所交付蓝图编译通过，验证资源可打开，Walk/Land × 三种表面有实际可观察反馈；只有文档、只完成 C++、未保存资产或伪造运行结果均不能判定完成。评分按实际证据给分，不能将“代码看起来正确”算作运行通过。
+
+建议验证顺序：
+
+1. 打开验证地图，检查两个角色分别使用指定库，依次触发 6 种事件/表面组合。
+2. 对同一角色替换库、清空库、恢复库；另一个角色应始终保持原配置。
+3. 添加/移除上下文并测试精确匹配、空上下文、无匹配、错误软路径、未映射表面和 Trace 未命中。
+4. 删除/重生角色，退出再进入地图；连续触发后检查有无重复表现或失效组件持续增长。
+5. 对验证动画应用 Modifier 两次，检查 Notify 数量/时间/参数稳定；在动画编辑器测试库与表面预览。
+6. 运行已有游戏地图验证移动、死亡/重生及无关武器反馈；如执行专用服务器/多客户端测试，记录各端行为。
+
+## 提交内容
+
+提交实现和资源改动，并在 `Benchmarks/context-effects/RESULTS.md` 中记录：设计分工（C++/蓝图/配置）、资源清单、构建/蓝图编译结果、逐项验收证据、未验证内容及原因。运行环境不足时如实说明，不把未运行项目写成通过。编译与编辑器测试仅在本次模型测试允许的环境中执行，不改动其他测试分支。
+
+基线核验记录：[baseline-validation.json](baseline-validation.json)。该记录仅证明测试起点的准备状态，不计入候选实现的功能得分。

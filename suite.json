@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/faith30/ModelTest.git",
+  "model": "deepseek-v4-pro",
+  "wall_time_seconds": 2700,
+  "required_engine": "5.8.3",
+  "mode": "linux-headless-ue",
+  "strict_comparison_eligible": false,
+  "features": {
+    "interaction": {
+      "branch": "codex/deepseek-start-interaction",
+      "starting_commit": "dcba4d7625373ed1f128af1de54e4e376b0fb4af",
+      "starting_tree": "9630ba8cf2bde5c429329f011d53d1b8988a2412",
+      "prompt_file": "prompts/interaction-linux.txt",
+      "original_prompt_file": "original-prompts/interaction.txt",
+      "prompt_sha256": "2a6c9e651e328d9cb56ae8736e33fe67e28ba547ae59b801f0e2f13c8ce2d562",
+      "task_file": "Benchmarks/interaction/TASK.md",
+      "protected_files": [
+        "Benchmarks/interaction/TASK.md",
+        "Benchmarks/interaction/scope.json",
+        "Benchmarks/interaction/baseline-readback.json",
+        "Benchmarks/interaction/baseline-validation.json"
+      ]
+    },
+    "accolades": {
+      "branch": "codex/deepseek-start-accolades",
+      "starting_commit": "3da5f9f5f11f7efb162ef91307a3f19c2ca5de74",
+      "starting_tree": "2808f3a29dd5cbbfb7fb83ce476dfa9450eef5aa",
+      "prompt_file": "prompts/accolades-linux.txt",
+      "original_prompt_file": "original-prompts/accolades.txt",
+      "prompt_sha256": "249cc2262f2511b0cbde1727071b08be31c09cd0a30e59cb1ef6c8cd5ed9c565",
+      "task_file": "Benchmarks/accolades/TASK.md",
+      "protected_files": [
+        "Benchmarks/accolades/TASK.md",
+        "Benchmarks/accolades/scope.json",
+        "Benchmarks/accolades/baseline-readback.json",
+        "Benchmarks/accolades/baseline-validation.json"
+      ]
+    },
+    "context-effects": {
+      "branch": "codex/deepseek-start-context-effects",
+      "starting_commit": "6763942e663c5549e0bfff30cb1372ce31e6094c",
+      "starting_tree": "2aadeb255678db9062e952f4a69acc18fa4558f2",
+      "prompt_file": "prompts/context-effects-linux.txt",
+      "original_prompt_file": "original-prompts/context-effects.txt",
+      "prompt_sha256": "d8e60043ba33b06016142d81515fead4b1e8eaf09631dda2fc26978342e1003f",
+      "task_file": "Benchmarks/context-effects/TASK.md",
+      "protected_files": [
+        "Benchmarks/context-effects/TASK.md",
+        "Benchmarks/context-effects/scope.json",
+        "Benchmarks/context-effects/baseline-readback.json",
+        "Benchmarks/context-effects/baseline-validation.json"
+      ]
+    }
+  }
+}
