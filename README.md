@@ -166,7 +166,7 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_lyra_probe.py \
 | `run_lyra_build.py` | 完整 LyraEditor 目标的真实构建结果 | 运行时功能正确 |
 | `run_lyra_probe.py` | 真实 interaction 基线模块和指定资源加载 | 关卡玩法、Experience、多人、UI/视听表现或三题得分 |
 
-本节提供待执行步骤，不宣称完整 Lyra 构建或加载已经通过。正式开始计时前应保存本次新容器的构建、加载和所需资源工具验证结果。
+本节提供可复跑步骤；当前容器完整 Lyra 构建及加载的已验证结果见前文证据。正式开始计时前，应确认本次容器可持续运行，并保存构建、加载和所需资源工具验证结果。2026-10-19 的环境续用阻塞及平台核查信息见 [environment-reuse.md](evidence/2026-10-19-linux-lyra-a60d60d4/environment-reuse.md)。
 
 ## 3. 在 Claude 插件开始一题
 
