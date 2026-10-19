@@ -1,0 +1,37 @@
+Setting up bundled DotNet SDK
+Running command : dotnet Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool.dll LyraEditor Linux Development -Project=/workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject -WaitMutex -NoHotReloadFromIDE -MaxParallelActions=1
+Log file: /workspace/UE_5.8.3/Epic/UnrealBuildTool/Log.txt
+Executing up to 1 actions based on MaxProcessorCount override
+Using 'git status' to determine working set for adaptive non-unity build (/workspace/lyra-runs/interaction-deepseek-r1).
+Creating makefile for LyraEditor (no existing makefile)
+Cloud - HttpConnection: socket recv error after reading 0 bytes - Resource temporarily unavailable (169.254.169.254 latest/api/token)
+Cloud - HttpConnection: socket recv error after reading 0 bytes - Resource temporarily unavailable (169.254.169.254 computeMetadata/v1/instance/service-accounts/default/identity?audience=https://example.com)
+UbaStorageServer - FileMapping backing: disk /workspace/lyra-home/.epic/UnrealBuildAccelerator/uba_filemap (/dev/shm 64MB < floor 1024MB; memfd: pidfd_getfd errno=1) - this works but is slower. Container? memfd needs CAP_SYS_PTRACE (or a seccomp profile allowing pidfd_getfd); alternatively raise --shm-size to use /dev/shm.
+UbaServer - Listening on 0.0.0.0:1345
+Compiling GameFeaturePlugins in branch ++UE5+Release-5.8
+UHT compiled-in object format Default
+UHT processed LyraEditor in 9.5751435 seconds (672 generated files written)
+Building LyraEditor...
+===== Toolchain Information =====
+Using ISPC compiler (/workspace/UE_5.8.3/Engine/Source/ThirdParty/Intel/ISPC/bin/Linux/ispc)
+  Intel(r) Implicit SPMD Program Compiler (Intel(r) ISPC), 1.24.0 (build commit  @ 20240919, LLVM 18.1.6)
+Using Clang compiler 20.1.8 (/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/clang++)
+  clang version 20.1.8 (github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261) Target: x86_64-unknown-linux-gnu Thread model: posix InstalledDir: /workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin
+Using Clang archiver (/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu/bin/llvm-ar)
+  LLVM (http://llvm.org/):   LLVM version 20.1.8   Optimized build.
+Using toolchain located at '/workspace/UE_5.8.3/Engine/Extras/ThirdPartyNotUE/SDKs/HostLinux/Linux_x64/v26_clang-20.1.8-rockylinux8/x86_64-unknown-linux-gnu'
+Using bundled libc++ standard C++ library.
+Compressing debug files
+=================================
+Using Unreal Build Accelerator local executor to run 55 action(s)
+  CPU 1 physical cores, 2 logical cores
+  Memory 3 GB physical, 5.77 GB/15.42 GB committed
+  UBA Storage capacity 40 GB
+UbaSessionServer - Process SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h (Compile) still has active file /workspace/lyra-runs/interaction-deepseek-r1/Intermediate/Build/Linux/x64/LyraEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h-6073d869.gch.tmp that was never closed (refcount 1)
+[1/55] Compile SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h
+Process 23241 (SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h (Compile)) killed by signal 9. Received 3975 messages. Execution time: 118.3s. ()
+Total time in Unreal Build Accelerator local executor: 119.32 seconds
+
+Result: Failed (OtherCompilationError)
+Total execution time: 146.42 seconds
+Trace written to file /workspace/UE_5.8.3/Epic/UnrealBuildTool/Trace.uba with size 11.6kb
