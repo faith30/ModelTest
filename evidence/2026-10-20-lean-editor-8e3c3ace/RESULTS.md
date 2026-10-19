@@ -44,3 +44,5 @@
 随后同 UUID 的[最小 `pwd` 诊断审计](environment-cc-pwd-debug-01/audit.json)确认实际 Prompt 完全一致，唯一 Bash 调用为 `pwd`，实际返回 `/workspace/lyra-feature-kit`。[运行记录](environment-cc-pwd-debug-01/run.json)为 `completed`、退出码 0、清理完成，120 秒预算下总耗时 6.481134 秒。该轮启用了调试日志，只导出允许的诊断字段，原始 stdout/stderr 因可能含凭据未归档。匹配到的模型名 `claude-haiku-4-5-20251001` / `deepseek-v4-pro` 和 HTTP 200/401 仅是独立模式匹配，不建立模型与响应的对应关系，也不证明前次延迟的原因或已恢复正常。此轮同样不是功能测试或快照恢复验证。
 
 截至 [01:38（中国时间）的平台截图](platform-no-engine-snapshot-0138.png)，首轮 CLI 确认后的快照等待已超过 60 分钟，仍无可用的含引擎快照。CLI 与插件虽都有[本地 turn-end 触发记录](snapshot-trigger-diagnostic.json)，仍不能据此宣称远端已保存或可恢复。正式 45 分钟计时尚未启动，没有候选功能成绩。
+
+2026-10-20 01:51（中国时间）再次检查：该容器已出现在历史列表，状态明确为 `stopped`，采集中的容器数量为 0；其快照选择器仍显示“该实例没有可用的快照”。见[页面截图](platform-stopped-no-snapshot.png)和[页面文本](platform-stopped-no-snapshot-ax.txt)。平台收录页中 CLI 的 00:38、01:33、01:40 三轮及插件的 01:16 一轮仍为“等快照”。此次没有重建容器或重复下载引擎，没有启动正式评测。现有代码和经过筛选的证据已保存到 Git；平台客服反馈正在等待用户授权，尚未发送。

@@ -1,0 +1,141 @@
+Browser tab: 14, Title: "DSBenchV2打分平台", URL: "https://bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/launch".
+1 AXWebArea DSBenchV2打分平台, URL: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/launch
+	2 container app
+		3 container
+			4 text DSBenchV2打分平台
+			5 link Description: 启动环境, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/launch/
+			6 link Description: 选择对话, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/ingest
+			7 link Description: 编排测试, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/testcase
+			8 link Description: 榜单中心, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/leaderboard
+			9 text ···
+			10 text huaqijiang
+			11 button 切换
+		12 container
+			13 container
+				14 heading 新任务, Value: 1
+					15 text 新任务
+				16 text 任务名
+				17 text field (settable)
+				18 button 启动 SnapCode数据采集容器
+					19 text 启动
+					20 text SnapCode数据采集容器
+			21 button 我的容器
+			22 button 全部容器
+			23 text field (settable)
+			24 button 刷新
+			25 container
+				26 button (expanded) 采集中的容器 (0), Secondary Actions: Collapse
+					48 text 采集中的容器 (0)
+				153 text 暂无采集中的容器
+			40 container
+				41 button (expanded) 只读容器 (0), Secondary Actions: Collapse
+					42 text 只读容器 (0)
+				154 text 暂无只读容器
+			51 container
+				52 button (expanded) 历史容器 (9), Secondary Actions: Collapse
+					53 text 历史容器 (9)
+				54 text 名称
+				55 text 8e3c3ace
+				56 button 编辑
+				57 text 恢复采集
+				58 button 8e3c3ace, Help: 8e3c3aceaa504364833a5085188dff19
+				59 text deepseek-v4-pro huaqijiang stopped 启动时间  10/19 23:49
+				60 button 上传/下载文件
+				144 container
+					145 button 更多操作 ▾
+						146 text 更多操作
+						155 text ▾
+					148 button SnapCode后台详情
+					149 button 日志
+					150 button Resume：从最近的快照存档恢复，继续采集数据
+					151 button Replay：从最近的快照存档启动，不继续采集数据和打快照
+					152 button 从这个实例的快照里挑一个再 Resume/Replay
+				64 text 名称
+				65 text Lyra-UE-Environment-Recovery
+				66 button 编辑
+				67 text 新建
+				68 button bd6403b4, Help: bd6403b47d8d46b69153267072b35abe
+				69 text deepseek-v4-pro huaqijiang stopped 启动时间  10/19 23:42
+				70 button 上传/下载文件
+				71 button 更多操作 ▾
+					72 text 更多操作
+					73 text ▾
+				74 text 名称
+				75 text Lyra-Three-Features
+				76 button 编辑
+				77 text 新建
+				78 button a60d60d4, Help: a60d60d4667e4b99b1811a3a20c2e696
+				79 text deepseek-v4-pro huaqijiang stopped 启动时间  10/19 21:09
+				80 button 上传/下载文件
+				81 button 更多操作 ▾
+					82 text 更多操作
+					83 text ▾
+				84 text 名称
+				85 text Lyra-Three-Features
+				86 button 编辑
+				87 text 新建
+				88 button 25343ccf, Help: 25343ccf9341402e90054550214431c2
+				89 text deepseek-v4-pro huaqijiang stopped 启动时间  10/19 18:32
+				90 button 上传/下载文件
+				91 button 更多操作 ▾
+					92 text 更多操作
+					93 text ▾
+				94 text 名称
+				95 text Lyra UE Linux 运行评分
+				96 button 编辑
+				97 text 新建
+				98 button a685f7f9, Help: a685f7f9e4bb4a2abe281440b6e4223f
+				99 text deepseek-v4-pro huaqijiang stopped 启动时间  10/18 23:08
+				100 button 上传/下载文件
+				101 button 更多操作 ▾
+					102 text 更多操作
+					103 text ▾
+				104 text 名称
+				105 text Lyra UE Linux 最终验收
+				106 button 编辑
+				107 text 新建
+				108 button 1a88511e, Help: 1a88511eac124814afc7e8116952ccba
+				109 text huaqijiang stopped 启动时间  10/18 15:18
+				110 button 上传/下载文件
+				111 button 更多操作 ▾
+					112 text 更多操作
+					113 text ▾
+				114 text 名称
+				115 text Lyra UE Linux 评测恢复
+				116 button 编辑
+				117 text 新建
+				118 button 64b60676, Help: 64b60676dd4f4f60a9aeed71a2c651e1
+				119 text deepseek-v4-pro huaqijiang stopped 启动时间  10/18 13:02
+				120 button 上传/下载文件
+				121 button 更多操作 ▾
+					122 text 更多操作
+					156 text ▾
+				124 text 名称
+				125 text 29079753
+				126 button 编辑
+				127 text 新建
+				128 button 29079753, Help: 29079753999048069b6f11b2f0e25a56
+				129 text deepseek-v4-pro huaqijiang stopped 启动时间  10/18 10:54
+				130 button 上传/下载文件
+				131 button 更多操作 ▾
+					132 text 更多操作
+					133 text ▾
+				134 text 名称
+				135 text 12a537d7
+				136 button 编辑
+				137 text 新建
+				138 button 12a537d7, Help: 12a537d7a9dc459abae00ded05aaae38
+				139 text deepseek-v4-pro huaqijiang stopped 启动时间  10/17 18:32
+				140 button 上传/下载文件
+				141 button 更多操作 ▾
+					142 text 更多操作
+					143 text ▾
+	157 container
+		158 heading 选择快照启动, Value: 2
+			159 text 选择快照启动
+		160 button ×, Help: 关闭
+		161 text 该实例没有可用的快照
+	46 button Open chat window
+		47 image woot-widget-bubble-icon
+
+The focused UI element is 152 button 从这个实例的快照里挑一个再 Resume/Replay

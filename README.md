@@ -26,6 +26,8 @@
 
 ## 当前状态与内存限制
 
+**2026-10-20 01:51（北京时间）更新：本轮容器 `8e3c3ace` 已由平台标为 `stopped`，快照恢复列表仍为空。** 下述构建和加载是停止前的已验证结果，不能视为当前仍有可用运行环境。三道正式题未启动、没有新分数。详见[停止及恢复状态证据](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)。
+
 2026-10-20 本轮容器为 `8e3c3aceaa504364833a5085188dff19`。官方 UE 5.8.3 仅省略 `.debug/.sym`，interaction 固定基线及 8689 个 LFS 文件已恢复并校验。使用 **1 GiB .NET GC 堆上限**的 build-02 完成 61/61 项，退出 0，481.096 秒，GNU time 最大 RSS 1664152 KiB；随后 load-01 退出 0，36.758 秒，最大 RSS 2256388 KiB。两步 `oom/oom_kill` 增量均为 0，整容器采样仍接近或达到 4 GiB。重试可能复用缓存，不是全新冷构建。[本轮构建、加载与范围说明](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)。**这只证明固定 interaction 基线的真实构建、模块及指定资源加载，不证明三题功能正确；正式计时尚未开始，没有功能分数。**
 
 本轮 cgroup 已记录 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）。CLI `aaa514c7` 与插件 `d5bee8fd` 均有本地 `turn-end` 和 snapshot ID，但截至 [2026-10-20 01:38（北京时间）的平台截图](evidence/2026-10-20-lean-editor-8e3c3ace/platform-no-engine-snapshot-0138.png)，首轮 CLI 确认后等待已超过 60 分钟，仍无可用的含引擎快照；恢复尚未验证，本地触发不能当作已完成备份。CLI 只读确认和后续同 UUID 续聊的实际消息均已核对一致，指定 Read/Edit/Bash 自检成功；插件本次粘贴则丢失换行。完整正式 Prompt、各题操作和平台恢复的范围边界见 [MODEL_SESSION.md](MODEL_SESSION.md)。

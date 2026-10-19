@@ -1,0 +1,54 @@
+Browser tab: 10, Title: "数据采集（SnapCode） — DSBenchV2打分平台", URL: "https://bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/ingest#8e3c3ace".
+0 AXWebArea 数据采集（SnapCode） — DSBenchV2打分平台, URL: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/ingest#8e3c3ace
+	1 container
+		2 text DSBenchV2打分平台
+		3 link Description: 启动环境, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/launch
+		4 link Description: 选择对话, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/ingest
+		5 link Description: 编排测试, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/testcase
+		6 link Description: 榜单中心, Value: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/leaderboard
+		7 text ···
+		8 container navUser
+			9 button 🔔, Help: 通知
+			10 text huaqijiang
+			11 button 切换
+	12 container
+		13 container sidebar-list
+			65 text 我的项目 (5)
+			15 container my-projects
+				66 container
+					67 text 8e3c3ace huaqijiang · deepseek-v4-pro 4 turns
+				68 container
+					69 text Lyra-UE-Environment-Recovery huaqijiang · deepseek-v4-pro 1 turns
+				70 container
+					71 text Lyra-Three-Features huaqijiang · deepseek-v4-pro 1 turns
+				72 container
+					73 text 这个是linux还是windows环境 huaqijiang · deepseek-v4-pro 3 turns
+				74 container
+					75 text 12a537d7 huaqijiang · deepseek-v4-pro 1 turns
+			26 container other-section
+				27 text ▶ 所有项目 (5)
+				28 container
+					29 pop up button (collapsed, settable) Value: 用户, ID: filter-user, Secondary Actions: Expand
+						30 menu
+							31 (selected) 用户
+					32 pop up button (collapsed, settable) Value: 模型, ID: filter-model, Secondary Actions: Expand
+						33 menu
+							34 (selected) 模型
+		35 container main-detail
+			36 container
+				37 text ▶ Project项目详情
+				38 text 总Sessions： 2 总Turns： 4
+			39 text Session选择：
+			40 container
+				41 text Session 1 T3
+			42 container
+				43 text Session 2 T1
+			44 container sess-detail
+				60 text Session
+				61 text ID: aaa514c7
+				62 text completed deepseek-v4-pro · 3 turns 10/20 00:38 时间 用户消息 轮次准备状态 Thinking 查看轨迹 镜像（结束时） 评测该轮次 10/20 00:38 等快照 unknown 10/20 01:33 等快照 unknown 10/20 01:40 等快照 unknown
+		48 text 5  项目 0  Session 10  Turn 2026-10-20 01:51  上次收录 -  DS API 延迟 已完成: 4 未完成: 1 等快照: 5
+	63 button Open chat window
+		64 image woot-widget-bubble-icon
+
+The focused UI element is 0 AXWebArea 数据采集（SnapCode） — DSBenchV2打分平台, URL: bench.deepseek.com/jianghuaqi-15023330876-laO2a9Em2vu8Z5oT/ingest#8e3c3ace
