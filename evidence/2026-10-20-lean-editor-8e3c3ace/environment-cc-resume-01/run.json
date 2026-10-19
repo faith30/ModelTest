@@ -1,0 +1,130 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "workspace": "/workspace/lyra-feature-kit",
+  "command": [
+    "bash",
+    "-lc",
+    "claude \"$@\"; cli_status=$?; wait; exit \"$cli_status\"",
+    "bash",
+    "--model",
+    "deepseek-v4-pro",
+    "--resume",
+    "aaa514c7-ae0f-4a96-a119-d85ed090c849",
+    "--print",
+    "--output-format",
+    "json",
+    "--tools",
+    "Read,Edit,Bash",
+    "--allowedTools",
+    "Read,Edit,Bash",
+    "--permission-mode",
+    "default"
+  ],
+  "prompt_sha256": "c2dbecb9b7ed181d92c267f83bf8554e07a4796f3847b2ebfe07bc61bf70b081",
+  "prompt_bytes": 622,
+  "uid": 0,
+  "euid": 0,
+  "supervisor_pid": 30411,
+  "git_before": {
+    "captured_at_utc": "2026-10-19T17:33:29.566122+00:00",
+    "root": "/workspace/lyra-feature-kit",
+    "head": "04534d97941014fb621896853ad0c239a260586e",
+    "branch": "codex/deepseek-feature-kit",
+    "status_porcelain": "",
+    "clean": true
+  },
+  "started_at_utc": "2026-10-19T17:33:29.569822+00:00",
+  "deadline_at_utc": "2026-10-19T17:38:29.569822+00:00",
+  "stop_requested_at_utc": "2026-10-19T17:36:48.481538+00:00",
+  "stopped_at_utc": "2026-10-19T17:36:48.485722+00:00",
+  "command_exit_code": 0,
+  "timing": {
+    "budget_seconds": 300,
+    "spawn_overhead_seconds": 0.00026535900542512536,
+    "elapsed_to_stop_request_seconds": 198.91170670598513,
+    "stop_request_overshoot_seconds": 0.0,
+    "elapsed_to_cleanup_seconds": 198.91592024697457,
+    "cleanup_end_overshoot_seconds": 0.0,
+    "freeze_observation_overshoot_seconds": 0.0
+  },
+  "source_write_protected": false,
+  "model_duration_verified": false,
+  "boundary": "Budget begins immediately before the CLI launch attempt; it includes launch/CLI overhead, not a measured duration of model inference. Only this supervisor's descendants are owned. Signals are not an atomic filesystem freeze. stopped_at_utc is the observation of an empty owned process tree, not a filesystem last-write timestamp. External services, other users, malicious modification, supervisor SIGKILL and container termination are outside this guarantee. No suite start, commit, push, scoring, or platform snapshot is performed or inferred.",
+  "command_pid": 30417,
+  "spawn_returned_at_utc": "2026-10-19T17:33:29.570087+00:00",
+  "stop_reason": "command_exit",
+  "cleanup": {
+    "requested_at_utc": "2026-10-19T17:36:48.481570+00:00",
+    "started_monotonic": 296996.807995966,
+    "frozen_observed_at_utc": "2026-10-19T17:36:48.483532+00:00",
+    "signals": [],
+    "errors": [],
+    "reaped": [],
+    "frozen_observed_monotonic": 296996.809966082,
+    "freeze_observed_seconds_after_request": 0.001970115990843624,
+    "complete": true,
+    "remaining": [],
+    "observed": [
+      {
+        "pid": 30417,
+        "ppid": 30411,
+        "pgid": 30417,
+        "sid": 30417,
+        "starttime": 29679789,
+        "state": "S"
+      },
+      {
+        "pid": 30420,
+        "ppid": 30417,
+        "pgid": 30417,
+        "sid": 30417,
+        "starttime": 29679790,
+        "state": "S"
+      },
+      {
+        "pid": 30466,
+        "ppid": 30465,
+        "pgid": 30417,
+        "sid": 30417,
+        "starttime": 29679879,
+        "state": "R"
+      },
+      {
+        "pid": 30465,
+        "ppid": 30420,
+        "pgid": 30417,
+        "sid": 30417,
+        "starttime": 29679879,
+        "state": "S"
+      },
+      {
+        "pid": 31196,
+        "ppid": 30420,
+        "pgid": 31196,
+        "sid": 31196,
+        "starttime": 29699359,
+        "state": "S"
+      },
+      {
+        "pid": 31218,
+        "ppid": 30420,
+        "pgid": 30417,
+        "sid": 30417,
+        "starttime": 29699589,
+        "state": "R"
+      }
+    ],
+    "finished_at_utc": "2026-10-19T17:36:48.485722+00:00",
+    "elapsed_seconds": 0.004157994990237057
+  },
+  "git_after": {
+    "captured_at_utc": "2026-10-19T17:36:48.490811+00:00",
+    "root": "/workspace/lyra-feature-kit",
+    "head": "04534d97941014fb621896853ad0c239a260586e",
+    "branch": "codex/deepseek-feature-kit",
+    "status_porcelain": "",
+    "clean": true
+  },
+  "recorded_at_utc": "2026-10-19T17:36:48.493887+00:00"
+}

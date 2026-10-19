@@ -1,0 +1,6 @@
+这是同一会话的环境工具自检，不是三道功能题，不启动正式计时。
+只操作 /workspace/model-tool-probe/probe.txt，依次完成：
+1. 使用 Read 工具读取该文件。
+2. 使用 Edit 工具把 state=before 改为 state=after，保留末尾换行。
+3. 使用 Bash 工具执行一次 python3 本地检查，断言文件内容恰好为 state=after 加一个换行；成功时打印 PROBE_OK。
+不要使用 Bash 代替 Edit，不要修改其他文件，不要执行 UE、Git、安装或网络操作。若权限拒绝，直接报告，不要换方式绕过。完成后简短报告三步结果。
