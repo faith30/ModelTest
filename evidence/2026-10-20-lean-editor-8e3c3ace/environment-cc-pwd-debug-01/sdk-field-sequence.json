@@ -1,0 +1,301 @@
+{
+  "recorded_at_utc": "2026-10-19T17:47:39.712899+00:00",
+  "source": "environment-cc-pwd-debug-01/stdout.log (not exported)",
+  "lines": 579,
+  "allowlisted_fields": [
+    {
+      "line": 2,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 5,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 8,
+      "field": "model",
+      "value": "claude-haiku-4-5-20251001"
+    },
+    {
+      "line": 27,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 44,
+      "field": "status",
+      "value": "401"
+    },
+    {
+      "line": 47,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 60,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 63,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 66,
+      "field": "model",
+      "value": "deepseek-v4-pro"
+    },
+    {
+      "line": 85,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 100,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 103,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 106,
+      "field": "model",
+      "value": "claude-haiku-4-5-20251001"
+    },
+    {
+      "line": 125,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 140,
+      "event": "response start"
+    },
+    {
+      "line": 142,
+      "field": "status",
+      "value": "200"
+    },
+    {
+      "line": 144,
+      "field": "type",
+      "value": "text/event-stream"
+    },
+    {
+      "line": 166,
+      "field": "type",
+      "value": "text/event-stream"
+    },
+    {
+      "line": 187,
+      "field": "status",
+      "value": "200"
+    },
+    {
+      "line": 197,
+      "field": "status",
+      "value": "401"
+    },
+    {
+      "line": 200,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 213,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 216,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 219,
+      "field": "model",
+      "value": "claude-haiku-4-5-20251001"
+    },
+    {
+      "line": 238,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 253,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 256,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 259,
+      "field": "model",
+      "value": "deepseek-v4-pro"
+    },
+    {
+      "line": 278,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 293,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 296,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 299,
+      "field": "model",
+      "value": "claude-haiku-4-5-20251001"
+    },
+    {
+      "line": 318,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 335,
+      "field": "status",
+      "value": "401"
+    },
+    {
+      "line": 338,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 353,
+      "field": "status",
+      "value": "401"
+    },
+    {
+      "line": 356,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 369,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 372,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 375,
+      "field": "model",
+      "value": "claude-haiku-4-5-20251001"
+    },
+    {
+      "line": 394,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 409,
+      "event": "response start"
+    },
+    {
+      "line": 411,
+      "field": "status",
+      "value": "200"
+    },
+    {
+      "line": 413,
+      "field": "type",
+      "value": "text/event-stream"
+    },
+    {
+      "line": 435,
+      "field": "type",
+      "value": "text/event-stream"
+    },
+    {
+      "line": 456,
+      "field": "status",
+      "value": "200"
+    },
+    {
+      "line": 466,
+      "field": "status",
+      "value": "401"
+    },
+    {
+      "line": 469,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 481,
+      "field": "type",
+      "value": "result"
+    },
+    {
+      "line": 483,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 486,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 489,
+      "field": "model",
+      "value": "claude-haiku-4-5-20251001"
+    },
+    {
+      "line": 508,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 525,
+      "field": "status",
+      "value": "401"
+    },
+    {
+      "line": 528,
+      "field": "type",
+      "value": "application/json"
+    },
+    {
+      "line": 541,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 544,
+      "field": "method",
+      "value": "post"
+    },
+    {
+      "line": 547,
+      "field": "model",
+      "value": "claude-haiku-4-5-20251001"
+    },
+    {
+      "line": 566,
+      "field": "type",
+      "value": "application/json"
+    }
+  ],
+  "boundary": "Only explicit field names and restricted alphabet scalar values are retained. Sequence alone is not a proven request/response association. No URLs, headers, request bodies, raw debug log, or credentials are exported."
+}
