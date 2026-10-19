@@ -14,6 +14,20 @@
 
 2026-10-19 新容器检查：2 CPU 配额、4 GiB 内存上限、约 955 GiB 可用磁盘；初始没有 Linux UnrealEditor、Clang、Git LFS 或 GitHub CLI。Git LFS 和 GitHub CLI 已安装。**尚未验证这三个项目在此容器的 UE 编译或运行。**
 
+2026-10-19 19:27（北京时间）已在该容器以非 root 用户完成 **真实 UE 5.8.3 最小无窗口编辑器探针**：退出 0，耗时 9.572 秒，GNU time 最大 RSS 993032 KiB（约 970 MiB），cgroup 的 `oom/oom_kill` 增量均为 0。[完整结果](evidence/2026-10-19-linux-editor/result.json)、[UE 日志](evidence/2026-10-19-linux-editor/ue.log)和[内存记录](evidence/2026-10-19-linux-editor/memory.txt)已随本分支保存。约 970 MiB 是该命令的 RSS 指标，不是整容器总量；容器总量含后台服务和文件缓存，采样曾接近 4 GiB。
+
+**这个结果证明小型无窗口 UE 可以启动，尚不能证明完整 Lyra 构建和功能验收在 4 GiB 内可完成。** 第一次探针因缺系统动态库退出 127，补齐依赖后重测成功；两次均未观察到 OOM 增量。当前 `interaction-deepseek-r1` 已拉取真实 LFS 资源、起点核验通过、工作区干净、评测计时未开始。
+
+当前这台已配置容器可直接重跑最小探针（已有 `01`、`02`，下面使用新的 `03`）：
+
+```bash
+runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_editor_probe.py \
+  --engine /workspace/UE_5.8.3 \
+  --output /workspace/lyra-results/editor-probe-03
+```
+
+这会运行 UE，并打印结果与内存诊断；不需要重新 GitHub 登录，不开始模型计时，也不评分。
+
 无窗口模式仍是真实 UE：Linux Editor 加 `-unattended -nullrhi -nosound` 可以执行适用的 commandlet、资源脚本与 Automation。它节省渲染开销，但不消除编译器、链接器、编辑器和资源加载的内存需求。4 GiB 不作为脚本的硬性拒绝条件；是否足够须由实际启动、构建和内存峰值证明。不能把没有启动 UE 的测试替身算作 UE 验证。
 
 优先安装匹配版本的 Linux **预编译 Editor**，再编 Lyra 项目。当前 Windows 引擎和 Windows-host 的 `clang++.exe` 不能直接在 Linux 运行。2026-10-19 已在官方账户下载页确认 `Linux_Unreal_Engine_5.8.3.zip`，标注约 37.08 GB，上传日期 2026-09-22。安装后仍需检查 PythonScriptPlugin、EditorScriptingUtilities、BlueprintEditorLibrary/UMG 工具是否齐全；不要假定预编译包包含全部实验插件。
@@ -41,6 +55,15 @@ python3 /workspace/lyra-feature-kit/suite.py prepare interaction \
 ## 2. 先把真实 UE 环境跑通
 
 把 Linux UE 5.8.3 解压在 `/workspace/UE_5.8.3`。目录下应直接包含 `Engine/Build/Build.version`。按该包官方说明准备原生 Linux 工具链；本题需要 v26 / clang 20.1.8。编辑器安装与基线预热放在模型的 45 分钟计时之前。
+
+本次官方包解压后约 71.68 GiB，这是磁盘体积。当前 Debian 13 容器还安装了以下运行库；其他发行版应按其包名和实际 `ldd` 缺失项处理：
+
+```bash
+apt-get install -y libglib2.0-0t64 libnss3 libnspr4 libsm6 libice6 \
+  libdbus-1-3 libatk1.0-0t64 libatk-bridge2.0-0t64 libdrm2 libx11-6 \
+  libxcomposite1 libxdamage1 libxext6 libxfixes3 libxrandr2 libgbm1 \
+  libxcb1 libxkbcommon0 libpango-1.0-0 libcairo2 libasound2t64
+```
 
 UE 必须以非 root 用户运行。若当前终端是 root，可建立专用用户；以下目录必须先存在，且只调整本次工程和引擎目录的属主：
 
@@ -137,4 +160,4 @@ python3 /workspace/lyra-feature-kit/suite.py submit /workspace/lyra-runs/interac
 
 `test_suite.py` 使用本地临时 Git/LFS 仓库验证下载、计时保护、题目保护、脏工作区拒绝、普通推送和非快进拒绝。它验证的是传输工具，不是 Lyra 功能。
 
-`headless_ue.py` 已使用已有真实 UE 报告验证成功/失败解析及零项、计数不符、重复名、缺报告等拒绝路径。这不等于本轮已启动 Linux Editor。
+`headless_ue.py` 已使用已有真实 UE 报告验证成功/失败解析及零项、计数不符、重复名、缺报告等拒绝路径。报告解析自检与 UE 实际执行是两类证据；本轮最小 Linux Editor 实测见上面的证据目录，三题完整功能验收仍未进行。
