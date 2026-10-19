@@ -38,6 +38,19 @@ python3 -B /workspace/lyra-feature-kit/test_run_model_session.py
 
 平台完整轨迹的最终回复已另存为[截图](evidence/2026-10-20-lean-editor-8e3c3ace/platform-claude-response.png)。快照状态截图记录的中国时间 00:40，含引擎的大快照仍为“等快照”，尚未证明可恢复。以上自测和确认轮都不是 45 分钟功能测试，不产生题目分数。
 
-随后平台 UI 的现场观察进一步区分了 session 与 Turn 状态：成功的小快照实验来自 VS Code Claude 插件，session 前缀 `67d71a47` 的 Turn 1 显示中国时间 2026-10-19 23:45:38 至 23:45:43、耗时 5.0 秒并完成 Snapshot。CLI session `aaa514c7-ae0f-4a96-a119-d85ed090c849` 虽显示 session/pipeline completed 且保存了 raw response，Turn 1 仍显示 2026-10-20 00:38:08 至 `-`、进行中，至 01:09 仍为“等快照”。因此 `--print` 调用返回 0、`wait` 返回以及 `cleanup.complete=true` 均不能当作平台 Turn 结束或快照生成的验证；这些差异尚无已确认的根因。
+随后平台 UI 的现场观察进一步区分了 session 与 Turn 状态：成功的小快照实验来自 VS Code Claude 插件，session 前缀 `67d71a47` 的 Turn 1 显示中国时间 2026-10-19 23:45:38 至 23:45:43、耗时 5.0 秒并完成 Snapshot。CLI session `aaa514c7-ae0f-4a96-a119-d85ed090c849` 虽显示 session/pipeline completed 且保存了 raw response，Turn 1 在当时仍显示 2026-10-20 00:38:08 至 `-`、进行中，至 01:09 仍为“等快照”。这些是平台 UI 的历史状态，不能据此认定本地没有触发轮次结束。
 
-当前下一步是：在本轮真实 Lyra 构建与加载核验完成后，用同容器 VS Code Claude 插件的新 session（前缀 `d5bee8fd`）发送只读环境确认，再分别核对 Turn 结束、Snapshot 生成及可恢复状态。这是待执行的环境验证，不启动正式 45 分钟任务。插件的小快照成功不能代替含引擎环境的验证，CLI 监督器的测试也不能证明插件 UI 任务及其后台写入进程已受同样监督；正式入口及其停止边界仍须按实际运行方式核实。
+进一步只读检查 `/tmp/sidecar.log` 并过滤敏感字段后，两个入口均有本地触发证据，已保存为 [诊断记录](evidence/2026-10-20-lean-editor-8e3c3ace/snapshot-trigger-diagnostic.json)（以下为日志原始时间）：
+
+- CLI：`2026/10/19 16:38:17 [agent] turn-end: snapshot_id=aaa514c7-ae0f-4a96-a119-d85ed090c849_turn_1_33a18996`。
+- 插件：`2026/10/19 17:16:51 [agent] turn-end: snapshot_id=d5bee8fd-cf4c-4b6a-b401-72317b19a600_turn_1_5d67223b`。
+
+同容器插件新 session `d5bee8fd-cf4c-4b6a-b401-72317b19a600` 已读取 6 个文件并返回只读环境确认。上述记录证明 CLI 与插件均触发了本地 `turn-end`，但产生 `snapshot_id` 不等于远端快照已落盘或可恢复；仍需现场核验快照生成和恢复。不能推断 CLI 的 `--print` 模式导致失败，也不能将函数返回 0、`wait` 返回或 `cleanup.complete=true` 当作远端恢复成功的证据。
+
+另一次只读核对发现本次浏览器粘贴存在文本传输差异：仅提取上述插件 session 的 `/root/.claude/projects/-workspace/d5bee8fd-cf4c-4b6a-b401-72317b19a600.jsonl` 中 [实际 user 消息](evidence/2026-10-20-lean-editor-8e3c3ace/plugin-actual-user-message.txt)，与已保存的 [源 Prompt](evidence/2026-10-20-lean-editor-8e3c3ace/plugin-confirmation-prompt.txt) 比较，源文本为 623 字符、13 个换行，实际消息为 610 字符、0 个换行；去除源文本换行后，两者字节相同。[该确认轮的传输比对记录](evidence/2026-10-20-lean-editor-8e3c3ace/plugin-prompt-transport.json) 保存了两者的 SHA。因此本次粘贴丢失了全部换行，不能将源文件 SHA 当作实际发送消息的 SHA。确认轮仍正确读取了 6 个文件，正式题尚未开始，未受此次差异影响。
+
+随后对 CLI session `aaa514c7-ae0f-4a96-a119-d85ed090c849` 的实际 user 消息进行了只读回查，[传输审计](evidence/2026-10-20-lean-editor-8e3c3ace/cli-prompt-transport.json) 记录其与 `environment-cc-confirm-01/prompt.txt` 完全一致：376 字符、6 个换行、742 UTF-8 字节，SHA-256 为 `ddac448fb0c30dca5e412774b832271ba9727847d6f2f8a8eac58bfbaef5e9d5`。这证明本次只读 CLI 确认轮的实际消息保真，不能替代尚未发送的正式冻结 Prompt 验证。
+
+正式冻结任务优先使用已验证向子进程 stdin 提供原字节的 CLI 监督入口，并分别保存源 Prompt 与实际 session user 消息的核对证据和哈希。监督器的 Prompt SHA 记录的是 stdin 源字节，仍不能替代每次实际会话消息回读。按 UUID 续聊、正式 Bash/Edit 权限和平台快照恢复仍须现场验证，不能仅凭本次只读消息传输检查就认定完整流程已跑通。
+
+这些仍是环境验证，正式 45 分钟任务尚未启动，没有功能分数。插件的小快照成功不能代替含引擎环境的恢复验证，CLI 监督器的测试也不能证明插件 UI 任务及其后台写入进程已受同样监督；正式入口及其停止边界仍须按实际运行方式核实。

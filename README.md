@@ -22,19 +22,19 @@
 
 教程还要求最终测试数据独立原创，并限制基于外部公开仓库改题。现有 Lyra 基线保留为技术验证和内部对比用途；未确认符合原创性要求前，不应将它标为可正式提交的样例。本次没有更换题目或修改评分标准。
 
-23:35（北京时间）复查：`a60d60d4` 已停止，历史容器 Resume 未启动新环境，可选快照仍为空；22:50 的 CC 确认轮仍在“等快照”，当时约等待 45 分钟，尚处于教程给出的窗口内。实际引擎恢复仍未验证，正式计时未开始。详见 [续用记录](evidence/2026-10-19-linux-lyra-a60d60d4/environment-reuse.md)。
+2026-10-19 23:35（北京时间）的历史复查：`a60d60d4` 已停止，历史容器 Resume 未启动新环境，可选快照仍为空；22:50 的 CC 确认轮仍在“等快照”，当时约等待 45 分钟，尚处于教程给出的窗口内。当时实际引擎恢复未验证，正式计时未开始。详见 [续用记录](evidence/2026-10-19-linux-lyra-a60d60d4/environment-reuse.md)。
 
 ## 当前状态与内存限制
 
-新容器 `a60d60d4` 已完成官方 UE 5.8.3 安装，恢复精确 interaction 基线及 8689 个 LFS 文件，并在 2026-10-19 22:27（北京时间）完成 **真实 LyraEditor Linux 构建和真实 Lyra 项目的无窗口加载探针**。第三轮采用下文低内存参数和 `--unity-bytes 131072`：49 个构建动作完成，退出 0，406.192 秒；随后加载探针退出 0，51.396 秒，实际确认 LyraGame/LyraEditor 模块、交互原生类、DefaultGameData、GA_Interact 和 L_InventoryTestMap。两步 `oom/oom_kill` 增量均为 0。GNU time 最大 RSS 分别为 1613620 和 1874492 KiB；整容器采样仍接近 4 GiB，不能把单命令 RSS 当作总内存余量。[本轮原始证据](evidence/2026-10-19-linux-lyra-a60d60d4/)。**这证明本次基线编译和指定模块/资源加载通过，不证明三题功能正确；模型计时尚未开始。**
+2026-10-20 本轮容器为 `8e3c3aceaa504364833a5085188dff19`。官方 UE 5.8.3 仅省略 `.debug/.sym`，interaction 固定基线及 8689 个 LFS 文件已恢复并校验。使用 **1 GiB .NET GC 堆上限**的 build-02 完成 61/61 项，退出 0，481.096 秒，GNU time 最大 RSS 1664152 KiB；随后 load-01 退出 0，36.758 秒，最大 RSS 2256388 KiB。两步 `oom/oom_kill` 增量均为 0，整容器采样仍接近或达到 4 GiB。重试可能复用缓存，不是全新冷构建。[本轮构建、加载与范围说明](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)。**这只证明固定 interaction 基线的真实构建、模块及指定资源加载，不证明三题功能正确；正式计时尚未开始，没有功能分数。**
 
-保留的失败与调整记录：默认单并发构建在 SharedPCH 阶段退出 6，146.822 秒，编译器被信号 9 终止，同时 `oom` 增加 2、`oom_kill` 增加 1。低内存第二轮推进到 19/54 后因持续内存压力，由操作方中止以缩小批次，没有新增 OOM；不能记为源码错误或超时。第三轮复用了前两轮可用缓存，并非全新冷构建。当前容器的最小纯内容 UE 探针也通过（退出 0、8.32 秒），但它的范围小于真实 Lyra 加载探针。
+本轮 cgroup 已记录 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）。CLI `aaa514c7` 与插件 `d5bee8fd` 均有本地 `turn-end` 和 snapshot ID，但截至 2026-10-20 01:30（北京时间）平台仍等待两者快照，含引擎环境尚未验证可恢复；本地触发不能当作已完成备份。CLI 只读确认的实际 user 消息已逐字节核对一致，插件本次粘贴则丢失换行；正式任务传输、续聊和权限边界见 [MODEL_SESSION.md](MODEL_SESSION.md)。
 
-新容器已实测 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）。平台手动 `snap` 已返回 `ok=true` 及快照编号，但刷新后快照列表仍显示没有可用快照，尚未验证引擎恢复成功，不能把它当作已经完成的备份。结束容器前应把所需代码和证据保存到 Git。
+历史容器 `a60d60d4` 于 2026-10-19 22:27（北京时间）完成过 interaction 基线构建和加载：第三轮采用当时的 512 MiB 堆配置与 `--unity-bytes 131072`，49 个构建动作完成，退出 0，406.192 秒；加载退出 0，51.396 秒，最大 RSS 分别为 1613620 和 1874492 KiB，`oom/oom_kill` 增量均为 0。[历史原始证据](evidence/2026-10-19-linux-lyra-a60d60d4/)。旧轮次默认 PCH 曾出现容器 OOM，低内存第二轮由操作方中止，第三轮复用缓存；其最小探针退出 0、8.32 秒。这些历史结果不代表当前容器、冷构建或三题功能均通过。
 
 历史证据：2026-10-19 19:27（北京时间）曾在旧容器以非 root 用户完成 **真实 UE 5.8.3 最小无窗口编辑器探针**：退出 0，耗时 9.572 秒，GNU time 最大 RSS 993032 KiB（约 970 MiB），cgroup 的 `oom/oom_kill` 增量均为 0。[完整结果](evidence/2026-10-19-linux-editor/result.json)、[UE 日志](evidence/2026-10-19-linux-editor/ue.log)和[内存记录](evidence/2026-10-19-linux-editor/memory.txt)已随本分支保存。约 970 MiB 是该命令的 RSS 指标，不是整容器总量；容器总量含后台服务和文件缓存，采样曾接近 4 GiB。第一次探针因缺系统动态库退出 127，补齐依赖后重测成功；两次均未观察到 OOM 增量。
 
-**上述历史探针仅证明旧容器当时的最小项目能启动；当前容器的编译和加载结论以本轮证据为准，两者均不等于三题功能验收。** 旧容器 `25343ccf` 已停止且无可恢复快照，后续新建或恢复容器仍需重新核对实际文件、登录和运行状态，不能依据旧结果直接开始计时。
+**当前容器的编译和加载结论以本轮证据为准；上述历史探针和历史基线验证均不等于三题功能验收。** 旧容器 `25343ccf` 已停止且无可恢复快照，后续新建或恢复容器仍需重新核对实际文件、登录和运行状态，不能依据旧结果直接开始计时。结束容器前应把所需代码和证据保存到 Git。
 
 ### 每次进入或恢复容器后先检查
 
@@ -122,7 +122,7 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_editor_probe.py 
 
 ### 再构建真实 Lyra 基线
 
-最小探针成功不证明 Lyra 构建或完整场景在 4 GiB 内能完成。确认插件齐全后再构建，避免与下载、解压等大任务同时进行：
+最小探针成功不证明 Lyra 构建或完整场景在 4 GiB 内能完成。确认插件齐全后再构建，避免与下载、解压等大任务同时进行。下面是通用调用；本测试的 4 GiB 容器请使用下一节已实测的低内存配置，默认 PCH 构建曾出现内存问题：
 
 ```bash
 runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_lyra_build.py \
@@ -143,7 +143,7 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_lyra_build.py \
 ```bash
 runuser -u lyra-eval -- env \
   DOTNET_gcServer=0 \
-  DOTNET_GCHeapHardLimit=0x20000000 \
+  DOTNET_GCHeapHardLimit=0x40000000 \
   DOTNET_GCConserveMemory=7 \
   python3 /workspace/lyra-feature-kit/run_lyra_build.py \
   --engine /workspace/UE_5.8.3 \
@@ -152,11 +152,13 @@ runuser -u lyra-eval -- env \
   --no-pch --no-shared-pch --no-uba --unity-bytes 131072 --timeout 1800
 ```
 
-`0x20000000` 为 512 MiB，限制的是 .NET GC 管理的堆，并非整个 UBT 进程的 RSS，更不限制 Clang、链接器或整容器总内存。`--no-pch` 绕过全部预编译头，`--no-shared-pch` 显式禁用共享预编译头；UE 5.8.3 的 `--no-uba` 只关闭 detour，仍可能使用 UBAExecutor。本轮该配置已通过，但不保证其他项目状态、冷缓存或不同后台负载下也能在 4 GiB 和 1800 秒内成功。
+`0x40000000` 为 1 GiB，限制的是 .NET GC 管理的堆，并非整个 UBT 进程的 RSS，更不限制 Clang、链接器或整容器总内存。2026-10-20 的新容器使用旧的 512 MiB 堆上限时出现 `System.OutOfMemoryException`；改用上述 1 GiB 配置后完成 61/61 项，退出码 0，耗时 481.096 秒，OOM / OOM kill 增量为 0。见[本次构建与加载证据](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)。这是 interaction 基线重试的结果，可能复用此前缓存，不保证其他题目、候选或后台负载下同样成功。
+
+`--no-pch` 绕过全部预编译头，`--no-shared-pch` 显式禁用共享预编译头；UE 5.8.3 的 `--no-uba` 只关闭 detour，仍可能使用 UBAExecutor。
 
 运行器会在测量记录中保存追加参数后的完整构建命令，`build_environment` 仅记录上述三个 DOTNET 环境变量。仍按本次实际退出码、日志和 cgroup 增量判定结果，不将重试配置本身视为通过证据。
 
-`--unity-bytes 131072` 对应真实 UBT 参数 `-BytesPerUnityCPP=131072`，把默认约 384 KiB 的源码合并目标缩到 128 KiB；它不是内存硬上限，可能增加编译动作。本轮第三次实测复用了前两轮留下的可用构建缓存。操作方中止的旧轮次已保留原因，不能标记为源码错误、OOM 或自动超时。构建运行器还会清理另建进程组的后代；三种假子进程自检已在本容器通过，不属于 UE 功能测试。
+`--unity-bytes 131072` 对应真实 UBT 参数 `-BytesPerUnityCPP=131072`，把默认约 384 KiB 的源码合并目标缩到 128 KiB；它不是内存硬上限，可能增加编译动作。2026-10-19 旧容器第三次实测也复用了前两轮留下的缓存。操作方中止的轮次须保留原因，不能仅凭中止退出码认定源码错误、容器 OOM 或自动超时。构建运行器还会清理另建进程组的后代；假子进程自检不属于 UE 功能测试。
 
 ### 构建通过后加载真实 Lyra 项目
 
@@ -182,18 +184,20 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_lyra_probe.py \
 
 本节提供可复跑步骤；当前容器完整 Lyra 构建及加载的已验证结果见前文证据。正式开始计时前，应确认本次容器可持续运行，并保存构建、加载和所需资源工具验证结果。2026-10-19 的环境续用阻塞及平台核查信息见 [environment-reuse.md](evidence/2026-10-19-linux-lyra-a60d60d4/environment-reuse.md)。
 
-## 3. 在 Claude 插件开始一题
+## 3. 开始一题并记录时限
 
 ### 开始计时
 
-只有基线构建和所需资源工具验证成功后才开始正式计时。VS Code 只打开这一题的目录，不把其他候选、原工程或评估器一起打开。在 Claude 插件选择 `deepseek-v4-pro`、开启全新会话；记录平台实际支持的推理档位，不假定它与 GPT 的 high 等价。
+只有基线构建和所需资源工具验证成功、容器剩余时间足够且环境可恢复后，才开始正式计时。VS Code 只打开这一题的目录，不把其他候选、原工程或评估器一起打开。在新建或恢复的容器中选择 `deepseek-v4-pro` 并开启全新会话，先做环境确认轮并核验快照，再在同一会话发送完整任务轮。平台从任务轮的前一轮快照恢复环境，不能把新会话的第一轮直接作为正式测试。记录平台实际支持的推理档位，不假定它与 GPT 的 high 等价。
+
+正式冻结 Prompt 优先经 CLI 监督器的 stdin 传输，调用方式及尚未验证的续聊、权限见 [MODEL_SESSION.md](MODEL_SESSION.md)。以下 `suite.py start` 仅是人工计时路线；它与 CLI 监督器是两个独立时钟，不会自动同步。插件本次粘贴曾丢失全部换行，因此无论采用哪个入口，都须保存实际 session user 消息及其哈希，不能只保存源文件哈希。
 
 ```bash
 python3 /workspace/lyra-feature-kit/suite.py start /workspace/lyra-runs/interaction-deepseek-r1
 cat /workspace/lyra-runs/interaction-deepseek-r1.prompt.txt
 ```
 
-把显示的完整提示词发给模型。`start` 记录 45 分钟截止时间，**不会自动停止插件**；组织者需到点停止并保存会话日志。只准备环境或事后评估时不要启动模型计时。
+把经核验的 Linux 环境说明与显示的完整冻结提示词合并后发给模型，并保留实际文本及哈希。`start` 记录 45 分钟截止时间，**不会自动停止插件**；组织者需到点停止并保存会话日志。CLI 监督器与插件的进程边界不同，当前验证范围见 [MODEL_SESSION.md](MODEL_SESSION.md)，不能将 CLI 自测当作插件已受自动监督。只准备环境或事后评估时不要启动模型计时。
 
 `original-prompts/` 保留原 Windows 提示词供组织者复核；实际 Linux 提示词保留原题全文，但明确 Linux 环境和人工计时。新环境没有旧 Windows 预热 DLL，工具条件不同，因此不直接与旧分数作严格模型排名。无 remote 也不等于操作系统隔离。
 
@@ -220,7 +224,9 @@ python3 /workspace/lyra-feature-kit/headless_ue.py automation \
 
 ## 5. 保存结果到 Git
 
-模型结束后检查 `git diff`，由用户或模型提交本题相关的代码和真实资源；不要 `git add .` 把无关文件全部加入。使用该工程属主账户执行：
+模型应在预算内提交本题相关的代码和真实资源，结束后由组织者检查 `git diff`、停止边界和最终 SHA 并传输。截止后不得让模型继续修改或补提交；若存在未提交改动，只能如实保存截止状态并明确标为组织者归档，不冒充模型按时提交。不要 `git add .` 把无关文件全部加入。使用该工程属主账户执行：
+
+下列 `suite.py submit` 要求事前已执行 `suite.py start`。只使用 CLI 监督器而未启动 suite 计时的轮次，应由组织者按冻结 SHA 另行通过 Git 传输，不能事后补写起始时间；若事前同时使用两者，须保留两个时钟的偏差。
 
 ```bash
 python3 /workspace/lyra-feature-kit/suite.py status /workspace/lyra-runs/interaction-deepseek-r1
