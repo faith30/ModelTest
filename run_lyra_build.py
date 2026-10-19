@@ -36,6 +36,10 @@ def cleanup_group(record):
 
 
 def measured_execute(execute, command, cwd, output, timeout):
+    build_environment = {
+        name: os.environ.get(name)
+        for name in ("DOTNET_gcServer", "DOTNET_GCHeapHardLimit", "DOTNET_GCConserveMemory")
+    }
     cgroup = cgroup_directory()
     before = cgroup_snapshot(cgroup)
     save(output / "cgroup-before.json", before)
@@ -66,6 +70,7 @@ def measured_execute(execute, command, cwd, output, timeout):
         sampler.start()
         try:
             record = execute(measured, cwd, output, timeout)
+            record["build_environment"] = build_environment
             record["remaining_group_cleanup_signals"] = cleanup_group(record)
         finally:
             finished.set()
@@ -110,6 +115,10 @@ def main(argv=None):
     parser.add_argument("--project", required=True, type=Path, help="full Lyra.uproject")
     parser.add_argument("--output", required=True, type=Path, help="new evidence directory; never overwritten")
     parser.add_argument("--timeout", type=headless_ue.positive_int, default=3600)
+    parser.add_argument("--no-pch", action="store_true", help="pass -NoPCH to bypass all precompiled headers")
+    parser.add_argument("--no-shared-pch", action="store_true", help="pass -NoSharedPCH to disable shared precompiled headers")
+    parser.add_argument("--no-uba", action="store_true",
+                        help="pass -NoUBA; in UE 5.8.3 this disables detours, not UBAExecutor")
     args = parser.parse_args(argv)
     if os.path.lexists(args.output):
         parser.error("--output already exists; choose a new directory")
@@ -127,8 +136,18 @@ def main(argv=None):
 
     # Reuse the authoritative build command, preflight, execution and result
     # policy without editing the shared helper or launching a nested wrapper.
+    def execute(command, cwd, output, timeout):
+        build_command = list(command)
+        if args.no_pch:
+            build_command.append("-NoPCH")
+        if args.no_shared_pch:
+            build_command.append("-NoSharedPCH")
+        if args.no_uba:
+            build_command.append("-NoUBA")
+        return measured_execute(original_execute, build_command, cwd, output, timeout)
+
     headless_ue.doctor = doctor
-    headless_ue.execute = lambda *values: measured_execute(original_execute, *values)
+    headless_ue.execute = execute
     previous_locale = os.environ.get("LC_ALL")
     os.environ["LC_ALL"] = "C"
     try:
