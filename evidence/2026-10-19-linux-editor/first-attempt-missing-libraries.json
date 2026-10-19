@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "not_passed",
+  "passed": false,
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/workspace/lyra-results/editor-probe-01/memory.txt",
+    "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "/workspace/lyra-results/editor-probe-01/project/Probe.uproject",
+    "-run=pythonscript",
+    "-script=/workspace/lyra-feature-kit/editor_probe.py",
+    "-unattended",
+    "-nullrhi",
+    "-nosound",
+    "-NoShaderCompile",
+    "-NoSourceControl",
+    "-abslog=/workspace/lyra-results/editor-probe-01/ue.log"
+  ],
+  "cwd": "/workspace/lyra-results/editor-probe-01/project",
+  "started_at": "2026-10-19T11:24:46.798712+00:00",
+  "timeout_seconds": 300,
+  "exit_code": 127,
+  "timed_out": false,
+  "interrupted": false,
+  "launch_error": null,
+  "time_process_id": 25718,
+  "finished_at": "2026-10-19T11:24:46.832058+00:00",
+  "elapsed_seconds": 0.033,
+  "cgroup_events_delta": {
+    "oom_kill": 0,
+    "oom": 0,
+    "low": 0,
+    "max": 9,
+    "high": 0,
+    "oom_group_kill": 0
+  },
+  "cgroup_local_events_delta": {
+    "oom_kill": 0,
+    "oom": 0,
+    "low": 0,
+    "max": 9,
+    "high": 0,
+    "oom_group_kill": 0
+  },
+  "memory": {
+    "sample_count": 1,
+    "max_sampled_cgroup_memory_current_bytes": 4294803456,
+    "time_max_resident_set_kbytes": 27488,
+    "time_report_available": true,
+    "boundary": "Cgroup samples include every process and file cache, not UE alone; 1-second sampling may miss peaks. memory.peak is lifetime, not this run. GNU time max RSS is not simultaneous aggregate cgroup memory. Timeout can kill time before its final report is written. Exit -9/137 alone does not prove OOM; event deltas are shared-cgroup evidence, not per-process attribution."
+  },
+  "probe_validation": {
+    "valid": false,
+    "problems": [
+      "Missing or invalid probe.json: [Errno 2] No such file or directory: '/workspace/lyra-results/editor-probe-01/probe.json'"
+    ],
+    "probe": null
+  },
+  "scope": "Only real UE Python commandlet startup and API exposure; no Lyra build, asset edits, feature acceptance, or score."
+}

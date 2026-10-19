@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "probe": "real_ue_editor_python_api_presence",
+  "status": "completed",
+  "executed_in_real_unreal": true,
+  "engine_version": "5.8.3-58210709+++UE5+Release-5.8",
+  "required_engine_version_prefix": "5.8.3",
+  "project_directory": "/workspace/lyra-results/editor-probe-02/project",
+  "process_id": 28067,
+  "api_presence": {
+    "SystemLibrary": {
+      "class_exposed": true,
+      "methods_exposed": {
+        "get_engine_version": true,
+        "get_project_directory": true
+      }
+    },
+    "PythonScriptLibrary": {
+      "class_exposed": true,
+      "methods_exposed": {
+        "is_python_available": true,
+        "is_python_initialized": true,
+        "execute_python_command": true
+      }
+    },
+    "BlueprintEditorLibrary": {
+      "class_exposed": true,
+      "methods_exposed": {
+        "find_graph": true,
+        "list_graphs": true,
+        "compile_blueprint": true,
+        "create_blueprint_asset_with_parent": true,
+        "add_member_variable": true
+      }
+    },
+    "BlueprintGraphEditor": {
+      "class_exposed": true,
+      "methods_exposed": {
+        "get_graph_editor": true,
+        "get_graph_editor_by_name": true,
+        "create_and_edit_function_graph": true
+      }
+    },
+    "UMGToolSet": {
+      "class_exposed": false,
+      "methods_exposed": {
+        "get_widgets": false,
+        "create_widget_blueprint": false,
+        "add_widget": false,
+        "compile_widget_blueprint": false
+      }
+    }
+  },
+  "score": null,
+  "boundary": "Diagnostic only. Optional APIs are checked with hasattr, never called. A missing symbol can mean its plugin/module is not enabled or loaded. This does not compile a candidate, test feature behavior, or award a score. The script does not load, modify, or save project assets.",
+  "project_directory_raw": "/workspace/lyra-results/editor-probe-02/project/"
+}
