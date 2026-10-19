@@ -1,0 +1,16 @@
+test_empty_tree_is_complete (__main__.ModelSessionCleanupLogicTests.test_empty_tree_is_complete) ... ok
+test_popen_child_is_reaped_by_poll_without_losing_exit_status (__main__.ModelSessionCleanupLogicTests.test_popen_child_is_reaped_by_poll_without_losing_exit_status) ... ok
+test_residual_running_process_cannot_report_complete (__main__.ModelSessionCleanupLogicTests.test_residual_running_process_cannot_report_complete) ... ok
+test_successful_freeze_precedes_kill (__main__.ModelSessionCleanupLogicTests.test_successful_freeze_precedes_kill) ... ok
+test_completed_preserves_entire_prompt_and_separate_logs (__main__.ModelSessionProcessTests.test_completed_preserves_entire_prompt_and_separate_logs) ... ok
+test_deadline_stops_continuous_writers (__main__.ModelSessionProcessTests.test_deadline_stops_continuous_writers) ... ok
+test_existing_output_is_rejected_without_changes_or_launch (__main__.ModelSessionProcessTests.test_existing_output_is_rejected_without_changes_or_launch) ... ok
+test_nonzero_command_is_failed (__main__.ModelSessionProcessTests.test_nonzero_command_is_failed) ... ok
+test_normal_parent_exit_cleans_two_detached_generations (__main__.ModelSessionProcessTests.test_normal_parent_exit_cleans_two_detached_generations) ... ok
+test_sigint_stops_continuous_writers (__main__.ModelSessionProcessTests.test_sigint_stops_continuous_writers) ... ok
+test_sigterm_stops_continuous_writers (__main__.ModelSessionProcessTests.test_sigterm_stops_continuous_writers) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 6.138s
+
+OK

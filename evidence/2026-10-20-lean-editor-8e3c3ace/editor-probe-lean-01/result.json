@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "passed": true,
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "/workspace/lyra-results/editor-probe-lean-01/memory.txt",
+    "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+    "/workspace/lyra-results/editor-probe-lean-01/project/Probe.uproject",
+    "-run=pythonscript",
+    "-script=/workspace/lyra-feature-kit/editor_probe.py",
+    "-unattended",
+    "-nullrhi",
+    "-nosound",
+    "-NoShaderCompile",
+    "-NoSourceControl",
+    "-abslog=/workspace/lyra-results/editor-probe-lean-01/ue.log"
+  ],
+  "cwd": "/workspace/lyra-results/editor-probe-lean-01/project",
+  "started_at": "2026-10-19T16:36:27.767560+00:00",
+  "timeout_seconds": 300,
+  "exit_code": 0,
+  "timed_out": false,
+  "interrupted": false,
+  "launch_error": null,
+  "time_process_id": 12852,
+  "finished_at": "2026-10-19T16:36:35.773689+00:00",
+  "elapsed_seconds": 8.006,
+  "cgroup_events_delta": {
+    "oom_kill": 0,
+    "max": 0,
+    "high": 0,
+    "oom_group_kill": 0,
+    "oom": 0,
+    "low": 0
+  },
+  "cgroup_local_events_delta": {
+    "oom_kill": 0,
+    "max": 0,
+    "high": 0,
+    "oom_group_kill": 0,
+    "oom": 0,
+    "low": 0
+  },
+  "memory": {
+    "sample_count": 8,
+    "max_sampled_cgroup_memory_current_bytes": 3405549568,
+    "time_max_resident_set_kbytes": 1177184,
+    "time_report_available": true,
+    "boundary": "Cgroup samples include every process and file cache, not UE alone; 1-second sampling may miss peaks. memory.peak is lifetime, not this run. GNU time max RSS is not simultaneous aggregate cgroup memory. Timeout can kill time before its final report is written. Exit -9/137 alone does not prove OOM; event deltas are shared-cgroup evidence, not per-process attribution."
+  },
+  "probe_validation": {
+    "valid": true,
+    "problems": [],
+    "probe": {
+      "schema_version": 1,
+      "probe": "real_ue_editor_python_api_presence",
+      "status": "completed",
+      "executed_in_real_unreal": true,
+      "engine_version": "5.8.3-58210709+++UE5+Release-5.8",
+      "required_engine_version_prefix": "5.8.3",
+      "project_directory": "/workspace/lyra-results/editor-probe-lean-01/project",
+      "process_id": 12853,
+      "api_presence": {
+        "SystemLibrary": {
+          "class_exposed": true,
+          "methods_exposed": {
+            "get_engine_version": true,
+            "get_project_directory": true
+          }
+        },
+        "PythonScriptLibrary": {
+          "class_exposed": true,
+          "methods_exposed": {
+            "is_python_available": true,
+            "is_python_initialized": true,
+            "execute_python_command": true
+          }
+        },
+        "BlueprintEditorLibrary": {
+          "class_exposed": true,
+          "methods_exposed": {
+            "find_graph": true,
+            "list_graphs": true,
+            "compile_blueprint": true,
+            "create_blueprint_asset_with_parent": true,
+            "add_member_variable": true
+          }
+        },
+        "BlueprintGraphEditor": {
+          "class_exposed": true,
+          "methods_exposed": {
+            "get_graph_editor": true,
+            "get_graph_editor_by_name": true,
+            "create_and_edit_function_graph": true
+          }
+        },
+        "UMGToolSet": {
+          "class_exposed": false,
+          "methods_exposed": {
+            "get_widgets": false,
+            "create_widget_blueprint": false,
+            "add_widget": false,
+            "compile_widget_blueprint": false
+          }
+        }
+      },
+      "score": null,
+      "boundary": "Diagnostic only. Optional APIs are checked with hasattr, never called. A missing symbol can mean its plugin/module is not enabled or loaded. This does not compile a candidate, test feature behavior, or award a score. The script does not load, modify, or save project assets.",
+      "project_directory_raw": "/workspace/lyra-results/editor-probe-lean-01/project/"
+    }
+  },
+  "scope": "Only real UE Python commandlet startup and API exposure; no Lyra build, asset edits, feature acceptance, or score."
+}

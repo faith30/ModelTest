@@ -1,0 +1,27 @@
+{
+  "status": "extracted_not_yet_runtime_verified",
+  "engine": "/workspace/UE_5.8.3",
+  "version": {
+    "MajorVersion": 5,
+    "MinorVersion": 8,
+    "PatchVersion": 3,
+    "Changelist": 58210709,
+    "CompatibleChangelist": 55116800,
+    "IsLicenseeVersion": 0,
+    "IsPromotedBuild": 1,
+    "BranchName": "++UE5+Release-5.8"
+  },
+  "archive_bytes": 39818576005,
+  "archive_sha256": "81985a9542e15761fa3cc0d4483a26ebe5fd0b448120faddaa2fe05d94142934",
+  "excluded_suffixes": [
+    ".debug",
+    ".sym"
+  ],
+  "excluded_files": 5584,
+  "excluded_bytes": 14846571177,
+  "selected_uncompressed_bytes": 62119622165,
+  "unzip_exit": 0,
+  "elapsed_seconds": 854.1639950275421,
+  "note": "All selected entries passed unzip CRC. Optional symbols omitted; no feature validation yet.",
+  "redundant_archive_removed": true
+}

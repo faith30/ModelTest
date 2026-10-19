@@ -1,0 +1,8 @@
+{"captured_at": "2026-10-19T16:36:27.768902+00:00", "elapsed_seconds": 0.001, "memory_current_bytes": 1890746368, "swap_current_bytes": 0, "anon_bytes": 941502464, "file_bytes": 55037952}
+{"captured_at": "2026-10-19T16:36:28.769394+00:00", "elapsed_seconds": 1.002, "memory_current_bytes": 2140160000, "swap_current_bytes": 0, "anon_bytes": 983756800, "file_bytes": 259936256}
+{"captured_at": "2026-10-19T16:36:29.769956+00:00", "elapsed_seconds": 2.002, "memory_current_bytes": 2393567232, "swap_current_bytes": 0, "anon_bytes": 1034383360, "file_bytes": 460931072}
+{"captured_at": "2026-10-19T16:36:30.770469+00:00", "elapsed_seconds": 3.003, "memory_current_bytes": 2556637184, "swap_current_bytes": 0, "anon_bytes": 1105408000, "file_bytes": 551071744}
+{"captured_at": "2026-10-19T16:36:31.770963+00:00", "elapsed_seconds": 4.003, "memory_current_bytes": 2989735936, "swap_current_bytes": 0, "anon_bytes": 1440645120, "file_bytes": 647659520}
+{"captured_at": "2026-10-19T16:36:32.771511+00:00", "elapsed_seconds": 5.004, "memory_current_bytes": 3074375680, "swap_current_bytes": 0, "anon_bytes": 1468923904, "file_bytes": 703520768}
+{"captured_at": "2026-10-19T16:36:33.772056+00:00", "elapsed_seconds": 6.005, "memory_current_bytes": 3291459584, "swap_current_bytes": 0, "anon_bytes": 1534439424, "file_bytes": 853610496}
+{"captured_at": "2026-10-19T16:36:34.772562+00:00", "elapsed_seconds": 7.005, "memory_current_bytes": 3405549568, "swap_current_bytes": 0, "anon_bytes": 1583124480, "file_bytes": 918482944}

@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-10-19T16:39:53.733844+00:00",
+  "container": "8e3c3aceaa504364833a5085188dff19",
+  "kit_commit": "943caaa78b11dbca8c9a5b4ee41f8b812efac818",
+  "engine_runtime_probe_passed": true,
+  "deepseek_environment_confirmation_completed": true,
+  "large_snapshot_restore": "not_yet_verified",
+  "feature_tasks_started": false,
+  "feature_scores": null,
+  "scope": "Environment startup and CLI integration only; no Lyra feature implementation or grading."
+}

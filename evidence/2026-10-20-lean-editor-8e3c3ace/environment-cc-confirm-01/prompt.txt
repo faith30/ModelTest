@@ -1,0 +1,6 @@
+这是 UE 环境确认，不是三道功能题的正式任务，不启动 45 分钟计时。
+请仅使用 Read 工具读取以下两个现有 JSON 文件：
+1. /workspace/ue-lean-install.json
+2. /workspace/lyra-results/editor-probe-lean-01/result.json
+据文件逐项报告：引擎版本；可选调试符号的省略范围；安装 ZIP 是否已删除；引擎选中文件字节数；真实 UE 启动探针的 passed、exit_code、elapsed_seconds、probe_validation.valid 和内存峰值。缺字段就明确缺字段，不要猜测。
+不要修改任何文件，不要构建项目，不要执行 Bash，不要读取其他路径。只做环境确认，不能把探针成功描述为 Lyra 三道功能题通过，也不能给功能分数。

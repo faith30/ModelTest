@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "checked_at": "2026-10-19T16:36:27.766333+00:00",
+  "os": "Linux",
+  "machine": "x86_64",
+  "uid": 1000,
+  "engine": "/workspace/UE_5.8.3",
+  "project": "/workspace/lyra-feature-kit/editor-probe/Probe.uproject",
+  "engine_version": "5.8.3",
+  "editor": "/workspace/UE_5.8.3/Engine/Binaries/Linux/UnrealEditor-Cmd",
+  "build_script": "/workspace/UE_5.8.3/Engine/Build/BatchFiles/Linux/Build.sh",
+  "cgroup": {
+    "raw": {
+      "memory.max": "4294967296",
+      "memory.current": "1890684928",
+      "cpu.max": "200000 100000",
+      "cpuset.cpus.effective": "0-7"
+    },
+    "memory_limit_bytes": 4294967296,
+    "cpu_quota_cores": 2.0,
+    "host_cpu_count": 2,
+    "proc_self_cgroup": "0::/"
+  },
+  "problems": [],
+  "warnings": [
+    "Memory limit is at most 4 GiB. Build/run sequentially; success is not guaranteed, but this is not a hard block.",
+    "NullRHI/nosound tests do not prove visual, audio, or complete interactive acceptance."
+  ],
+  "editor_probe_errors": [],
+  "boundary": "File/environment preflight only; no UE process or build has run."
+}

@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "workspace": "/workspace/lyra-feature-kit",
+  "command": [
+    "bash",
+    "-lc",
+    "claude \"$@\"; cli_status=$?; wait; exit \"$cli_status\"",
+    "bash",
+    "--model",
+    "deepseek-v4-pro",
+    "--session-id",
+    "aaa514c7-ae0f-4a96-a119-d85ed090c849",
+    "--print",
+    "--output-format",
+    "json",
+    "--tools",
+    "Read",
+    "--allowedTools",
+    "Read",
+    "--permission-mode",
+    "default"
+  ],
+  "prompt_sha256": "ddac448fb0c30dca5e412774b832271ba9727847d6f2f8a8eac58bfbaef5e9d5",
+  "prompt_bytes": 742,
+  "uid": 0,
+  "euid": 0,
+  "supervisor_pid": 13392,
+  "git_before": {
+    "captured_at_utc": "2026-10-19T16:38:06.760058+00:00",
+    "root": "/workspace/lyra-feature-kit",
+    "head": "943caaa78b11dbca8c9a5b4ee41f8b812efac818",
+    "branch": "codex/deepseek-feature-kit",
+    "status_porcelain": "",
+    "clean": true
+  },
+  "started_at_utc": "2026-10-19T16:38:06.764066+00:00",
+  "deadline_at_utc": "2026-10-19T16:43:06.764066+00:00",
+  "stop_requested_at_utc": "2026-10-19T16:38:18.362102+00:00",
+  "stopped_at_utc": "2026-10-19T16:38:18.365709+00:00",
+  "command_exit_code": 0,
+  "timing": {
+    "budget_seconds": 300,
+    "spawn_overhead_seconds": 0.0002645800122991204,
+    "elapsed_to_stop_request_seconds": 11.598028964013793,
+    "stop_request_overshoot_seconds": 0.0,
+    "elapsed_to_cleanup_seconds": 11.601664648973383,
+    "cleanup_end_overshoot_seconds": 0.0,
+    "freeze_observation_overshoot_seconds": 0.0
+  },
+  "source_write_protected": false,
+  "model_duration_verified": false,
+  "boundary": "Budget begins immediately before the CLI launch attempt; it includes launch/CLI overhead, not a measured duration of model inference. Only this supervisor's descendants are owned. Signals are not an atomic filesystem freeze. stopped_at_utc is the observation of an empty owned process tree, not a filesystem last-write timestamp. External services, other users, malicious modification, supervisor SIGKILL and container termination are outside this guarantee. No suite start, commit, push, scoring, or platform snapshot is performed or inferred.",
+  "command_pid": 13398,
+  "spawn_returned_at_utc": "2026-10-19T16:38:06.764329+00:00",
+  "stop_reason": "command_exit",
+  "cleanup": {
+    "requested_at_utc": "2026-10-19T16:38:18.362135+00:00",
+    "started_monotonic": 293486.688561135,
+    "frozen_observed_at_utc": "2026-10-19T16:38:18.363850+00:00",
+    "signals": [],
+    "errors": [],
+    "reaped": [],
+    "frozen_observed_monotonic": 293486.69029008,
+    "freeze_observed_seconds_after_request": 0.0017289450042881072,
+    "complete": true,
+    "remaining": [],
+    "observed": [
+      {
+        "pid": 13398,
+        "ppid": 13392,
+        "pgid": 13398,
+        "sid": 13398,
+        "starttime": 29347509,
+        "state": "S"
+      },
+      {
+        "pid": 13401,
+        "ppid": 13398,
+        "pgid": 13398,
+        "sid": 13398,
+        "starttime": 29347509,
+        "state": "S"
+      },
+      {
+        "pid": 13436,
+        "ppid": 13401,
+        "pgid": 13398,
+        "sid": 13398,
+        "starttime": 29347591,
+        "state": "S"
+      },
+      {
+        "pid": 13437,
+        "ppid": 13436,
+        "pgid": 13398,
+        "sid": 13398,
+        "starttime": 29347591,
+        "state": "R"
+      },
+      {
+        "pid": 13517,
+        "ppid": 13401,
+        "pgid": 13398,
+        "sid": 13398,
+        "starttime": 29348547,
+        "state": "S"
+      },
+      {
+        "pid": 13518,
+        "ppid": 13517,
+        "pgid": 13398,
+        "sid": 13398,
+        "starttime": 29348548,
+        "state": "R"
+      },
+      {
+        "pid": 13528,
+        "ppid": 13398,
+        "pgid": 13398,
+        "sid": 13398,
+        "starttime": 29348663,
+        "state": "R"
+      }
+    ],
+    "finished_at_utc": "2026-10-19T16:38:18.365709+00:00",
+    "elapsed_seconds": 0.0035802600323222578
+  },
+  "git_after": {
+    "captured_at_utc": "2026-10-19T16:38:18.370583+00:00",
+    "root": "/workspace/lyra-feature-kit",
+    "head": "943caaa78b11dbca8c9a5b4ee41f8b812efac818",
+    "branch": "codex/deepseek-feature-kit",
+    "status_porcelain": "",
+    "clean": true
+  },
+  "recorded_at_utc": "2026-10-19T16:38:18.373465+00:00"
+}
