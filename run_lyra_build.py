@@ -6,33 +6,16 @@ import json
 import os
 from pathlib import Path
 import re
-import signal
 import sys
 import threading
 import time
 
 sys.dont_write_bytecode = True
 import headless_ue
+from build_process_tree import BuildProcessTree
 from run_editor_probe import (
     cgroup_directory, cgroup_snapshot, memory_sample, read_optional, save,
 )
-
-
-def cleanup_group(record):
-    """The time leader may exit while a compiler child remains in its group."""
-    pid = record.get("pid")
-    if pid is None:
-        return []
-    sent = []
-    for sig in (signal.SIGTERM, signal.SIGKILL):
-        try:
-            os.killpg(pid, sig)
-        except ProcessLookupError:
-            break
-        sent.append(sig.name)
-        if sig == signal.SIGTERM:
-            time.sleep(0.25)
-    return sent
 
 
 def measured_execute(execute, command, cwd, output, timeout):
@@ -63,18 +46,25 @@ def measured_execute(execute, command, cwd, output, timeout):
             sampled["errors"].append(str(error))
 
     measured = ["/usr/bin/time", "-v", "-o", str(output / "memory.txt"), *command]
-    # headless_ue.execute retains the actual build exit code, launches one new
-    # process group, and applies its existing TERM/KILL timeout handling.
+    # Become a subreaper before spawning the build. UBT descendants can create
+    # new sessions, so the original time process group alone is insufficient.
     with (output / "memory-samples.jsonl").open("x", encoding="utf-8") as samples:
+        tree = BuildProcessTree()
+        record = None
         sampler = threading.Thread(target=sample_until_finished, args=(samples,))
         sampler.start()
         try:
             record = execute(measured, cwd, output, timeout)
             record["build_environment"] = build_environment
-            record["remaining_group_cleanup_signals"] = cleanup_group(record)
         finally:
-            finished.set()
-            sampler.join()
+            try:
+                cleanup = tree.cleanup()
+                save(output / "process-cleanup.json", cleanup)
+                if record is not None:
+                    record["process_cleanup"] = cleanup
+            finally:
+                finished.set()
+                sampler.join()
     after = cgroup_snapshot(cgroup)
     save(output / "cgroup-after.json", after)
     record["cgroup_events_delta"] = {
@@ -106,6 +96,8 @@ def measured_execute(execute, command, cwd, output, timeout):
     )
     save(output / "run.json", record)
     (output / "exit-code.txt").write_text(str(record["exit_code"]) + "\n", encoding="utf-8")
+    if not record["process_cleanup"]["complete"]:
+        raise RuntimeError("Build descendant cleanup is incomplete; refusing a successful final result. See process-cleanup.json")
     return record
 
 
@@ -119,6 +111,8 @@ def main(argv=None):
     parser.add_argument("--no-shared-pch", action="store_true", help="pass -NoSharedPCH to disable shared precompiled headers")
     parser.add_argument("--no-uba", action="store_true",
                         help="pass -NoUBA; in UE 5.8.3 this disables detours, not UBAExecutor")
+    parser.add_argument("--unity-bytes", type=headless_ue.positive_int, default=None,
+                        help="optionally pass -BytesPerUnityCPP=N to the real build command")
     args = parser.parse_args(argv)
     if os.path.lexists(args.output):
         parser.error("--output already exists; choose a new directory")
@@ -144,6 +138,8 @@ def main(argv=None):
             build_command.append("-NoSharedPCH")
         if args.no_uba:
             build_command.append("-NoUBA")
+        if args.unity_bytes is not None:
+            build_command.append("-BytesPerUnityCPP=" + str(args.unity_bytes))
         return measured_execute(original_execute, build_command, cwd, output, timeout)
 
     headless_ue.doctor = doctor

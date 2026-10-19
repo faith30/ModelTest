@@ -12,9 +12,9 @@
 
 ## 当前状态与内存限制
 
-本轮已确认旧容器 `25343ccf` 为 `stopped`，平台没有可用于此次恢复的快照。新容器 `a60d60d4` 正在从零恢复；截至本次说明更新，系统运行库、GitHub CLI 和 aria2 已安装，引擎仍在下载，GitHub 授权尚待用户在 GitHub 页面完成再次密码验证。后台准备和后续构建排队不构成构建成功证据。**不能假定旧容器的引擎、工作目录或登录凭据已保留；完整 Lyra 构建和加载尚未验证通过。**
+旧容器 `25343ccf` 已停止且无可恢复快照。新容器 `a60d60d4` 已完成 GitHub 认证、官方 UE 5.8.3 下载与解压，并恢复精确 interaction 基线及 8689 个 LFS 文件。当前容器的最小真实 UE 无窗口探针已通过：退出 0，8.32 秒，GNU time 最大 RSS 1178120 KiB，OOM 增量为 0。完整 Lyra 默认单并发构建在 SharedPCH 阶段失败，退出 6，146.822 秒，编译器被信号 9 终止，同时 cgroup 的 `oom` 增加 2、`oom_kill` 增加 1。低内存第二轮推进到 19/54 后因持续内存压力，由操作方中止以缩小编译批次；该轮没有新增 OOM，不能记为源码编译失败或超时。[本轮原始证据](evidence/2026-10-19-linux-lyra-a60d60d4/)。**完整 Lyra 构建和加载仍未验证通过，模型计时尚未开始。**
 
-新容器已实测 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）；根目录初始可用空间约 956 GiB，下载和解压后应重新检查余量。平台提供手动 `snap` 入口，但本轮尚未验证快照创建或恢复成功，不能把它当作已经完成的备份。结束容器前应把所需代码和证据保存到 Git。
+新容器已实测 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）。平台手动 `snap` 已返回 `ok=true` 及快照编号，但刷新后快照列表仍显示没有可用快照，尚未验证引擎恢复成功，不能把它当作已经完成的备份。结束容器前应把所需代码和证据保存到 Git。
 
 历史证据：2026-10-19 19:27（北京时间）曾在旧容器以非 root 用户完成 **真实 UE 5.8.3 最小无窗口编辑器探针**：退出 0，耗时 9.572 秒，GNU time 最大 RSS 993032 KiB（约 970 MiB），cgroup 的 `oom/oom_kill` 增量均为 0。[完整结果](evidence/2026-10-19-linux-editor/result.json)、[UE 日志](evidence/2026-10-19-linux-editor/ue.log)和[内存记录](evidence/2026-10-19-linux-editor/memory.txt)已随本分支保存。约 970 MiB 是该命令的 RSS 指标，不是整容器总量；容器总量含后台服务和文件缓存，采样曾接近 4 GiB。第一次探针因缺系统动态库退出 127，补齐依赖后重测成功；两次均未观察到 OOM 增量。
 
@@ -63,7 +63,9 @@ python3 /workspace/lyra-feature-kit/suite.py prepare interaction \
 
 把 Linux UE 5.8.3 解压在 `/workspace/UE_5.8.3`。目录下应直接包含 `Engine/Build/Build.version`。按该包官方说明准备原生 Linux 工具链；本题需要 v26 / clang 20.1.8。编辑器安装与基线预热放在模型的 45 分钟计时之前。
 
-旧容器中该官方包解压后约 71.68 GiB，这是磁盘体积，不代表新容器已完成解压。旧 Debian 13 容器曾补齐以下运行库；新容器需检查发行版和实际 `ldd` 缺失项，再安装适用的软件包。三个测量运行器还要求 GNU `/usr/bin/time`，下面一并安装 `time` 包：
+**引擎不必每次重新下载。** 已保留完整的解压目录时，核实版本、权限和依赖后直接使用；只保留官方 ZIP 时重新解压即可。只有新容器中两者都未保留、也没有其他可访问的副本时，才需要重新下载。项目代码与资源通过 Git / Git LFS 传输，本工具仓库不包含官方 UE 引擎。平台快照能否保存并恢复引擎仍需实际验证；创建请求返回 `ok` 或快照 ID，不足以证明它已成为可恢复的引擎备份。
+
+本轮安装包实测为 39818576005 字节（约 37.08 GiB），解压目录约 71.68 GiB，这是磁盘体积，并非运行内存。当前 Debian 13 容器已补齐以下运行库；新容器仍需检查发行版和实际 `ldd` 缺失项，再安装适用的软件包。三个测量运行器还要求 GNU `/usr/bin/time`，下面一并安装 `time` 包：
 
 ```bash
 apt-get install -y time libglib2.0-0t64 libnss3 libnspr4 libsm6 libice6 \
@@ -117,6 +119,26 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_lyra_build.py \
 这是完整 `LyraEditor Linux Development` 目标的构建调用，可能复用已有构建缓存，并非只编探针或测试替身。`-MaxParallelActions=1` 只限制构建动作并发；单个编译或链接任务仍可能超过可用内存。默认超时 3600 秒，超时会对本次进程组发送 TERM/KILL。输出目录必须不存在。
 
 检查命令退出码、`result.json` 的 `passed`、`run.exit_code`、超时和启动错误，再阅读 `stdout.log` 中的编译结果。构建证据包括 `doctor.json`、`run.json`、`result.json`、`stdout.log`、`exit-code.txt`、`memory.txt`、`memory-samples.jsonl`、`cgroup-before.json` 和 `cgroup-after.json`。构建通过只证明该次目标构建调用成功，不代表游戏运行或功能验收通过；内存采样的范围与局限同最小探针，不能仅凭 137 判定 OOM。
+
+### 可选：4 GiB 环境下的低内存重试
+
+保留上一轮日志，确认没有其他构建任务仍在运行，再使用新的输出目录重试：
+
+```bash
+runuser -u lyra-eval -- env \
+  DOTNET_gcServer=0 \
+  DOTNET_GCHeapHardLimit=0x20000000 \
+  DOTNET_GCConserveMemory=7 \
+  python3 /workspace/lyra-feature-kit/run_lyra_build.py \
+  --engine /workspace/UE_5.8.3 \
+  --project /workspace/lyra-runs/interaction-deepseek-r1/Lyra.uproject \
+  --output /workspace/lyra-results/interaction-baseline-build-lowmem-01 \
+  --no-pch --no-shared-pch --no-uba --timeout 2700
+```
+
+`0x20000000` 为 512 MiB，限制的是 .NET GC 管理的堆，并非整个 UBT 进程的 RSS，更不限制 Clang、链接器或整容器总内存。`--no-pch` 绕过全部预编译头，`--no-shared-pch` 显式禁用共享预编译头；UE 5.8.3 的 `--no-uba` 只关闭 detour，仍可能使用 UBAExecutor。这些设置可能降低部分内存需求，也可能使构建更慢，不能保证在 4 GiB 或 2700 秒内成功。
+
+运行器会在测量记录中保存追加参数后的完整构建命令，`build_environment` 仅记录上述三个 DOTNET 环境变量。仍按本次实际退出码、日志和 cgroup 增量判定结果，不将重试配置本身视为通过证据。
 
 ### 构建通过后加载真实 Lyra 项目
 
