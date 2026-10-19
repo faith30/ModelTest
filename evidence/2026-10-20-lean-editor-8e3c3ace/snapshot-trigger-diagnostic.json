@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-10-19T17:22:04.283675+00:00",
+  "source": "/tmp/sidecar.log",
+  "source_size_bytes": 6070,
+  "filtered_lines": [
+    "2026/10/19 16:23:20 [agent] cc-exited: exit_code=0",
+    "2026/10/19 16:38:17 [agent] turn-end: snapshot_id=aaa514c7-ae0f-4a96-a119-d85ed090c849_turn_1_33a18996",
+    "2026/10/19 16:38:18 [agent] cc-exited: exit_code=0",
+    "2026/10/19 17:10:38 http: proxy error: context canceled",
+    "2026/10/19 17:16:51 [agent] turn-end: snapshot_id=d5bee8fd-cf4c-4b6a-b401-72317b19a600_turn_1_5d67223b"
+  ],
+  "boundary": "Only local diagnostic log evidence. Does not prove platform snapshot creation, completeness, availability, or restoration. Credential-related lines omitted and URLs redacted."
+}
