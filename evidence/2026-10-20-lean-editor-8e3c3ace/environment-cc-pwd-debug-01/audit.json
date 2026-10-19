@@ -1,0 +1,65 @@
+{
+  "recorded_at_utc": "2026-10-19T17:42:20.491151+00:00",
+  "formal_task": false,
+  "actual_user_message": {
+    "session_id": "aaa514c7-ae0f-4a96-a119-d85ed090c849",
+    "timestamp": "2026-10-19T17:40:37.975Z",
+    "text": "这是环境工具延迟诊断，不是正式功能题。只调用一次 Bash，命令必须是 pwd，不加其他命令、参数或脚本。不要修改文件，不要执行 UE、Git、安装或网络操作。拿到命令结果后立即简短回复；若失败或权限拒绝，直接报告，不要重试或绕过。\n",
+    "sha256": "d39376067a0066b69cc97d3aea06dc0942e26a941e56ebd307134974ce0984d3"
+  },
+  "prompt_exact": true,
+  "tool_uses": [
+    {
+      "type": "tool_use",
+      "id": "call_00_ET_gSXlfOK7v7ck1ClnOeWe3820",
+      "name": "Bash",
+      "input": {
+        "command": "pwd",
+        "description": "Print working directory"
+      }
+    }
+  ],
+  "tool_results": [
+    {
+      "tool_use_id": "call_00_ET_gSXlfOK7v7ck1ClnOeWe3820",
+      "type": "tool_result",
+      "content": "/workspace/lyra-feature-kit",
+      "is_error": false
+    }
+  ],
+  "status": "completed",
+  "command_exit_code": 0,
+  "cleanup_complete": true,
+  "timing": {
+    "budget_seconds": 120,
+    "spawn_overhead_seconds": 0.0002760690404102206,
+    "elapsed_to_stop_request_seconds": 6.476110723044258,
+    "stop_request_overshoot_seconds": 0.0,
+    "elapsed_to_cleanup_seconds": 6.481134070025291,
+    "cleanup_end_overshoot_seconds": 0.0,
+    "freeze_observation_overshoot_seconds": 0.0
+  },
+  "allowlisted_diagnostics": [
+    {
+      "file": "stdout.log",
+      "bytes": 20213,
+      "model_pattern_matches": [
+        "claude-haiku-4-5-20251001",
+        "deepseek-v4-pro"
+      ],
+      "http_status_pattern_matches": [
+        "200",
+        "401"
+      ],
+      "known_error_markers": {}
+    },
+    {
+      "file": "stderr.log",
+      "bytes": 0,
+      "model_pattern_matches": [],
+      "http_status_pattern_matches": [],
+      "known_error_markers": {}
+    }
+  ],
+  "boundary": "Raw debug stdout/stderr may contain credentials and are deliberately not exported. Pattern matches alone do not associate a model with an HTTP response or establish the cause of prior delay. This pwd probe is not feature scoring or snapshot recovery proof."
+}
