@@ -2,11 +2,11 @@
 
 `run_model_session.py` 是 Linux 上的进程监督器，不启动 UE 验收、不评分、不调用 `suite.py start`，也不暂存、提交或推送 Git。只运行组织者在 `--` 后明确提供的 argv，不隐式启动 shell；组织者可以明确传入下述平台所需的 `bash -lc` 包装。
 
-在环境和平台确认轮完成之后、正式任务开始之前，先用假进程测试此入口。正式任务的完整 Prompt 必须已合并并核对，计时从 CLI 启动尝试之前开始，默认 2700 秒，包含启动开销；CLI 提前退出就结束，不伪装为已运行满 45 分钟。三题分别使用独立的工作目录和证据目录，各自建立包含环境确认轮的 session，避免带入其他题目历史。按用户提供教程的环境准备与轮次选择流程，每个新建或恢复的容器都要新建 CC session，先做环境确认轮，再在同一 session 进入任务轮，供平台读取任务轮的前一轮快照；不能用旧容器的 session 续聊代替新容器采集。现场保存的 CLI help 已确认 `--resume <已知 session UUID>` 的按 ID 续聊语法，但尚未实际验证续聊及对应平台收录；`--continue` 选择当前目录最近会话，`--fork-session` 会另建 ID，均不能据此推定是在预期 session 进入下一轮。若另用 `suite.py start`，它是独立时钟，必须保存二者的偏差，不能视为自动同步。
+在环境和平台确认轮完成之后、正式任务开始之前，先用假进程测试此入口。正式任务的完整 Prompt 必须已合并并核对，计时从 CLI 启动尝试之前开始，默认 2700 秒，包含启动开销；CLI 提前退出就结束，不伪装为已运行满 45 分钟。三题分别使用独立的工作目录和证据目录，各自建立包含环境确认轮的 session，避免带入其他题目历史。按用户提供教程的环境准备与轮次选择流程，每个新建或恢复的容器都要新建 CC session，先做环境确认轮，再在同一 session 进入任务轮，供平台读取任务轮的前一轮快照；不能用旧容器的 session 续聊代替新容器采集。`--resume <已知 session UUID>` 已在本轮 root CLI 环境自检中实际续接同一 UUID，详见下文审计；该结论不包含平台快照恢复或每道正式题的完整工作流。`--continue` 选择当前目录最近会话，`--fork-session` 会另建 ID，均不能据此推定是在预期 session 进入下一轮。若另用 `suite.py start`，它是独立时钟，必须保存二者的偏差，不能视为自动同步。
 
 现场已确认 `claude` 是 shell function，Python `shutil.which("claude")` 返回 None，而 `bash -lc` 可加载该函数。必须保留平台包装，不能将裸 `claude` 直接作为 Popen 的可执行文件。已验证的包装保存 `claude` 函数返回码，并用 `wait` 等待该 shell 可等待的后台任务，以保留平台退出钩子的执行机会；这部分等待仍在总预算内。`wait` 不能证明已脱离该 shell 的服务或远端快照任务完成，函数返回码和监督器 `completed` 也不是所有钩子成功的证明。
 
-以下仅展示正式预算下的包装调用骨架，尚不是已经核验完整的正式任务命令：组织者还须确认 Bash/Edit 权限策略、按明确 UUID 续聊的实际效果及前一轮快照可用，再补入对应 CLI 参数。完整 Prompt 从文件按原字节送入子进程 stdin，不经 shell 展开。脚本字符串之后的第二个 `bash` 是 shell 的 `$0` 占位，需保留，后续 CLI 参数才会完整传入 `"$@"`。
+以下仅展示正式预算下的包装调用骨架，尚不是已经核验完整的正式任务命令：组织者须选定本题环境确认轮的 UUID，核对该题工作目录与所需操作权限、完整冻结 Prompt 及前一轮快照可用，再补入对应 CLI 参数。本轮已验证的 `--resume` 和 Read/Edit/Bash 参数记录在下文环境自检中，不能把这个自检 session 直接当作三道题共同的正式 session。完整 Prompt 从文件按原字节送入子进程 stdin，不经 shell 展开。脚本字符串之后的第二个 `bash` 是 shell 的 `$0` 占位，需保留，后续 CLI 参数才会完整传入 `"$@"`。
 
 ```bash
 python3 /workspace/lyra-feature-kit/run_model_session.py \
@@ -18,7 +18,7 @@ python3 /workspace/lyra-feature-kit/run_model_session.py \
   --model deepseek-v4-pro --print --output-format json
 ```
 
-本次 Read 工具调用及进程退出成功的记录为监督器 `uid=0/euid=0`，只验证了该身份下的 CLI 调用与清理，没有证明平台轮次已经结束；也没有证明 `lyra-eval` 登录 shell 同样能加载函数、访问 CLI 配置或接续 session。CLI 执行身份可沿用已核实的 root 包装，但正式平台采集路径仍待验证，不为切换 CLI 用户而绕过平台函数或迁移凭据。UE 与构建必须另用 `runuser -u lyra-eval -- ...` 等现场已核实的非 root 调用，并事先配好工程/输出权限。输出目录必须是工程之外的新目录，拒绝覆盖。`--seconds` 的短预算只用于自测，不能算正式 45 分钟。
+本次只读确认和后续工具自检的监督器均为 `uid=0/euid=0`，验证了该身份下的 CLI 调用、续聊、指定工具操作与清理，没有证明平台快照已可恢复；也没有证明 `lyra-eval` 登录 shell 同样能加载函数、访问 CLI 配置或接续 session。CLI 执行身份可沿用已核实的 root 包装，但正式平台采集路径仍待验证，不为切换 CLI 用户而绕过平台函数或迁移凭据。UE 与构建必须另用 `runuser -u lyra-eval -- ...` 等现场已核实的非 root 调用，并事先配好工程/输出权限。输出目录必须是工程之外的新目录，拒绝覆盖。`--seconds` 的短预算只用于自测，不能算正式 45 分钟。
 
 输出：原样 `prompt.txt`、直接流入文件的 `stdout.log` / `stderr.log`、`run.json`。报告包括完整 argv、Prompt SHA-256、启动/截止/停止请求/观察到停止的 UTC、单调时钟用时与 overshoot、子进程身份和信号、清理残留、前后 Git HEAD/分支/状态。`run.json` 初始为 `not_started` 或 `running`，只有最终写入后才有完成状态；进程被 `SIGKILL` 或容器销毁时不能假定最终报告存在。
 
@@ -34,7 +34,7 @@ python3 /workspace/lyra-feature-kit/run_model_session.py \
 python3 -B /workspace/lyra-feature-kit/test_run_model_session.py
 ```
 
-2026-10-20 的现场验证记录见 [证据说明](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)：[11 项自测](evidence/2026-10-20-lean-editor-8e3c3ace/model-session-self-test.log) 在远程 Linux 全部通过，其中 7 项为真实 Linux 进程场景，均未调用模型或 UE。另一次实际 DeepSeek CLI 环境确认使用 `--tools Read --allowedTools Read --permission-mode default`，300 秒上限下约 11.6 秒正常结束，退出码 0、清理完成，见 [监督记录](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-confirm-01/run.json) 和 [实际回复](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-confirm-01/stdout.log)。这只验证 Read 确认轮；正式任务的 Bash/Edit 权限仍需现场核验。
+2026-10-20 的现场验证记录见 [证据说明](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)：[11 项自测](evidence/2026-10-20-lean-editor-8e3c3ace/model-session-self-test.log) 在远程 Linux 全部通过，其中 7 项为真实 Linux 进程场景，均未调用模型或 UE。最初的实际 DeepSeek CLI 环境确认使用 `--tools Read --allowedTools Read --permission-mode default`，300 秒上限下约 11.6 秒正常结束，退出码 0、清理完成，见 [监督记录](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-confirm-01/run.json) 和 [实际回复](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-confirm-01/stdout.log)。该轮仅验证 Read；后续同 session 的 Read/Edit/Bash 自检见下文。
 
 平台完整轨迹的最终回复已另存为[截图](evidence/2026-10-20-lean-editor-8e3c3ace/platform-claude-response.png)。快照状态截图记录的中国时间 00:40，含引擎的大快照仍为“等快照”，尚未证明可恢复。以上自测和确认轮都不是 45 分钟功能测试，不产生题目分数。
 
@@ -51,6 +51,12 @@ python3 -B /workspace/lyra-feature-kit/test_run_model_session.py
 
 随后对 CLI session `aaa514c7-ae0f-4a96-a119-d85ed090c849` 的实际 user 消息进行了只读回查，[传输审计](evidence/2026-10-20-lean-editor-8e3c3ace/cli-prompt-transport.json) 记录其与 `environment-cc-confirm-01/prompt.txt` 完全一致：376 字符、6 个换行、742 UTF-8 字节，SHA-256 为 `ddac448fb0c30dca5e412774b832271ba9727847d6f2f8a8eac58bfbaef5e9d5`。这证明本次只读 CLI 确认轮的实际消息保真，不能替代尚未发送的正式冻结 Prompt 验证。
 
-正式冻结任务优先使用已验证向子进程 stdin 提供原字节的 CLI 监督入口，并分别保存源 Prompt 与实际 session user 消息的核对证据和哈希。监督器的 Prompt SHA 记录的是 stdin 源字节，仍不能替代每次实际会话消息回读。按 UUID 续聊、正式 Bash/Edit 权限和平台快照恢复仍须现场验证，不能仅凭本次只读消息传输检查就认定完整流程已跑通。
+后续 `environment-cc-resume-01` 使用 `--resume aaa514c7-ae0f-4a96-a119-d85ed090c849 --tools Read,Edit,Bash --allowedTools Read,Edit,Bash --permission-mode default`，实际续接同一 UUID。其 [审计](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-resume-01/audit.json) 回查了原样 user 消息及三种真实工具调用：只读取、修改 `/workspace/model-tool-probe/probe.txt`，并用 Bash 执行 Python 断言得到 `PROBE_OK`。实际消息与源 Prompt 完全一致，没有权限拒绝；工具仓库前后干净且 HEAD 相同，interaction 参赛基线保持原 SHA 和干净状态。
+
+该自检在 300 秒预算内正常结束，从启动到清理完成共 198.915920 秒，退出码 0、`cleanup.complete=true`，见 [run.json](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-resume-01/run.json) 和 [实际回复](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-resume-01/stdout.log)。[stderr](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-resume-01/stderr.log) 有 Bash pre-flight 变慢提示，原因尚未确定；上述总时长不能全部归因于模型推理。这证明该环境下同 UUID 续聊和指定 Read/Edit/Bash 操作可用，不证明 root 工具权限构成目录隔离，也不证明 UE 命令、每题资源编辑或平台快照恢复已经通过。
+
+之后同 UUID 的[最小 `pwd` 诊断](evidence/2026-10-20-lean-editor-8e3c3ace/environment-cc-pwd-debug-01/audit.json)也通过：实际消息与源 Prompt 一致，只调用一次 Bash `pwd`，返回 `/workspace/lyra-feature-kit`；120 秒预算下 6.481134 秒清理完成，退出 0。该轮启用调试日志，仅导出了允许的诊断字段，未将可能含凭据的原始 stdout/stderr 纳入 Git 证据。模式匹配发现 `claude-haiku-4-5-20251001`、`deepseek-v4-pro` 及 HTTP 200/401 字样，不能据此关联具体模型与响应，也不能解释上一轮延迟原因；本轮较快同样不能证明此前延迟已解决。
+
+正式冻结任务优先使用已验证向子进程 stdin 提供原字节的 CLI 监督入口，并分别保存源 Prompt 与实际 session user 消息的核对证据和哈希。监督器的 Prompt SHA 记录的是 stdin 源字节，仍不能替代每次实际会话消息回读。正式完整 Prompt、各题路径与所需操作、前一轮快照恢复仍须分别验证，不能仅凭这些环境自检认定正式流程已跑通。
 
 这些仍是环境验证，正式 45 分钟任务尚未启动，没有功能分数。插件的小快照成功不能代替含引擎环境的恢复验证，CLI 监督器的测试也不能证明插件 UI 任务及其后台写入进程已受同样监督；正式入口及其停止边界仍须按实际运行方式核实。

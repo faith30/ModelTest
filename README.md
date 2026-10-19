@@ -28,7 +28,7 @@
 
 2026-10-20 本轮容器为 `8e3c3aceaa504364833a5085188dff19`。官方 UE 5.8.3 仅省略 `.debug/.sym`，interaction 固定基线及 8689 个 LFS 文件已恢复并校验。使用 **1 GiB .NET GC 堆上限**的 build-02 完成 61/61 项，退出 0，481.096 秒，GNU time 最大 RSS 1664152 KiB；随后 load-01 退出 0，36.758 秒，最大 RSS 2256388 KiB。两步 `oom/oom_kill` 增量均为 0，整容器采样仍接近或达到 4 GiB。重试可能复用缓存，不是全新冷构建。[本轮构建、加载与范围说明](evidence/2026-10-20-lean-editor-8e3c3ace/RESULTS.md)。**这只证明固定 interaction 基线的真实构建、模块及指定资源加载，不证明三题功能正确；正式计时尚未开始，没有功能分数。**
 
-本轮 cgroup 已记录 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）。CLI `aaa514c7` 与插件 `d5bee8fd` 均有本地 `turn-end` 和 snapshot ID，但截至 2026-10-20 01:30（北京时间）平台仍等待两者快照，含引擎环境尚未验证可恢复；本地触发不能当作已完成备份。CLI 只读确认的实际 user 消息已逐字节核对一致，插件本次粘贴则丢失换行；正式任务传输、续聊和权限边界见 [MODEL_SESSION.md](MODEL_SESSION.md)。
+本轮 cgroup 已记录 `cpu.max=200000 100000`（2 CPU 配额）、`memory.max=4294967296`（4 GiB）、`memory.swap.max=0`（不能使用 swap）。CLI `aaa514c7` 与插件 `d5bee8fd` 均有本地 `turn-end` 和 snapshot ID，但截至 [2026-10-20 01:38（北京时间）的平台截图](evidence/2026-10-20-lean-editor-8e3c3ace/platform-no-engine-snapshot-0138.png)，首轮 CLI 确认后等待已超过 60 分钟，仍无可用的含引擎快照；恢复尚未验证，本地触发不能当作已完成备份。CLI 只读确认和后续同 UUID 续聊的实际消息均已核对一致，指定 Read/Edit/Bash 自检成功；插件本次粘贴则丢失换行。完整正式 Prompt、各题操作和平台恢复的范围边界见 [MODEL_SESSION.md](MODEL_SESSION.md)。
 
 历史容器 `a60d60d4` 于 2026-10-19 22:27（北京时间）完成过 interaction 基线构建和加载：第三轮采用当时的 512 MiB 堆配置与 `--unity-bytes 131072`，49 个构建动作完成，退出 0，406.192 秒；加载退出 0，51.396 秒，最大 RSS 分别为 1613620 和 1874492 KiB，`oom/oom_kill` 增量均为 0。[历史原始证据](evidence/2026-10-19-linux-lyra-a60d60d4/)。旧轮次默认 PCH 曾出现容器 OOM，低内存第二轮由操作方中止，第三轮复用缓存；其最小探针退出 0、8.32 秒。这些历史结果不代表当前容器、冷构建或三题功能均通过。
 
@@ -190,7 +190,7 @@ runuser -u lyra-eval -- python3 /workspace/lyra-feature-kit/run_lyra_probe.py \
 
 只有基线构建和所需资源工具验证成功、容器剩余时间足够且环境可恢复后，才开始正式计时。VS Code 只打开这一题的目录，不把其他候选、原工程或评估器一起打开。在新建或恢复的容器中选择 `deepseek-v4-pro` 并开启全新会话，先做环境确认轮并核验快照，再在同一会话发送完整任务轮。平台从任务轮的前一轮快照恢复环境，不能把新会话的第一轮直接作为正式测试。记录平台实际支持的推理档位，不假定它与 GPT 的 high 等价。
 
-正式冻结 Prompt 优先经 CLI 监督器的 stdin 传输，调用方式及尚未验证的续聊、权限见 [MODEL_SESSION.md](MODEL_SESSION.md)。以下 `suite.py start` 仅是人工计时路线；它与 CLI 监督器是两个独立时钟，不会自动同步。插件本次粘贴曾丢失全部换行，因此无论采用哪个入口，都须保存实际 session user 消息及其哈希，不能只保存源文件哈希。
+正式冻结 Prompt 优先经 CLI 监督器的 stdin 传输。同 UUID 续聊及指定 Read/Edit/Bash 环境自检已通过，实际参数和仍待逐题验证的范围见 [MODEL_SESSION.md](MODEL_SESSION.md)。以下 `suite.py start` 仅是人工计时路线；它与 CLI 监督器是两个独立时钟，不会自动同步。插件本次粘贴曾丢失全部换行，因此无论采用哪个入口，都须保存实际 session user 消息及其哈希，不能只保存源文件哈希。
 
 ```bash
 python3 /workspace/lyra-feature-kit/suite.py start /workspace/lyra-runs/interaction-deepseek-r1

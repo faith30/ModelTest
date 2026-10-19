@@ -34,3 +34,13 @@
 以上只证明当前固定基线的构建、模块和资源加载，不验证游戏功能、UI、实际音频或多人行为，不产生三题分数。模型修改后仍须重新构建并独立验收。
 
 01:16 后通过同容器 Claude 插件发送了[只读环境确认](plugin-confirmation-prompt.txt)，用于核对与此前成功的小快照相同的保存流程。当前仍须验证含引擎快照可恢复，再给予每题完整 2700 秒预算、冻结模型交付并按原评分规则评估。
+
+## 同 session 续聊与工具自检
+
+随后通过平台 shell 包装和 `--resume aaa514c7-ae0f-4a96-a119-d85ed090c849` 实际续接原 CLI session，使用 `--tools Read,Edit,Bash --allowedTools Read,Edit,Bash --permission-mode default`。[审计记录](environment-cc-resume-01/audit.json) 确认实际 user 消息与源 Prompt 完全一致，Read/Edit/Bash 三步成功：读取并修改专用的 `/workspace/model-tool-probe/probe.txt`，最后以 Python 断言得到 `PROBE_OK`。没有权限拒绝；工具仓库前后干净且 HEAD 相同，interaction 参赛基线仍在原 SHA 且干净。
+
+[监督记录](environment-cc-resume-01/run.json) 为 `completed`、退出码 0、清理完成，300 秒预算下从启动到清理共 198.915920 秒。[stderr](environment-cc-resume-01/stderr.log) 记录 Bash pre-flight 变慢提示，原因未确定；不能把全部时间当作模型推理耗时。此轮没有执行 UE 或正式功能任务，不产生分数，只验证当前 root CLI 包装、同 UUID 续聊、消息传输与指定工具操作；每题完整 Prompt、工程操作与平台恢复仍须独立验证。
+
+随后同 UUID 的[最小 `pwd` 诊断审计](environment-cc-pwd-debug-01/audit.json)确认实际 Prompt 完全一致，唯一 Bash 调用为 `pwd`，实际返回 `/workspace/lyra-feature-kit`。[运行记录](environment-cc-pwd-debug-01/run.json)为 `completed`、退出码 0、清理完成，120 秒预算下总耗时 6.481134 秒。该轮启用了调试日志，只导出允许的诊断字段，原始 stdout/stderr 因可能含凭据未归档。匹配到的模型名 `claude-haiku-4-5-20251001` / `deepseek-v4-pro` 和 HTTP 200/401 仅是独立模式匹配，不建立模型与响应的对应关系，也不证明前次延迟的原因或已恢复正常。此轮同样不是功能测试或快照恢复验证。
+
+截至 [01:38（中国时间）的平台截图](platform-no-engine-snapshot-0138.png)，首轮 CLI 确认后的快照等待已超过 60 分钟，仍无可用的含引擎快照。CLI 与插件虽都有[本地 turn-end 触发记录](snapshot-trigger-diagnostic.json)，仍不能据此宣称远端已保存或可恢复。正式 45 分钟计时尚未启动，没有候选功能成绩。
