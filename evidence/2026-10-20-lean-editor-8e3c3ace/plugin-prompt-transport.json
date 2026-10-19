@@ -1,0 +1,15 @@
+{
+  "recorded_at_utc": "2026-10-19T17:25:25.153781+00:00",
+  "session_id": "d5bee8fd-cf4c-4b6a-b401-72317b19a600",
+  "source_characters": 623,
+  "source_linebreaks": 13,
+  "source_bytes": 1023,
+  "source_sha256": "618f94bee423d756c70ec78ec9e3c3081a278577c45e41a1f114cb42a28cbc30",
+  "actual_characters": 610,
+  "actual_linebreaks": 0,
+  "actual_bytes": 1010,
+  "actual_sha256": "9cd6dfed9120c39b66626f89e2c33a5d7b92aa7a2ba25e0179d3047f86eb4854",
+  "same_bytes": false,
+  "equal_after_removing_linebreaks": true,
+  "boundary": "Only this browser-pasted environment confirmation was audited. No formal task was sent. Do not treat source file hash as actual transmitted prompt hash."
+}
