@@ -1,0 +1,22 @@
+{
+  "recorded_at_utc": "2026-10-19T17:30:07.366250+00:00",
+  "session_id": "aaa514c7-ae0f-4a96-a119-d85ed090c849",
+  "source": {
+    "characters": 376,
+    "newlines": 6,
+    "utf8_bytes": 742,
+    "sha256": "ddac448fb0c30dca5e412774b832271ba9727847d6f2f8a8eac58bfbaef5e9d5"
+  },
+  "user_text_messages": [
+    {
+      "index": 0,
+      "characters": 376,
+      "newlines": 6,
+      "utf8_bytes": 742,
+      "sha256": "ddac448fb0c30dca5e412774b832271ba9727847d6f2f8a8eac58bfbaef5e9d5",
+      "exact": true,
+      "equal_after_trim": true
+    }
+  ],
+  "boundary": "Only this readonly environment confirmation was audited. No formal task or actual resume has been verified. Recheck the formal prompt against its own transcript."
+}
