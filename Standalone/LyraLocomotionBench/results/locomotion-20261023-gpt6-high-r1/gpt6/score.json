@@ -1,0 +1,1871 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "candidate_sha256": "a8cfd07be7c3c6e34d75b63e3ab668cf61331392984fbc48d5edacb0ab095270",
+  "candidate_file_count": 33,
+  "semantic_judgment": "Provided by the reviewer; this tool validates evidence locations and arithmetic only.",
+  "max_score": 100.0,
+  "reviewed_subscore": 87.5,
+  "reviewed_max_score": 100.0,
+  "reviewed_deductions": 12.5,
+  "coverage": {
+    "reviewed_items": 40,
+    "total_items": 40,
+    "weight_fraction": 1.0,
+    "reviewed_gates": 3,
+    "total_gates": 3
+  },
+  "unreviewed_items": [],
+  "unreviewed_gates": [],
+  "raw_score": 87.5,
+  "effective_cap": 100.0,
+  "cap_deduction": 0.0,
+  "final_score": 87.5,
+  "categories": {
+    "asset_authoring": {
+      "reviewed_subscore": 20.0,
+      "reviewed_max_score": 20.0,
+      "max_score": 20.0
+    },
+    "locomotion_states": {
+      "reviewed_subscore": 18.0,
+      "reviewed_max_score": 18.0,
+      "max_score": 18.0
+    },
+    "synchronization": {
+      "reviewed_subscore": 12.0,
+      "reviewed_max_score": 16.0,
+      "max_score": 16.0
+    },
+    "distance_matching": {
+      "reviewed_subscore": 11.0,
+      "reviewed_max_score": 16.0,
+      "max_score": 16.0
+    },
+    "warping_and_yaw": {
+      "reviewed_subscore": 9.5,
+      "reviewed_max_score": 12.0,
+      "max_score": 12.0
+    },
+    "architecture_and_lifecycle": {
+      "reviewed_subscore": 9.0,
+      "reviewed_max_score": 10.0,
+      "max_score": 10.0
+    },
+    "robustness_and_reproducibility": {
+      "reviewed_subscore": 8.0,
+      "reviewed_max_score": 8.0,
+      "max_score": 8.0
+    }
+  },
+  "items": [
+    {
+      "id": "RES01",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "原始清单与样本只作输入；每个派生资源记录 source_clip_ids、源名、version=1 的具体加工配方，ready 条目保存源文件 SHA256，资源表保存清单规范化 SHA256。已读产物中 auth_motion_01 对应 motion_01；启发式接触明确不冒充原 Lyra 通知/真实标签。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 90,
+          "line_end": 105,
+          "quote": "    for clip in manifest['clips']:\n        recipe={'version':1,'operations':[\n            'Read component-space samples; preserve all source times with first time as zero',\n            'Re-express positions with B=(y,-x,z), rotations as B*q*inverse(B)',\n            'Extract planar root path and unwrapped relative root yaw',\n            'Remove current root XY and relative root yaw from every component transform; retain vertical motion',\n            'Normalize quaternions and enforce temporal hemisphere continuity',\n            'Compute cumulative XY arc length and remaining distance from measured samples',\n            'Estimate foot contacts from measured source-space speeds and low foot heights (heuristic, not ground truth)',\n            'For cycles select a measured L-R-L single-stride loop window by endpoint position RMS; retain full processed frames',\n            'For pivots derive reversal hint from maximum incoming-axis root displacement'],\n            'contact_recipe':{'floor_quantile':.05,'height_full_cm':2.,'height_zero_cm':7.,'speed_threshold':'clamp(average_root_speed*0.25,40,140) cm/s','median_samples':3,'on_threshold':.55,'off_threshold':.25},\n            'cycle_window_recipe':{'duration_bounds_seconds':[.3,1.6],'required_onsets':['L','R','L'],'fallback':'full source time range, no fabricated markers'},\n            'interpolation':{'positions':'linear','rotations':'shortest_arc_slerp','curves':'linear'},\n            'root_motion_policy':'in_place; gameplay owns world translation and actor yaw',\n            'missing_input_policy':'run identical process() after source samples arrive; do not synthesize poses'}"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 106,
+          "line_end": 108,
+          "quote": "        entry={'asset_id':'auth_'+clip['clip_id'],'source_clip_ids':[clip['clip_id']],\n               'source_name':clip['source_name'],'semantic':clip['semantic'],\n               'status':'deferred_missing_samples','recipe':recipe,'data':None}"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 123,
+          "line_end": 135,
+          "quote": "            entry['data']=enrich(source,process(clip,source),clip['semantic'])\n            entry['source_pose_file']=clip['pose_file']; entry['source_sha256']=hashlib.sha256(raw).hexdigest()\n            entry['status']='ready'\n        else:\n            entry['missing_inputs']=[{'clip_id':clip['clip_id'],'required':'component-space pose samples and timestamps'}]\n        assets.append(entry)\n    return {'schema_version':1,'status':'authored_with_deferred_inputs',\n            'source_manifest':{'file':'manifest.json','resolution':'relative to build manifest_dir',\n                'sha256_canonical':hashlib.sha256(json.dumps(manifest,sort_keys=True).encode()).hexdigest()},\n            'coordinate_conversion':{'source_to_actor_matrix':[[0,1,0],[-1,0,0],[0,0,1]],\n                'position':'B*p','rotation':'B*q*inverse(B); bone local axes are re-expressed too',\n                'quaternion':'Hamilton active xyzw','units':'cm, seconds, degrees',\n                'root':'planar XY removed; relative yaw removed; Z retained; trajectory is evidence, not gameplay displacement'},"
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 1,
+          "line_end": 1,
+          "quote": "{\"asset_id\":\"auth_motion_01\",\"source_clip_ids\":[\"motion_01\"],\"source_name\":\"MM_Unarmed_Walk_Fwd\",\"semantic\":{\"gait\":\"walk\",\"direction\":\"fwd\",\"action\":\"cycle\"},\"status\":\"ready\","
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES02",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "声明并实际执行 cm/秒/度、26 骨骼 component-space 与 Hamilton xyzw；位置 B(x,y,z)=(y,-x,z)，旋转用 B*q*B^-1 重新表达局部基，随后只移除相对首帧 root yaw，保留固定 actor 基。世界速度/加速度按 actor yaw 转局部；TIP 将负 actor yaw 对应人体左转正角。已有左右转样本的相对 yaw 分别为 -90 与约 +180，与声明一致；未扩造完整骨架。",
+      "evidence": [
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 40,
+          "line_end": 42,
+          "quote": "1. 源 `+Y` 前、`+X` 左变为角色 `+X` 前、`-Y` 左：`B(x,y,z)=(y,-x,z)`，相当于绕 Z 旋转 -90°。四元数使用 Hamilton 主动旋转 xyzw；同时重新表达骨骼局部基，故 `q'=B*q*B^-1`，不是把源四元数不加处理地复制。\n2. 对 component-space 每帧：提取 root 位置和相对首帧的连续 yaw；所有骨骼减去当前 root XY，再反转相对 root yaw。保留 Z 与初始 root 旋转。加工资源为 in-place；位移由外部角色系统拥有，root 路径只用于分析/匹配，不能再施加为世界位移。\n3. 保留全部原始抽样时刻，以首帧为时间零点，不声称重新取得高精度数据。归一化四元数并统一相邻帧半球。位置/曲线线性插值，旋转由下游以最短弧 slerp 求值。"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 59,
+          "line_end": 70,
+          "quote": "        ps=[basis(p) for p in f['positions']]\n        qs=[unit(mul(mul(B,unit(q)),inv(B))) for q in f['rotations_xyzw']]\n        a=yaw(qs[root])\n        if prev_angle is not None:\n            angle += (a-prev_angle+math.pi)%(2*math.pi)-math.pi\n        prev_angle=a\n        delta=[ps[root][k]-origin[k] for k in range(3)]\n        if trajectory:\n            total += math.hypot(delta[0]-trajectory[-1][0],delta[1]-trajectory[-1][1])\n        remove=[0,0,math.sin(-angle/2),math.cos(-angle/2)]\n        outp=[rotate_z([p[0]-ps[root][0],p[1]-ps[root][1],p[2]],-angle) for p in ps]\n        outq=[unit(mul(remove,q)) for q in qs]"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 117,
+          "line_end": 121,
+          "quote": "            if skeleton is None:\n                skeleton={'scope':'provided 26-bone subset only; not full Manny or a bind pose',\n                          'bones':source['bones'],'source_clip_ids':[]}\n            if skeleton['bones'] != source['bones']:\n                raise ValueError('Incompatible sampled skeletons')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 155,
+          "line_end": 159,
+          "quote": "        if state=='turn':\n            size=180 if abs(turn_delta)>=self.p['turn_180_threshold_degrees'] else 90\n            anatomical=size if turn_delta<0 else -size\n            aid=self.bindings[f'turn.{anatomical}']\n            scale=clamp(abs(turn_delta)/size,.75,1.25)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 247,
+          "line_end": 249,
+          "quote": "        r=math.radians(actor); c,s=math.cos(r),math.sin(r)\n        local_v=[c*v[0]+s*v[1],-s*v[0]+c*v[1]]\n        local_a=[c*a[0]+s*a[1],-s*a[0]+c*a[1]]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES03",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "37 个唯一派生资源及 37 个图绑定覆盖 walk/jog 四方向 cycle/start/stop/pivot、四类 TIP 与 idle。独立读取 JSON 确认全部 15 条有样本资源含实际加工帧和对应源哈希，22 条 metadata_only 保留通用 recipe、deferred_missing_samples 与 data=null；没有以正向片段冒充缺片，也没有制造 idle 姿态。延期本身不扣分。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 74,
+          "line_end": 111,
+          "quote": "      \"bindings\": {\n        \"walk.fwd.cycle\": \"auth_motion_01\",\n        \"walk.fwd.start\": \"auth_motion_02\",\n        \"walk.fwd.stop\": \"auth_motion_03\",\n        \"walk.fwd.pivot\": \"auth_motion_04\",\n        \"walk.bwd.cycle\": \"auth_motion_05\",\n        \"walk.bwd.start\": \"auth_motion_06\",\n        \"walk.bwd.stop\": \"auth_motion_07\",\n        \"walk.bwd.pivot\": \"auth_motion_08\",\n        \"walk.left.cycle\": \"auth_motion_09\",\n        \"walk.left.start\": \"auth_motion_10\",\n        \"walk.left.stop\": \"auth_motion_11\",\n        \"walk.left.pivot\": \"auth_motion_12\",\n        \"walk.right.cycle\": \"auth_motion_13\",\n        \"walk.right.start\": \"auth_motion_14\",\n        \"walk.right.stop\": \"auth_motion_15\",\n        \"walk.right.pivot\": \"auth_motion_16\",\n        \"jog.fwd.cycle\": \"auth_motion_17\",\n        \"jog.fwd.start\": \"auth_motion_18\",\n        \"jog.fwd.stop\": \"auth_motion_19\",\n        \"jog.fwd.pivot\": \"auth_motion_20\",\n        \"jog.bwd.cycle\": \"auth_motion_21\",\n        \"jog.bwd.start\": \"auth_motion_22\",\n        \"jog.bwd.stop\": \"auth_motion_23\",\n        \"jog.bwd.pivot\": \"auth_motion_24\",\n        \"jog.left.cycle\": \"auth_motion_25\",\n        \"jog.left.start\": \"auth_motion_26\",\n        \"jog.left.stop\": \"auth_motion_27\",\n        \"jog.left.pivot\": \"auth_motion_28\",\n        \"jog.right.cycle\": \"auth_motion_29\",\n        \"jog.right.start\": \"auth_motion_30\",\n        \"jog.right.stop\": \"auth_motion_31\",\n        \"jog.right.pivot\": \"auth_motion_32\",\n        \"turn.90\": \"auth_motion_33\",\n        \"turn.180\": \"auth_motion_34\",\n        \"turn.-90\": \"auth_motion_35\",\n        \"turn.-180\": \"auth_motion_36\",\n        \"idle\": \"auth_motion_37\""
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 106,
+          "line_end": 127,
+          "quote": "        entry={'asset_id':'auth_'+clip['clip_id'],'source_clip_ids':[clip['clip_id']],\n               'source_name':clip['source_name'],'semantic':clip['semantic'],\n               'status':'deferred_missing_samples','recipe':recipe,'data':None}\n        if clip['availability']=='pose_samples':\n            if not clip['pose_file']:\n                raise ValueError('Sampled clip has no pose file')\n            path=(manifest_dir/clip['pose_file']).resolve()\n            path.relative_to(manifest_dir.resolve())\n            raw=path.read_bytes(); source=json.loads(raw.decode('utf-8-sig'))\n            if source['clip_id'] != clip['clip_id']:\n                raise ValueError('Source identity mismatch')\n            if skeleton is None:\n                skeleton={'scope':'provided 26-bone subset only; not full Manny or a bind pose',\n                          'bones':source['bones'],'source_clip_ids':[]}\n            if skeleton['bones'] != source['bones']:\n                raise ValueError('Incompatible sampled skeletons')\n            skeleton['source_clip_ids'].append(clip['clip_id'])\n            entry['data']=enrich(source,process(clip,source),clip['semantic'])\n            entry['source_pose_file']=clip['pose_file']; entry['source_sha256']=hashlib.sha256(raw).hexdigest()\n            entry['status']='ready'\n        else:\n            entry['missing_inputs']=[{'clip_id':clip['clip_id'],'required':'component-space pose samples and timestamps'}]"
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 1,
+          "line_end": 1,
+          "quote": "{\"asset_id\":\"auth_motion_01\",\"source_clip_ids\":[\"motion_01\"],\"source_name\":\"MM_Unarmed_Walk_Fwd\",\"semantic\":{\"gait\":\"walk\",\"direction\":\"fwd\",\"action\":\"cycle\"},\"status\":\"ready\","
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 1,
+          "line_end": 1,
+          "quote": "{\"asset_id\":\"auth_motion_37\",\"source_clip_ids\":[\"motion_37\"],\"source_name\":\"MM_Unarmed_Idle_Ready\",\"semantic\":{\"gait\":null,\"direction\":null,\"action\":\"idle\"},\"status\":\"deferred_missing_samples\","
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 32,
+          "line_end": 34,
+          "quote": "- `src/build_assets.py`、`src/asset_analysis.py`：读取清单及全部 15 条有抽样资源，实际加工 26 骨骼姿态、root 轨迹/距离、接触估计和循环窗口。\n- `assets/authored_assets.json`：37 个唯一资源；15 个 `ready` 内嵌加工帧，22 个 `deferred_missing_samples` 的 `data` 为 `null`。没有复制或伪造缺失姿态。条目包含原始 ID、语义、加工配方和抽样文件 SHA256。\n- `config/animation_graph.json`：控制器实际消费的节点绑定、阈值、方向角、同步组和骨骼集合。它是本实现专用声明式计划图，不是 UE AnimGraph 文件，也不是通用图执行器。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES04",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "保留原始全部抽样时刻并以首帧为零，duration 取最后时刻，不以帧数额外加一帧。循环另记录实测窗口起止与时长；采样时间仍在完整加工时间轴，输出/退出玩家在该窗口 wrap，单次动作 clamp 到末时刻。缺样 sample_time=null、rate=0，策略超时明确不是已知资源时长或进度。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 75,
+          "line_end": 85,
+          "quote": "        times.append(t); trajectory.append(delta); distance.append(total); yaws.append(math.degrees(angle))\n        poses.append({'time':t,'positions':outp,'rotations_xyzw':outq})\n    duration=times[-1]\n    return {'duration_seconds':duration,'time_origin_source_seconds':t0,\n            'sample_times_seconds':times,'frames':poses,\n            'pose_space':'component_actor_basis_in_place',\n            'root_trajectory_cm':trajectory,'root_yaw_degrees':yaws,\n            'distance_cm':distance,'remaining_distance_cm':[total-d for d in distance],\n            'average_speed_cm_s':total/duration,\n            'loop_range_seconds':[0,duration] if clip['semantic']['action']=='cycle' else None,\n            'source_frame_count':len(frames)}"
+        },
+        {
+          "path": "src/asset_analysis.py",
+          "line_start": 76,
+          "line_end": 85,
+          "quote": "    if semantic['action']=='cycle':\n        window=select_cycle_window(data,contact)\n        data['cycle_window']=window\n        data['loop_range_seconds']=[window['start_seconds'],window['end_seconds']]\n        data['cycle_duration_seconds']=window['end_seconds']-window['start_seconds']\n        ts=data['sample_times_seconds']; ds=data['distance_cm']\n        i=min(range(len(ts)),key=lambda i:abs(ts[i]-window['start_seconds']))\n        j=min(range(len(ts)),key=lambda i:abs(ts[i]-window['end_seconds']))\n        data['cycle_distance_cm']=ds[j]-ds[i]\n        data['cycle_average_speed_cm_s']=data['cycle_distance_cm']/data['cycle_duration_seconds']"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 222,
+          "line_end": 235,
+          "quote": "            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7\n            if self.state=='turn':\n                y=interpolate(data['sample_times_seconds'],data['root_yaw_degrees'],act['time'])*act['yaw_scale']\n                self.visual_yaw=wrap(self.visual_yaw+y-act['yaw_applied']); act['yaw_applied']=y\n            sample=act['time']\n        else:\n            act['complete']=self.state_age>=self.p['deferred_action_policy_seconds'][self.state]\n            sample=None; rate=0.\n        pid=act['player_id']\n        self.players[pid]={'player_id':pid,'asset_id':act['asset_id'],'sample_time_seconds':sample,\n                           'play_rate':rate,'loop':False,'clock':'distance_bounded' if self.state in ('start','stop') else 'one_shot',\n                           'progress_basis':'measured_clip_time' if data else 'policy_timer_only_not_clip_progress',"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 337,
+          "quote": "        # Advance outgoing players; incoming players overwrite their authoritative clocks below.\n        for player in self.players.values():\n            data=self.table[player['asset_id']]['data']\n            if data and player['sample_time_seconds'] is not None:\n                t=player['sample_time_seconds']+dt*player['play_rate']; duration=data['duration_seconds']\n                if player['loop']:\n                    lo,hi=data.get('loop_range_seconds') or [0.,duration]\n                    player['sample_time_seconds']=lo+(t-lo)%(hi-lo)\n                else:\n                    previous=player['sample_time_seconds']\n                    player['sample_time_seconds']=min(t,duration)\n                    player['play_rate']=(player['sample_time_seconds']-previous)/dt"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 45,
+          "line_end": 46,
+          "quote": "6. 8 个循环各自选择有实测 L–R–L 接触起点的单步幅窗口，以端点 component 位置 RMS 最小为准；不裁掉其它加工帧。`loop_range_seconds` 使用完整加工时间轴上的真实起止时间，播放器不把窗口起点当作零。端点位置/旋转差也保留用于审查；没有做 seam 修复，不能声称无缝。\n7. 缺样资源保留原始 ID 和同一通用配方。补入合法采样后重新运行构建即可走相同流程；当前不为其填 duration、接触、距离或转身曲线。Idle 也不能物化。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES05",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "提取并保存 root XYZ 轨迹、XY 弧长及连续相对 yaw；加工姿态从每个 component transform 去除当前 root XY 与相对 yaw，同时保留 Z。外部游戏系统拥有世界平移和 actor yaw，轨迹仅用于分析/匹配；转身只以 yaw 曲线增量更新 visual facing，操作显式不施加 gameplay root motion，不会把同一平移施加两次。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 65,
+          "line_end": 83,
+          "quote": "        delta=[ps[root][k]-origin[k] for k in range(3)]\n        if trajectory:\n            total += math.hypot(delta[0]-trajectory[-1][0],delta[1]-trajectory[-1][1])\n        remove=[0,0,math.sin(-angle/2),math.cos(-angle/2)]\n        outp=[rotate_z([p[0]-ps[root][0],p[1]-ps[root][1],p[2]],-angle) for p in ps]\n        outq=[unit(mul(remove,q)) for q in qs]\n        if previous_q is not None:\n            outq=[[-v for v in q] if sum(v*w for v,w in zip(q,old))<0 else q\n                  for q,old in zip(outq,previous_q)]\n        previous_q=outq\n        times.append(t); trajectory.append(delta); distance.append(total); yaws.append(math.degrees(angle))\n        poses.append({'time':t,'positions':outp,'rotations_xyzw':outq})\n    duration=times[-1]\n    return {'duration_seconds':duration,'time_origin_source_seconds':t0,\n            'sample_times_seconds':times,'frames':poses,\n            'pose_space':'component_actor_basis_in_place',\n            'root_trajectory_cm':trajectory,'root_yaw_degrees':yaws,\n            'distance_cm':distance,'remaining_distance_cm':[total-d for d in distance],\n            'average_speed_cm_s':total/duration,"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 104,
+          "line_end": 105,
+          "quote": "            'root_motion_policy':'in_place; gameplay owns world translation and actor yaw',\n            'missing_input_policy':'run identical process() after source samples arrive; do not synthesize poses'}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 225,
+          "line_end": 227,
+          "quote": "            if self.state=='turn':\n                y=interpolate(data['sample_times_seconds'],data['root_yaw_degrees'],act['time'])*act['yaw_scale']\n                self.visual_yaw=wrap(self.visual_yaw+y-act['yaw_applied']); act['yaw_applied']=y"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 371,
+          "line_end": 372,
+          "quote": "        offset=clamp(wrap(self.visual_yaw-actor),-p['turn_max_offset_degrees'],p['turn_max_offset_degrees'])\n        op('facing','component_root_yaw_offset',{'yaw_degrees':offset,'rotate_all_component_transforms':True,'apply_gameplay_root_motion':False})"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 41,
+          "line_end": 41,
+          "quote": "2. 对 component-space 每帧：提取 root 位置和相对首帧的连续 yaw；所有骨骼减去当前 root XY，再反转相对 root yaw。保留 Z 与初始 root 旋转。加工资源为 in-place；位移由外部角色系统拥有，root 路径只用于分析/匹配，不能再施加为世界位移。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES06",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "按源 component 足高、XY 有限差分速度、三点中值与迟滞估计左右接触起点；已处于接触的首帧不伪造新 onset。仅接受一个 R 位于相邻 L 起点之间且周期合法的 L-R-L 窗口，无合格区间则明确无 marker 回退。独立读取产物确认 8 个循环都有有序实测窗口，L/R 跨资源语义相同；启发式标记明确不是原始可播放 Notify。",
+      "evidence": [
+        {
+          "path": "src/asset_analysis.py",
+          "line_start": 18,
+          "line_end": 39,
+          "quote": "        name='foot_'+side; idx=names.index(name)\n        points=[f['positions'][idx] for f in frames]\n        heights=[p[2] for p in points]; floor=quantile(heights,.05)\n        speed=[]\n        for i in range(n):\n            lo=max(0,i-1); hi=min(n-1,i+1); dt=ts[hi]-ts[lo]\n            speed.append(math.hypot(points[hi][0]-points[lo][0],points[hi][1]-points[lo][1])/dt)\n        # Continuous estimates retain ambiguity rather than claiming IK contacts.\n        threshold=max(40.,min(140.,data['average_speed_cm_s']*.25))\n        weights=[max(0.,min(1.,(floor+7.-h)/5.))*max(0.,min(1.,(threshold*1.5-v)/threshold))\n                 for h,v in zip(heights,speed)]\n        # Three-sample median rejects single-frame spikes; no assumed source event times.\n        filtered=[sorted(weights[max(0,i-1):min(n,i+2)])[len(weights[max(0,i-1):min(n,i+2)])//2] for i in range(n)]\n        strike=[]; active=filtered[0]>=.55\n        for i in range(1,n):\n            if not active and filtered[i]>=.55:\n                if not strike or ts[i]-strike[-1]>.15: strike.append(ts[i])\n                active=True\n            elif active and filtered[i]<.25: active=False\n        contacts[name]={'weights':filtered,'height_floor_estimate_cm':floor,\n                        'source_space_planar_speed_cm_s':speed,'speed_threshold_cm_s':threshold,\n                        'estimated_contact_onsets_seconds':strike}"
+        },
+        {
+          "path": "src/asset_analysis.py",
+          "line_start": 55,
+          "line_end": 70,
+          "quote": "    for a,b in zip(left,left[1:]):\n        middle=[r for r in right if a<r<b]\n        if len(middle)!=1 or not .3 <= b-a <= 1.6: continue\n        i=min(range(len(ts)),key=lambda i:abs(ts[i]-a)); j=min(range(len(ts)),key=lambda i:abs(ts[i]-b))\n        error=math.sqrt(sum(sum((x-y)**2 for x,y in zip(p,q)) for p,q in zip(frames[i]['positions'],frames[j]['positions']))/len(frames[i]['positions']))\n        candidates.append((error,a,b,middle[0],i,j))\n    if not candidates:\n        return {'status':'fallback_full_range','start_seconds':0.,'end_seconds':ts[-1],\n                'markers':None,'reason':'No complete measured L-R-L onset interval passed duration bounds'}\n    error,a,b,r,i,j=min(candidates)\n    dots=[abs(sum(x*y for x,y in zip(q1,q2))) for q1,q2 in zip(frames[i]['rotations_xyzw'],frames[j]['rotations_xyzw'])]\n    return {'status':'measured_single_stride','start_seconds':a,'end_seconds':b,\n            'markers':[{'name':'L','time_seconds':a},{'name':'R','time_seconds':r},{'name':'L','time_seconds':b}],\n            'endpoint_position_rms_cm':error,\n            'endpoint_rotation_max_degrees':max(math.degrees(2*math.acos(min(1.,d))) for d in dots),\n            'candidate_count':len(candidates),'selection':'minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair'}"
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 1,
+          "line_end": 1,
+          "quote": "\"cycle_window\":{\"status\":\"measured_single_stride\",\"start_seconds\":0.25,\"end_seconds\":0.9833333333333333,\"markers\":[{\"name\":\"L\",\"time_seconds\":0.25},{\"name\":\"R\",\"time_seconds\":0.6333333333333333},{\"name\":\"L\",\"time_seconds\":0.9833333333333333}],\"endpoint_position_rms_cm\":1.8127987016126184,\"endpoint_rotation_max_degrees\":20.82279519853155,\"candidate_count\":2,\"selection\":\"minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair\"}"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 44,
+          "line_end": 45,
+          "quote": "5. 足部接触估计来自原始含 root 位移的 component-space 足部 XY 速度与高度。使用每足高度 5% 分位值、2–7cm 高度过渡、速度阈值、3 点中值与迟滞；所有参数/曲线/估计事件都可追溯。它们不是原始动画通知，也没有地面碰撞或压力标注。\n6. 8 个循环各自选择有实测 L–R–L 接触起点的单步幅窗口，以端点 component 位置 RMS 最小为准；不裁掉其它加工帧。`loop_range_seconds` 使用完整加工时间轴上的真实起止时间，播放器不把窗口起点当作零。端点位置/旋转差也保留用于审查；没有做 seam 修复，不能声称无缝。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES07",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "从相邻 root XY 样本累计弧长，生成与 sample_times_seconds 一一对应的 distance_cm 和 total-distance 的 remaining_distance_cm；轴、单位、起点和停步末帧参考点明确。数组既可按时间线性插值，也有实际距离反查函数；这是可读取的独立数据表示，不只列 UE 压缩器名称。反查对非法输入的边界缺口仅归 DST04。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 65,
+          "line_end": 83,
+          "quote": "        delta=[ps[root][k]-origin[k] for k in range(3)]\n        if trajectory:\n            total += math.hypot(delta[0]-trajectory[-1][0],delta[1]-trajectory[-1][1])\n        remove=[0,0,math.sin(-angle/2),math.cos(-angle/2)]\n        outp=[rotate_z([p[0]-ps[root][0],p[1]-ps[root][1],p[2]],-angle) for p in ps]\n        outq=[unit(mul(remove,q)) for q in qs]\n        if previous_q is not None:\n            outq=[[-v for v in q] if sum(v*w for v,w in zip(q,old))<0 else q\n                  for q,old in zip(outq,previous_q)]\n        previous_q=outq\n        times.append(t); trajectory.append(delta); distance.append(total); yaws.append(math.degrees(angle))\n        poses.append({'time':t,'positions':outp,'rotations_xyzw':outq})\n    duration=times[-1]\n    return {'duration_seconds':duration,'time_origin_source_seconds':t0,\n            'sample_times_seconds':times,'frames':poses,\n            'pose_space':'component_actor_basis_in_place',\n            'root_trajectory_cm':trajectory,'root_yaw_degrees':yaws,\n            'distance_cm':distance,'remaining_distance_cm':[total-d for d in distance],\n            'average_speed_cm_s':total/duration,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 20,
+          "line_end": 34,
+          "quote": "def interpolate(xs, ys, x):\n    if x <= xs[0]: return ys[0]\n    if x >= xs[-1]: return ys[-1]\n    i=bisect.bisect_right(xs,x)-1\n    a=(x-xs[i])/(xs[i+1]-xs[i])\n    return ys[i]*(1-a)+ys[i+1]*a\n\n\ndef inverse_distance(data, distance):\n    ds=data['distance_cm']; ts=data['sample_times_seconds']\n    if distance <= ds[0]: return ts[0]\n    if distance >= ds[-1]: return ts[-1]\n    i=bisect.bisect_left(ds,distance)\n    if ds[i]-ds[i-1] < 1e-9: return ts[i]\n    return ts[i-1]+(ts[i]-ts[i-1])*(distance-ds[i-1])/(ds[i]-ds[i-1])"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 42,
+          "line_end": 43,
+          "quote": "3. 保留全部原始抽样时刻，以首帧为时间零点，不声称重新取得高精度数据。归一化四元数并统一相邻帧半球。位置/曲线线性插值，旋转由下游以最短弧 slerp 求值。\n4. 距离曲线来自 root XY 累计弧长。停步剩余距离为总弧长减当前弧长，不是投影距离；pivot 用累计弧长避免往返导致非单调。同时保存 incoming 轴上最大位移时刻作为实测反向提示。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES08",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "构建入口接收 manifest/output，按清单稳定顺序逐项处理，样本必须位于清单目录内且 clip_id、骨架和帧维度一致；缺文件/缺骨、非递增时刻及无效四元数会抛出可定位失败，序列化拒绝非有限值。产物内嵌加工帧，不依赖固定输出目录的旁文件；图初始化校验 ID 与引用。独立只读检查本次 15 个源哈希、源/产物帧数及 37 个资源引用未见不一致；未执行候选构建，自查声明不作为本次运行证据。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 23,
+          "line_end": 27,
+          "quote": "def unit(q):\n    n = math.sqrt(sum(x*x for x in q))\n    if not math.isfinite(n) or n < 1e-8:\n        raise ValueError('Invalid source quaternion')\n    return [x/n for x in q]"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 44,
+          "line_end": 58,
+          "quote": "def process(clip, source):\n    bones = source['bones']; frames = source['frames']\n    if len(frames) < 2 or len(bones) != clip['pose_bone_count']:\n        raise ValueError('Invalid source dimensions')\n    root = next(i for i,b in enumerate(bones) if b['name'] == 'root')\n    B = [0,0,-math.sqrt(.5),math.sqrt(.5)]\n    times=[]; poses=[]; trajectory=[]; distance=[]; yaws=[]\n    previous_q=None; prev_angle=None; angle=0.; total=0.\n    origin=basis(frames[0]['positions'][root]); t0=frames[0]['time']\n    for f in frames:\n        t=f['time']-t0\n        if times and t <= times[-1]:\n            raise ValueError('Nonmonotonic source time')\n        if len(f['positions']) != len(bones) or len(f['rotations_xyzw']) != len(bones):\n            raise ValueError('Invalid frame dimensions')"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 109,
+          "line_end": 124,
+          "quote": "        if clip['availability']=='pose_samples':\n            if not clip['pose_file']:\n                raise ValueError('Sampled clip has no pose file')\n            path=(manifest_dir/clip['pose_file']).resolve()\n            path.relative_to(manifest_dir.resolve())\n            raw=path.read_bytes(); source=json.loads(raw.decode('utf-8-sig'))\n            if source['clip_id'] != clip['clip_id']:\n                raise ValueError('Source identity mismatch')\n            if skeleton is None:\n                skeleton={'scope':'provided 26-bone subset only; not full Manny or a bind pose',\n                          'bones':source['bones'],'source_clip_ids':[]}\n            if skeleton['bones'] != source['bones']:\n                raise ValueError('Incompatible sampled skeletons')\n            skeleton['source_clip_ids'].append(clip['clip_id'])\n            entry['data']=enrich(source,process(clip,source),clip['semantic'])\n            entry['source_pose_file']=clip['pose_file']; entry['source_sha256']=hashlib.sha256(raw).hexdigest()"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 139,
+          "line_end": 148,
+          "quote": "def main():\n    parser=argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--manifest',required=True,type=Path)\n    parser.add_argument('--output',required=True,type=Path)\n    args=parser.parse_args()\n    path=args.manifest.resolve()\n    result=build_assets(json.loads(path.read_text(encoding='utf-8-sig')),path.parent)\n    result['source_manifest']['cli_path']=args.manifest.as_posix()\n    args.output.parent.mkdir(parents=True,exist_ok=True)\n    args.output.write_text(json.dumps(result,ensure_ascii=False,allow_nan=False,separators=(',',':'))+'\\n',encoding='utf-8')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 38,
+          "line_end": 52,
+          "quote": "    def __init__(self, graph: dict, assets: dict) -> None:\n        if graph.get('schema_version') != 1 or assets.get('schema_version') != 1:\n            raise ValueError('Unsupported schema')\n        self.graph=graph; self.assets=assets\n        self.p=graph['parameters']; self.nodes={n['id']:n for n in graph['nodes']}\n        self.bindings=self.nodes['state']['bindings']\n        self.table={a['asset_id']:a for a in assets['assets']}\n        if len(self.table)!=len(assets['assets']) or len(self.nodes)!=len(graph['nodes']):\n            raise ValueError('Duplicate asset or node ID')\n        for aid in self.bindings.values():\n            if aid not in self.table: raise ValueError('Unresolved asset '+aid)\n        for edge in graph['connections']:\n            if edge['from'] not in self.nodes or edge['to'] not in self.nodes:\n                raise ValueError('Unresolved graph connection')\n        if graph['output'] not in self.nodes: raise ValueError('Unresolved output')"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "LOC01",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "从同一frame读取dt/速度/加速度/actor/aim，按actor yaw计算局部量，用速度区分移动/停稳并由速度与加速度投影判断制动。虽然内部变量名为intent，Cycle并不以零加速度为停止条件；非零匀速不会因a=0误进Stop。没有读取未提供的按键或世界位置。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 239,
+          "line_end": 268,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt,v,a,actor,aim=self.validate(frame)  # Validate before mutating any state.\n        p=self.p; incoming_gait=self.gait; self.total_time+=dt; self.state_age+=dt\n        self.pivot_cooldown=max(0.,self.pivot_cooldown-dt)\n        self.turn_cooldown=max(0.,self.turn_cooldown-dt)\n        speed=math.hypot(v[0],v[1]); acceleration=math.hypot(a[0],a[1])\n        if not math.isfinite(speed) or not math.isfinite(acceleration):\n            raise ValueError('Input magnitude overflow')\n        r=math.radians(actor); c,s=math.cos(r),math.sin(r)\n        local_v=[c*v[0]+s*v[1],-s*v[0]+c*v[1]]\n        local_a=[c*a[0]+s*a[1],-s*a[0]+c*a[1]]\n        if self.visual_yaw is None: self.visual_yaw=actor\n        intent=acceleration>=p['intent_acceleration_cm_s2']\n        moving=speed>=p['move_enter_cm_s']; stopped=speed<=p['move_exit_cm_s']\n        predicted=math.hypot(v[0]+a[0]*p['prediction_seconds'],v[1]+a[1]*p['prediction_seconds'])\n        gait_speed=max(speed,predicted) if self.state in ('idle','start') else speed\n        if self.gait=='walk' and gait_speed>=p['jog_enter_cm_s']: self.gait='jog'\n        if self.gait=='jog' and gait_speed<=p['jog_exit_cm_s']: self.gait='walk'\n        alpha=clamp((speed-p['walk_to_jog_low_cm_s'])/(p['walk_to_jog_high_cm_s']-p['walk_to_jog_low_cm_s']),0.,1.)\n        self.jog_alpha=smooth(self.jog_alpha,alpha,dt,p['gait_smoothing_seconds'])\n        raw_direction=math.degrees(math.atan2(local_v[1],local_v[0])) if speed>p['move_exit_cm_s'] else (\n            math.degrees(math.atan2(local_a[1],local_a[0])) if intent else self.direction)\n        if self.prev_velocity is None or (self.state=='idle' and (moving or intent)):\n            self.direction=raw_direction\n        else:\n            self.direction=wrap(self.direction+wrap(raw_direction-self.direction)*(1-math.exp(-dt/p['direction_smoothing_seconds'])))\n        self.direction_name=self._nearest_direction(raw_direction,self.direction_name)\n        dot=(v[0]*a[0]+v[1]*a[1])/max(speed,1e-8)\n        decel=max(0.,-dot)\n        braking=decel>=p['braking_acceleration_cm_s2']"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 314,
+          "line_end": 318,
+          "quote": "            elif self.state=='cycle':\n                if stopped or (braking and speed/max(decel,1.)<=p['stop_prediction_seconds']): self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='stop':\n                if moving and (dot>p['intent_acceleration_cm_s2'] or not braking): self._enter('start',self.direction_name)\n                elif self.action['complete']: self._enter('idle' if stopped else 'cycle')"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "LOC02",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "walk/jog动作选择有440/380上下阈值，循环在350–500间连续混合并对jog_alpha指数平滑；两套gait权重进入真实资源选择及播放器计划。阈值、平滑和播放行为均可定位，满足与旧两路一致的等价防抖口径。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 10,
+          "line_end": 21,
+          "quote": "    \"walk_to_jog_low_cm_s\": 350.0,\n    \"walk_to_jog_high_cm_s\": 500.0,\n    \"jog_enter_cm_s\": 440.0,\n    \"jog_exit_cm_s\": 380.0,\n    \"blend_seconds\": 0.16,\n    \"direction_smoothing_seconds\": 0.1,\n    \"direction_hysteresis_degrees\": 12.0,\n    \"gait_smoothing_seconds\": 0.12,\n    \"play_rate_min\": 0.55,\n    \"play_rate_max\": 1.65,\n    \"stride_scale_min\": 0.75,\n    \"stride_scale_max\": 1.25,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 253,
+          "line_end": 258,
+          "quote": "        predicted=math.hypot(v[0]+a[0]*p['prediction_seconds'],v[1]+a[1]*p['prediction_seconds'])\n        gait_speed=max(speed,predicted) if self.state in ('idle','start') else speed\n        if self.gait=='walk' and gait_speed>=p['jog_enter_cm_s']: self.gait='jog'\n        if self.gait=='jog' and gait_speed<=p['jog_exit_cm_s']: self.gait='walk'\n        alpha=clamp((speed-p['walk_to_jog_low_cm_s'])/(p['walk_to_jog_high_cm_s']-p['walk_to_jog_low_cm_s']),0.,1.)\n        self.jog_alpha=smooth(self.jog_alpha,alpha,dt,p['gait_smoothing_seconds'])"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 167,
+          "line_end": 184,
+          "quote": "    def _cycle_targets(self, speed, dt):\n        angle=self.direction%360.; order=sorted(self.angles,key=self.angles.get)\n        # Four evenly spaced cardinal directions are part of this node's contract.\n        sector=int(angle//90); f=(angle%90)/90\n        directional={order[sector]:1-f, order[(sector+1)%4]:f}\n        targets={}; phase_speed=0.; entries=[]\n        for gait,gw in [('walk',1-self.jog_alpha),('jog',self.jog_alpha)]:\n            for direction,dw in directional.items():\n                w=gw*dw\n                if w < 1e-8: continue\n                aid=self._asset(gait,direction,'cycle'); data=self.table[aid]['data']\n                if data:\n                    nominal=max(data.get('cycle_average_speed_cm_s',data['average_speed_cm_s']),1e-6)\n                    rate=clamp(speed/nominal,self.p['play_rate_min'],self.p['play_rate_max'])\n                    freq=rate/data.get('cycle_duration_seconds',data['duration_seconds'])\n                else: freq=0.\n                phase_speed+=w*freq\n                entries.append((aid,w))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "LOC03",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "actor局部速度决定方向，最短角指数平滑处理环绕；动作四向选择保留当前扇区12度滞回，低速采用加速度方向或保留方向。循环对圆周上相邻四向做连续混合，覆盖前后左右与斜向；姿态根偏移未计入方向补偿的独立问题只在WRP01扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 101,
+          "line_end": 105,
+          "quote": "    def _nearest_direction(self, angle, previous=None):\n        closest=min(self.angles,key=lambda k:abs(wrap(angle-self.angles[k])))\n        if previous and abs(wrap(angle-self.angles[previous])) <= 45+self.p['direction_hysteresis_degrees']:\n            return previous\n        return closest"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 167,
+          "line_end": 177,
+          "quote": "    def _cycle_targets(self, speed, dt):\n        angle=self.direction%360.; order=sorted(self.angles,key=self.angles.get)\n        # Four evenly spaced cardinal directions are part of this node's contract.\n        sector=int(angle//90); f=(angle%90)/90\n        directional={order[sector]:1-f, order[(sector+1)%4]:f}\n        targets={}; phase_speed=0.; entries=[]\n        for gait,gw in [('walk',1-self.jog_alpha),('jog',self.jog_alpha)]:\n            for direction,dw in directional.items():\n                w=gw*dw\n                if w < 1e-8: continue\n                aid=self._asset(gait,direction,'cycle'); data=self.table[aid]['data']"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 247,
+          "line_end": 265,
+          "quote": "        r=math.radians(actor); c,s=math.cos(r),math.sin(r)\n        local_v=[c*v[0]+s*v[1],-s*v[0]+c*v[1]]\n        local_a=[c*a[0]+s*a[1],-s*a[0]+c*a[1]]\n        if self.visual_yaw is None: self.visual_yaw=actor\n        intent=acceleration>=p['intent_acceleration_cm_s2']\n        moving=speed>=p['move_enter_cm_s']; stopped=speed<=p['move_exit_cm_s']\n        predicted=math.hypot(v[0]+a[0]*p['prediction_seconds'],v[1]+a[1]*p['prediction_seconds'])\n        gait_speed=max(speed,predicted) if self.state in ('idle','start') else speed\n        if self.gait=='walk' and gait_speed>=p['jog_enter_cm_s']: self.gait='jog'\n        if self.gait=='jog' and gait_speed<=p['jog_exit_cm_s']: self.gait='walk'\n        alpha=clamp((speed-p['walk_to_jog_low_cm_s'])/(p['walk_to_jog_high_cm_s']-p['walk_to_jog_low_cm_s']),0.,1.)\n        self.jog_alpha=smooth(self.jog_alpha,alpha,dt,p['gait_smoothing_seconds'])\n        raw_direction=math.degrees(math.atan2(local_v[1],local_v[0])) if speed>p['move_exit_cm_s'] else (\n            math.degrees(math.atan2(local_a[1],local_a[0])) if intent else self.direction)\n        if self.prev_velocity is None or (self.state=='idle' and (moving or intent)):\n            self.direction=raw_direction\n        else:\n            self.direction=wrap(self.direction+wrap(raw_direction-self.direction)*(1-math.exp(-dt/p['direction_smoothing_seconds'])))\n        self.direction_name=self._nearest_direction(raw_direction,self.direction_name)"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 129,
+          "line_end": 136,
+          "quote": "      \"id\": \"cycles\",\n      \"type\": \"circular_direction_and_gait_blend\",\n      \"angles_degrees\": {\n        \"fwd\": 0.0,\n        \"right\": 90.0,\n        \"bwd\": 180.0,\n        \"left\": 270.0\n      },"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "LOC04",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "Idle->Start->Cycle路径可达；_enter清零state_age、time/travel，创建新action ID，方向/步态变更有最短持有时间，片段完成或明确超时后转Cycle。缺采样动作保留null时间/不可物化状态，策略计时不冒称实际片段时长；未出现每帧重置或重入沿用结束时钟。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 147,
+          "line_end": 165,
+          "quote": "    def _enter(self, state, direction=None, aim=None, turn_delta=None, action_gait=None):\n        if state=='cycle': self._align_phase_from_action()\n        old=self.state; self.state=state; self.state_age=0.; self.action=None\n        self.last_transition={'from':old,'to':state,'at_seconds':self.total_time}\n        if old=='pivot': self.pivot_cooldown=self.p['pivot_cooldown_seconds']\n        if old=='turn': self.turn_cooldown=self.p['turn_cooldown_seconds']\n        if state in ('idle','cycle'): return\n        self.serial+=1\n        if state=='turn':\n            size=180 if abs(turn_delta)>=self.p['turn_180_threshold_degrees'] else 90\n            anatomical=size if turn_delta<0 else -size\n            aid=self.bindings[f'turn.{anatomical}']\n            scale=clamp(abs(turn_delta)/size,.75,1.25)\n        else:\n            aid=self._asset(action_gait or self.gait,direction or self.direction_name,state); scale=1.\n        self.action={'asset_id':aid,'player_id':f'action_{self.serial}', 'time':0.,'travel':0.,\n                     'yaw_applied':0.,'yaw_scale':scale,'direction':direction or self.direction_name,\n                     'aim_at_entry':aim,'complete':False,'gait_at_entry':action_gait or self.gait,\n                     'entry_warp_degrees':clamp(wrap(self.direction-self.angles[direction or self.direction_name]),-self.p['orientation_warp_limit_degrees'],self.p['orientation_warp_limit_degrees'])}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 299,
+          "line_end": 313,
+          "quote": "        if self.state=='idle':\n            if moving or intent: self._enter('start',self.direction_name)\n            elif abs(turn_delta)>=p['turn_enter_degrees'] and self.turn_cooldown<=0 and self.last_missing_turn_aim is None:\n                self._enter('turn',aim=aim,turn_delta=turn_delta)\n        elif self.state in ('start','cycle','stop','pivot'):\n            if pivot and self.state!='pivot':\n                self._enter('pivot',incoming,action_gait=incoming_gait); self.pivot_latched=True\n            elif self.state=='start':\n                if stopped and not intent and self.state_age>p['start_min_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif (self.direction_name!=self.action['direction'] or self.gait!=self.action['gait_at_entry']) and self.state_age>p['start_min_seconds']:\n                    self._enter('start',self.direction_name)\n                elif self.action['complete'] or self.state_age>=p['start_timeout_seconds']:\n                    self._enter('cycle' if not stopped else 'idle')\n                elif braking and speed/max(decel,1.)<=p['stop_prediction_seconds'] and self.state_age>p['start_min_seconds']:\n                    self._enter('stop',self.direction_name,action_gait=incoming_gait)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 206,
+          "line_end": 235,
+          "quote": "    def _advance_action(self, speed, decel, dt):\n        act=self.action; asset=self.table[act['asset_id']]; data=asset['data']\n        previous=act['time']; rate=1.\n        if data:\n            duration=data['duration_seconds']; target=previous+dt\n            if self.state=='start':\n                act['travel']+=speed*dt\n                target=inverse_distance(data,act['travel'])\n            elif self.state=='stop':\n                # Constant-deceleration estimate, not a collision-aware world stop point.\n                remaining=speed*speed/(2*max(decel,self.p['default_braking_cm_s2'] if decel<1 else decel))\n                target=inverse_distance(data,max(0.,data['distance_cm'][-1]-remaining))\n            elif self.state=='pivot':\n                target=previous+dt*clamp(speed/max(data['average_speed_cm_s'],1.),.75,1.35)\n            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7\n            if self.state=='turn':\n                y=interpolate(data['sample_times_seconds'],data['root_yaw_degrees'],act['time'])*act['yaw_scale']\n                self.visual_yaw=wrap(self.visual_yaw+y-act['yaw_applied']); act['yaw_applied']=y\n            sample=act['time']\n        else:\n            act['complete']=self.state_age>=self.p['deferred_action_policy_seconds'][self.state]\n            sample=None; rate=0.\n        pid=act['player_id']\n        self.players[pid]={'player_id':pid,'asset_id':act['asset_id'],'sample_time_seconds':sample,\n                           'play_rate':rate,'loop':False,'clock':'distance_bounded' if self.state in ('start','stop') else 'one_shot',\n                           'progress_basis':'measured_clip_time' if data else 'policy_timer_only_not_clip_progress',"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 55,
+          "line_end": 55,
+          "quote": "- 动作缺采样时仍输出所请求资源，但 `sample_time_seconds=null`、`play_rate=0`、`pose_materializable=false`。状态机的策略超时仅决定何时切换，**不是资源时长、播放到某一打点或已经完成动作的证据**。不默默以正向片段假冒侧向起停，不把 Idle 当可播放兜底。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "LOC05",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "用沿速度的加速度投影估算减速及到停时间；Stop按声明的v²/(2a)模型定位并有最小推进，完成后依据实际stopped选择Idle或Cycle，重新移动可进入Start。未知素材以明确策略超时退化并报告不可物化，不按缺样本扣分。距离算法细节由DST项独立评。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 266,
+          "line_end": 268,
+          "quote": "        dot=(v[0]*a[0]+v[1]*a[1])/max(speed,1e-8)\n        decel=max(0.,-dot)\n        braking=decel>=p['braking_acceleration_cm_s2']"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 306,
+          "line_end": 321,
+          "quote": "            elif self.state=='start':\n                if stopped and not intent and self.state_age>p['start_min_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif (self.direction_name!=self.action['direction'] or self.gait!=self.action['gait_at_entry']) and self.state_age>p['start_min_seconds']:\n                    self._enter('start',self.direction_name)\n                elif self.action['complete'] or self.state_age>=p['start_timeout_seconds']:\n                    self._enter('cycle' if not stopped else 'idle')\n                elif braking and speed/max(decel,1.)<=p['stop_prediction_seconds'] and self.state_age>p['start_min_seconds']:\n                    self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='cycle':\n                if stopped or (braking and speed/max(decel,1.)<=p['stop_prediction_seconds']): self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='stop':\n                if moving and (dot>p['intent_acceleration_cm_s2'] or not braking): self._enter('start',self.direction_name)\n                elif self.action['complete']: self._enter('idle' if stopped else 'cycle')\n            elif self.state=='pivot':\n                if stopped and not intent and self.state_age>=p['pivot_min_hold_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif self.action['complete']: self._enter('cycle' if not stopped else 'idle')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 214,
+          "line_end": 231,
+          "quote": "            elif self.state=='stop':\n                # Constant-deceleration estimate, not a collision-aware world stop point.\n                remaining=speed*speed/(2*max(decel,self.p['default_braking_cm_s2'] if decel<1 else decel))\n                target=inverse_distance(data,max(0.,data['distance_cm'][-1]-remaining))\n            elif self.state=='pivot':\n                target=previous+dt*clamp(speed/max(data['average_speed_cm_s'],1.),.75,1.35)\n            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7\n            if self.state=='turn':\n                y=interpolate(data['sample_times_seconds'],data['root_yaw_degrees'],act['time'])*act['yaw_scale']\n                self.visual_yaw=wrap(self.visual_yaw+y-act['yaw_applied']); act['yaw_applied']=y\n            sample=act['time']\n        else:\n            act['complete']=self.state_age>=self.p['deferred_action_policy_seconds'][self.state]\n            sample=None; rate=0."
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 54,
+          "line_end": 55,
+          "quote": "- 起步累计实际输入速度距离，并在源距离曲线上反求时间；停步用 `v²/(2a)` 估算剩余距离、在源曲线上反求时间。时间保持单调、倍率有限；低速时保留最小时间推进，不会卡在距离平台。它不是碰撞感知 stop-location prediction，也不保证实际停点与动画完全一致。\n- 动作缺采样时仍输出所请求资源，但 `sample_time_seconds=null`、`play_rate=0`、`pose_materializable=false`。状态机的策略超时仅决定何时切换，**不是资源时长、播放到某一打点或已经完成动作的证据**。不默默以正向片段假冒侧向起停，不把 Idle 当可播放兜底。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "LOC06",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "反向由帧间速度夹角或速度+加速度短期预测判断，与瞄准角分开；保留进入方向和进入步态选择Pivot，锁存/冷却避免每帧重新进入，Stop再起步和Pivot结束/中断均明确。文档承认无期望速度时强制动与主动反向存在歧义；这是允许的受限预测，不按未提供输入扣分。Pivot距离驱动覆盖由DST审查，不在此重扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 269,
+          "line_end": 285,
+          "quote": "        oppose=dot/max(acceleration,1e-8)\n        if oppose>-.2 or stopped: self.pivot_latched=False\n        desired=[v[k]+a[k]*p['prediction_seconds'] for k in range(2)]\n        desired_len=math.hypot(*desired)\n        pred_dot=(v[0]*desired[0]+v[1]*desired[1])/max(speed*desired_len,1e-8)\n        observed_reversal=False; incoming=self.direction_name\n        if self.prev_velocity is not None:\n            prev_speed=math.hypot(*self.prev_velocity)\n            if prev_speed>=p['pivot_min_speed_cm_s'] and speed>=p['move_enter_cm_s']:\n                cos=(v[0]*self.prev_velocity[0]+v[1]*self.prev_velocity[1])/(speed*prev_speed)\n                observed_reversal=cos<=math.cos(math.radians(p['pivot_angle_degrees']))\n                if observed_reversal:\n                    pv=self.prev_velocity\n                    incoming=self._nearest_direction(math.degrees(math.atan2(-s*pv[0]+c*pv[1],c*pv[0]+s*pv[1])))\n        pivot=(observed_reversal or (self.state in ('start','cycle') and speed>=p['pivot_min_speed_cm_s'] and acceleration>=p['pivot_acceleration_cm_s2'] and\n               pred_dot<=math.cos(math.radians(p['pivot_angle_degrees']))))\n        pivot=pivot and not self.pivot_latched and self.pivot_cooldown<=0"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 303,
+          "line_end": 321,
+          "quote": "        elif self.state in ('start','cycle','stop','pivot'):\n            if pivot and self.state!='pivot':\n                self._enter('pivot',incoming,action_gait=incoming_gait); self.pivot_latched=True\n            elif self.state=='start':\n                if stopped and not intent and self.state_age>p['start_min_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif (self.direction_name!=self.action['direction'] or self.gait!=self.action['gait_at_entry']) and self.state_age>p['start_min_seconds']:\n                    self._enter('start',self.direction_name)\n                elif self.action['complete'] or self.state_age>=p['start_timeout_seconds']:\n                    self._enter('cycle' if not stopped else 'idle')\n                elif braking and speed/max(decel,1.)<=p['stop_prediction_seconds'] and self.state_age>p['start_min_seconds']:\n                    self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='cycle':\n                if stopped or (braking and speed/max(decel,1.)<=p['stop_prediction_seconds']): self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='stop':\n                if moving and (dot>p['intent_acceleration_cm_s2'] or not braking): self._enter('start',self.direction_name)\n                elif self.action['complete']: self._enter('idle' if stopped else 'cycle')\n            elif self.state=='pivot':\n                if stopped and not intent and self.state_age>=p['pivot_min_hold_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif self.action['complete']: self._enter('cycle' if not stopped else 'idle')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 147,
+          "line_end": 165,
+          "quote": "    def _enter(self, state, direction=None, aim=None, turn_delta=None, action_gait=None):\n        if state=='cycle': self._align_phase_from_action()\n        old=self.state; self.state=state; self.state_age=0.; self.action=None\n        self.last_transition={'from':old,'to':state,'at_seconds':self.total_time}\n        if old=='pivot': self.pivot_cooldown=self.p['pivot_cooldown_seconds']\n        if old=='turn': self.turn_cooldown=self.p['turn_cooldown_seconds']\n        if state in ('idle','cycle'): return\n        self.serial+=1\n        if state=='turn':\n            size=180 if abs(turn_delta)>=self.p['turn_180_threshold_degrees'] else 90\n            anatomical=size if turn_delta<0 else -size\n            aid=self.bindings[f'turn.{anatomical}']\n            scale=clamp(abs(turn_delta)/size,.75,1.25)\n        else:\n            aid=self._asset(action_gait or self.gait,direction or self.direction_name,state); scale=1.\n        self.action={'asset_id':aid,'player_id':f'action_{self.serial}', 'time':0.,'travel':0.,\n                     'yaw_applied':0.,'yaw_scale':scale,'direction':direction or self.direction_name,\n                     'aim_at_entry':aim,'complete':False,'gait_at_entry':action_gait or self.gait,\n                     'entry_warp_degrees':clamp(wrap(self.direction-self.angles[direction or self.direction_name]),-self.p['orientation_warp_limit_degrees'],self.p['orientation_warp_limit_degrees'])}"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 52,
+          "line_end": 53,
+          "quote": "- 状态为 Idle、Start、Cycle、Stop、Pivot、Turn。起步由速度或加速度意图触发；可在加速中更换方向/步态，受最短持有时间约束。停步由低速或制动到停时间触发；重新加速可中断。反向由帧间速度反转或速度加短时加速度预测触发，优先于停步，并有锁存与冷却，避免每帧重开。已进入 Stop 后不再仅凭短时预测触发 pivot，需要观测到实际反向；这是没有期望速度输入时对普通制动的保守处理。起停/变向选择保留入向步态，避免骤停瞬间因速度为零误选 walk-stop。\n- Pivot 的目录方向解释为 **进入变向前的方向**，不是离开方向。已有 jog-fwd-pivot 的 root 确实先前进再后退；缺样方向只是保留该绑定假设，不能声称已检查它们的真实运动。输入没有期望速度，强制动和主动反向存在不可完全消除的歧义。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "LOC07",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "代码按movement interrupts turn、reversal、stop/restart/completion给出确定顺序；_enter重建当前action但保留已有players，旧玩家继续推进，权重指数淡出并归一，消退后清理。转移不以非零权重反复触发，跨状态并非硬切。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 289,
+          "line_end": 321,
+          "quote": "        # Interruption priority: movement > turn, reversal > stop, restart > stop completion.\n        if self.state=='turn':\n            if moving or intent: self._enter('start',self.direction_name)\n            elif self.action and abs(wrap(aim-self.action['aim_at_entry']))>p['turn_exit_degrees'] and abs(turn_delta)<=p['turn_exit_degrees']:\n                self._enter('idle')\n            elif self.action and turn_delta*self.table[self.action['asset_id']]['semantic']['anatomical_turn_degrees']>0 and abs(turn_delta)>p['turn_abort_opposite_degrees']:\n                self._enter('idle')\n            elif self.action and self.action['complete']:\n                if self.table[self.action['asset_id']]['data'] is None: self.last_missing_turn_aim=aim\n                self._enter('idle')\n        if self.state=='idle':\n            if moving or intent: self._enter('start',self.direction_name)\n            elif abs(turn_delta)>=p['turn_enter_degrees'] and self.turn_cooldown<=0 and self.last_missing_turn_aim is None:\n                self._enter('turn',aim=aim,turn_delta=turn_delta)\n        elif self.state in ('start','cycle','stop','pivot'):\n            if pivot and self.state!='pivot':\n                self._enter('pivot',incoming,action_gait=incoming_gait); self.pivot_latched=True\n            elif self.state=='start':\n                if stopped and not intent and self.state_age>p['start_min_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif (self.direction_name!=self.action['direction'] or self.gait!=self.action['gait_at_entry']) and self.state_age>p['start_min_seconds']:\n                    self._enter('start',self.direction_name)\n                elif self.action['complete'] or self.state_age>=p['start_timeout_seconds']:\n                    self._enter('cycle' if not stopped else 'idle')\n                elif braking and speed/max(decel,1.)<=p['stop_prediction_seconds'] and self.state_age>p['start_min_seconds']:\n                    self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='cycle':\n                if stopped or (braking and speed/max(decel,1.)<=p['stop_prediction_seconds']): self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='stop':\n                if moving and (dot>p['intent_acceleration_cm_s2'] or not braking): self._enter('start',self.direction_name)\n                elif self.action['complete']: self._enter('idle' if stopped else 'cycle')\n            elif self.state=='pivot':\n                if stopped and not intent and self.state_age>=p['pivot_min_hold_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif self.action['complete']: self._enter('cycle' if not stopped else 'idle')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 359,
+          "quote": "        # Advance outgoing players; incoming players overwrite their authoritative clocks below.\n        for player in self.players.values():\n            data=self.table[player['asset_id']]['data']\n            if data and player['sample_time_seconds'] is not None:\n                t=player['sample_time_seconds']+dt*player['play_rate']; duration=data['duration_seconds']\n                if player['loop']:\n                    lo,hi=data.get('loop_range_seconds') or [0.,duration]\n                    player['sample_time_seconds']=lo+(t-lo)%(hi-lo)\n                else:\n                    previous=player['sample_time_seconds']\n                    player['sample_time_seconds']=min(t,duration)\n                    player['play_rate']=(player['sample_time_seconds']-previous)/dt\n        cycles=self._cycle_targets(speed,dt)\n        if self.state=='cycle': targets=cycles\n        elif self.state=='idle':\n            aid=self.bindings['idle']; pid='idle'; data=self.table[aid]['data']\n            self.players[pid]={'player_id':pid,'asset_id':aid,'sample_time_seconds':self.total_time%data['duration_seconds'] if data else None,\n                               'play_rate':1. if data else 0.,'loop':True,'clock':'idle'}\n            targets={pid:1.}\n        else: targets=self._advance_action(speed,decel,dt)\n        if not self.weights: self.weights=dict(targets)\n        else:\n            # Bounded first-order fade handles arbitrary interruptions without resurrecting time=0.\n            for pid in sorted(set(self.weights)|set(targets)):\n                self.weights[pid]=smooth(self.weights.get(pid,0.),targets.get(pid,0.),dt,p['blend_seconds']/3.)\n            self.weights={pid:w for pid,w in self.weights.items() if w>1e-5}\n        total=sum(self.weights.values()); players=[]\n        for pid in sorted(self.weights):\n            player=dict(self.players[pid]); player['weight']=self.weights[pid]/total\n            asset=self.table[player['asset_id']]\n            player['availability']=asset['status']; player['pose_materializable']=asset['status']=='ready'\n            if not player['pose_materializable']: player['sample_time_seconds']=None\n            players.append(player)\n        self.players={pid:self.players[pid] for pid in self.weights}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 147,
+          "line_end": 165,
+          "quote": "    def _enter(self, state, direction=None, aim=None, turn_delta=None, action_gait=None):\n        if state=='cycle': self._align_phase_from_action()\n        old=self.state; self.state=state; self.state_age=0.; self.action=None\n        self.last_transition={'from':old,'to':state,'at_seconds':self.total_time}\n        if old=='pivot': self.pivot_cooldown=self.p['pivot_cooldown_seconds']\n        if old=='turn': self.turn_cooldown=self.p['turn_cooldown_seconds']\n        if state in ('idle','cycle'): return\n        self.serial+=1\n        if state=='turn':\n            size=180 if abs(turn_delta)>=self.p['turn_180_threshold_degrees'] else 90\n            anatomical=size if turn_delta<0 else -size\n            aid=self.bindings[f'turn.{anatomical}']\n            scale=clamp(abs(turn_delta)/size,.75,1.25)\n        else:\n            aid=self._asset(action_gait or self.gait,direction or self.direction_name,state); scale=1.\n        self.action={'asset_id':aid,'player_id':f'action_{self.serial}', 'time':0.,'travel':0.,\n                     'yaw_applied':0.,'yaw_scale':scale,'direction':direction or self.direction_name,\n                     'aim_at_entry':aim,'complete':False,'gait_at_entry':action_gait or self.gait,\n                     'entry_warp_degrees':clamp(wrap(self.direction-self.angles[direction or self.direction_name]),-self.p['orientation_warp_limit_degrees'],self.p['orientation_warp_limit_degrees'])}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "SYN01",
+      "category": "synchronization",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "cycles 节点显式绑定 locomotion 组，单次动作节点不入组；控制器实际查找该组配置，只将仍有有效淡化权重的 cycle 播放器列为成员。walk/jog 及方向间共享接触相位，动作使用独立 distance/one-shot 时钟，没有机械地把 idle、start、stop、turn 全塞入循环组。这是范围固定的配置化计划器，不以必须支持任意节点类型为额外门槛。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 128,
+          "line_end": 153,
+          "quote": "    {\n      \"id\": \"cycles\",\n      \"type\": \"circular_direction_and_gait_blend\",\n      \"angles_degrees\": {\n        \"fwd\": 0.0,\n        \"right\": 90.0,\n        \"bwd\": 180.0,\n        \"left\": 270.0\n      },\n      \"sync_group\": \"locomotion\",\n      \"phase_mapping\": {\n        \"L\": 0.0,\n        \"R\": 0.5,\n        \"next_L\": 1.0,\n        \"window\": \"asset.data.loop_range_seconds\",\n        \"mapping\": \"piecewise linear through measured contact onsets; all fading cycles remain followers\"\n      }\n    },\n    {\n      \"id\": \"actions\",\n      \"type\": \"one_shot_with_distance_time_selection\",\n      \"sync_group\": null,\n      \"distance_matching\": {\n        \"start\": \"inverse accumulated traveled XY distance; rate bounded\",\n        \"stop\": \"inverse total root arc length minus v^2/(2*deceleration); rate bounded\",\n        \"pivot\": \"bounded source-time playback; measured reversal hint retained as evidence, not assumed contact\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 59,
+          "line_end": 62,
+          "quote": "        self.angles=self.nodes['cycles']['angles_degrees']\n        self.group_id=self.nodes['cycles']['sync_group']\n        self.group_config=next(g for g in graph['sync_groups'] if g['group_id']==self.group_id)\n        self.reset()"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 359,
+          "line_end": 365,
+          "quote": "        self.players={pid:self.players[pid] for pid in self.weights}\n        sync_members=[x['player_id'] for x in players if x['player_id'].startswith('cycle_')]\n        leader=min((x for x in players if x['player_id'] in sync_members),key=lambda x:(-x['weight'],x['asset_id']),default=None)\n        groups=[{'group_id':self.group_id,'member_player_ids':sync_members,\n                 'settings':{'mode':self.group_config['mode'],'phase':self.phase,'leader_player_id':leader['player_id'] if leader else None,\n                             'time_authority':'controller; never independently advance or reset followers','action_members':False,\n                             'marker_mapping':{'L':0.,'R':.5,'next_L':1.},'fallback':self.group_config['fallback']}}]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN02",
+      "category": "synchronization",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "加工过程从实测接触起点选 L-R-L 窗口；控制器按 L→R、R→下一 L 两段分别映射公共相位到各资源时间，并使用分段导数计算 play_rate，能保持不同长度和不同 R 接触时刻资源的区间进度对应。当前八个循环的生成数据均有 measured_single_stride 与 L-R-L 标记。这不是仅复制 normalized time；接触估计明确不是原始 Notify。独立的 Notify 归属缺口只在 SYN04 扣分，跨越事件区间另在 SYN06 扣分。",
+      "evidence": [
+        {
+          "path": "src/asset_analysis.py",
+          "line_start": 47,
+          "line_end": 70,
+          "quote": "def select_cycle_window(data, contact):\n    \"\"\"Choose measured L-to-L interval with one R onset and minimal endpoint error.\n    Never manufacture marker timestamps. Fallback is the entire sampled range.\n    \"\"\"\n    ts=data['sample_times_seconds']; frames=data['frames']\n    left=contact['feet']['foot_l']['estimated_contact_onsets_seconds']\n    right=contact['feet']['foot_r']['estimated_contact_onsets_seconds']\n    candidates=[]\n    for a,b in zip(left,left[1:]):\n        middle=[r for r in right if a<r<b]\n        if len(middle)!=1 or not .3 <= b-a <= 1.6: continue\n        i=min(range(len(ts)),key=lambda i:abs(ts[i]-a)); j=min(range(len(ts)),key=lambda i:abs(ts[i]-b))\n        error=math.sqrt(sum(sum((x-y)**2 for x,y in zip(p,q)) for p,q in zip(frames[i]['positions'],frames[j]['positions']))/len(frames[i]['positions']))\n        candidates.append((error,a,b,middle[0],i,j))\n    if not candidates:\n        return {'status':'fallback_full_range','start_seconds':0.,'end_seconds':ts[-1],\n                'markers':None,'reason':'No complete measured L-R-L onset interval passed duration bounds'}\n    error,a,b,r,i,j=min(candidates)\n    dots=[abs(sum(x*y for x,y in zip(q1,q2))) for q1,q2 in zip(frames[i]['rotations_xyzw'],frames[j]['rotations_xyzw'])]\n    return {'status':'measured_single_stride','start_seconds':a,'end_seconds':b,\n            'markers':[{'name':'L','time_seconds':a},{'name':'R','time_seconds':r},{'name':'L','time_seconds':b}],\n            'endpoint_position_rms_cm':error,\n            'endpoint_rotation_max_degrees':max(math.degrees(2*math.acos(min(1.,d))) for d in dots),\n            'candidate_count':len(candidates),'selection':'minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair'}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 130,
+          "line_end": 145,
+          "quote": "    @staticmethod\n    def _phase_to_time(data, phase):\n        lo,hi=data['loop_range_seconds']; markers=data.get('cycle_window',{}).get('markers')\n        if markers:\n            middle=markers[1]['time_seconds']\n            if phase<.5: return lo+2*phase*(middle-lo),2*(middle-lo)\n            return middle+2*(phase-.5)*(hi-middle),2*(hi-middle)\n        return lo+phase*(hi-lo),hi-lo\n\n    @staticmethod\n    def _time_to_phase(data, time):\n        lo,hi=data['loop_range_seconds']; markers=data.get('cycle_window',{}).get('markers')\n        if markers:\n            middle=markers[1]['time_seconds']\n            return .5*(time-lo)/(middle-lo) if time<middle else .5+.5*(time-middle)/(hi-middle)\n        return (time-lo)/(hi-lo)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 185,
+          "line_end": 202,
+          "quote": "        self.phase=(self.phase+dt*phase_speed)%1.\n        # Fading-out cycles remain genuine followers, including zero-target directions.\n        for player in self.players.values():\n            if not player['player_id'].startswith('cycle_'): continue\n            data=self.table[player['asset_id']]['data']\n            if data:\n                sample,derivative=self._phase_to_time(data,self.phase)\n                player['sample_time_seconds']=sample\n                player['play_rate']=phase_speed*derivative\n                player['normalized_phase']=self.phase\n        for aid,w in entries:\n            data=self.table[aid]['data']\n            sample,derivative=self._phase_to_time(data,self.phase) if data else (None,0.)\n            pid='cycle_'+aid\n            self.players[pid]={'player_id':pid,'asset_id':aid,'sample_time_seconds':sample,\n                               'play_rate':phase_speed*derivative,'loop':True,\n                               'normalized_phase':self.phase,'clock':'shared_contact_phase',\n                               'loop_range_seconds':data['loop_range_seconds'] if data else None}"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 44,
+          "line_end": 46,
+          "quote": "5. 足部接触估计来自原始含 root 位移的 component-space 足部 XY 速度与高度。使用每足高度 5% 分位值、2–7cm 高度过渡、速度阈值、3 点中值与迟滞；所有参数/曲线/估计事件都可追溯。它们不是原始动画通知，也没有地面碰撞或压力标注。\n6. 8 个循环各自选择有实测 L–R–L 接触起点的单步幅窗口，以端点 component 位置 RMS 最小为准；不裁掉其它加工帧。`loop_range_seconds` 使用完整加工时间轴上的真实起止时间，播放器不把窗口起点当作零。端点位置/旋转差也保留用于审查；没有做 seam 修复，不能声称无缝。\n7. 缺样资源保留原始 ID 和同一通用配方。补入合法采样后重新运行构建即可走相同流程；当前不为其填 duration、接触、距离或转身曲线。Idle 也不能物化。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN03",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1,
+      "deduction": 2,
+      "reason": "已覆盖单个资源缺完整 L-R-L 时返回无 markers 的全窗口数据，并在时间映射时采用 normalized phase；当前八个循环由同一加工规则得到兼容 L-R-L。缺口是组内没有共同 marker 集合或等价的共同模式校验/决策：若一个成员走无标记退化、另一个仍有 R，前者按全窗口线性、后者按两个接触区间映射，控制器仍报告同一 L/R marker_mapping，不会将整组统一退化、拒绝或报告失配。这是消费端混合标记可用性策略的独立缺口，不因缺原始 Notify/缺采样或 marker 制作本身重复扣分。",
+      "evidence": [
+        {
+          "path": "src/asset_analysis.py",
+          "line_start": 61,
+          "line_end": 70,
+          "quote": "    if not candidates:\n        return {'status':'fallback_full_range','start_seconds':0.,'end_seconds':ts[-1],\n                'markers':None,'reason':'No complete measured L-R-L onset interval passed duration bounds'}\n    error,a,b,r,i,j=min(candidates)\n    dots=[abs(sum(x*y for x,y in zip(q1,q2))) for q1,q2 in zip(frames[i]['rotations_xyzw'],frames[j]['rotations_xyzw'])]\n    return {'status':'measured_single_stride','start_seconds':a,'end_seconds':b,\n            'markers':[{'name':'L','time_seconds':a},{'name':'R','time_seconds':r},{'name':'L','time_seconds':b}],\n            'endpoint_position_rms_cm':error,\n            'endpoint_rotation_max_degrees':max(math.degrees(2*math.acos(min(1.,d))) for d in dots),\n            'candidate_count':len(candidates),'selection':'minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair'}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 130,
+          "line_end": 145,
+          "quote": "    @staticmethod\n    def _phase_to_time(data, phase):\n        lo,hi=data['loop_range_seconds']; markers=data.get('cycle_window',{}).get('markers')\n        if markers:\n            middle=markers[1]['time_seconds']\n            if phase<.5: return lo+2*phase*(middle-lo),2*(middle-lo)\n            return middle+2*(phase-.5)*(hi-middle),2*(hi-middle)\n        return lo+phase*(hi-lo),hi-lo\n\n    @staticmethod\n    def _time_to_phase(data, time):\n        lo,hi=data['loop_range_seconds']; markers=data.get('cycle_window',{}).get('markers')\n        if markers:\n            middle=markers[1]['time_seconds']\n            return .5*(time-lo)/(middle-lo) if time<middle else .5+.5*(time-middle)/(hi-middle)\n        return (time-lo)/(hi-lo)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 185,
+          "line_end": 202,
+          "quote": "        self.phase=(self.phase+dt*phase_speed)%1.\n        # Fading-out cycles remain genuine followers, including zero-target directions.\n        for player in self.players.values():\n            if not player['player_id'].startswith('cycle_'): continue\n            data=self.table[player['asset_id']]['data']\n            if data:\n                sample,derivative=self._phase_to_time(data,self.phase)\n                player['sample_time_seconds']=sample\n                player['play_rate']=phase_speed*derivative\n                player['normalized_phase']=self.phase\n        for aid,w in entries:\n            data=self.table[aid]['data']\n            sample,derivative=self._phase_to_time(data,self.phase) if data else (None,0.)\n            pid='cycle_'+aid\n            self.players[pid]={'player_id':pid,'asset_id':aid,'sample_time_seconds':sample,\n                               'play_rate':phase_speed*derivative,'loop':True,\n                               'normalized_phase':self.phase,'clock':'shared_contact_phase',\n                               'loop_range_seconds':data['loop_range_seconds'] if data else None}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 360,
+          "line_end": 365,
+          "quote": "        sync_members=[x['player_id'] for x in players if x['player_id'].startswith('cycle_')]\n        leader=min((x for x in players if x['player_id'] in sync_members),key=lambda x:(-x['weight'],x['asset_id']),default=None)\n        groups=[{'group_id':self.group_id,'member_player_ids':sync_members,\n                 'settings':{'mode':self.group_config['mode'],'phase':self.phase,'leader_player_id':leader['player_id'] if leader else None,\n                             'time_authority':'controller; never independently advance or reset followers','action_members':False,\n                             'marker_mapping':{'L':0.,'R':.5,'next_L':1.},'fallback':self.group_config['fallback']}}]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN04",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "leader 从当前实际输出归一化权重选取，使用 asset_id 对同权确定性排序，符合配置的 highest_weight_then_asset_id。共享主时钟不依赖 leader 驱动，作为明确说明的替代方案可接受。但返回组/播放器/操作计划均没有 Notify/event 的归属、leader-only 触发或 follower 抑制规则；接触曲线与 leader 名称不能替代事件调度计划。此项只扣事件归属，不与 SYN06 的区间/去重缺口合并重复。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 240,
+          "line_end": 246,
+          "quote": "  \"sync_groups\": [\n    {\n      \"group_id\": \"locomotion\",\n      \"mode\": \"shared_left_right_contact_phase\",\n      \"fallback\": \"normalized_cycle_phase_when_markers_unavailable\",\n      \"leader\": \"highest_weight_then_asset_id\",\n      \"phase_reset\": \"reset only; action handoff may align nearest foot features\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 352,
+          "line_end": 365,
+          "quote": "        total=sum(self.weights.values()); players=[]\n        for pid in sorted(self.weights):\n            player=dict(self.players[pid]); player['weight']=self.weights[pid]/total\n            asset=self.table[player['asset_id']]\n            player['availability']=asset['status']; player['pose_materializable']=asset['status']=='ready'\n            if not player['pose_materializable']: player['sample_time_seconds']=None\n            players.append(player)\n        self.players={pid:self.players[pid] for pid in self.weights}\n        sync_members=[x['player_id'] for x in players if x['player_id'].startswith('cycle_')]\n        leader=min((x for x in players if x['player_id'] in sync_members),key=lambda x:(-x['weight'],x['asset_id']),default=None)\n        groups=[{'group_id':self.group_id,'member_player_ids':sync_members,\n                 'settings':{'mode':self.group_config['mode'],'phase':self.phase,'leader_player_id':leader['player_id'] if leader else None,\n                             'time_authority':'controller; never independently advance or reset followers','action_members':False,\n                             'marker_mapping':{'L':0.,'R':.5,'next_L':1.},'fallback':self.group_config['fallback']}}]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 383,
+          "line_end": 402,
+          "quote": "        contacts={}; coverage=0.\n        for foot in self.nodes['feet']['feet']:\n            value=0.\n            for player in players:\n                data=self.table[player['asset_id']]['data']\n                if data and data.get('contact_estimates') and player['sample_time_seconds'] is not None:\n                    curve=data['contact_estimates']['feet'][foot]['weights']\n                    value+=player['weight']*interpolate(data['sample_times_seconds'],curve,player['sample_time_seconds'])\n            contacts[foot]=value\n        coverage=sum(x['weight'] for x in players if self.table[x['asset_id']]['data'] is not None)\n        op('feet','foot_ik_intent',{'enabled':p['foot_ik_enabled'],'feet':self.nodes['feet']['feet'],'ground_model':'flat local plane; world lock unavailable without actor position', 'contact_weights':contacts,'sampled_weight_coverage':coverage,'unknown_contact_weight':max(0.,1.-coverage),'contact_source':'measured heuristic curves, not actual solver contacts','execution':'not evaluated; no solver supplied'})\n        self.prev_velocity=v[:2]; self.prev_actor=actor\n        missing=[x['asset_id'] for x in players if not x['pose_materializable']]\n        return {'schema_version':1,'players':players,'sync_groups':groups,'pose_operations':ops,\n                'diagnostics':{'state':self.state,'state_age_seconds':self.state_age,'gait':self.gait,'jog_weight':self.jog_alpha,\n                    'speed_cm_s':speed,'direction_actor_degrees':raw_direction,'local_velocity_cm_s':local_v,\n                    'local_acceleration_cm_s2':local_a,'aim_actor_delta_degrees':wrap(aim-actor),\n                    'last_transition':self.last_transition,'deferred_asset_ids':sorted(set(missing)),\n                    'all_referenced_samples_available':not missing,'output_kind':'execution_plan_not_evaluated_pose',\n                    'ignored_vertical_inputs':True}}"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 62,
+          "line_end": 62,
+          "quote": "`sample_time_seconds` 是本帧的权威采样位置。执行方应按它直接采样，**不可再额外乘 dt 推进一次**。`play_rate` 对循环为当前相位映射导数，对单次动作为本帧实际前进量/dt，缺失资源为 0。循环回绕限定在资源记录的窗口。同步 leader 只是最高权重玩家的报告身份，所有成员的时间由控制器统一计算，不依赖外部同步服务。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN05",
+      "category": "synchronization",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "start/stop 为不循环的独立动作播放器，时间由实际距离反求并限速，组成员只包含 cycles，因此不会被 follower 同步覆盖距离匹配时间。进入 cycle 前，读取当前动作的两脚相对位置，在目标循环实际窗口内选最近采样并反求公共相位；给出了动作到循环的具体衔接。不因没有 Always Leader 字面设置扣分；单次动作隔离加明确接入属于可接受方案。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 107,
+          "line_end": 128,
+          "quote": "    def _align_phase_from_action(self):\n        if not self.action: return\n        data=self.table[self.action['asset_id']]['data']\n        cycle=self.table[self._asset(self.gait,self.direction_name,'cycle')]['data']\n        if not data or not cycle: return\n        # Match the two measured component-space feet at handoff; no synthetic markers.\n        t=self.action['time']; times=data['sample_times_seconds']\n        foot_data=data['contact_estimates']['foot_features']\n        current=[]\n        for foot in ('foot_l','foot_r'):\n            points=foot_data[foot]['relative_positions_cm']\n            current.extend(interpolate(times,[p[k] for p in points],t) for k in range(3))\n        lo,hi=cycle['loop_range_seconds']; candidates=[]\n        for i,ct in enumerate(cycle['sample_times_seconds']):\n            if not lo<=ct<hi: continue\n            sample=[]\n            for foot in ('foot_l','foot_r'):\n                sample.extend(cycle['contact_estimates']['foot_features'][foot]['relative_positions_cm'][i])\n            error=sum((x-y)**2 for x,y in zip(current,sample))\n            candidates.append((error,ct))\n        if candidates:\n            self.phase=self._time_to_phase(cycle,min(candidates)[1])"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 147,
+          "line_end": 153,
+          "quote": "    def _enter(self, state, direction=None, aim=None, turn_delta=None, action_gait=None):\n        if state=='cycle': self._align_phase_from_action()\n        old=self.state; self.state=state; self.state_age=0.; self.action=None\n        self.last_transition={'from':old,'to':state,'at_seconds':self.total_time}\n        if old=='pivot': self.pivot_cooldown=self.p['pivot_cooldown_seconds']\n        if old=='turn': self.turn_cooldown=self.p['turn_cooldown_seconds']\n        if state in ('idle','cycle'): return"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 206,
+          "line_end": 236,
+          "quote": "    def _advance_action(self, speed, decel, dt):\n        act=self.action; asset=self.table[act['asset_id']]; data=asset['data']\n        previous=act['time']; rate=1.\n        if data:\n            duration=data['duration_seconds']; target=previous+dt\n            if self.state=='start':\n                act['travel']+=speed*dt\n                target=inverse_distance(data,act['travel'])\n            elif self.state=='stop':\n                # Constant-deceleration estimate, not a collision-aware world stop point.\n                remaining=speed*speed/(2*max(decel,self.p['default_braking_cm_s2'] if decel<1 else decel))\n                target=inverse_distance(data,max(0.,data['distance_cm'][-1]-remaining))\n            elif self.state=='pivot':\n                target=previous+dt*clamp(speed/max(data['average_speed_cm_s'],1.),.75,1.35)\n            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7\n            if self.state=='turn':\n                y=interpolate(data['sample_times_seconds'],data['root_yaw_degrees'],act['time'])*act['yaw_scale']\n                self.visual_yaw=wrap(self.visual_yaw+y-act['yaw_applied']); act['yaw_applied']=y\n            sample=act['time']\n        else:\n            act['complete']=self.state_age>=self.p['deferred_action_policy_seconds'][self.state]\n            sample=None; rate=0.\n        pid=act['player_id']\n        self.players[pid]={'player_id':pid,'asset_id':act['asset_id'],'sample_time_seconds':sample,\n                           'play_rate':rate,'loop':False,'clock':'distance_bounded' if self.state in ('start','stop') else 'one_shot',\n                           'progress_basis':'measured_clip_time' if data else 'policy_timer_only_not_clip_progress',\n                           'policy_elapsed_seconds':self.state_age}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 360,
+          "line_end": 365,
+          "quote": "        sync_members=[x['player_id'] for x in players if x['player_id'].startswith('cycle_')]\n        leader=min((x for x in players if x['player_id'] in sync_members),key=lambda x:(-x['weight'],x['asset_id']),default=None)\n        groups=[{'group_id':self.group_id,'member_player_ids':sync_members,\n                 'settings':{'mode':self.group_config['mode'],'phase':self.phase,'leader_player_id':leader['player_id'] if leader else None,\n                             'time_authority':'controller; never independently advance or reset followers','action_members':False,\n                             'marker_mapping':{'L':0.,'R':.5,'next_L':1.},'fallback':self.group_config['fallback']}}]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN06",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "共享相位持续推进，leader 更替不会重新初始化 follower；每个循环按实际 loop_range 回绕，普通尾部跨越与动作接入有具体时间路径。缺口是 phase 直接取模且没有保留圈数/上一相位、无前后 marker 的遍历或事件区间计划；大 dt 一次跨多个 marker/整圈时无法从输出恢复全部经过区间，也未定义半开端点及已触发事件键以避免漏发/重发。这里只扣区间唯一性，leader 选择本身不再次扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 185,
+          "line_end": 202,
+          "quote": "        self.phase=(self.phase+dt*phase_speed)%1.\n        # Fading-out cycles remain genuine followers, including zero-target directions.\n        for player in self.players.values():\n            if not player['player_id'].startswith('cycle_'): continue\n            data=self.table[player['asset_id']]['data']\n            if data:\n                sample,derivative=self._phase_to_time(data,self.phase)\n                player['sample_time_seconds']=sample\n                player['play_rate']=phase_speed*derivative\n                player['normalized_phase']=self.phase\n        for aid,w in entries:\n            data=self.table[aid]['data']\n            sample,derivative=self._phase_to_time(data,self.phase) if data else (None,0.)\n            pid='cycle_'+aid\n            self.players[pid]={'player_id':pid,'asset_id':aid,'sample_time_seconds':sample,\n                               'play_rate':phase_speed*derivative,'loop':True,\n                               'normalized_phase':self.phase,'clock':'shared_contact_phase',\n                               'loop_range_seconds':data['loop_range_seconds'] if data else None}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 327,
+          "line_end": 337,
+          "quote": "        for player in self.players.values():\n            data=self.table[player['asset_id']]['data']\n            if data and player['sample_time_seconds'] is not None:\n                t=player['sample_time_seconds']+dt*player['play_rate']; duration=data['duration_seconds']\n                if player['loop']:\n                    lo,hi=data.get('loop_range_seconds') or [0.,duration]\n                    player['sample_time_seconds']=lo+(t-lo)%(hi-lo)\n                else:\n                    previous=player['sample_time_seconds']\n                    player['sample_time_seconds']=min(t,duration)\n                    player['play_rate']=(player['sample_time_seconds']-previous)/dt"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 360,
+          "line_end": 365,
+          "quote": "        sync_members=[x['player_id'] for x in players if x['player_id'].startswith('cycle_')]\n        leader=min((x for x in players if x['player_id'] in sync_members),key=lambda x:(-x['weight'],x['asset_id']),default=None)\n        groups=[{'group_id':self.group_id,'member_player_ids':sync_members,\n                 'settings':{'mode':self.group_config['mode'],'phase':self.phase,'leader_player_id':leader['player_id'] if leader else None,\n                             'time_authority':'controller; never independently advance or reset followers','action_members':False,\n                             'marker_mapping':{'L':0.,'R':.5,'next_L':1.},'fallback':self.group_config['fallback']}}]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 394,
+          "line_end": 402,
+          "quote": "        self.prev_velocity=v[:2]; self.prev_actor=actor\n        missing=[x['asset_id'] for x in players if not x['pose_materializable']]\n        return {'schema_version':1,'players':players,'sync_groups':groups,'pose_operations':ops,\n                'diagnostics':{'state':self.state,'state_age_seconds':self.state_age,'gait':self.gait,'jog_weight':self.jog_alpha,\n                    'speed_cm_s':speed,'direction_actor_degrees':raw_direction,'local_velocity_cm_s':local_v,\n                    'local_acceleration_cm_s2':local_a,'aim_actor_delta_degrees':wrap(aim-actor),\n                    'last_transition':self.last_transition,'deferred_asset_ids':sorted(set(missing)),\n                    'all_referenced_samples_available':not missing,'output_kind':'execution_plan_not_evaluated_pose',\n                    'ignored_vertical_inputs':True}}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST01",
+      "category": "distance_matching",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "曲线单位 cm，distance_cm 是从首帧起的 XY 累计弧长，remaining_distance_cm 是到末帧的剩余弧长。start 以本次动作累计实走路程反查；stop 将预测剩余距离转换成 total-remaining 后反查。pivot 明确保留累计弧长及入向投影反向提示，并声明当前采用时间播放，没有把未解释的正值曲线冒充 pivot 目标距离。pivot 目标生成/消费缺失分别在 DST03/DST02 评价，本项不再次扣分。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 78,
+          "line_end": 83,
+          "quote": "    return {'duration_seconds':duration,'time_origin_source_seconds':t0,\n            'sample_times_seconds':times,'frames':poses,\n            'pose_space':'component_actor_basis_in_place',\n            'root_trajectory_cm':trajectory,'root_yaw_degrees':yaws,\n            'distance_cm':distance,'remaining_distance_cm':[total-d for d in distance],\n            'average_speed_cm_s':total/duration,"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 43,
+          "line_end": 43,
+          "quote": "4. 距离曲线来自 root XY 累计弧长。停步剩余距离为总弧长减当前弧长，不是投影距离；pivot 用累计弧长避免往返导致非单调。同时保存 incoming 轴上最大位移时刻作为实测反向提示。"
+        },
+        {
+          "path": "src/asset_analysis.py",
+          "line_start": 86,
+          "line_end": 96,
+          "quote": "    if semantic['action']=='pivot':\n        # Point of maximum displacement along incoming motion; retained as measured hint.\n        path=data['root_trajectory_cm']; origin=path[0]\n        delta=next((p for p in path[1:] if math.hypot(p[0]-origin[0],p[1]-origin[1])>1.),None)\n        if delta:\n            norm=math.hypot(delta[0]-origin[0],delta[1]-origin[1]); d=[(delta[k]-origin[k])/norm for k in range(2)]\n            projections=[sum((p[k]-origin[k])*d[k] for k in range(2)) for p in path]\n            i=max(range(len(path)),key=lambda i:projections[i])\n            data['pivot_reversal_hint']={'time_seconds':data['sample_times_seconds'][i],\n                                        'method':'maximum root displacement projected onto first >1cm incoming displacement',\n                                        'not_a_foot_contact_label':True}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 211,
+          "line_end": 219,
+          "quote": "            if self.state=='start':\n                act['travel']+=speed*dt\n                target=inverse_distance(data,act['travel'])\n            elif self.state=='stop':\n                # Constant-deceleration estimate, not a collision-aware world stop point.\n                remaining=speed*speed/(2*max(decel,self.p['default_braking_cm_s2'] if decel<1 else decel))\n                target=inverse_distance(data,max(0.,data['distance_cm'][-1]-remaining))\n            elif self.state=='pivot':\n                target=previous+dt*clamp(speed/max(data['average_speed_cm_s'],1.),.75,1.35)"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 150,
+          "line_end": 154,
+          "quote": "      \"distance_matching\": {\n        \"start\": \"inverse accumulated traveled XY distance; rate bounded\",\n        \"stop\": \"inverse total root arc length minus v^2/(2*deceleration); rate bounded\",\n        \"pivot\": \"bounded source-time playback; measured reversal hint retained as evidence, not assumed contact\"\n      }"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST02",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "start 将每次更新的 speed*dt 加到本次动作 travel，再反查绝对采样时间；stop 每帧由剩余目标反查，随后统一限制时间，未把累计路程反复加到当前时钟。缺少的独立消费路径是 ready pivot：它只按 previous+dt*clamp(speed/average_speed) 播放，没有按转向目标距离定位或按 pivot 前后距离阶段消费。此项只扣目标到播放器时间的映射缺失；目标预测本身另归 DST03，不在 RES/DST01 再罚。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 161,
+          "line_end": 164,
+          "quote": "            aid=self._asset(action_gait or self.gait,direction or self.direction_name,state); scale=1.\n        self.action={'asset_id':aid,'player_id':f'action_{self.serial}', 'time':0.,'travel':0.,\n                     'yaw_applied':0.,'yaw_scale':scale,'direction':direction or self.direction_name,\n                     'aim_at_entry':aim,'complete':False,'gait_at_entry':action_gait or self.gait,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 206,
+          "line_end": 224,
+          "quote": "    def _advance_action(self, speed, decel, dt):\n        act=self.action; asset=self.table[act['asset_id']]; data=asset['data']\n        previous=act['time']; rate=1.\n        if data:\n            duration=data['duration_seconds']; target=previous+dt\n            if self.state=='start':\n                act['travel']+=speed*dt\n                target=inverse_distance(data,act['travel'])\n            elif self.state=='stop':\n                # Constant-deceleration estimate, not a collision-aware world stop point.\n                remaining=speed*speed/(2*max(decel,self.p['default_braking_cm_s2'] if decel<1 else decel))\n                target=inverse_distance(data,max(0.,data['distance_cm'][-1]-remaining))\n            elif self.state=='pivot':\n                target=previous+dt*clamp(speed/max(data['average_speed_cm_s'],1.),.75,1.35)\n            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 150,
+          "line_end": 154,
+          "quote": "      \"distance_matching\": {\n        \"start\": \"inverse accumulated traveled XY distance; rate bounded\",\n        \"stop\": \"inverse total root arc length minus v^2/(2*deceleration); rate bounded\",\n        \"pivot\": \"bounded source-time playback; measured reversal hint retained as evidence, not assumed contact\"\n      }"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST03",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "stop 使用沿当前速度的观测减速度与 v²/(2a) 估计；不足 1 cm/s² 时使用图内可配置 default_braking_cm_s2=700，且明确这是常减速近似，不是碰撞感知世界停点。缺少的是 ready pivot 的目标生产：v+a*prediction_seconds 仅用于反向触发，实测 reversal_hint 只是资源证据，没有依据给定运动量推导到转向点的距离/阶段目标。已有源片总弧长没有被冒充真实预测。此项评目标来源，DST02 评已有目标怎样控制时间，分别对应冻结条目的独立要求。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 214,
+          "line_end": 219,
+          "quote": "            elif self.state=='stop':\n                # Constant-deceleration estimate, not a collision-aware world stop point.\n                remaining=speed*speed/(2*max(decel,self.p['default_braking_cm_s2'] if decel<1 else decel))\n                target=inverse_distance(data,max(0.,data['distance_cm'][-1]-remaining))\n            elif self.state=='pivot':\n                target=previous+dt*clamp(speed/max(data['average_speed_cm_s'],1.),.75,1.35)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 266,
+          "line_end": 284,
+          "quote": "        dot=(v[0]*a[0]+v[1]*a[1])/max(speed,1e-8)\n        decel=max(0.,-dot)\n        braking=decel>=p['braking_acceleration_cm_s2']\n        oppose=dot/max(acceleration,1e-8)\n        if oppose>-.2 or stopped: self.pivot_latched=False\n        desired=[v[k]+a[k]*p['prediction_seconds'] for k in range(2)]\n        desired_len=math.hypot(*desired)\n        pred_dot=(v[0]*desired[0]+v[1]*desired[1])/max(speed*desired_len,1e-8)\n        observed_reversal=False; incoming=self.direction_name\n        if self.prev_velocity is not None:\n            prev_speed=math.hypot(*self.prev_velocity)\n            if prev_speed>=p['pivot_min_speed_cm_s'] and speed>=p['move_enter_cm_s']:\n                cos=(v[0]*self.prev_velocity[0]+v[1]*self.prev_velocity[1])/(speed*prev_speed)\n                observed_reversal=cos<=math.cos(math.radians(p['pivot_angle_degrees']))\n                if observed_reversal:\n                    pv=self.prev_velocity\n                    incoming=self._nearest_direction(math.degrees(math.atan2(-s*pv[0]+c*pv[1],c*pv[0]+s*pv[1])))\n        pivot=(observed_reversal or (self.state in ('start','cycle') and speed>=p['pivot_min_speed_cm_s'] and acceleration>=p['pivot_acceleration_cm_s2'] and\n               pred_dot<=math.cos(math.radians(p['pivot_angle_degrees']))))"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 27,
+          "line_end": 31,
+          "quote": "    \"braking_acceleration_cm_s2\": 80.0,\n    \"default_braking_cm_s2\": 700.0,\n    \"stop_prediction_seconds\": 0.65,\n    \"distance_match_min_rate\": 0.25,\n    \"distance_match_max_rate\": 2.0,"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 150,
+          "line_end": 154,
+          "quote": "      \"distance_matching\": {\n        \"start\": \"inverse accumulated traveled XY distance; rate bounded\",\n        \"stop\": \"inverse total root arc length minus v^2/(2*deceleration); rate bounded\",\n        \"pivot\": \"bounded source-time playback; measured reversal hint retained as evidence, not assumed contact\"\n      }"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 54,
+          "line_end": 54,
+          "quote": "- 起步累计实际输入速度距离，并在源距离曲线上反求时间；停步用 `v²/(2a)` 估算剩余距离、在源曲线上反求时间。时间保持单调、倍率有限；低速时保留最小时间推进，不会卡在距离平台。它不是碰撞感知 stop-location prediction，也不保证实际停点与动画完全一致。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST04",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "反查使用二分及线性插值，端点 clamp、近零平台差分支可定位，距离驱动结果还限制不倒退和有效倍率；源弧长构造避免往返轨迹直接造成非单调投影。缺口与 Opus 同尺度：inverse_distance 直接索引并 bisect，未验证 times/values 长度、有限性、全序单调，也没有拒绝或处理非法/非单调传入曲线的明确契约；构造器只校验图/资源引用。此处不为 pivot 未接入距离路径再扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 28,
+          "line_end": 34,
+          "quote": "def inverse_distance(data, distance):\n    ds=data['distance_cm']; ts=data['sample_times_seconds']\n    if distance <= ds[0]: return ts[0]\n    if distance >= ds[-1]: return ts[-1]\n    i=bisect.bisect_left(ds,distance)\n    if ds[i]-ds[i-1] < 1e-9: return ts[i]\n    return ts[i-1]+(ts[i]-ts[i-1])*(distance-ds[i-1])/(ds[i]-ds[i-1])"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 38,
+          "line_end": 58,
+          "quote": "    def __init__(self, graph: dict, assets: dict) -> None:\n        if graph.get('schema_version') != 1 or assets.get('schema_version') != 1:\n            raise ValueError('Unsupported schema')\n        self.graph=graph; self.assets=assets\n        self.p=graph['parameters']; self.nodes={n['id']:n for n in graph['nodes']}\n        self.bindings=self.nodes['state']['bindings']\n        self.table={a['asset_id']:a for a in assets['assets']}\n        if len(self.table)!=len(assets['assets']) or len(self.nodes)!=len(graph['nodes']):\n            raise ValueError('Duplicate asset or node ID')\n        for aid in self.bindings.values():\n            if aid not in self.table: raise ValueError('Unresolved asset '+aid)\n        for edge in graph['connections']:\n            if edge['from'] not in self.nodes or edge['to'] not in self.nodes:\n                raise ValueError('Unresolved graph connection')\n        if graph['output'] not in self.nodes: raise ValueError('Unresolved output')\n        expected_chain=['blend','facing','orientation','stride','lean','feet']\n        edges={(e['from'],e['to']) for e in graph['connections']}\n        if graph['output']!='feet' or any((a,b) not in edges for a,b in zip(expected_chain,expected_chain[1:])):\n            raise ValueError('This planner requires the declared ordered pose-operation chain')\n        if self.nodes['cycles']['angles_degrees']!={'fwd':0.,'right':90.,'bwd':180.,'left':270.}:\n            raise ValueError('Cycle node requires cardinal actor-space angles')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 220,
+          "line_end": 224,
+          "quote": "            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST05",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "start/stop 距离反查受 dt*min/max rate 限制并输出实际有效倍率；cycle 另用平均动画速度做 speed matching，stride 以 speed/(名义动画速度*实际倍率) 有界补偿，避免同一速度差完整乘两次。接受其声明的片段平均速度近似，不额外要求逐帧导数。直接缺口是 stop 分支固定 stride=1：距离时间受限后未匹配部分既无补偿计划，也未明确声明允许的滑步取舍。文档只说明限制和不保证停点一致，尚未给出限速残差的处理约定；沿用 Opus 本项 2/3 尺度。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 220,
+          "line_end": 224,
+          "quote": "            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 177,
+          "line_end": 183,
+          "quote": "                aid=self._asset(gait,direction,'cycle'); data=self.table[aid]['data']\n                if data:\n                    nominal=max(data.get('cycle_average_speed_cm_s',data['average_speed_cm_s']),1e-6)\n                    rate=clamp(speed/nominal,self.p['play_rate_min'],self.p['play_rate_max'])\n                    freq=rate/data.get('cycle_duration_seconds',data['duration_seconds'])\n                else: freq=0.\n                phase_speed+=w*freq"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 378,
+          "line_end": 380,
+          "quote": "        nominal=sum(x['weight']*(self.table[x['asset_id']]['data'] or {}).get('average_speed_cm_s',0.)*x['play_rate'] for x in players)\n        stride=clamp(speed/max(nominal,1.),p['stride_scale_min'],p['stride_scale_max']) if self.state in ('start','cycle','pivot') else 1.\n        op('stride','stride_warp_intent',{'scale':stride,'pelvis':self.nodes['stride']['pelvis'],'feet':self.nodes['stride']['feet'],'direction_actor_xy':[math.cos(math.radians(raw_direction)),math.sin(math.radians(raw_direction))]})"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 18,
+          "line_end": 21,
+          "quote": "    \"play_rate_min\": 0.55,\n    \"play_rate_max\": 1.65,\n    \"stride_scale_min\": 0.75,\n    \"stride_scale_max\": 1.25,"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 30,
+          "line_end": 31,
+          "quote": "    \"distance_match_min_rate\": 0.25,\n    \"distance_match_max_rate\": 2.0,"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 54,
+          "line_end": 54,
+          "quote": "- 起步累计实际输入速度距离，并在源距离曲线上反求时间；停步用 `v²/(2a)` 估算剩余距离、在源曲线上反求时间。时间保持单调、倍率有限；低速时保留最小时间推进，不会卡在距离平台。它不是碰撞感知 stop-location prediction，也不保证实际停点与动画完全一致。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 67,
+          "line_end": 67,
+          "quote": "- stride 倍率有上下界；lean 是参数化操作意图，不伪称存在原始 additive clip。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST06",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "sample_time 是权威位置且禁止外部二次推进；distance_bounded/one_shot 时钟、循环窗口以及转身 yaw 的采样差消费都有具体路径，未宣称 UE 等价。缺口是动作初次定位、重新进入及动作到循环相位对齐的显式时间变化，没有公开区分 seek 与 advancing 的事件规则，也未声明是否抑制/补发 Notify 或提供相应事件计划。只要求独立简化副作用契约，不要求 UE 事件执行器；root 所有权已有 RES05 得分，不在这里重复扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 147,
+          "line_end": 164,
+          "quote": "    def _enter(self, state, direction=None, aim=None, turn_delta=None, action_gait=None):\n        if state=='cycle': self._align_phase_from_action()\n        old=self.state; self.state=state; self.state_age=0.; self.action=None\n        self.last_transition={'from':old,'to':state,'at_seconds':self.total_time}\n        if old=='pivot': self.pivot_cooldown=self.p['pivot_cooldown_seconds']\n        if old=='turn': self.turn_cooldown=self.p['turn_cooldown_seconds']\n        if state in ('idle','cycle'): return\n        self.serial+=1\n        if state=='turn':\n            size=180 if abs(turn_delta)>=self.p['turn_180_threshold_degrees'] else 90\n            anatomical=size if turn_delta<0 else -size\n            aid=self.bindings[f'turn.{anatomical}']\n            scale=clamp(abs(turn_delta)/size,.75,1.25)\n        else:\n            aid=self._asset(action_gait or self.gait,direction or self.direction_name,state); scale=1.\n        self.action={'asset_id':aid,'player_id':f'action_{self.serial}', 'time':0.,'travel':0.,\n                     'yaw_applied':0.,'yaw_scale':scale,'direction':direction or self.direction_name,\n                     'aim_at_entry':aim,'complete':False,'gait_at_entry':action_gait or self.gait,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 220,
+          "line_end": 235,
+          "quote": "            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)\n            rate=(act['time']-previous)/dt\n            act['complete']=act['time']>=duration-1e-7\n            if self.state=='turn':\n                y=interpolate(data['sample_times_seconds'],data['root_yaw_degrees'],act['time'])*act['yaw_scale']\n                self.visual_yaw=wrap(self.visual_yaw+y-act['yaw_applied']); act['yaw_applied']=y\n            sample=act['time']\n        else:\n            act['complete']=self.state_age>=self.p['deferred_action_policy_seconds'][self.state]\n            sample=None; rate=0.\n        pid=act['player_id']\n        self.players[pid]={'player_id':pid,'asset_id':act['asset_id'],'sample_time_seconds':sample,\n                           'play_rate':rate,'loop':False,'clock':'distance_bounded' if self.state in ('start','stop') else 'one_shot',\n                           'progress_basis':'measured_clip_time' if data else 'policy_timer_only_not_clip_progress',"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 107,
+          "line_end": 128,
+          "quote": "    def _align_phase_from_action(self):\n        if not self.action: return\n        data=self.table[self.action['asset_id']]['data']\n        cycle=self.table[self._asset(self.gait,self.direction_name,'cycle')]['data']\n        if not data or not cycle: return\n        # Match the two measured component-space feet at handoff; no synthetic markers.\n        t=self.action['time']; times=data['sample_times_seconds']\n        foot_data=data['contact_estimates']['foot_features']\n        current=[]\n        for foot in ('foot_l','foot_r'):\n            points=foot_data[foot]['relative_positions_cm']\n            current.extend(interpolate(times,[p[k] for p in points],t) for k in range(3))\n        lo,hi=cycle['loop_range_seconds']; candidates=[]\n        for i,ct in enumerate(cycle['sample_times_seconds']):\n            if not lo<=ct<hi: continue\n            sample=[]\n            for foot in ('foot_l','foot_r'):\n                sample.extend(cycle['contact_estimates']['foot_features'][foot]['relative_positions_cm'][i])\n            error=sum((x-y)**2 for x,y in zip(current,sample))\n            candidates.append((error,ct))\n        if candidates:\n            self.phase=self._time_to_phase(cycle,min(candidates)[1])"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 362,
+          "line_end": 365,
+          "quote": "        groups=[{'group_id':self.group_id,'member_player_ids':sync_members,\n                 'settings':{'mode':self.group_config['mode'],'phase':self.phase,'leader_player_id':leader['player_id'] if leader else None,\n                             'time_authority':'controller; never independently advance or reset followers','action_members':False,\n                             'marker_mapping':{'L':0.,'R':.5,'next_L':1.},'fallback':self.group_config['fallback']}}]"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 60,
+          "line_end": 68,
+          "quote": "## 输出时钟、操作语义\n\n`sample_time_seconds` 是本帧的权威采样位置。执行方应按它直接采样，**不可再额外乘 dt 推进一次**。`play_rate` 对循环为当前相位映射导数，对单次动作为本帧实际前进量/dt，缺失资源为 0。循环回绕限定在资源记录的窗口。同步 leader 只是最高权重玩家的报告身份，所有成员的时间由控制器统一计算，不依赖外部同步服务。\n\n操作按数组顺序：播放器权重混合 → component 全身 root yaw offset → 有限动作方向 warp → stride warp → 加速度 lean → 基于实测接触权重的足部 IK 意图。每个操作引用上一操作或已有 player ID。这些是执行意图，不是算出的最终骨骼变换：\n\n- 方向循环本身已混合四方向，不重复做全角度方向 warp；pivot 保持入向对齐，不在反向帧把整个 pivot 再翻一次。\n- stride 倍率有上下界；lean 是参数化操作意图，不伪称存在原始 additive clip。\n- 接触权重按当前玩家/时间实际读取曲线；缺样玩家贡献为未知覆盖率，不当作已确认离地。没有 actor 世界位置，不能实现可信世界足锁；不生成虚构足锁目标。没有 IK solver、完整骨架、脚底绑定或碰撞查询，IK 必须由下游另行实现。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "WRP01",
+      "category": "warping_and_yaw",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "动作使用有界的局部移动方向与源方向差；循环采用四向连续混合作等价方向表达，actor与visual yaw也明确分开。但计划先将全部component变换旋转root offset，动作warp仍仅raw_direction-reference，循环方向也仍基于actor空间，没有消去有效mesh/root偏移；存在offset时方向补偿不闭合。按Opus同类缺口扣1分。上身aim分层缺口由ARC02处理，不在此追加；也不重复扣资源坐标制作问题。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 247,
+          "line_end": 265,
+          "quote": "        r=math.radians(actor); c,s=math.cos(r),math.sin(r)\n        local_v=[c*v[0]+s*v[1],-s*v[0]+c*v[1]]\n        local_a=[c*a[0]+s*a[1],-s*a[0]+c*a[1]]\n        if self.visual_yaw is None: self.visual_yaw=actor\n        intent=acceleration>=p['intent_acceleration_cm_s2']\n        moving=speed>=p['move_enter_cm_s']; stopped=speed<=p['move_exit_cm_s']\n        predicted=math.hypot(v[0]+a[0]*p['prediction_seconds'],v[1]+a[1]*p['prediction_seconds'])\n        gait_speed=max(speed,predicted) if self.state in ('idle','start') else speed\n        if self.gait=='walk' and gait_speed>=p['jog_enter_cm_s']: self.gait='jog'\n        if self.gait=='jog' and gait_speed<=p['jog_exit_cm_s']: self.gait='walk'\n        alpha=clamp((speed-p['walk_to_jog_low_cm_s'])/(p['walk_to_jog_high_cm_s']-p['walk_to_jog_low_cm_s']),0.,1.)\n        self.jog_alpha=smooth(self.jog_alpha,alpha,dt,p['gait_smoothing_seconds'])\n        raw_direction=math.degrees(math.atan2(local_v[1],local_v[0])) if speed>p['move_exit_cm_s'] else (\n            math.degrees(math.atan2(local_a[1],local_a[0])) if intent else self.direction)\n        if self.prev_velocity is None or (self.state=='idle' and (moving or intent)):\n            self.direction=raw_direction\n        else:\n            self.direction=wrap(self.direction+wrap(raw_direction-self.direction)*(1-math.exp(-dt/p['direction_smoothing_seconds'])))\n        self.direction_name=self._nearest_direction(raw_direction,self.direction_name)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 167,
+          "line_end": 177,
+          "quote": "    def _cycle_targets(self, speed, dt):\n        angle=self.direction%360.; order=sorted(self.angles,key=self.angles.get)\n        # Four evenly spaced cardinal directions are part of this node's contract.\n        sector=int(angle//90); f=(angle%90)/90\n        directional={order[sector]:1-f, order[(sector+1)%4]:f}\n        targets={}; phase_speed=0.; entries=[]\n        for gait,gw in [('walk',1-self.jog_alpha),('jog',self.jog_alpha)]:\n            for direction,dw in directional.items():\n                w=gw*dw\n                if w < 1e-8: continue\n                aid=self._asset(gait,direction,'cycle'); data=self.table[aid]['data']"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 371,
+          "line_end": 377,
+          "quote": "        offset=clamp(wrap(self.visual_yaw-actor),-p['turn_max_offset_degrees'],p['turn_max_offset_degrees'])\n        op('facing','component_root_yaw_offset',{'yaw_degrees':offset,'rotate_all_component_transforms':True,'apply_gameplay_root_motion':False})\n        warp=0.\n        if self.action and self.state in ('start','stop','pivot'):\n            reference=self.angles[self.action['direction']]\n            warp=self.action['entry_warp_degrees'] if self.state=='pivot' else clamp(wrap(raw_direction-reference),-p['orientation_warp_limit_degrees'],p['orientation_warp_limit_degrees'])\n        op('orientation','orientation_warp_intent',{'yaw_degrees':warp,'policy':'limited action alignment; cycles already directionally blended'})"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "WRP02",
+      "category": "warping_and_yaw",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2.5,
+      "deduction": 0.5,
+      "reason": "按当前玩家权重与play_rate形成名义速度，speed/max(nominal,1)有分母保护，比例限幅并进入有效stride操作及pelvis/feet引用。但stride直接随原始speed和当前state逐帧输出，未保存/平滑该参数，进入Stop等状态还会直接改为1；动作权重淡化不能替代后置stride参数过渡。独立无平滑缺口扣0.5，较Opus多有分母保护；整段平均速度替代当前有效速度及Stop残余补偿归DST05，不在本项重复扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 378,
+          "line_end": 380,
+          "quote": "        nominal=sum(x['weight']*(self.table[x['asset_id']]['data'] or {}).get('average_speed_cm_s',0.)*x['play_rate'] for x in players)\n        stride=clamp(speed/max(nominal,1.),p['stride_scale_min'],p['stride_scale_max']) if self.state in ('start','cycle','pivot') else 1.\n        op('stride','stride_warp_intent',{'scale':stride,'pelvis':self.nodes['stride']['pelvis'],'feet':self.nodes['stride']['feet'],'direction_actor_xy':[math.cos(math.radians(raw_direction)),math.sin(math.radians(raw_direction))]})"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 346,
+          "line_end": 358,
+          "quote": "        if not self.weights: self.weights=dict(targets)\n        else:\n            # Bounded first-order fade handles arbitrary interruptions without resurrecting time=0.\n            for pid in sorted(set(self.weights)|set(targets)):\n                self.weights[pid]=smooth(self.weights.get(pid,0.),targets.get(pid,0.),dt,p['blend_seconds']/3.)\n            self.weights={pid:w for pid,w in self.weights.items() if w>1e-5}\n        total=sum(self.weights.values()); players=[]\n        for pid in sorted(self.weights):\n            player=dict(self.players[pid]); player['weight']=self.weights[pid]/total\n            asset=self.table[player['asset_id']]\n            player['availability']=asset['status']; player['pose_materializable']=asset['status']=='ready'\n            if not player['pose_materializable']: player['sample_time_seconds']=None\n            players.append(player)"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 18,
+          "line_end": 21,
+          "quote": "    \"play_rate_min\": 0.55,\n    \"play_rate_max\": 1.65,\n    \"stride_scale_min\": 0.75,\n    \"stride_scale_max\": 1.25,"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "WRP03",
+      "category": "warping_and_yaw",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "姿态计划有明确有序输入链：混合、root yaw、方向、stride、lean、foot IK意图；引用已有player/上一operation，pelvis/feet/spine均在所给26骨子集中。说明承认无完整骨架/绑定/solver/世界位置和最终姿态，foot IK与接触估计的边界明确。不要求实际IK/FK或渲染；算法缺口在独立WRP/DST项评分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 366,
+          "line_end": 382,
+          "quote": "        weights={x['player_id']:x['weight'] for x in players}\n        ops=[{'operation_id':'blend','operation_type':'weighted_pose_blend','inputs':list(weights),\n              'parameters':{'weights':weights,'rotation_interpolation':'shortest_arc_quaternion','missing_pose_policy':'unresolved; do not invent bind/idle pose'}}]\n        def op(oid,kind,parameters):\n            ops.append({'operation_id':oid,'operation_type':kind,'inputs':[ops[-1]['operation_id']],'parameters':parameters})\n        offset=clamp(wrap(self.visual_yaw-actor),-p['turn_max_offset_degrees'],p['turn_max_offset_degrees'])\n        op('facing','component_root_yaw_offset',{'yaw_degrees':offset,'rotate_all_component_transforms':True,'apply_gameplay_root_motion':False})\n        warp=0.\n        if self.action and self.state in ('start','stop','pivot'):\n            reference=self.angles[self.action['direction']]\n            warp=self.action['entry_warp_degrees'] if self.state=='pivot' else clamp(wrap(raw_direction-reference),-p['orientation_warp_limit_degrees'],p['orientation_warp_limit_degrees'])\n        op('orientation','orientation_warp_intent',{'yaw_degrees':warp,'policy':'limited action alignment; cycles already directionally blended'})\n        nominal=sum(x['weight']*(self.table[x['asset_id']]['data'] or {}).get('average_speed_cm_s',0.)*x['play_rate'] for x in players)\n        stride=clamp(speed/max(nominal,1.),p['stride_scale_min'],p['stride_scale_max']) if self.state in ('start','cycle','pivot') else 1.\n        op('stride','stride_warp_intent',{'scale':stride,'pelvis':self.nodes['stride']['pelvis'],'feet':self.nodes['stride']['feet'],'direction_actor_xy':[math.cos(math.radians(raw_direction)),math.sin(math.radians(raw_direction))]})\n        self.lean=[smooth(self.lean[k],clamp(local_a[k]*p['lean_acceleration_scale'],-p['lean_max_degrees'],p['lean_max_degrees']),dt,p['lean_smoothing_seconds']) for k in range(2)]\n        op('lean','acceleration_lean_intent',{'pitch_degrees':self.lean[0],'roll_degrees':-self.lean[1],'bones':self.nodes['lean']['bones'],'not_an_authored_additive_pose':True})"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 383,
+          "line_end": 393,
+          "quote": "        contacts={}; coverage=0.\n        for foot in self.nodes['feet']['feet']:\n            value=0.\n            for player in players:\n                data=self.table[player['asset_id']]['data']\n                if data and data.get('contact_estimates') and player['sample_time_seconds'] is not None:\n                    curve=data['contact_estimates']['feet'][foot]['weights']\n                    value+=player['weight']*interpolate(data['sample_times_seconds'],curve,player['sample_time_seconds'])\n            contacts[foot]=value\n        coverage=sum(x['weight'] for x in players if self.table[x['asset_id']]['data'] is not None)\n        op('feet','foot_ik_intent',{'enabled':p['foot_ik_enabled'],'feet':self.nodes['feet']['feet'],'ground_model':'flat local plane; world lock unavailable without actor position', 'contact_weights':contacts,'sampled_weight_coverage':coverage,'unknown_contact_weight':max(0.,1.-coverage),'contact_source':'measured heuristic curves, not actual solver contacts','execution':'not evaluated; no solver supplied'})"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 170,
+          "line_end": 195,
+          "quote": "    {\n      \"id\": \"stride\",\n      \"type\": \"stride_warp_intent\",\n      \"pelvis\": \"pelvis\",\n      \"feet\": [\n        \"foot_l\",\n        \"foot_r\"\n      ]\n    },\n    {\n      \"id\": \"lean\",\n      \"type\": \"acceleration_additive_intent\",\n      \"bones\": [\n        \"spine_01\",\n        \"spine_02\",\n        \"spine_03\"\n      ]\n    },\n    {\n      \"id\": \"feet\",\n      \"type\": \"contact_weighted_foot_ik_intent\",\n      \"feet\": [\n        \"foot_l\",\n        \"foot_r\"\n      ],\n      \"ground\": \"flat; no collision query or world position\""
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 64,
+          "line_end": 72,
+          "quote": "操作按数组顺序：播放器权重混合 → component 全身 root yaw offset → 有限动作方向 warp → stride warp → 加速度 lean → 基于实测接触权重的足部 IK 意图。每个操作引用上一操作或已有 player ID。这些是执行意图，不是算出的最终骨骼变换：\n\n- 方向循环本身已混合四方向，不重复做全角度方向 warp；pivot 保持入向对齐，不在反向帧把整个 pivot 再翻一次。\n- stride 倍率有上下界；lean 是参数化操作意图，不伪称存在原始 additive clip。\n- 接触权重按当前玩家/时间实际读取曲线；缺样玩家贡献为未知覆盖率，不当作已确认离地。没有 actor 世界位置，不能实现可信世界足锁；不生成虚构足锁目标。没有 IK solver、完整骨架、脚底绑定或碰撞查询，IK 必须由下游另行实现。\n\n## 限制与待完成\n\n这是静态资源及执行计划交付，没有 UE、完整 AnimGraph 运行、渲染器或最终姿态验收。足部窗口端点误差、启发式接触、跨方向/步态混合、身体倾斜和足部 IK 都需补齐下游执行器后人工与数值检查；不能由本地计划测试推断观感或滑步质量。只有 26 骨骼子集及其已有父索引，不扩写 Manny 全骨架、绑定姿态或 IK 骨。22 条缺样资源（含 Idle、部分起停/pivot/转身）仍待合法采样；资源依赖完整但行为可物化性不完整。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "WRP04",
+      "category": "warping_and_yaw",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "Idle/Turn保留visual世界朝向，因此相对actor offset能累积抵消actor转动；输出wrap/clamp并在移动时半衰期淡出。缺口与Opus相同：Start和Cycle都进入state not in ('idle','turn')的淡出分支，没有Start Hold策略。扣1分；未因WRP01方向空间不闭合重复扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 250,
+          "line_end": 250,
+          "quote": "        if self.visual_yaw is None: self.visual_yaw=actor"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 322,
+          "line_end": 325,
+          "quote": "        # Gameplay owns actor yaw. Only mesh-relative visual facing is maintained here.\n        if self.state not in ('idle','turn'):\n            offset=wrap(self.visual_yaw-actor)*math.exp(-math.log(2)*dt/p['moving_facing_halflife_seconds'])\n            self.visual_yaw=wrap(actor+offset)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 371,
+          "line_end": 372,
+          "quote": "        offset=clamp(wrap(self.visual_yaw-actor),-p['turn_max_offset_degrees'],p['turn_max_offset_degrees'])\n        op('facing','component_root_yaw_offset',{'yaw_degrees':offset,'rotate_all_component_transforms':True,'apply_gameplay_root_motion':False})"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 58,
+          "line_end": 58,
+          "quote": "- 转身用 `aim - visual_yaw` 的最短角：负值选人体左转（目录正角），正值选右转（目录负角）。根据偏差选 90/180。实测 root yaw 已从帧中移除，由控制器按曲线累积到 visual facing，输出相对当前 actor 的 yaw offset，避免外部 actor yaw 更新时重复旋转。移动时 offset 衰减回 actor；控制器不修改输入 actor yaw、不输出角色运动命令。缺样转身不会编造 root yaw 进度；策略超时后对同一未改变的 aim 抑制重复请求，待 aim 改变后可重新触发。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "WRP05",
+      "category": "warping_and_yaw",
+      "status": "pass",
+      "weight": 1,
+      "awarded": 1,
+      "deduction": 0,
+      "reason": "TIP使用aim-visual最短角、进入阈值/冷却、90/180与人体角符号对应选择，源root_yaw按本帧前后采样差持续累加到visual_yaw并输出offset。缺样转身保留不可物化，不伪造曲线进度，策略超时后抑制同一aim重复请求。符合计划层曲线消耗要求，不要求真实姿态求解。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 155,
+          "line_end": 165,
+          "quote": "        if state=='turn':\n            size=180 if abs(turn_delta)>=self.p['turn_180_threshold_degrees'] else 90\n            anatomical=size if turn_delta<0 else -size\n            aid=self.bindings[f'turn.{anatomical}']\n            scale=clamp(abs(turn_delta)/size,.75,1.25)\n        else:\n            aid=self._asset(action_gait or self.gait,direction or self.direction_name,state); scale=1.\n        self.action={'asset_id':aid,'player_id':f'action_{self.serial}', 'time':0.,'travel':0.,\n                     'yaw_applied':0.,'yaw_scale':scale,'direction':direction or self.direction_name,\n                     'aim_at_entry':aim,'complete':False,'gait_at_entry':action_gait or self.gait,\n                     'entry_warp_degrees':clamp(wrap(self.direction-self.angles[direction or self.direction_name]),-self.p['orientation_warp_limit_degrees'],self.p['orientation_warp_limit_degrees'])}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 225,
+          "line_end": 231,
+          "quote": "            if self.state=='turn':\n                y=interpolate(data['sample_times_seconds'],data['root_yaw_degrees'],act['time'])*act['yaw_scale']\n                self.visual_yaw=wrap(self.visual_yaw+y-act['yaw_applied']); act['yaw_applied']=y\n            sample=act['time']\n        else:\n            act['complete']=self.state_age>=self.p['deferred_action_policy_seconds'][self.state]\n            sample=None; rate=0."
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 286,
+          "line_end": 302,
+          "quote": "        turn_delta=wrap(aim-self.visual_yaw)\n        if self.last_missing_turn_aim is not None and abs(wrap(aim-self.last_missing_turn_aim))>p['turn_exit_degrees']:\n            self.last_missing_turn_aim=None\n        # Interruption priority: movement > turn, reversal > stop, restart > stop completion.\n        if self.state=='turn':\n            if moving or intent: self._enter('start',self.direction_name)\n            elif self.action and abs(wrap(aim-self.action['aim_at_entry']))>p['turn_exit_degrees'] and abs(turn_delta)<=p['turn_exit_degrees']:\n                self._enter('idle')\n            elif self.action and turn_delta*self.table[self.action['asset_id']]['semantic']['anatomical_turn_degrees']>0 and abs(turn_delta)>p['turn_abort_opposite_degrees']:\n                self._enter('idle')\n            elif self.action and self.action['complete']:\n                if self.table[self.action['asset_id']]['data'] is None: self.last_missing_turn_aim=aim\n                self._enter('idle')\n        if self.state=='idle':\n            if moving or intent: self._enter('start',self.direction_name)\n            elif abs(turn_delta)>=p['turn_enter_degrees'] and self.turn_cooldown<=0 and self.last_missing_turn_aim is None:\n                self._enter('turn',aim=aim,turn_delta=turn_delta)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 371,
+          "line_end": 372,
+          "quote": "        offset=clamp(wrap(self.visual_yaw-actor),-p['turn_max_offset_degrees'],p['turn_max_offset_degrees'])\n        op('facing','component_root_yaw_offset',{'yaw_degrees':offset,'rotate_all_component_transforms':True,'apply_gameplay_root_motion':False})"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 58,
+          "line_end": 58,
+          "quote": "- 转身用 `aim - visual_yaw` 的最短角：负值选人体左转（目录正角），正值选右转（目录负角）。根据偏差选 90/180。实测 root yaw 已从帧中移除，由控制器按曲线累积到 visual facing，输出相对当前 actor 的 yaw offset，避免外部 actor yaw 更新时重复旋转。移动时 offset 衰减回 actor；控制器不修改输入 actor yaw、不输出角色运动命令。缺样转身不会编造 root yaw 进度；策略超时后对同一未改变的 aim 抑制重复请求，待 aim 改变后可重新触发。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "INTERFACE.md"
+      ]
+    },
+    {
+      "id": "ARC01",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "制作模块承担采样转换和派生数据，graph 提供状态资源绑定、阈值、组及骨骼范围；控制器分为状态选择/进入、循环与动作时钟、混合和姿态修正计划，引用同一已计算的 speed/local_v/local_a。资源选择通过 bindings→asset table 路径，职责可追踪。无需额外实现武器切换或 UE Linked Layer 才满足此项。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 109,
+          "line_end": 128,
+          "quote": "        if clip['availability']=='pose_samples':\n            if not clip['pose_file']:\n                raise ValueError('Sampled clip has no pose file')\n            path=(manifest_dir/clip['pose_file']).resolve()\n            path.relative_to(manifest_dir.resolve())\n            raw=path.read_bytes(); source=json.loads(raw.decode('utf-8-sig'))\n            if source['clip_id'] != clip['clip_id']:\n                raise ValueError('Source identity mismatch')\n            if skeleton is None:\n                skeleton={'scope':'provided 26-bone subset only; not full Manny or a bind pose',\n                          'bones':source['bones'],'source_clip_ids':[]}\n            if skeleton['bones'] != source['bones']:\n                raise ValueError('Incompatible sampled skeletons')\n            skeleton['source_clip_ids'].append(clip['clip_id'])\n            entry['data']=enrich(source,process(clip,source),clip['semantic'])\n            entry['source_pose_file']=clip['pose_file']; entry['source_sha256']=hashlib.sha256(raw).hexdigest()\n            entry['status']='ready'\n        else:\n            entry['missing_inputs']=[{'clip_id':clip['clip_id'],'required':'component-space pose samples and timestamps'}]\n        assets.append(entry)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 41,
+          "line_end": 44,
+          "quote": "        self.graph=graph; self.assets=assets\n        self.p=graph['parameters']; self.nodes={n['id']:n for n in graph['nodes']}\n        self.bindings=self.nodes['state']['bindings']\n        self.table={a['asset_id']:a for a in assets['assets']}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 98,
+          "line_end": 104,
+          "quote": "    def _asset(self, gait, direction, action):\n        return self.bindings[f'{gait}.{direction}.{action}']\n\n    def _nearest_direction(self, angle, previous=None):\n        closest=min(self.angles,key=lambda k:abs(wrap(angle-self.angles[k])))\n        if previous and abs(wrap(angle-self.angles[previous])) <= 45+self.p['direction_hysteresis_degrees']:\n            return previous"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 239,
+          "line_end": 267,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt,v,a,actor,aim=self.validate(frame)  # Validate before mutating any state.\n        p=self.p; incoming_gait=self.gait; self.total_time+=dt; self.state_age+=dt\n        self.pivot_cooldown=max(0.,self.pivot_cooldown-dt)\n        self.turn_cooldown=max(0.,self.turn_cooldown-dt)\n        speed=math.hypot(v[0],v[1]); acceleration=math.hypot(a[0],a[1])\n        if not math.isfinite(speed) or not math.isfinite(acceleration):\n            raise ValueError('Input magnitude overflow')\n        r=math.radians(actor); c,s=math.cos(r),math.sin(r)\n        local_v=[c*v[0]+s*v[1],-s*v[0]+c*v[1]]\n        local_a=[c*a[0]+s*a[1],-s*a[0]+c*a[1]]\n        if self.visual_yaw is None: self.visual_yaw=actor\n        intent=acceleration>=p['intent_acceleration_cm_s2']\n        moving=speed>=p['move_enter_cm_s']; stopped=speed<=p['move_exit_cm_s']\n        predicted=math.hypot(v[0]+a[0]*p['prediction_seconds'],v[1]+a[1]*p['prediction_seconds'])\n        gait_speed=max(speed,predicted) if self.state in ('idle','start') else speed\n        if self.gait=='walk' and gait_speed>=p['jog_enter_cm_s']: self.gait='jog'\n        if self.gait=='jog' and gait_speed<=p['jog_exit_cm_s']: self.gait='walk'\n        alpha=clamp((speed-p['walk_to_jog_low_cm_s'])/(p['walk_to_jog_high_cm_s']-p['walk_to_jog_low_cm_s']),0.,1.)\n        self.jog_alpha=smooth(self.jog_alpha,alpha,dt,p['gait_smoothing_seconds'])\n        raw_direction=math.degrees(math.atan2(local_v[1],local_v[0])) if speed>p['move_exit_cm_s'] else (\n            math.degrees(math.atan2(local_a[1],local_a[0])) if intent else self.direction)\n        if self.prev_velocity is None or (self.state=='idle' and (moving or intent)):\n            self.direction=raw_direction\n        else:\n            self.direction=wrap(self.direction+wrap(raw_direction-self.direction)*(1-math.exp(-dt/p['direction_smoothing_seconds'])))\n        self.direction_name=self._nearest_direction(raw_direction,self.direction_name)\n        dot=(v[0]*a[0]+v[1]*a[1])/max(speed,1e-8)\n        decel=max(0.,-dot)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 367,
+          "line_end": 382,
+          "quote": "        ops=[{'operation_id':'blend','operation_type':'weighted_pose_blend','inputs':list(weights),\n              'parameters':{'weights':weights,'rotation_interpolation':'shortest_arc_quaternion','missing_pose_policy':'unresolved; do not invent bind/idle pose'}}]\n        def op(oid,kind,parameters):\n            ops.append({'operation_id':oid,'operation_type':kind,'inputs':[ops[-1]['operation_id']],'parameters':parameters})\n        offset=clamp(wrap(self.visual_yaw-actor),-p['turn_max_offset_degrees'],p['turn_max_offset_degrees'])\n        op('facing','component_root_yaw_offset',{'yaw_degrees':offset,'rotate_all_component_transforms':True,'apply_gameplay_root_motion':False})\n        warp=0.\n        if self.action and self.state in ('start','stop','pivot'):\n            reference=self.angles[self.action['direction']]\n            warp=self.action['entry_warp_degrees'] if self.state=='pivot' else clamp(wrap(raw_direction-reference),-p['orientation_warp_limit_degrees'],p['orientation_warp_limit_degrees'])\n        op('orientation','orientation_warp_intent',{'yaw_degrees':warp,'policy':'limited action alignment; cycles already directionally blended'})\n        nominal=sum(x['weight']*(self.table[x['asset_id']]['data'] or {}).get('average_speed_cm_s',0.)*x['play_rate'] for x in players)\n        stride=clamp(speed/max(nominal,1.),p['stride_scale_min'],p['stride_scale_max']) if self.state in ('start','cycle','pivot') else 1.\n        op('stride','stride_warp_intent',{'scale':stride,'pelvis':self.nodes['stride']['pelvis'],'feet':self.nodes['stride']['feet'],'direction_actor_xy':[math.cos(math.radians(raw_direction)),math.sin(math.radians(raw_direction))]})\n        self.lean=[smooth(self.lean[k],clamp(local_a[k]*p['lean_acceleration_scale'],-p['lean_max_degrees'],p['lean_max_degrees']),dt,p['lean_smoothing_seconds']) for k in range(2)]\n        op('lean','acceleration_lean_intent',{'pitch_degrees':self.lean[0],'roll_degrees':-self.lean[1],'bones':self.nodes['lean']['bones'],'not_an_authored_additive_pose':True})"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC02",
+      "category": "architecture_and_lifecycle",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "已明确根平移/actor yaw 由外部 gameplay 拥有，输出链规定全身 root yaw、方向 warp、pelvis/feet stride、限定 spine_01/02/03 的倾斜及 feet IK，引用与顺序有效。但冻结 rubric 要求下肢移动与上身瞄准/方向修正协调；当前脊柱操作仅由 local acceleration 产生 pitch/roll，不是朝向偏差修正。aim 主要驱动原地全身 turn，移动时未输出 aim/yaw 驱动的上身层或等价朝向契约；全身 root yaw 不能代替上下身分工。给已有范围/所有权/组合顺序 1 分。此缺口不同于 WRP01 的方向补偿问题，未因无最终骨骼 pose、无武器或无专用瞄准素材扣分。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 160,
+          "line_end": 193,
+          "quote": "    {\n      \"id\": \"facing\",\n      \"type\": \"visual_root_yaw_offset\",\n      \"authority\": \"actor yaw is external; no movement commands\"\n    },\n    {\n      \"id\": \"orientation\",\n      \"type\": \"limited_orientation_warp\",\n      \"mode\": \"single dominant action only; cycles use directional blend\"\n    },\n    {\n      \"id\": \"stride\",\n      \"type\": \"stride_warp_intent\",\n      \"pelvis\": \"pelvis\",\n      \"feet\": [\n        \"foot_l\",\n        \"foot_r\"\n      ]\n    },\n    {\n      \"id\": \"lean\",\n      \"type\": \"acceleration_additive_intent\",\n      \"bones\": [\n        \"spine_01\",\n        \"spine_02\",\n        \"spine_03\"\n      ]\n    },\n    {\n      \"id\": \"feet\",\n      \"type\": \"contact_weighted_foot_ik_intent\",\n      \"feet\": [\n        \"foot_l\",\n        \"foot_r\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 299,
+          "line_end": 302,
+          "quote": "        if self.state=='idle':\n            if moving or intent: self._enter('start',self.direction_name)\n            elif abs(turn_delta)>=p['turn_enter_degrees'] and self.turn_cooldown<=0 and self.last_missing_turn_aim is None:\n                self._enter('turn',aim=aim,turn_delta=turn_delta)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 322,
+          "line_end": 325,
+          "quote": "        # Gameplay owns actor yaw. Only mesh-relative visual facing is maintained here.\n        if self.state not in ('idle','turn'):\n            offset=wrap(self.visual_yaw-actor)*math.exp(-math.log(2)*dt/p['moving_facing_halflife_seconds'])\n            self.visual_yaw=wrap(actor+offset)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 367,
+          "line_end": 382,
+          "quote": "        ops=[{'operation_id':'blend','operation_type':'weighted_pose_blend','inputs':list(weights),\n              'parameters':{'weights':weights,'rotation_interpolation':'shortest_arc_quaternion','missing_pose_policy':'unresolved; do not invent bind/idle pose'}}]\n        def op(oid,kind,parameters):\n            ops.append({'operation_id':oid,'operation_type':kind,'inputs':[ops[-1]['operation_id']],'parameters':parameters})\n        offset=clamp(wrap(self.visual_yaw-actor),-p['turn_max_offset_degrees'],p['turn_max_offset_degrees'])\n        op('facing','component_root_yaw_offset',{'yaw_degrees':offset,'rotate_all_component_transforms':True,'apply_gameplay_root_motion':False})\n        warp=0.\n        if self.action and self.state in ('start','stop','pivot'):\n            reference=self.angles[self.action['direction']]\n            warp=self.action['entry_warp_degrees'] if self.state=='pivot' else clamp(wrap(raw_direction-reference),-p['orientation_warp_limit_degrees'],p['orientation_warp_limit_degrees'])\n        op('orientation','orientation_warp_intent',{'yaw_degrees':warp,'policy':'limited action alignment; cycles already directionally blended'})\n        nominal=sum(x['weight']*(self.table[x['asset_id']]['data'] or {}).get('average_speed_cm_s',0.)*x['play_rate'] for x in players)\n        stride=clamp(speed/max(nominal,1.),p['stride_scale_min'],p['stride_scale_max']) if self.state in ('start','cycle','pivot') else 1.\n        op('stride','stride_warp_intent',{'scale':stride,'pelvis':self.nodes['stride']['pelvis'],'feet':self.nodes['stride']['feet'],'direction_actor_xy':[math.cos(math.radians(raw_direction)),math.sin(math.radians(raw_direction))]})\n        self.lean=[smooth(self.lean[k],clamp(local_a[k]*p['lean_acceleration_scale'],-p['lean_max_degrees'],p['lean_max_degrees']),dt,p['lean_smoothing_seconds']) for k in range(2)]\n        op('lean','acceleration_lean_intent',{'pitch_degrees':self.lean[0],'roll_degrees':-self.lean[1],'bones':self.nodes['lean']['bones'],'not_an_authored_additive_pose':True})"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 396,
+          "line_end": 402,
+          "quote": "        return {'schema_version':1,'players':players,'sync_groups':groups,'pose_operations':ops,\n                'diagnostics':{'state':self.state,'state_age_seconds':self.state_age,'gait':self.gait,'jog_weight':self.jog_alpha,\n                    'speed_cm_s':speed,'direction_actor_degrees':raw_direction,'local_velocity_cm_s':local_v,\n                    'local_acceleration_cm_s2':local_a,'aim_actor_delta_degrees':wrap(aim-actor),\n                    'last_transition':self.last_transition,'deferred_asset_ids':sorted(set(missing)),\n                    'all_referenced_samples_available':not missing,'output_kind':'execution_plan_not_evaluated_pose',\n                    'ignored_vertical_inputs':True}}"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 102,
+          "line_end": 105,
+          "quote": "            'cycle_window_recipe':{'duration_bounds_seconds':[.3,1.6],'required_onsets':['L','R','L'],'fallback':'full source time range, no fabricated markers'},\n            'interpolation':{'positions':'linear','rotations':'shortest_arc_slerp','curves':'linear'},\n            'root_motion_policy':'in_place; gameplay owns world translation and actor yaw',\n            'missing_input_policy':'run identical process() after source samples arrive; do not synthesize poses'}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC03",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "reset 清空长期状态；每次 _enter 重置 state_age，并给单次动作新 player_id、time=0、travel=0、yaw_applied=0，重新选取资源。每帧 update 与进入处理分开；仍有权重的退出播放器继续淡化，低权重后从 players 移除。循环保留全局共享相位是图中明确的 master-phase 策略，动作进入循环时显式对齐；不把这一刻意保留的组时钟误判为 inactive 动作节点暗中推进。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 64,
+          "line_end": 71,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.state='idle'; self.state_age=0.; self.gait='walk'; self.jog_alpha=0.\n        self.phase=0.; self.direction=0.; self.direction_name='fwd'\n        self.prev_velocity=None; self.prev_actor=None; self.visual_yaw=None\n        self.action=None; self.serial=0; self.weights={}; self.players={}\n        self.pivot_cooldown=0.; self.turn_cooldown=0.; self.pivot_latched=False\n        self.last_missing_turn_aim=None; self.lean=[0.,0.]; self.total_time=0.\n        self.last_transition=None; self.seed=seed"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 147,
+          "line_end": 165,
+          "quote": "    def _enter(self, state, direction=None, aim=None, turn_delta=None, action_gait=None):\n        if state=='cycle': self._align_phase_from_action()\n        old=self.state; self.state=state; self.state_age=0.; self.action=None\n        self.last_transition={'from':old,'to':state,'at_seconds':self.total_time}\n        if old=='pivot': self.pivot_cooldown=self.p['pivot_cooldown_seconds']\n        if old=='turn': self.turn_cooldown=self.p['turn_cooldown_seconds']\n        if state in ('idle','cycle'): return\n        self.serial+=1\n        if state=='turn':\n            size=180 if abs(turn_delta)>=self.p['turn_180_threshold_degrees'] else 90\n            anatomical=size if turn_delta<0 else -size\n            aid=self.bindings[f'turn.{anatomical}']\n            scale=clamp(abs(turn_delta)/size,.75,1.25)\n        else:\n            aid=self._asset(action_gait or self.gait,direction or self.direction_name,state); scale=1.\n        self.action={'asset_id':aid,'player_id':f'action_{self.serial}', 'time':0.,'travel':0.,\n                     'yaw_applied':0.,'yaw_scale':scale,'direction':direction or self.direction_name,\n                     'aim_at_entry':aim,'complete':False,'gait_at_entry':action_gait or self.gait,\n                     'entry_warp_degrees':clamp(wrap(self.direction-self.angles[direction or self.direction_name]),-self.p['orientation_warp_limit_degrees'],self.p['orientation_warp_limit_degrees'])}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 303,
+          "line_end": 321,
+          "quote": "        elif self.state in ('start','cycle','stop','pivot'):\n            if pivot and self.state!='pivot':\n                self._enter('pivot',incoming,action_gait=incoming_gait); self.pivot_latched=True\n            elif self.state=='start':\n                if stopped and not intent and self.state_age>p['start_min_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif (self.direction_name!=self.action['direction'] or self.gait!=self.action['gait_at_entry']) and self.state_age>p['start_min_seconds']:\n                    self._enter('start',self.direction_name)\n                elif self.action['complete'] or self.state_age>=p['start_timeout_seconds']:\n                    self._enter('cycle' if not stopped else 'idle')\n                elif braking and speed/max(decel,1.)<=p['stop_prediction_seconds'] and self.state_age>p['start_min_seconds']:\n                    self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='cycle':\n                if stopped or (braking and speed/max(decel,1.)<=p['stop_prediction_seconds']): self._enter('stop',self.direction_name,action_gait=incoming_gait)\n            elif self.state=='stop':\n                if moving and (dot>p['intent_acceleration_cm_s2'] or not braking): self._enter('start',self.direction_name)\n                elif self.action['complete']: self._enter('idle' if stopped else 'cycle')\n            elif self.state=='pivot':\n                if stopped and not intent and self.state_age>=p['pivot_min_hold_seconds']: self._enter('stop',self.action['direction'],action_gait=self.action['gait_at_entry'])\n                elif self.action['complete']: self._enter('cycle' if not stopped else 'idle')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 327,
+          "line_end": 359,
+          "quote": "        for player in self.players.values():\n            data=self.table[player['asset_id']]['data']\n            if data and player['sample_time_seconds'] is not None:\n                t=player['sample_time_seconds']+dt*player['play_rate']; duration=data['duration_seconds']\n                if player['loop']:\n                    lo,hi=data.get('loop_range_seconds') or [0.,duration]\n                    player['sample_time_seconds']=lo+(t-lo)%(hi-lo)\n                else:\n                    previous=player['sample_time_seconds']\n                    player['sample_time_seconds']=min(t,duration)\n                    player['play_rate']=(player['sample_time_seconds']-previous)/dt\n        cycles=self._cycle_targets(speed,dt)\n        if self.state=='cycle': targets=cycles\n        elif self.state=='idle':\n            aid=self.bindings['idle']; pid='idle'; data=self.table[aid]['data']\n            self.players[pid]={'player_id':pid,'asset_id':aid,'sample_time_seconds':self.total_time%data['duration_seconds'] if data else None,\n                               'play_rate':1. if data else 0.,'loop':True,'clock':'idle'}\n            targets={pid:1.}\n        else: targets=self._advance_action(speed,decel,dt)\n        if not self.weights: self.weights=dict(targets)\n        else:\n            # Bounded first-order fade handles arbitrary interruptions without resurrecting time=0.\n            for pid in sorted(set(self.weights)|set(targets)):\n                self.weights[pid]=smooth(self.weights.get(pid,0.),targets.get(pid,0.),dt,p['blend_seconds']/3.)\n            self.weights={pid:w for pid,w in self.weights.items() if w>1e-5}\n        total=sum(self.weights.values()); players=[]\n        for pid in sorted(self.weights):\n            player=dict(self.players[pid]); player['weight']=self.weights[pid]/total\n            asset=self.table[player['asset_id']]\n            player['availability']=asset['status']; player['pose_materializable']=asset['status']=='ready'\n            if not player['pose_materializable']: player['sample_time_seconds']=None\n            players.append(player)\n        self.players={pid:self.players[pid] for pid in self.weights}"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 243,
+          "line_end": 246,
+          "quote": "      \"mode\": \"shared_left_right_contact_phase\",\n      \"fallback\": \"normalized_cycle_phase_when_markers_unavailable\",\n      \"leader\": \"highest_weight_then_asset_id\",\n      \"phase_reset\": \"reset only; action handoff may align nearest foot features\""
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC04",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "每步先将输入标量/向量验证并复制为本次局部数值，再统一计算速度、角色空间速度/加速度和派生参数供各层使用。配置与资源通过 self.p/nodes/table 只读引用，运行状态由 reset/_enter/step 单独维护，未在每帧访问外部世界或磁盘。本项确认一致快照及数据边界，不宣称多线程性能或 UE Property Access 行为。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 38,
+          "line_end": 44,
+          "quote": "    def __init__(self, graph: dict, assets: dict) -> None:\n        if graph.get('schema_version') != 1 or assets.get('schema_version') != 1:\n            raise ValueError('Unsupported schema')\n        self.graph=graph; self.assets=assets\n        self.p=graph['parameters']; self.nodes={n['id']:n for n in graph['nodes']}\n        self.bindings=self.nodes['state']['bindings']\n        self.table={a['asset_id']:a for a in assets['assets']}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 64,
+          "line_end": 96,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.state='idle'; self.state_age=0.; self.gait='walk'; self.jog_alpha=0.\n        self.phase=0.; self.direction=0.; self.direction_name='fwd'\n        self.prev_velocity=None; self.prev_actor=None; self.visual_yaw=None\n        self.action=None; self.serial=0; self.weights={}; self.players={}\n        self.pivot_cooldown=0.; self.turn_cooldown=0.; self.pivot_latched=False\n        self.last_missing_turn_aim=None; self.lean=[0.,0.]; self.total_time=0.\n        self.last_transition=None; self.seed=seed\n\n    def validate(self, frame):\n        def number(v, name):\n            if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v):\n                raise ValueError(name+' must be a finite number')\n            return float(v)\n        try:\n            dt=number(frame['dt_seconds'],'dt_seconds')\n            if dt<=0: raise ValueError('dt_seconds must be positive')\n            # Finite domain extremes use a documented rejection policy, not overflow.\n            if dt>self.p['input_bounds']['dt_max_seconds']: raise ValueError('dt_seconds exceeds configured bound')\n            vectors=[]\n            for key in ('velocity_world_cm_s','acceleration_world_cm_s2'):\n                v=frame[key]\n                if not isinstance(v,(list,tuple)) or len(v)!=3:\n                    raise ValueError(key+' must contain three numbers')\n                vector=[number(x,key) for x in v]\n                if any(abs(x)>self.p['input_bounds']['vector_component_abs_max'] for x in vector):\n                    raise ValueError(key+' exceeds configured magnitude bound')\n                vectors.append(vector)\n            actor=wrap(number(frame['actor_yaw_degrees'],'actor_yaw_degrees'))\n            aim=wrap(number(frame['aim_yaw_degrees'],'aim_yaw_degrees'))\n        except (KeyError,TypeError) as e:\n            raise ValueError('Missing or invalid frame field: '+str(e)) from e\n        return dt,vectors[0],vectors[1],actor,aim"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 239,
+          "line_end": 267,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt,v,a,actor,aim=self.validate(frame)  # Validate before mutating any state.\n        p=self.p; incoming_gait=self.gait; self.total_time+=dt; self.state_age+=dt\n        self.pivot_cooldown=max(0.,self.pivot_cooldown-dt)\n        self.turn_cooldown=max(0.,self.turn_cooldown-dt)\n        speed=math.hypot(v[0],v[1]); acceleration=math.hypot(a[0],a[1])\n        if not math.isfinite(speed) or not math.isfinite(acceleration):\n            raise ValueError('Input magnitude overflow')\n        r=math.radians(actor); c,s=math.cos(r),math.sin(r)\n        local_v=[c*v[0]+s*v[1],-s*v[0]+c*v[1]]\n        local_a=[c*a[0]+s*a[1],-s*a[0]+c*a[1]]\n        if self.visual_yaw is None: self.visual_yaw=actor\n        intent=acceleration>=p['intent_acceleration_cm_s2']\n        moving=speed>=p['move_enter_cm_s']; stopped=speed<=p['move_exit_cm_s']\n        predicted=math.hypot(v[0]+a[0]*p['prediction_seconds'],v[1]+a[1]*p['prediction_seconds'])\n        gait_speed=max(speed,predicted) if self.state in ('idle','start') else speed\n        if self.gait=='walk' and gait_speed>=p['jog_enter_cm_s']: self.gait='jog'\n        if self.gait=='jog' and gait_speed<=p['jog_exit_cm_s']: self.gait='walk'\n        alpha=clamp((speed-p['walk_to_jog_low_cm_s'])/(p['walk_to_jog_high_cm_s']-p['walk_to_jog_low_cm_s']),0.,1.)\n        self.jog_alpha=smooth(self.jog_alpha,alpha,dt,p['gait_smoothing_seconds'])\n        raw_direction=math.degrees(math.atan2(local_v[1],local_v[0])) if speed>p['move_exit_cm_s'] else (\n            math.degrees(math.atan2(local_a[1],local_a[0])) if intent else self.direction)\n        if self.prev_velocity is None or (self.state=='idle' and (moving or intent)):\n            self.direction=raw_direction\n        else:\n            self.direction=wrap(self.direction+wrap(raw_direction-self.direction)*(1-math.exp(-dt/p['direction_smoothing_seconds'])))\n        self.direction_name=self._nearest_direction(raw_direction,self.direction_name)\n        dot=(v[0]*a[0]+v[1]*a[1])/max(speed,1e-8)\n        decel=max(0.,-dot)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 378,
+          "line_end": 394,
+          "quote": "        nominal=sum(x['weight']*(self.table[x['asset_id']]['data'] or {}).get('average_speed_cm_s',0.)*x['play_rate'] for x in players)\n        stride=clamp(speed/max(nominal,1.),p['stride_scale_min'],p['stride_scale_max']) if self.state in ('start','cycle','pivot') else 1.\n        op('stride','stride_warp_intent',{'scale':stride,'pelvis':self.nodes['stride']['pelvis'],'feet':self.nodes['stride']['feet'],'direction_actor_xy':[math.cos(math.radians(raw_direction)),math.sin(math.radians(raw_direction))]})\n        self.lean=[smooth(self.lean[k],clamp(local_a[k]*p['lean_acceleration_scale'],-p['lean_max_degrees'],p['lean_max_degrees']),dt,p['lean_smoothing_seconds']) for k in range(2)]\n        op('lean','acceleration_lean_intent',{'pitch_degrees':self.lean[0],'roll_degrees':-self.lean[1],'bones':self.nodes['lean']['bones'],'not_an_authored_additive_pose':True})\n        contacts={}; coverage=0.\n        for foot in self.nodes['feet']['feet']:\n            value=0.\n            for player in players:\n                data=self.table[player['asset_id']]['data']\n                if data and data.get('contact_estimates') and player['sample_time_seconds'] is not None:\n                    curve=data['contact_estimates']['feet'][foot]['weights']\n                    value+=player['weight']*interpolate(data['sample_times_seconds'],curve,player['sample_time_seconds'])\n            contacts[foot]=value\n        coverage=sum(x['weight'] for x in players if self.table[x['asset_id']]['data'] is not None)\n        op('feet','foot_ik_intent',{'enabled':p['foot_ik_enabled'],'feet':self.nodes['feet']['feet'],'ground_model':'flat local plane; world lock unavailable without actor position', 'contact_weights':contacts,'sampled_weight_coverage':coverage,'unknown_contact_weight':max(0.,1.-coverage),'contact_source':'measured heuristic curves, not actual solver contacts','execution':'not evaluated; no solver supplied'})\n        self.prev_velocity=v[:2]; self.prev_actor=actor"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC05",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "实际加载节点、参数、资源表和状态 bindings，校验连接/输出属于支持的操作链；资源选择、walk/jog 和方向混合阈值、距离匹配倍率、同步组身份/模式及 pelvis/feet/spine 集合进入计算或计划。它明确只支持声明的固定语义图，而不是任意图解释器；主要配置不是游离说明或只输出节点名字。SYN03 的组级 fallback 实现不足已在对应条目扣分，不在这里重复扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 38,
+          "line_end": 62,
+          "quote": "    def __init__(self, graph: dict, assets: dict) -> None:\n        if graph.get('schema_version') != 1 or assets.get('schema_version') != 1:\n            raise ValueError('Unsupported schema')\n        self.graph=graph; self.assets=assets\n        self.p=graph['parameters']; self.nodes={n['id']:n for n in graph['nodes']}\n        self.bindings=self.nodes['state']['bindings']\n        self.table={a['asset_id']:a for a in assets['assets']}\n        if len(self.table)!=len(assets['assets']) or len(self.nodes)!=len(graph['nodes']):\n            raise ValueError('Duplicate asset or node ID')\n        for aid in self.bindings.values():\n            if aid not in self.table: raise ValueError('Unresolved asset '+aid)\n        for edge in graph['connections']:\n            if edge['from'] not in self.nodes or edge['to'] not in self.nodes:\n                raise ValueError('Unresolved graph connection')\n        if graph['output'] not in self.nodes: raise ValueError('Unresolved output')\n        expected_chain=['blend','facing','orientation','stride','lean','feet']\n        edges={(e['from'],e['to']) for e in graph['connections']}\n        if graph['output']!='feet' or any((a,b) not in edges for a,b in zip(expected_chain,expected_chain[1:])):\n            raise ValueError('This planner requires the declared ordered pose-operation chain')\n        if self.nodes['cycles']['angles_degrees']!={'fwd':0.,'right':90.,'bwd':180.,'left':270.}:\n            raise ValueError('Cycle node requires cardinal actor-space angles')\n        self.angles=self.nodes['cycles']['angles_degrees']\n        self.group_id=self.nodes['cycles']['sync_group']\n        self.group_config=next(g for g in graph['sync_groups'] if g['group_id']==self.group_id)\n        self.reset()"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 98,
+          "line_end": 104,
+          "quote": "    def _asset(self, gait, direction, action):\n        return self.bindings[f'{gait}.{direction}.{action}']\n\n    def _nearest_direction(self, angle, previous=None):\n        closest=min(self.angles,key=lambda k:abs(wrap(angle-self.angles[k])))\n        if previous and abs(wrap(angle-self.angles[previous])) <= 45+self.p['direction_hysteresis_degrees']:\n            return previous"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 173,
+          "line_end": 183,
+          "quote": "        for gait,gw in [('walk',1-self.jog_alpha),('jog',self.jog_alpha)]:\n            for direction,dw in directional.items():\n                w=gw*dw\n                if w < 1e-8: continue\n                aid=self._asset(gait,direction,'cycle'); data=self.table[aid]['data']\n                if data:\n                    nominal=max(data.get('cycle_average_speed_cm_s',data['average_speed_cm_s']),1e-6)\n                    rate=clamp(speed/nominal,self.p['play_rate_min'],self.p['play_rate_max'])\n                    freq=rate/data.get('cycle_duration_seconds',data['duration_seconds'])\n                else: freq=0.\n                phase_speed+=w*freq"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 211,
+          "line_end": 222,
+          "quote": "            if self.state=='start':\n                act['travel']+=speed*dt\n                target=inverse_distance(data,act['travel'])\n            elif self.state=='stop':\n                # Constant-deceleration estimate, not a collision-aware world stop point.\n                remaining=speed*speed/(2*max(decel,self.p['default_braking_cm_s2'] if decel<1 else decel))\n                target=inverse_distance(data,max(0.,data['distance_cm'][-1]-remaining))\n            elif self.state=='pivot':\n                target=previous+dt*clamp(speed/max(data['average_speed_cm_s'],1.),.75,1.35)\n            if self.state in ('start','stop'):\n                target=clamp(target,previous+dt*self.p['distance_match_min_rate'],previous+dt*self.p['distance_match_max_rate'])\n            act['time']=clamp(target,previous,duration)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 352,
+          "line_end": 365,
+          "quote": "        total=sum(self.weights.values()); players=[]\n        for pid in sorted(self.weights):\n            player=dict(self.players[pid]); player['weight']=self.weights[pid]/total\n            asset=self.table[player['asset_id']]\n            player['availability']=asset['status']; player['pose_materializable']=asset['status']=='ready'\n            if not player['pose_materializable']: player['sample_time_seconds']=None\n            players.append(player)\n        self.players={pid:self.players[pid] for pid in self.weights}\n        sync_members=[x['player_id'] for x in players if x['player_id'].startswith('cycle_')]\n        leader=min((x for x in players if x['player_id'] in sync_members),key=lambda x:(-x['weight'],x['asset_id']),default=None)\n        groups=[{'group_id':self.group_id,'member_player_ids':sync_members,\n                 'settings':{'mode':self.group_config['mode'],'phase':self.phase,'leader_player_id':leader['player_id'] if leader else None,\n                             'time_authority':'controller; never independently advance or reset followers','action_members':False,\n                             'marker_mapping':{'L':0.,'R':.5,'next_L':1.},'fallback':self.group_config['fallback']}}]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 378,
+          "line_end": 393,
+          "quote": "        nominal=sum(x['weight']*(self.table[x['asset_id']]['data'] or {}).get('average_speed_cm_s',0.)*x['play_rate'] for x in players)\n        stride=clamp(speed/max(nominal,1.),p['stride_scale_min'],p['stride_scale_max']) if self.state in ('start','cycle','pivot') else 1.\n        op('stride','stride_warp_intent',{'scale':stride,'pelvis':self.nodes['stride']['pelvis'],'feet':self.nodes['stride']['feet'],'direction_actor_xy':[math.cos(math.radians(raw_direction)),math.sin(math.radians(raw_direction))]})\n        self.lean=[smooth(self.lean[k],clamp(local_a[k]*p['lean_acceleration_scale'],-p['lean_max_degrees'],p['lean_max_degrees']),dt,p['lean_smoothing_seconds']) for k in range(2)]\n        op('lean','acceleration_lean_intent',{'pitch_degrees':self.lean[0],'roll_degrees':-self.lean[1],'bones':self.nodes['lean']['bones'],'not_an_authored_additive_pose':True})\n        contacts={}; coverage=0.\n        for foot in self.nodes['feet']['feet']:\n            value=0.\n            for player in players:\n                data=self.table[player['asset_id']]['data']\n                if data and data.get('contact_estimates') and player['sample_time_seconds'] is not None:\n                    curve=data['contact_estimates']['feet'][foot]['weights']\n                    value+=player['weight']*interpolate(data['sample_times_seconds'],curve,player['sample_time_seconds'])\n            contacts[foot]=value\n        coverage=sum(x['weight'] for x in players if self.table[x['asset_id']]['data'] is not None)\n        op('feet','foot_ik_intent',{'enabled':p['foot_ik_enabled'],'feet':self.nodes['feet']['feet'],'ground_model':'flat local plane; world lock unavailable without actor position', 'contact_weights':contacts,'sampled_weight_coverage':coverage,'unknown_contact_weight':max(0.,1.-coverage),'contact_source':'measured heuristic curves, not actual solver contacts','execution':'not evaluated; no solver supplied'})"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/asset_analysis.py",
+        "src/build_assets.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ROB01",
+      "category": "robustness_and_reproducibility",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "帧入口在状态更新前验证必填字段、三维数组、类型、bool、非有限数和正dt；对有限极值也声明并执行拒绝边界(dt>3600或向量分量绝对值>1e9)，yaw先规范化，派生水平模长另检查有限性。缺绑定资源/非法图引用在构造时报错，metadata_only有明确None/不可物化与策略计时退化，近零速度路径可追踪。无效曲线的特定反查问题归DST04，不在ROB重复扣分。证据为静态代码，不等同于独立运行验收。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 38,
+          "line_end": 62,
+          "quote": "    def __init__(self, graph: dict, assets: dict) -> None:\n        if graph.get('schema_version') != 1 or assets.get('schema_version') != 1:\n            raise ValueError('Unsupported schema')\n        self.graph=graph; self.assets=assets\n        self.p=graph['parameters']; self.nodes={n['id']:n for n in graph['nodes']}\n        self.bindings=self.nodes['state']['bindings']\n        self.table={a['asset_id']:a for a in assets['assets']}\n        if len(self.table)!=len(assets['assets']) or len(self.nodes)!=len(graph['nodes']):\n            raise ValueError('Duplicate asset or node ID')\n        for aid in self.bindings.values():\n            if aid not in self.table: raise ValueError('Unresolved asset '+aid)\n        for edge in graph['connections']:\n            if edge['from'] not in self.nodes or edge['to'] not in self.nodes:\n                raise ValueError('Unresolved graph connection')\n        if graph['output'] not in self.nodes: raise ValueError('Unresolved output')\n        expected_chain=['blend','facing','orientation','stride','lean','feet']\n        edges={(e['from'],e['to']) for e in graph['connections']}\n        if graph['output']!='feet' or any((a,b) not in edges for a,b in zip(expected_chain,expected_chain[1:])):\n            raise ValueError('This planner requires the declared ordered pose-operation chain')\n        if self.nodes['cycles']['angles_degrees']!={'fwd':0.,'right':90.,'bwd':180.,'left':270.}:\n            raise ValueError('Cycle node requires cardinal actor-space angles')\n        self.angles=self.nodes['cycles']['angles_degrees']\n        self.group_id=self.nodes['cycles']['sync_group']\n        self.group_config=next(g for g in graph['sync_groups'] if g['group_id']==self.group_id)\n        self.reset()"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 73,
+          "line_end": 96,
+          "quote": "    def validate(self, frame):\n        def number(v, name):\n            if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v):\n                raise ValueError(name+' must be a finite number')\n            return float(v)\n        try:\n            dt=number(frame['dt_seconds'],'dt_seconds')\n            if dt<=0: raise ValueError('dt_seconds must be positive')\n            # Finite domain extremes use a documented rejection policy, not overflow.\n            if dt>self.p['input_bounds']['dt_max_seconds']: raise ValueError('dt_seconds exceeds configured bound')\n            vectors=[]\n            for key in ('velocity_world_cm_s','acceleration_world_cm_s2'):\n                v=frame[key]\n                if not isinstance(v,(list,tuple)) or len(v)!=3:\n                    raise ValueError(key+' must contain three numbers')\n                vector=[number(x,key) for x in v]\n                if any(abs(x)>self.p['input_bounds']['vector_component_abs_max'] for x in vector):\n                    raise ValueError(key+' exceeds configured magnitude bound')\n                vectors.append(vector)\n            actor=wrap(number(frame['actor_yaw_degrees'],'actor_yaw_degrees'))\n            aim=wrap(number(frame['aim_yaw_degrees'],'aim_yaw_degrees'))\n        except (KeyError,TypeError) as e:\n            raise ValueError('Missing or invalid frame field: '+str(e)) from e\n        return dt,vectors[0],vectors[1],actor,aim"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 52,
+          "line_end": 55,
+          "quote": "    \"input_bounds\": {\n      \"dt_max_seconds\": 3600.0,\n      \"vector_component_abs_max\": 1000000000.0,\n      \"policy\": \"reject ValueError before mutation\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 239,
+          "line_end": 252,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt,v,a,actor,aim=self.validate(frame)  # Validate before mutating any state.\n        p=self.p; incoming_gait=self.gait; self.total_time+=dt; self.state_age+=dt\n        self.pivot_cooldown=max(0.,self.pivot_cooldown-dt)\n        self.turn_cooldown=max(0.,self.turn_cooldown-dt)\n        speed=math.hypot(v[0],v[1]); acceleration=math.hypot(a[0],a[1])\n        if not math.isfinite(speed) or not math.isfinite(acceleration):\n            raise ValueError('Input magnitude overflow')\n        r=math.radians(actor); c,s=math.cos(r),math.sin(r)\n        local_v=[c*v[0]+s*v[1],-s*v[0]+c*v[1]]\n        local_a=[c*a[0]+s*a[1],-s*a[0]+c*a[1]]\n        if self.visual_yaw is None: self.visual_yaw=actor\n        intent=acceleration>=p['intent_acceleration_cm_s2']\n        moving=speed>=p['move_enter_cm_s']; stopped=speed<=p['move_exit_cm_s']"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 229,
+          "line_end": 236,
+          "quote": "        else:\n            act['complete']=self.state_age>=self.p['deferred_action_policy_seconds'][self.state]\n            sample=None; rate=0.\n        pid=act['player_id']\n        self.players[pid]={'player_id':pid,'asset_id':act['asset_id'],'sample_time_seconds':sample,\n                           'play_rate':rate,'loop':False,'clock':'distance_bounded' if self.state in ('start','stop') else 'one_shot',\n                           'progress_basis':'measured_clip_time' if data else 'policy_timer_only_not_clip_progress',\n                           'policy_elapsed_seconds':self.state_age}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 353,
+          "line_end": 358,
+          "quote": "        for pid in sorted(self.weights):\n            player=dict(self.players[pid]); player['weight']=self.weights[pid]/total\n            asset=self.table[player['asset_id']]\n            player['availability']=asset['status']; player['pose_materializable']=asset['status']=='ready'\n            if not player['pose_materializable']: player['sample_time_seconds']=None\n            players.append(player)"
+        }
+      ],
+      "reviewed_paths": []
+    },
+    {
+      "id": "ROB02",
+      "category": "robustness_and_reproducibility",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "保留build_assets(manifest,manifest_dir)、必填manifest/output CLI、LocomotionController/reset/step与约定返回结构；加工数据内嵌资源表，没有依赖输出目录的悬空派生产物路径。reset清理状态、时钟、玩家、权重和冷却；播放器遍历与权重集合排序，未引入随机性，固定输入/配置下可复现。五项交付及说明/保留自查脚本均实质存在。模型自报的跨进程自查不作为本项独立执行证明。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 88,
+          "line_end": 105,
+          "quote": "def build_assets(manifest: dict, manifest_dir: Path) -> dict:\n    assets=[]; skeleton=None\n    for clip in manifest['clips']:\n        recipe={'version':1,'operations':[\n            'Read component-space samples; preserve all source times with first time as zero',\n            'Re-express positions with B=(y,-x,z), rotations as B*q*inverse(B)',\n            'Extract planar root path and unwrapped relative root yaw',\n            'Remove current root XY and relative root yaw from every component transform; retain vertical motion',\n            'Normalize quaternions and enforce temporal hemisphere continuity',\n            'Compute cumulative XY arc length and remaining distance from measured samples',\n            'Estimate foot contacts from measured source-space speeds and low foot heights (heuristic, not ground truth)',\n            'For cycles select a measured L-R-L single-stride loop window by endpoint position RMS; retain full processed frames',\n            'For pivots derive reversal hint from maximum incoming-axis root displacement'],\n            'contact_recipe':{'floor_quantile':.05,'height_full_cm':2.,'height_zero_cm':7.,'speed_threshold':'clamp(average_root_speed*0.25,40,140) cm/s','median_samples':3,'on_threshold':.55,'off_threshold':.25},\n            'cycle_window_recipe':{'duration_bounds_seconds':[.3,1.6],'required_onsets':['L','R','L'],'fallback':'full source time range, no fabricated markers'},\n            'interpolation':{'positions':'linear','rotations':'shortest_arc_slerp','curves':'linear'},\n            'root_motion_policy':'in_place; gameplay owns world translation and actor yaw',\n            'missing_input_policy':'run identical process() after source samples arrive; do not synthesize poses'}"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 139,
+          "line_end": 149,
+          "quote": "def main():\n    parser=argparse.ArgumentParser(description=__doc__)\n    parser.add_argument('--manifest',required=True,type=Path)\n    parser.add_argument('--output',required=True,type=Path)\n    args=parser.parse_args()\n    path=args.manifest.resolve()\n    result=build_assets(json.loads(path.read_text(encoding='utf-8-sig')),path.parent)\n    result['source_manifest']['cli_path']=args.manifest.as_posix()\n    args.output.parent.mkdir(parents=True,exist_ok=True)\n    args.output.write_text(json.dumps(result,ensure_ascii=False,allow_nan=False,separators=(',',':'))+'\\n',encoding='utf-8')\n    print('Built',len(result['assets']),'assets;',sum(a['status']=='ready' for a in result['assets']),'sampled')"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 64,
+          "line_end": 71,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.state='idle'; self.state_age=0.; self.gait='walk'; self.jog_alpha=0.\n        self.phase=0.; self.direction=0.; self.direction_name='fwd'\n        self.prev_velocity=None; self.prev_actor=None; self.visual_yaw=None\n        self.action=None; self.serial=0; self.weights={}; self.players={}\n        self.pivot_cooldown=0.; self.turn_cooldown=0.; self.pivot_latched=False\n        self.last_missing_turn_aim=None; self.lean=[0.,0.]; self.total_time=0.\n        self.last_transition=None; self.seed=seed"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 346,
+          "line_end": 359,
+          "quote": "        if not self.weights: self.weights=dict(targets)\n        else:\n            # Bounded first-order fade handles arbitrary interruptions without resurrecting time=0.\n            for pid in sorted(set(self.weights)|set(targets)):\n                self.weights[pid]=smooth(self.weights.get(pid,0.),targets.get(pid,0.),dt,p['blend_seconds']/3.)\n            self.weights={pid:w for pid,w in self.weights.items() if w>1e-5}\n        total=sum(self.weights.values()); players=[]\n        for pid in sorted(self.weights):\n            player=dict(self.players[pid]); player['weight']=self.weights[pid]/total\n            asset=self.table[player['asset_id']]\n            player['availability']=asset['status']; player['pose_materializable']=asset['status']=='ready'\n            if not player['pose_materializable']: player['sample_time_seconds']=None\n            players.append(player)\n        self.players={pid:self.players[pid] for pid in self.weights}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 394,
+          "line_end": 402,
+          "quote": "        self.prev_velocity=v[:2]; self.prev_actor=actor\n        missing=[x['asset_id'] for x in players if not x['pose_materializable']]\n        return {'schema_version':1,'players':players,'sync_groups':groups,'pose_operations':ops,\n                'diagnostics':{'state':self.state,'state_age_seconds':self.state_age,'gait':self.gait,'jog_weight':self.jog_alpha,\n                    'speed_cm_s':speed,'direction_actor_degrees':raw_direction,'local_velocity_cm_s':local_v,\n                    'local_acceleration_cm_s2':local_a,'aim_actor_delta_degrees':wrap(aim-actor),\n                    'last_transition':self.last_transition,'deferred_asset_ids':sorted(set(missing)),\n                    'all_referenced_samples_available':not missing,'output_kind':'execution_plan_not_evaluated_pose',\n                    'ignored_vertical_inputs':True}}"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 3,
+          "line_end": 27,
+          "quote": "## 使用\n\n在本目录执行（仅 Python 标准库）：\n\n```text\npython src/build_assets.py --manifest raw/manifest.json --output assets/authored_assets.json\npython .work/self_check.py\n```\n\n```python\nimport json\nfrom src.controller import LocomotionController\nwith open('config/animation_graph.json', encoding='utf-8') as f:\n    graph = json.load(f)\nwith open('assets/authored_assets.json', encoding='utf-8') as f:\n    assets = json.load(f)\ncontroller = LocomotionController(graph, assets)\ncontroller.reset(seed=0)\nplan = controller.step({\n    'dt_seconds': 1 / 60,\n    'velocity_world_cm_s': [300, 0, 0],\n    'acceleration_world_cm_s2': [0, 0, 0],\n    'actor_yaw_degrees': 0,\n    'aim_yaw_degrees': 0,\n})"
+        }
+      ],
+      "reviewed_paths": []
+    },
+    {
+      "id": "ROB03",
+      "category": "robustness_and_reproducibility",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "说明可定位资源制作、状态与时钟、同步及操作顺序，明确15条ready与22条缺样延期，记录输入/制动/接触估计的假设以及执行计划和最终姿态的边界。自查明确限于软件/data，未伪称UE、脚锁或视觉验收。其他项对实现缺口的扣分不因说明坦诚而免除。",
+      "evidence": [
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 30,
+          "line_end": 36,
+          "quote": "## 文件与边界\n\n- `src/build_assets.py`、`src/asset_analysis.py`：读取清单及全部 15 条有抽样资源，实际加工 26 骨骼姿态、root 轨迹/距离、接触估计和循环窗口。\n- `assets/authored_assets.json`：37 个唯一资源；15 个 `ready` 内嵌加工帧，22 个 `deferred_missing_samples` 的 `data` 为 `null`。没有复制或伪造缺失姿态。条目包含原始 ID、语义、加工配方和抽样文件 SHA256。\n- `config/animation_graph.json`：控制器实际消费的节点绑定、阈值、方向角、同步组和骨骼集合。它是本实现专用声明式计划图，不是 UE AnimGraph 文件，也不是通用图执行器。\n- `src/controller.py`：逐帧计划器，包含验证、状态、时钟、混合、同步和有序姿态操作意图。\n- `.work/`：本地生成与自查脚本；`.tmp/`：自查中间文件。`SELF_CHECK.json` 是计划/数值检查，不是最终姿态质量报告。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 55,
+          "line_end": 68,
+          "quote": "- 动作缺采样时仍输出所请求资源，但 `sample_time_seconds=null`、`play_rate=0`、`pose_materializable=false`。状态机的策略超时仅决定何时切换，**不是资源时长、播放到某一打点或已经完成动作的证据**。不默默以正向片段假冒侧向起停，不把 Idle 当可播放兜底。\n- 循环共享一个步幅相位：L=0、R=0.5、下一 L=1。每个资源在自己的实测循环窗口内分段线性映射采样时间，倍率为映射导数。速度决定相位推进，方向/步态切换不重置相位；动作接入循环时用当前两足相对位置选择最近循环采样相位。单次动作不强行成为循环同步成员。缺标记时使用整个窗口归一化相位，明确降级。\n- 权重指数交叉淡化，所有有效玩家权重归一化；中断时保留已有玩家时间，直到权重消退。第一次调用直接采用目标计划。没有隐式 UE inertialization。\n- 转身用 `aim - visual_yaw` 的最短角：负值选人体左转（目录正角），正值选右转（目录负角）。根据偏差选 90/180。实测 root yaw 已从帧中移除，由控制器按曲线累积到 visual facing，输出相对当前 actor 的 yaw offset，避免外部 actor yaw 更新时重复旋转。移动时 offset 衰减回 actor；控制器不修改输入 actor yaw、不输出角色运动命令。缺样转身不会编造 root yaw 进度；策略超时后对同一未改变的 aim 抑制重复请求，待 aim 改变后可重新触发。\n\n## 输出时钟、操作语义\n\n`sample_time_seconds` 是本帧的权威采样位置。执行方应按它直接采样，**不可再额外乘 dt 推进一次**。`play_rate` 对循环为当前相位映射导数，对单次动作为本帧实际前进量/dt，缺失资源为 0。循环回绕限定在资源记录的窗口。同步 leader 只是最高权重玩家的报告身份，所有成员的时间由控制器统一计算，不依赖外部同步服务。\n\n操作按数组顺序：播放器权重混合 → component 全身 root yaw offset → 有限动作方向 warp → stride warp → 加速度 lean → 基于实测接触权重的足部 IK 意图。每个操作引用上一操作或已有 player ID。这些是执行意图，不是算出的最终骨骼变换：\n\n- 方向循环本身已混合四方向，不重复做全角度方向 warp；pivot 保持入向对齐，不在反向帧把整个 pivot 再翻一次。\n- stride 倍率有上下界；lean 是参数化操作意图，不伪称存在原始 additive clip。\n- 接触权重按当前玩家/时间实际读取曲线；缺样玩家贡献为未知覆盖率，不当作已确认离地。没有 actor 世界位置，不能实现可信世界足锁；不生成虚构足锁目标。没有 IK solver、完整骨架、脚底绑定或碰撞查询，IK 必须由下游另行实现。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 70,
+          "line_end": 78,
+          "quote": "## 限制与待完成\n\n这是静态资源及执行计划交付，没有 UE、完整 AnimGraph 运行、渲染器或最终姿态验收。足部窗口端点误差、启发式接触、跨方向/步态混合、身体倾斜和足部 IK 都需补齐下游执行器后人工与数值检查；不能由本地计划测试推断观感或滑步质量。只有 26 骨骼子集及其已有父索引，不扩写 Manny 全骨架、绑定姿态或 IK 骨。22 条缺样资源（含 Idle、部分起停/pivot/转身）仍待合法采样；资源依赖完整但行为可物化性不完整。\n\n## 本地自查结果\n\n`SELF_CHECK.json` 记录 11 组检查、41 个输入场景、14,073 帧计划验证，包括 8 个走跑循环、8 个突停、8 个入向 pivot、正常制动/重启、四类转身与缺样策略、actor yaw 跟随、跨 ±180°、变步长、方向/步态扫动、随机输入变化、输入拒绝、reset 重现与图配置变更。逐帧检查权重和引用、同步相位、窗口范围、接触曲线取值及 JSON 有限性；逐资源检查源哈希、源帧数、距离单调性、四元数单位长度，以及由加工姿态加回提取 root 变换后与源转换结果的一致性。\n\n另用不同 `PYTHONHASHSEED` 的独立进程检查同一 900 帧计划摘要一致，并检查 CLI 重建资源表逐字节一致。结果是软件/data 自查通过，不代表最终动画观感、足锁效果或 UE 集成验证通过。"
+        }
+      ],
+      "reviewed_paths": []
+    }
+  ],
+  "gates": [
+    {
+      "id": "G01",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 30,
+      "applied": false,
+      "reason": "实际资源加工、控制器与图配置均有实质实现，不是仅文字或空模板。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json"
+      ]
+    },
+    {
+      "id": "G02",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 60,
+      "applied": false,
+      "reason": "有制作逻辑、15段已加工帧/轨迹/曲线，以及22项通用配方延期，不属于资源制作逻辑和数据均缺失。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json"
+      ]
+    },
+    {
+      "id": "G03",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 60,
+      "applied": false,
+      "reason": "有可追踪的状态/过渡、播放器、权重混合及有序姿态操作；局部功能缺口按对应条目评分，不触发整类缺失上限。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/asset_analysis.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json"
+      ]
+    }
+  ],
+  "rubric_sha256": "5d40aaf760fa9c3b965cf9f8ea4e05badcf4ea632c1700187466404a019b5486",
+  "review_sha256": "a9288d52f1a6408532411a30ec203b1e696f30f1c835838e098f9adf4c7898d2"
+}

@@ -1,0 +1,911 @@
+{
+  "status": "passed",
+  "scope": "offline data and playback-plan validation only; not rendered pose or UE validation",
+  "checks": [
+    {
+      "name": "asset_provenance_and_reconstruction",
+      "status": "passed"
+    },
+    {
+      "name": "deterministic_rebuild",
+      "status": "passed"
+    },
+    {
+      "name": "eight_cardinal_cycles",
+      "status": "passed"
+    },
+    {
+      "name": "eight_abrupt_directional_stops",
+      "status": "passed"
+    },
+    {
+      "name": "contacts_and_graph_consumption",
+      "status": "passed"
+    },
+    {
+      "name": "stop_and_restart",
+      "status": "passed"
+    },
+    {
+      "name": "eight_pivot_bindings",
+      "status": "passed"
+    },
+    {
+      "name": "turn_signs_deferred_and_actor_authority",
+      "status": "passed"
+    },
+    {
+      "name": "phase_sync_direction_gait",
+      "status": "passed"
+    },
+    {
+      "name": "validation_reset_yaw_equivalence",
+      "status": "passed"
+    },
+    {
+      "name": "seeded_changes",
+      "status": "passed"
+    }
+  ],
+  "validated_plan_frames": 14073,
+  "asset_counts": {
+    "ready": 15,
+    "deferred_missing_samples": 22
+  },
+  "scenarios": {
+    "walk_fwd": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02"
+      ]
+    },
+    "walk_bwd": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_05",
+        "auth_motion_06"
+      ]
+    },
+    "walk_left": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_09",
+        "auth_motion_10"
+      ]
+    },
+    "walk_right": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_13",
+        "auth_motion_14"
+      ]
+    },
+    "jog_fwd": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_17",
+        "auth_motion_18"
+      ]
+    },
+    "jog_bwd": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_05",
+        "auth_motion_21",
+        "auth_motion_22"
+      ]
+    },
+    "jog_left": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_09",
+        "auth_motion_25",
+        "auth_motion_26"
+      ]
+    },
+    "jog_right": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_13",
+        "auth_motion_29",
+        "auth_motion_30"
+      ]
+    },
+    "abrupt_stop_walk_fwd": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02",
+        "auth_motion_03",
+        "auth_motion_37"
+      ]
+    },
+    "abrupt_stop_walk_bwd": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_05",
+        "auth_motion_06",
+        "auth_motion_07",
+        "auth_motion_37"
+      ]
+    },
+    "abrupt_stop_walk_left": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_09",
+        "auth_motion_10",
+        "auth_motion_11",
+        "auth_motion_37"
+      ]
+    },
+    "abrupt_stop_walk_right": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_13",
+        "auth_motion_14",
+        "auth_motion_15",
+        "auth_motion_37"
+      ]
+    },
+    "abrupt_stop_jog_fwd": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_17",
+        "auth_motion_18",
+        "auth_motion_19",
+        "auth_motion_37"
+      ]
+    },
+    "abrupt_stop_jog_bwd": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_05",
+        "auth_motion_21",
+        "auth_motion_22",
+        "auth_motion_23",
+        "auth_motion_37"
+      ]
+    },
+    "abrupt_stop_jog_left": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_09",
+        "auth_motion_25",
+        "auth_motion_26",
+        "auth_motion_27",
+        "auth_motion_37"
+      ]
+    },
+    "abrupt_stop_jog_right": {
+      "frames": 360,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_13",
+        "auth_motion_29",
+        "auth_motion_30",
+        "auth_motion_31",
+        "auth_motion_37"
+      ]
+    },
+    "diagonal_blend": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02",
+        "auth_motion_13",
+        "auth_motion_17",
+        "auth_motion_29"
+      ]
+    },
+    "stationary_acceleration_intent": {
+      "frames": 1,
+      "state_sequence": [
+        "start"
+      ],
+      "asset_ids": [
+        "auth_motion_14"
+      ]
+    },
+    "stop_300": {
+      "frames": 405,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02",
+        "auth_motion_03",
+        "auth_motion_37"
+      ]
+    },
+    "stop_600": {
+      "frames": 400,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_17",
+        "auth_motion_18",
+        "auth_motion_19",
+        "auth_motion_37"
+      ]
+    },
+    "stop_restart": {
+      "frames": 200,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "start"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02",
+        "auth_motion_03"
+      ]
+    },
+    "pivot_walk_fwd": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02",
+        "auth_motion_04",
+        "auth_motion_05",
+        "auth_motion_09"
+      ]
+    },
+    "pivot_jog_fwd": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_17",
+        "auth_motion_18",
+        "auth_motion_20",
+        "auth_motion_21"
+      ]
+    },
+    "pivot_walk_bwd": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_05",
+        "auth_motion_06",
+        "auth_motion_08",
+        "auth_motion_13"
+      ]
+    },
+    "pivot_jog_bwd": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_05",
+        "auth_motion_17",
+        "auth_motion_21",
+        "auth_motion_22",
+        "auth_motion_24",
+        "auth_motion_29"
+      ]
+    },
+    "pivot_walk_left": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_05",
+        "auth_motion_09",
+        "auth_motion_10",
+        "auth_motion_12",
+        "auth_motion_13"
+      ]
+    },
+    "pivot_jog_left": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_09",
+        "auth_motion_21",
+        "auth_motion_25",
+        "auth_motion_26",
+        "auth_motion_28",
+        "auth_motion_29"
+      ]
+    },
+    "pivot_walk_right": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_09",
+        "auth_motion_13",
+        "auth_motion_14",
+        "auth_motion_16"
+      ]
+    },
+    "pivot_jog_right": {
+      "frames": 330,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_13",
+        "auth_motion_17",
+        "auth_motion_25",
+        "auth_motion_29",
+        "auth_motion_30",
+        "auth_motion_32"
+      ]
+    },
+    "predicted_reversal": {
+      "frames": 181,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "pivot"
+      ],
+      "asset_ids": [
+        "auth_motion_17",
+        "auth_motion_18",
+        "auth_motion_20"
+      ]
+    },
+    "turn_-90": {
+      "frames": 240,
+      "state_sequence": [
+        "turn",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_33",
+        "auth_motion_37"
+      ]
+    },
+    "turn_-170": {
+      "frames": 240,
+      "state_sequence": [
+        "turn",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_34",
+        "auth_motion_37"
+      ]
+    },
+    "turn_90": {
+      "frames": 240,
+      "state_sequence": [
+        "turn",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_35",
+        "auth_motion_37"
+      ]
+    },
+    "turn_170": {
+      "frames": 240,
+      "state_sequence": [
+        "turn",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_36",
+        "auth_motion_37"
+      ]
+    },
+    "turn_movement_interrupt": {
+      "frames": 80,
+      "state_sequence": [
+        "turn",
+        "start"
+      ],
+      "asset_ids": [
+        "auth_motion_02",
+        "auth_motion_33"
+      ]
+    },
+    "turn_actor_yaw_follow": {
+      "frames": 111,
+      "state_sequence": [
+        "turn",
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_33",
+        "auth_motion_37"
+      ]
+    },
+    "yaw_wrap": {
+      "frames": 10,
+      "state_sequence": [
+        "idle"
+      ],
+      "asset_ids": [
+        "auth_motion_37"
+      ]
+    },
+    "direction_gait_sweep": {
+      "frames": 1000,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02",
+        "auth_motion_05",
+        "auth_motion_09",
+        "auth_motion_13",
+        "auth_motion_17",
+        "auth_motion_18",
+        "auth_motion_21",
+        "auth_motion_25",
+        "auth_motion_29"
+      ]
+    },
+    "orthogonal_switch": {
+      "frames": 300,
+      "state_sequence": [
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_02",
+        "auth_motion_13"
+      ]
+    },
+    "large_dt": {
+      "frames": 4,
+      "state_sequence": [
+        "idle",
+        "start",
+        "pivot",
+        "stop"
+      ],
+      "asset_ids": [
+        "auth_motion_18",
+        "auth_motion_19",
+        "auth_motion_20",
+        "auth_motion_37"
+      ]
+    },
+    "seeded_input_changes": {
+      "frames": 2000,
+      "state_sequence": [
+        "start",
+        "cycle",
+        "stop",
+        "idle",
+        "start",
+        "cycle",
+        "stop",
+        "start",
+        "cycle",
+        "pivot",
+        "cycle",
+        "stop",
+        "idle",
+        "start",
+        "cycle",
+        "stop",
+        "start",
+        "cycle",
+        "stop",
+        "start",
+        "cycle",
+        "stop",
+        "idle",
+        "turn",
+        "idle",
+        "start",
+        "cycle",
+        "stop",
+        "idle",
+        "turn",
+        "start",
+        "cycle",
+        "pivot",
+        "cycle",
+        "stop",
+        "idle",
+        "start",
+        "cycle",
+        "pivot",
+        "cycle",
+        "pivot",
+        "cycle",
+        "stop",
+        "idle",
+        "start",
+        "stop",
+        "idle",
+        "turn",
+        "start",
+        "cycle",
+        "stop",
+        "idle",
+        "start",
+        "cycle",
+        "pivot",
+        "cycle",
+        "pivot",
+        "cycle",
+        "stop",
+        "start",
+        "cycle",
+        "pivot",
+        "cycle",
+        "stop",
+        "idle",
+        "start",
+        "stop",
+        "idle",
+        "turn",
+        "start",
+        "cycle"
+      ],
+      "asset_ids": [
+        "auth_motion_01",
+        "auth_motion_03",
+        "auth_motion_04",
+        "auth_motion_05",
+        "auth_motion_06",
+        "auth_motion_07",
+        "auth_motion_09",
+        "auth_motion_10",
+        "auth_motion_11",
+        "auth_motion_12",
+        "auth_motion_13",
+        "auth_motion_14",
+        "auth_motion_15",
+        "auth_motion_16",
+        "auth_motion_17",
+        "auth_motion_20",
+        "auth_motion_21",
+        "auth_motion_22",
+        "auth_motion_23",
+        "auth_motion_24",
+        "auth_motion_25",
+        "auth_motion_26",
+        "auth_motion_27",
+        "auth_motion_28",
+        "auth_motion_29",
+        "auth_motion_31",
+        "auth_motion_33",
+        "auth_motion_35",
+        "auth_motion_37"
+      ]
+    }
+  },
+  "loop_endpoint_measurements": {
+    "auth_motion_01": {
+      "status": "measured_single_stride",
+      "start_seconds": 0.25,
+      "end_seconds": 0.9833333333333333,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 0.25
+        },
+        {
+          "name": "R",
+          "time_seconds": 0.6333333333333333
+        },
+        {
+          "name": "L",
+          "time_seconds": 0.9833333333333333
+        }
+      ],
+      "endpoint_position_rms_cm": 1.8127987016126184,
+      "endpoint_rotation_max_degrees": 20.82279519853155,
+      "candidate_count": 2,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    },
+    "auth_motion_05": {
+      "status": "measured_single_stride",
+      "start_seconds": 1.4,
+      "end_seconds": 2.1166666666666667,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 1.4
+        },
+        {
+          "name": "R",
+          "time_seconds": 1.75
+        },
+        {
+          "name": "L",
+          "time_seconds": 2.1166666666666667
+        }
+      ],
+      "endpoint_position_rms_cm": 3.219557227855396,
+      "endpoint_rotation_max_degrees": 18.964967162498187,
+      "candidate_count": 2,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    },
+    "auth_motion_09": {
+      "status": "measured_single_stride",
+      "start_seconds": 0.25,
+      "end_seconds": 1.0,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 0.25
+        },
+        {
+          "name": "R",
+          "time_seconds": 0.6
+        },
+        {
+          "name": "L",
+          "time_seconds": 1.0
+        }
+      ],
+      "endpoint_position_rms_cm": 3.667014982006889,
+      "endpoint_rotation_max_degrees": 11.701745327610558,
+      "candidate_count": 1,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    },
+    "auth_motion_13": {
+      "status": "measured_single_stride",
+      "start_seconds": 0.26666666666666666,
+      "end_seconds": 1.05,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 0.26666666666666666
+        },
+        {
+          "name": "R",
+          "time_seconds": 0.6666666666666666
+        },
+        {
+          "name": "L",
+          "time_seconds": 1.05
+        }
+      ],
+      "endpoint_position_rms_cm": 2.8975314858499694,
+      "endpoint_rotation_max_degrees": 13.837476060806356,
+      "candidate_count": 2,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    },
+    "auth_motion_17": {
+      "status": "measured_single_stride",
+      "start_seconds": 0.75,
+      "end_seconds": 1.3166666666666667,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 0.75
+        },
+        {
+          "name": "R",
+          "time_seconds": 1.05
+        },
+        {
+          "name": "L",
+          "time_seconds": 1.3166666666666667
+        }
+      ],
+      "endpoint_position_rms_cm": 3.7748143531419247,
+      "endpoint_rotation_max_degrees": 20.236009488888925,
+      "candidate_count": 2,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    },
+    "auth_motion_21": {
+      "status": "measured_single_stride",
+      "start_seconds": 0.5166666666666667,
+      "end_seconds": 1.0333333333333334,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 0.5166666666666667
+        },
+        {
+          "name": "R",
+          "time_seconds": 0.7666666666666667
+        },
+        {
+          "name": "L",
+          "time_seconds": 1.0333333333333334
+        }
+      ],
+      "endpoint_position_rms_cm": 4.526086834842665,
+      "endpoint_rotation_max_degrees": 17.62185307373825,
+      "candidate_count": 2,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    },
+    "auth_motion_25": {
+      "status": "measured_single_stride",
+      "start_seconds": 1.0166666666666666,
+      "end_seconds": 1.5166666666666666,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 1.0166666666666666
+        },
+        {
+          "name": "R",
+          "time_seconds": 1.2833333333333334
+        },
+        {
+          "name": "L",
+          "time_seconds": 1.5166666666666666
+        }
+      ],
+      "endpoint_position_rms_cm": 4.731534032271526,
+      "endpoint_rotation_max_degrees": 21.767756256791397,
+      "candidate_count": 2,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    },
+    "auth_motion_29": {
+      "status": "measured_single_stride",
+      "start_seconds": 0.15,
+      "end_seconds": 0.6833333333333333,
+      "markers": [
+        {
+          "name": "L",
+          "time_seconds": 0.15
+        },
+        {
+          "name": "R",
+          "time_seconds": 0.4
+        },
+        {
+          "name": "L",
+          "time_seconds": 0.6833333333333333
+        }
+      ],
+      "endpoint_position_rms_cm": 5.155962170673698,
+      "endpoint_rotation_max_degrees": 16.805280473395502,
+      "candidate_count": 2,
+      "selection": "minimum component position endpoint RMS among complete measured L-R-L intervals; no seam repair"
+    }
+  },
+  "reproducibility": {
+    "independent_process_hash_seeds": [
+      1,
+      98765
+    ],
+    "900_frame_plan_sha256": "955aa6584c021280075cac8fc6d7bd4922245a429d478f34a497f9a20e3bf1fd",
+    "cli_rebuild_byte_identical": true
+  },
+  "delivery_sha256": {
+    "src/build_assets.py": "fddbb994c403822c69a2b5813a6f785ec09ce450e3b9f1fc5d858a8e1bedb5aa",
+    "src/controller.py": "874de37cabe2efd297c4f172cd88a64dff36d22f83e5bc22e3a199adf8c8a182",
+    "assets/authored_assets.json": "498e933b78b83fb81e8ffdb5c829fd1b29a520c57f35269933d8707f8225791c",
+    "config/animation_graph.json": "b141f570b480250c5d3aa0c0fa5b20279ff9d864203b5b03352b6c8acd2aaaaa",
+    "IMPLEMENTATION.md": "faf31c83fe3a49f908dabd2930f9d3f740b19ce890f346c0d309d5376d5750db",
+    "src/asset_analysis.py": "6adce6718a8e56b8b24e7f176789f4217942f0a93bcd60eadd1cc6fee0f4ef00"
+  }
+}

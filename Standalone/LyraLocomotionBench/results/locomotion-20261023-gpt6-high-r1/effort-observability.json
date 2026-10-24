@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "session_id": "c1da9779-2b65-45e0-8c71-21dfac5365bd",
+  "observed_at_utc": "2026-10-23T18:24:31.973291+00:00",
+  "snapshot_during_formal_run": false,
+  "scope": "exact formal session; app_type=claude and data_source=proxy only",
+  "matching_proxy_record_count": 35,
+  "conversion_trace_record_count": 3,
+  "traffic_detail_record_count": 35,
+  "conversion_trace_metadata": [
+    {
+      "request_id": "proxy:558d1ba671944b32ad2adb83d6cf4385",
+      "completeness": "complete"
+    },
+    {
+      "request_id": "proxy:84136470d9c24befbcc33347f980788b",
+      "completeness": "complete"
+    },
+    {
+      "request_id": "proxy:c176bd431a644b7eb2e25365f2372ecc",
+      "completeness": "complete"
+    }
+  ],
+  "checked_sources": [
+    "proxy_request_logs.conversion_trace_json",
+    "traffic_request_details.detail_json"
+  ],
+  "allowed_effort_keys": [
+    "effort",
+    "reasoningEffort",
+    "reasoning_effort"
+  ],
+  "desired_paths": [
+    "reasoning.effort",
+    "output_config.effort"
+  ],
+  "observed_effort_fields": [],
+  "requested_effort": "high",
+  "requested_effort_evidence": "gpt6/running.json: effort_requested and cli_argv --effort high",
+  "upstream_reasoning_effort": "unknown",
+  "upstream_high_verified": false,
+  "reason": "No explicit effort-level fields were observable in stored conversion or traffic structures for the completed session. CLI high is separately recorded and does not establish the upstream value.",
+  "token_statistics_used_to_infer_effort": false,
+  "raw_request_response_or_error_body_exported": false,
+  "credential_fields_inspected_or_exported": false,
+  "settings_modified": false,
+  "model_requests_sent": false,
+  "candidate_read": false,
+  "previous_snapshot": "access_audit/effort-running-snapshot.json",
+  "limits": [
+    "Absence of an effort field does not prove high was not applied.",
+    "No inference from thinkingTokens, token counts, request success or model name."
+  ]
+}

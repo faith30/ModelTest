@@ -1,0 +1,1112 @@
+{
+  "schema_version": "1.0",
+  "rubric_id": "lyra_locomotion_static_v1",
+  "title": "Lyra风格走跑移动动画静态细节评测",
+  "review_mode": "static_evidence_only",
+  "max_score": 100,
+  "item_count": 40,
+  "no_ue_required": true,
+  "statement": "这是独立抽象仓库的静态证据评测，不修改现有UE项目，不要求UE运行，不等同于动画视觉或UE运行验收。",
+  "provenance_policy": {
+    "official_mechanism": "source_ids指向官方机制/示例说明；只支持机制重要性，不证明某份本地资源实际配置。",
+    "task_design": "walk/jog覆盖、独立表示、提交物和评分要求是本基准设计。",
+    "local_fact": "已阅读 evaluator/local_lyra_facts.json 的有界只读导出，未启动UE或独立重跑导出。只在有local_fact_refs的条目引用这些记录；不能把未序列化默认值、完整调用链、运行效果或绝对marker相位当作已核验。",
+    "naming": "不要求照抄GroupName、marker字符串、类名或函数名；语义、引用和消费一致即可。",
+    "version": "官方页面版本不同，不能把历史限制无条件套到当前实现；候选简化必须明确声明。",
+    "input_facts": "题包raw/manifest.json与INTERFACE.md规定输入：37条目录、15段26骨骼component-space抽样、22条metadata_only；源前向+Y、actor前向+X、厘米与xyzw。具体可用性以冻结清单为准。",
+    "abstraction": "本题输出players/sync_groups/pose_operations计划；warp和mask可在计划层表达，要求具体参数计算及有效引用，不要求骨骼求解/姿态渲染/UE线程或实际武器切换。",
+    "sync_plan_boundary": "同步/Notify项允许通过具体参数计算、播放器时间决策与有明确定义的同步/事件计划表达；不要求通用Sync引擎、事件执行器或UE图解释器。计划必须包含可审查的规则、当前数据关联及有效引用，只有术语、角色枚举或未定义配置不足以通过。"
+  },
+  "scoring": {
+    "statuses": [
+      "pass",
+      "partial",
+      "missing",
+      "incorrect",
+      "unreviewed"
+    ],
+    "partial": "已有可定位的实质工作但只覆盖部分要求；awarded必须是有限数且0<awarded<weight，解释已覆盖内容与缺口，不限制给分粒度。零分使用missing或incorrect。",
+    "unreviewed": "尚未人工审查或证据无法读取，不得当作0或通过；awarded=null。",
+    "evidence_rule": "关键词、README声明、文件名存在、模型自报通过均不能单独判pass；定位实现/配置/制作数据，并追踪其连接关系。",
+    "total_rule": "只有40项均已审查且所有gate均有已确认的pass/fail结论才给最终总分；任一未完成则final_score=null，只可显示provisional得分，不得排名。",
+    "final_rule": "final_score=min(raw_score,所有已触发gate的cap)。gate不单独减分，不叠加扣分。",
+    "no_double_deduction": "单个缺陷通常在最直接所属项扣分。其他项只有独立失败事实才扣分；缺完整交付类别可使其对应项无证据并触发cap，但不得额外再减一次cap差额之外的处罚。",
+    "fixed_denominator": "满分固定100；本版本不使用N/A重新分母。范围变化应先冻结新版本，再对所有候选统一使用。",
+    "runtime_boundary": "不运行UE、不把未运行当失败；静态证据不能宣称脚滑、视觉质量、性能、网络表现已经通过。",
+    "pass": "必须有直接可定位证据覆盖check全部实质要求，awarded=weight。",
+    "missing": "所需交付或实质证据缺失，awarded=0；给出已检查路径/范围及缺失理由。",
+    "incorrect": "交付存在但语义错误、内部矛盾或只靠关键词伪装实现，awarded=0；定位错误证据。",
+    "gate_review": "每个gate使用status=pass/fail/unreviewed和confirmed布尔；pass表示不触发，fail表示触发cap。confirmed=true表示独立审查者确认该判断；任一gate未确认或unreviewed则final_score=null。",
+    "missing_inputs": "输入素材不足不是候选缺陷：有样本要求实际加工，无样本接受实现通用recipe并标deferred_missing_samples；不可虚构精确产物。相关条目可据可定位的通用实现和延期记录判pass。"
+  },
+  "gates": [
+    {
+      "id": "G01",
+      "title": "只有文字说明，缺可审查实现",
+      "cap": 30,
+      "trigger": "缺少承担资源处理和动画决策的实质Python实现，只交自然语言、伪代码、节点名清单、未实现函数或模板壳。若两个实现入口中仅一个缺失，先按条目和G02/G03审查，不仅因文件名存在就视为实现。",
+      "evidence_required": [
+        "候选文件清单",
+        "实现/规则消费入口的存在性与可读性"
+      ],
+      "rationale": "测开发细节而非术语复述；只限制最终分，不另加扣分。"
+    },
+    {
+      "id": "G02",
+      "title": "缺资源制作交付",
+      "cap": 60,
+      "trigger": "资源制作逻辑/recipe定义和派生资源元数据两者均缺失或仅原始空模板。metadata_only的有效通用recipe+deferred_missing_samples属于合格交付，不触发。只有一部分缺失由对应RES项扣分。",
+      "evidence_required": [
+        "资源制作定义清单",
+        "派生资源元数据清单"
+      ],
+      "rationale": "资源制作是本题组成部分，必须可审查。"
+    },
+    {
+      "id": "G03",
+      "title": "缺动画图/状态规则交付",
+      "cap": 60,
+      "trigger": "缺少有效的状态、过渡和节点/层组合逻辑，无法辨认完整动画决策流程；存在一个草稿JSON并不自动避免或触发门槛，须检查其与控制器的实际关联。代码和声明式配置协同表达有效逻辑即可。",
+      "evidence_required": [
+        "状态/过渡/节点组合所在文件",
+        "它们与决策入口的连接"
+      ],
+      "rationale": "本题要求动画功能的整体组织。"
+    }
+  ],
+  "sources": {
+    "epic_lyra_animation": {
+      "title": "Animation in Lyra",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-in-lyra-sample-game-in-unreal-engine",
+      "kind": "official_lyra_overview",
+      "version_note": "查阅于2026-10-23；页面标记5.8并含历史版本说明，不能证明某份本地Lyra的精确配置。"
+    },
+    "epic_lyra_adaptation": {
+      "title": "Adapting Lyra animation to your UE5 game",
+      "url": "https://www.unrealengine.com/tech-blog/adapting-lyra-animation-to-your-ue5-game",
+      "kind": "official_lyra_technical_article",
+      "version_note": "2022-04-26；用于区分默认strafe与forward-facing适配，不作当前本地资产证据。"
+    },
+    "epic_sync_groups": {
+      "title": "Animation Sync Groups",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-sync-groups-in-unreal-engine",
+      "kind": "official_engine_mechanism",
+      "version_note": "通用UE机制；不证明本地Lyra的组名、角色或marker配置。"
+    },
+    "epic_distance_matching": {
+      "title": "Distance Matching",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/distance-matching-in-unreal-engine",
+      "kind": "official_engine_workflow",
+      "version_note": "通用制作及运行时流程；无UE实现可以使用等价的可索引数据格式。"
+    },
+    "epic_advance_by_distance": {
+      "title": "UAnimDistanceMatchingLibrary::AdvanceTimeByDistanceMatching",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Plugins/AnimationLocomotionLibraryRuntim-/UAnimDistanceMatchingLibrary/AdvanceTimeByDis-",
+      "kind": "official_engine_api",
+      "version_note": "已走距离推进及playrate clamp语义。"
+    },
+    "epic_match_target": {
+      "title": "UAnimDistanceMatchingLibrary::DistanceMatchToTarget",
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/API/Plugins/AnimationLocomotionLibraryRuntim-/UAnimDistanceMatchingLibrary/DistanceMatchToT-",
+      "kind": "official_engine_api",
+      "version_note": "剩余距离定位不自动保持上一片段相位。"
+    },
+    "epic_match_speed": {
+      "title": "UAnimDistanceMatchingLibrary::SetPlayrateToMatchSpeed",
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/API/Plugins/AnimationLocomotionLibraryRuntim-/UAnimDistanceMatchingLibrary/SetPlayrateToMat-",
+      "kind": "official_engine_api",
+      "version_note": "循环片段的速度匹配假定源动画速度恒定。"
+    },
+    "epic_pose_warping": {
+      "title": "Pose Warping",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/pose-warping-in-unreal-engine",
+      "kind": "official_engine_mechanism",
+      "version_note": "通用方向/步幅补偿机制；本基准只要求声明的抽象输出，不要求UE求解器。"
+    },
+    "epic_node_functions": {
+      "title": "Animation Blueprint Node Functions",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/animation-blueprint-node-functions-in-unreal-engine",
+      "kind": "official_engine_mechanism",
+      "version_note": "初始化、相关性和更新生命周期。"
+    },
+    "epic_evaluator_55": {
+      "title": "FAnimNode_SequenceEvaluator::GetTeleportToExplicitTime (5.5)",
+      "url": "https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/AnimGraphRuntime/AnimNodes/FAnimNode_SequenceEvaluator/GetTeleportToExp-?application_version=5.5",
+      "kind": "official_engine_api",
+      "version_note": "该版本API描述包含SyncGroup强制advancing的例外；不同版本以其明确契约为准。"
+    },
+    "benchmark_design": {
+      "title": "本独立基准的任务设计",
+      "url": null,
+      "kind": "task_design",
+      "version_note": "由本基准提出的提交物、抽象行为及静态证据要求，不宣称为官方或本地Lyra事实。"
+    },
+    "fixture_contract": {
+      "title": "冻结候选输入及接口",
+      "url": null,
+      "kind": "local_input_contract",
+      "paths": [
+        "candidate_template/raw/manifest.json",
+        "candidate_template/INTERFACE.md"
+      ],
+      "version_note": "本地已阅读；不是UE运行证据。"
+    },
+    "local_lyra_export": {
+      "title": "本地Lyra有界只读导出",
+      "url": null,
+      "kind": "local_static_export",
+      "path": "evaluator/local_lyra_facts.json",
+      "version_note": "仅支持文件中明确列出的导出属性与引用；未导出的默认值及运行时效果未核验。"
+    }
+  },
+  "items": [
+    {
+      "id": "RES01",
+      "category": "asset_authoring",
+      "weight": 2,
+      "title": "原始输入、派生资源与来源可追溯",
+      "check": "区分只读原始片段、模型制作规则和派生元数据；每个派生资源能追溯输入ID、制作参数及版本。不得把猜测的Lyra原配置标成本地实测。",
+      "evidence_required": [
+        "资源清单/制作定义的路径与键",
+        "至少一例输入到派生资源的映射"
+      ],
+      "source_ids": [
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "RES02",
+      "category": "asset_authoring",
+      "weight": 3,
+      "title": "骨架、单位和坐标系一致",
+      "check": "遵守题包cm/秒/度、component-space、xyzw及骨骼子集约定；明确源+Y前向到actor+X前向的基变换、旋转符号、左右方向及世界/局部转换。不能把component-space当local-space或虚构完整Manny骨骼。",
+      "evidence_required": [
+        "骨架和坐标约定",
+        "转换逻辑及使用处"
+      ],
+      "source_ids": [
+        "epic_pose_warping",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "RES03",
+      "category": "asset_authoring",
+      "weight": 3,
+      "title": "走跑与方向资源覆盖",
+      "check": "资源映射覆盖walk/jog、四方向、start/stop/pivot/TIP；共享、镜像或补偿允许但须说明语义和左右marker映射。有pose_samples者实际加工，metadata_only者通用recipe+deferred_missing_samples即可；不要求不存在样本的精确产物。",
+      "evidence_required": [
+        "资源覆盖矩阵或等价配置",
+        "缺片段/镜像/补偿的选择规则"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "benchmark_design",
+        "fixture_contract",
+        "local_lyra_export"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design",
+        "local_static_fact"
+      ],
+      "local_fact_status": "bounded_export_read",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。",
+      "local_fact_refs": [
+        "blueprint_structure.asset_bindings"
+      ]
+    },
+    {
+      "id": "RES04",
+      "category": "asset_authoring",
+      "weight": 2,
+      "title": "片段时域、循环与边界",
+      "check": "明确duration、采样率/时间戳、loop属性及首尾采样规则；循环与非循环资源分开，末帧处理不凭空多走一帧，不将停止片段无条件循环。 duration=null表示未知，不能当0长片段；缺样本时允许延后时间域派生。",
+      "evidence_required": [
+        "片段时域元数据",
+        "采样、wrap/clamp的实现或明确规则"
+      ],
+      "source_ids": [
+        "epic_evaluator_55",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "RES05",
+      "category": "asset_authoring",
+      "weight": 3,
+      "title": "根轨迹数据与角色位移职责",
+      "check": "保留可供距离/方向/步幅计算的根轨迹或等价采样；区分源动画根运动数据、提取出的root delta与角色移动驱动，不能把数据存在等同于胶囊必由root motion移动，也不能重复施加同一位移。",
+      "evidence_required": [
+        "根轨迹及提取定义",
+        "角色移动与动画输出接口"
+      ],
+      "source_ids": [
+        "epic_distance_matching",
+        "epic_pose_warping",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "RES06",
+      "category": "asset_authoring",
+      "weight": 3,
+      "title": "同步相位标记的制作",
+      "check": "有样本者依据采样和明确规则生成左右步态相位标记，可选择脚接触等自洽约定；同名marker跨资源语义一致、时间有效、顺序合理。marker与可播放Notify分开；不要求复刻原Lyra L/R绝对时间，无样本允许可复用recipe+延期。",
+      "evidence_required": [
+        "marker制作实现、所采用的相位约定及有样本输出实例",
+        "左右语义、排序、合法区间校验与无样本延期记录"
+      ],
+      "source_ids": [
+        "epic_sync_groups",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "RES07",
+      "category": "asset_authoring",
+      "weight": 2,
+      "title": "曲线制作及可索引表示",
+      "check": "为距离匹配提供从源轨迹生成曲线的规则，说明XY等轴选择、采样与停止参考点；输出能按时间读取并支持距离反查。可用数组等独立格式代替UE Uniform Indexable，但只写压缩器名称不得分。",
+      "evidence_required": [
+        "曲线制作规则",
+        "实际派生曲线及反查接口"
+      ],
+      "source_ids": [
+        "epic_distance_matching",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "RES08",
+      "category": "asset_authoring",
+      "weight": 2,
+      "title": "资源制作流程闭合",
+      "check": "定义从输入到派生资源的完整步骤、确定性排序和引用校验；同输入同参数应得到同语义结果，缺骨骼/无效时长/缺关键曲线应报告可定位失败，不能静默假造有效资源。",
+      "evidence_required": [
+        "制作入口或可复现制作步骤",
+        "验证规则和错误上下文"
+      ],
+      "source_ids": [
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "LOC01",
+      "category": "locomotion_states",
+      "weight": 3,
+      "title": "移动快照与派生量",
+      "check": "从同一frame一致读取velocity/acceleration/actor_yaw/aim_yaw/dt，计算局部速度、方向和移动状态；速度与加速度用途不同，不能把加速度为零直接当作停止，也不能假定收到未提供的input或世界位置。",
+      "evidence_required": [
+        "输入快照结构",
+        "派生量计算与调用位置"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "epic_lyra_adaptation",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "LOC02",
+      "category": "locomotion_states",
+      "weight": 2,
+      "title": "Walk/Jog选择与阈值稳定",
+      "check": "walk/jog有显式选择条件及混合策略，阈值附近有滞回、平滑或等价防抖措施；不会仅更换状态名却始终使用同一未说明的播放行为。具体阈值自定，无须照抄Lyra。",
+      "evidence_required": [
+        "gait配置及选择逻辑",
+        "阈值边界处理证据"
+      ],
+      "source_ids": [
+        "benchmark_design"
+      ],
+      "basis": [
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "LOC03",
+      "category": "locomotion_states",
+      "weight": 3,
+      "title": "四方向与斜向选择",
+      "check": "前后左右覆盖完整，斜向采用可解释的基片段选择和补偿/混合；明确速度过零、后退、±180度环绕及方向边界防抖。保持strafe的朝向/移动方向区分。",
+      "evidence_required": [
+        "方向选择逻辑",
+        "方向到资源/warp的映射"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "epic_lyra_adaptation",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "LOC04",
+      "category": "locomotion_states",
+      "weight": 3,
+      "title": "Idle到Start到Cycle",
+      "check": "状态图包含可达的idle/start/cycle链；进入start时选定合适资源并初始化，转入cycle有明确完成/中断条件，不能每帧重置start或仅凭非零速度立即跳过它。",
+      "evidence_required": [
+        "状态图及转移条件",
+        "start进入和更新逻辑"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "epic_node_functions",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "LOC05",
+      "category": "locomotion_states",
+      "weight": 3,
+      "title": "减速、Stop与Idle",
+      "check": "结合速度、加速度与明确内部减速/制动推导选择stop，并说明何时进入idle；frame没有松键字段，不能直接读取虚构input。避免仍移动时静止、stop永久卡住或每帧重启；对未知片段时间采用明确延期/回退。",
+      "evidence_required": [
+        "停止触发/完成逻辑",
+        "stop资源和距离驱动关联"
+      ],
+      "source_ids": [
+        "epic_match_target",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "LOC06",
+      "category": "locomotion_states",
+      "weight": 2,
+      "title": "Pivot及重新起步",
+      "check": "区分常规停止、反向pivot与stop期间再起步；定义触发依据、打断和资源重新选择，允许简化pivot但必须保留方向反转语义并声明限度。",
+      "evidence_required": [
+        "pivot/restart转移及优先级",
+        "方向/加速度判断与资源选择"
+      ],
+      "source_ids": [
+        "epic_match_target",
+        "epic_lyra_adaptation",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "LOC07",
+      "category": "locomotion_states",
+      "weight": 2,
+      "title": "过渡竞争与连续性",
+      "check": "同帧多个条件满足时有确定的转移优先级；说明混合时长/权重及中断保留状态，避免多个互斥状态同时主导或在阈值处反复切换。不得把非零blend权重误当作重新进入事件。",
+      "evidence_required": [
+        "转移优先级/互斥规则",
+        "混合与中断处理"
+      ],
+      "source_ids": [
+        "epic_node_functions",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "SYN01",
+      "category": "synchronization",
+      "weight": 3,
+      "title": "组作用域与角色配置",
+      "check": "明确哪些兼容片段共享同步组及为什么；组名自定，但生产配置与消费路径一致，角色与作用域可追踪。非相关动作不因同名意外同步；不要把所有片段机械塞入一个组。",
+      "evidence_required": [
+        "同步组成员及角色配置",
+        "组查找和使用位置"
+      ],
+      "source_ids": [
+        "epic_sync_groups",
+        "benchmark_design",
+        "local_lyra_export"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design",
+        "local_static_fact"
+      ],
+      "local_fact_status": "bounded_export_read",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。",
+      "local_fact_refs": [
+        "annotation_targets[0].confirmed_consumers_zh",
+        "annotation_targets[0].evidence"
+      ]
+    },
+    {
+      "id": "SYN02",
+      "category": "synchronization",
+      "weight": 3,
+      "title": "Marker相位不是Notify",
+      "check": "同步计算或计划按前后marker及区间内相对进度定义，覆盖不同长度/不同接触时刻的片段；Notify归属/调度计划单独表达，不能用触发脚步音代替同步，也不能只以相同normalized time宣称marker sync。无需实际执行音效或通用同步器。",
+      "evidence_required": [
+        "marker区间/相位映射的具体计算或计划定义",
+        "独立的Notify/event数据及归属/调度计划"
+      ],
+      "source_ids": [
+        "epic_sync_groups",
+        "benchmark_design",
+        "local_lyra_export"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design",
+        "local_static_fact"
+      ],
+      "local_fact_status": "bounded_export_read",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。",
+      "local_fact_refs": [
+        "annotation_targets[0].unresolved_convention_zh"
+      ]
+    },
+    {
+      "id": "SYN03",
+      "category": "synchronization",
+      "weight": 3,
+      "title": "公共标记与退化策略",
+      "check": "定义组内公共marker集合及缺失时处理；不能对每个follower任意使用互不一致的marker。无匹配标记时采用长度同步或显式拒绝并报告，声明的策略必须在逻辑中实现。",
+      "evidence_required": [
+        "公共marker求交或等价规则",
+        "无公共marker/缺单侧marker分支"
+      ],
+      "source_ids": [
+        "epic_sync_groups",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "SYN04",
+      "category": "synchronization",
+      "weight": 2,
+      "title": "Leader选择与事件归属",
+      "check": "根据配置角色与有效权重确定leader，并说明同权重/多强制leader的确定性处理；Notify计划将事件归属限定到合适播放器，防止follower重复事件。展示具体选择计算和事件归属/抑制计划即可，不要求运行通用事件执行器；只列角色枚举不足以通过。",
+      "evidence_required": [
+        "leader决策实现",
+        "Notify归属/抑制的具体计划与播放器关联"
+      ],
+      "source_ids": [
+        "epic_sync_groups",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "SYN05",
+      "category": "synchronization",
+      "weight": 3,
+      "title": "非循环起停与距离匹配的同步策略",
+      "check": "start/stop的角色和是否参与同步须与距离驱动一致；避免follower强制时间破坏距离匹配，也不声称距离反查会自动保持cycle脚相。Always Leader是一种官方建议，并非所有情形的必填答案；替代策略须解释过渡连续性。",
+      "evidence_required": [
+        "start/stop节点同步配置",
+        "同步与距离时间决策优先级",
+        "起停衔接的明确策略"
+      ],
+      "source_ids": [
+        "epic_sync_groups",
+        "epic_match_target",
+        "benchmark_design",
+        "local_lyra_export"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design",
+        "local_static_fact"
+      ],
+      "local_fact_status": "bounded_export_read",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。",
+      "local_fact_refs": [
+        "annotation_targets[0].evidence"
+      ]
+    },
+    {
+      "id": "SYN06",
+      "category": "synchronization",
+      "weight": 2,
+      "title": "接管、跨尾与事件唯一性",
+      "check": "leader变化、循环跨尾、单帧越过多个marker时，计算或计划规则给出确定的相位与事件区间，说明如何避免漏/重复及无原因跳变；不要求通用运行引擎。只处理[0,duration)普通帧或未定义计划语义不足以满分。",
+      "evidence_required": [
+        "接管和跨尾分支",
+        "事件区间端点和去重约定"
+      ],
+      "source_ids": [
+        "epic_sync_groups",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "DST01",
+      "category": "distance_matching",
+      "weight": 2,
+      "title": "距离曲线含义与符号",
+      "check": "每类曲线明确表示累计距离或到目标的剩余距离，并标明单位、参考零点/符号；start、stop、pivot不盲目复用未经解释的正值曲线。曲线数据与运行时输入语义必须一致。",
+      "evidence_required": [
+        "曲线契约及样例",
+        "消费者参数和符号转换"
+      ],
+      "source_ids": [
+        "epic_distance_matching",
+        "epic_match_target",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "DST02",
+      "category": "distance_matching",
+      "weight": 3,
+      "title": "按位移推进与按目标定位分开",
+      "check": "起步等推进使用本次动画更新区间的DistanceTraveled；停止/转向定位使用DistanceToTarget。不得把累计路程反复加到当前时间，或把speed直接当distance；dt和更新频率变化有明确语义。",
+      "evidence_required": [
+        "两类时间驱动路径",
+        "位移/dt取值依据"
+      ],
+      "source_ids": [
+        "epic_advance_by_distance",
+        "epic_match_target",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "DST03",
+      "category": "distance_matching",
+      "weight": 3,
+      "title": "停止/转向目标来源",
+      "check": "停止/pivot距离由已给速度、加速度、dt与声明的内部制动参数/模型推导；固定但明确且可配置的制动参数允许，不要求题包未给的摩擦、碰撞或actor位置。不以动画剩余长度冒充真实停止预测，标明模型假设和异常参数策略。",
+      "evidence_required": [
+        "目标/距离来源及预测公式或接口",
+        "运动假设与失效策略"
+      ],
+      "source_ids": [
+        "epic_match_target",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "DST04",
+      "category": "distance_matching",
+      "weight": 3,
+      "title": "曲线反查的确定性和边界",
+      "check": "反查包含插值以及越界、平台段、重复值、无效/非单调曲线的明确处理；pivot可能出现不同阶段，须指定分支/搜索区间而非全曲线任取最近点。结果不产生NaN、倒退或未声明的跳帧。",
+      "evidence_required": [
+        "曲线采样/反查实现",
+        "边界与多解决策规则"
+      ],
+      "source_ids": [
+        "epic_distance_matching",
+        "epic_match_target",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "DST05",
+      "category": "distance_matching",
+      "weight": 3,
+      "title": "播放速率限制与步幅补偿",
+      "check": "显式限制距离驱动产生的有效playrate，并将未匹配部分交给有界stride补偿或声明允许的滑步；区分匀速cycle的speed matching假设。不能同时对相同速度差完整乘两次造成过补偿。具体限制值自定。",
+      "evidence_required": [
+        "playrate与stride组合计算",
+        "clamp与零速分支"
+      ],
+      "source_ids": [
+        "epic_advance_by_distance",
+        "epic_match_speed",
+        "epic_lyra_adaptation",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "DST06",
+      "category": "distance_matching",
+      "weight": 2,
+      "title": "Evaluator推进、跳转与副作用",
+      "check": "明确显式时间变化是推进还是瞬移，以及Notify和root delta如何处理；若模拟UE语义须覆盖同步组可能强制advancing的例外。允许独立简化语义，但须公开声明并保持实现/配置一致，不能错误声称与UE完全相同。",
+      "evidence_required": [
+        "Evaluator模式配置",
+        "时间变化到事件/root delta的处理"
+      ],
+      "source_ids": [
+        "epic_evaluator_55",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "WRP01",
+      "category": "warping_and_yaw",
+      "weight": 3,
+      "title": "Orientation Warping的朝向分工",
+      "check": "用所选动画运动方向与实际局部移动方向的差得到有界角度，区分actor/mesh/root/aim朝向；下肢补偿与上身面向职责明确，处理角度环绕，不能把角色整体转向移动方向冒充strafe补偿。",
+      "evidence_required": [
+        "方向补偿公式及空间约定",
+        "上下身/根骨输出契约"
+      ],
+      "source_ids": [
+        "epic_pose_warping",
+        "epic_lyra_adaptation",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "WRP02",
+      "category": "warping_and_yaw",
+      "weight": 3,
+      "title": "Stride Warping的比例与限制",
+      "check": "步幅比依据有效动画位移速度和实际速度，考虑已应用playrate；有零根速/低速保护、范围和过渡平滑，结果进入具有有效引用的pose_operations计划。无需执行IK/FK或最终骨骼姿态。",
+      "evidence_required": [
+        "stride参数计算、限制及低速分支",
+        "输出pose_operations对参数及播放器的有效引用"
+      ],
+      "source_ids": [
+        "epic_pose_warping",
+        "epic_match_speed",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "WRP03",
+      "category": "warping_and_yaw",
+      "weight": 2,
+      "title": "骨骼约束与姿态补偿契约",
+      "check": "姿态计划明确方向/步幅/骨盆或脊柱修正的职责和顺序，骨骼引用只使用已知子集或明确待解析绑定；缺失IK/虚拟骨骼应承认范围，不要求补齐完整骨架。区分计划与最终姿态、warp与地面Foot IK，不要求运行真实求解器。",
+      "evidence_required": [
+        "姿态操作顺序及引用/骨骼范围",
+        "输入不具备绑定时的声明与退化/延后计划"
+      ],
+      "source_ids": [
+        "epic_pose_warping",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "WRP04",
+      "category": "warping_and_yaw",
+      "weight": 3,
+      "title": "RootYawOffset三类状态策略",
+      "check": "idle累积抵消、start保持、cycle淡出三种语义可追踪并由状态请求；处理角度归一和模式切换，避免每帧清零/无限累积或双重旋转。名称可自定，不要求与Lyra函数逐字相同。",
+      "evidence_required": [
+        "yaw状态策略与计算",
+        "状态到模式的配置/调用"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "WRP05",
+      "category": "warping_and_yaw",
+      "weight": 1,
+      "title": "Turn In Place与转向曲线",
+      "check": "TIP有角度/等待条件及对应资源/曲线选择；转身过程中按源转向信息消耗offset，或明示受限替代方案，不凭计时直接抹掉全部角差。",
+      "evidence_required": [
+        "TIP触发/资源配置",
+        "转向曲线或替代消耗规则"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "ARC01",
+      "category": "architecture_and_lifecycle",
+      "weight": 2,
+      "title": "状态逻辑、资源集与修正职责分开",
+      "check": "高层状态/过渡、Unarmed资源集、方向/步幅等修正职责清晰分开，公共移动数据一致复用；不需要武器输入、实际换武器或多套武器资产。代码与图能追踪到相应职责即可。",
+      "evidence_required": [
+        "状态/资源/修正的接口与配置",
+        "共享派生数据的读取路径"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "benchmark_design",
+        "fixture_contract",
+        "local_lyra_export"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design",
+        "local_static_fact"
+      ],
+      "local_fact_status": "bounded_export_read",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。",
+      "local_fact_refs": [
+        "blueprint_structure.description_zh",
+        "blueprint_structure.evidence"
+      ]
+    },
+    {
+      "id": "ARC02",
+      "category": "architecture_and_lifecycle",
+      "weight": 2,
+      "title": "移动与上身朝向的分层契约",
+      "check": "用明确mask、层或姿态操作契约协调下肢移动与上身瞄准/方向修正，说明根骨归属及组合顺序；不要求射击/换弹动作。计划参数和引用有效即可，不要求生成最终分骨骼pose。",
+      "evidence_required": [
+        "移动与瞄准/朝向修正的组合计划",
+        "根骨/上下身影响范围及顺序"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "ARC03",
+      "category": "architecture_and_lifecycle",
+      "weight": 2,
+      "title": "节点生命周期",
+      "check": "区分首次初始化、每次变相关和每次更新；再次进入start/stop会按规则重新选择资源/初始化时间，inactive节点不无意推进。On Become Relevant不等价于每帧权重非零。",
+      "evidence_required": [
+        "生命周期实现或可执行图定义",
+        "状态重入与inactive分支"
+      ],
+      "source_ids": [
+        "epic_node_functions",
+        "benchmark_design"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "ARC04",
+      "category": "architecture_and_lifecycle",
+      "weight": 2,
+      "title": "快照与共享派生数据边界",
+      "check": "每次step基于给定frame作一致计算，状态与只读配置/资源分开，层间共享派生数据不产生互相矛盾副本；无需实际多线程或UE Property Access。不能宣称静态代码证明引擎线程性能。",
+      "evidence_required": [
+        "输入快照和可变状态边界",
+        "外部读取点/共享数据路径"
+      ],
+      "source_ids": [
+        "epic_lyra_animation",
+        "epic_node_functions",
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "official_mechanism",
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "ARC05",
+      "category": "architecture_and_lifecycle",
+      "weight": 2,
+      "title": "资源与图配置进入实际决策",
+      "check": "实现确实读取所交付的资源制作结果、组配置、状态规则和曲线；能追踪从配置键到选择/计算/输出的路径。硬编码另一份隐藏答案、未使用配置或仅列节点名不能通过。",
+      "evidence_required": [
+        "配置加载/引用路径",
+        "至少一条完整配置到输出调用链"
+      ],
+      "source_ids": [
+        "benchmark_design"
+      ],
+      "basis": [
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "ROB01",
+      "category": "robustness_and_reproducibility",
+      "weight": 3,
+      "title": "输入异常与稳定退化",
+      "check": "对dt<=0、近零速度、缺资源/曲线、无效数值、极大位移/角度有明确有限结果、失败或退化策略；不能靠无限重试或传播NaN。此项评整体入口保障，不重复因某一曲线缺陷再次扣已归属DST04的分。",
+      "evidence_required": [
+        "输入校验与错误/退化路径",
+        "正常与异常状态隔离"
+      ],
+      "source_ids": [
+        "benchmark_design"
+      ],
+      "basis": [
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "ROB02",
+      "category": "robustness_and_reproducibility",
+      "weight": 3,
+      "title": "独立复现与提交完整性",
+      "check": "按INTERFACE.md保留build_assets CLI、LocomotionController/reset/step和约定输出；提供实质Python、图配置、制作数据及简要复现说明，reset清理状态，相同输入/配置/seed确定。metadata_only延期合法；不要求本次执行候选代码或UE。",
+      "evidence_required": [
+        "文件清单与入口说明",
+        "版本/依赖/确定性约定"
+      ],
+      "source_ids": [
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    },
+    {
+      "id": "ROB03",
+      "category": "robustness_and_reproducibility",
+      "weight": 2,
+      "title": "证据与限制诚实可审查",
+      "check": "说明关键决策、假设与限制，关键实现能定位追踪；区分资源制作完成/缺样本延期和计划/最终姿态。不强制提供运行截图或已执行trace，自查案例可以是有代码依据的静态推导，不能伪称UE验证。",
+      "evidence_required": [
+        "证据索引和自查案例",
+        "已实现/简化/未验证范围"
+      ],
+      "source_ids": [
+        "benchmark_design",
+        "fixture_contract"
+      ],
+      "basis": [
+        "task_design"
+      ],
+      "local_fact_status": "not_verified",
+      "applicability_inputs": "所有候选均适用；只根据INTERFACE.md提供的平地Unarmed输入审查。",
+      "unavailable_input_handling": "不要求题包未给的姿态/骨骼/输入；涉及metadata_only资源时，检查通用实现、recipe和deferred_missing_samples，不能因无采样本身扣分。"
+    }
+  ],
+  "input_contract": {
+    "paths": [
+      "src/build_assets.py",
+      "assets/authored_assets.json",
+      "config/animation_graph.json",
+      "src/controller.py",
+      "IMPLEMENTATION.md"
+    ],
+    "build_cli": "python src/build_assets.py --manifest raw/manifest.json --output assets/authored_assets.json",
+    "controller": "LocomotionController(graph, assets).reset(seed=0); step(frame)",
+    "frame_fields": [
+      "dt_seconds",
+      "velocity_world_cm_s",
+      "acceleration_world_cm_s2",
+      "actor_yaw_degrees",
+      "aim_yaw_degrees"
+    ],
+    "scenario": "unarmed_flat_ground_grounded",
+    "output": "抽象动画执行计划，不是最终姿态",
+    "missing_samples_policy": "metadata_only片段允许通用recipe+deferred_missing_samples；不因题包缺样本扣分，不要求精确marker时间、虚构duration或完整Manny骨骼。",
+    "static_only": "评分不需要执行候选代码或UE；通过可定位静态证据评审。"
+  }
+}

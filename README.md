@@ -1,5 +1,7 @@
 # ModelTest
 
+独立于 UE 的走跑动画、动画图和控制逻辑评测工程已收录在 **[Standalone/LyraLocomotionBench](Standalone/LyraLocomotionBench/README.md)**。包含候选题包、姿态数据、40 项审查清单、评分工具和三路已完成的作答结果；使用该子目录无需安装或启动 Unreal Engine。
+
 Lyra Starter Game 官方 C++ 工程：使用 Unreal Engine **5.8.3** 发布版源码，并包含通过 Fab / Epic Games Launcher 获取的 **5.8 系列完整 Content 资源**。
 
 ## 当前内容

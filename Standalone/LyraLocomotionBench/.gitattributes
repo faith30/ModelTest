@@ -1,0 +1,3 @@
+# Preserve frozen input, review, and candidate hashes on every platform.
+* -text
+*.zip binary

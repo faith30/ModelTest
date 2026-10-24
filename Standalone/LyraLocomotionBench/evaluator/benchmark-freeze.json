@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "prepared_not_run",
+  "checks": "passed",
+  "rubric_items": 40,
+  "max_points": 100,
+  "candidate_catalog": 37,
+  "sampled_clips": 15,
+  "metadata_only_clips": 22,
+  "candidate_files": 23,
+  "candidate_zip_sha256": "b8c3c2523e5f2efee6e6f9799d2926fa5bca94822211523e56253dc96945a87e",
+  "rubric_sha256": "5d40aaf760fa9c3b965cf9f8ea4e05badcf4ea632c1700187466404a019b5486",
+  "source_audit_sha256": "79fd675685b0b7f6ae9aa5acb92c32d02d4637a82538e65d87af16781ca9d841",
+  "source_asset_hashes_unchanged": true,
+  "candidate_package_allowlist_readback": "passed",
+  "review_smoke": {
+    "status": "incomplete_review",
+    "final_score": null
+  },
+  "model_runs": [],
+  "model_scores": [],
+  "ue_execution": "not_run_by_design",
+  "boundary": "Readback validates package/integrity/empty-review behavior, not candidate animation semantics. Unit-test results are recorded separately."
+}

@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+dist/
+runs/
+reports/
+
+# Publish the frozen input package and complete reviewed candidate snapshots.
+!dist/
+dist/*
+!dist/LyraLocomotionBench-candidate.zip
+!dist/LyraLocomotionBench-candidate.manifest.json
+!results/
+!results/**
+

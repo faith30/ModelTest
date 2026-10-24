@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "status": "implemented_plan_graph_with_deferred_dependencies",
+  "implementation": "src/controller.py; fixed ordered planner, not a general AnimGraph interpreter",
+  "parameters": {
+    "move_enter_cm_s": 18.0,
+    "move_exit_cm_s": 8.0,
+    "intent_acceleration_cm_s2": 120.0,
+    "prediction_seconds": 0.18,
+    "walk_to_jog_low_cm_s": 350.0,
+    "walk_to_jog_high_cm_s": 500.0,
+    "jog_enter_cm_s": 440.0,
+    "jog_exit_cm_s": 380.0,
+    "blend_seconds": 0.16,
+    "direction_smoothing_seconds": 0.1,
+    "direction_hysteresis_degrees": 12.0,
+    "gait_smoothing_seconds": 0.12,
+    "play_rate_min": 0.55,
+    "play_rate_max": 1.65,
+    "stride_scale_min": 0.75,
+    "stride_scale_max": 1.25,
+    "pivot_min_speed_cm_s": 60.0,
+    "pivot_acceleration_cm_s2": 180.0,
+    "pivot_angle_degrees": 110.0,
+    "pivot_cooldown_seconds": 0.55,
+    "pivot_min_hold_seconds": 0.12,
+    "braking_acceleration_cm_s2": 80.0,
+    "default_braking_cm_s2": 700.0,
+    "stop_prediction_seconds": 0.65,
+    "distance_match_min_rate": 0.25,
+    "distance_match_max_rate": 2.0,
+    "start_min_seconds": 0.14,
+    "start_timeout_seconds": 1.8,
+    "deferred_action_policy_seconds": {
+      "start": 0.45,
+      "stop": 0.5,
+      "pivot": 0.5,
+      "turn": 0.8
+    },
+    "turn_enter_degrees": 60.0,
+    "turn_exit_degrees": 25.0,
+    "turn_180_threshold_degrees": 135.0,
+    "turn_cooldown_seconds": 0.25,
+    "turn_max_offset_degrees": 180.0,
+    "turn_abort_opposite_degrees": 45.0,
+    "moving_facing_halflife_seconds": 0.12,
+    "orientation_warp_limit_degrees": 45.0,
+    "lean_max_degrees": 10.0,
+    "lean_acceleration_scale": 0.008,
+    "lean_smoothing_seconds": 0.15,
+    "foot_ik_enabled": true,
+    "input_bounds": {
+      "dt_max_seconds": 3600.0,
+      "vector_component_abs_max": 1000000000.0,
+      "policy": "reject ValueError before mutation"
+    }
+  },
+  "nodes": [
+    {
+      "id": "inputs",
+      "type": "validated_grounded_inputs"
+    },
+    {
+      "id": "state",
+      "type": "interruptible_locomotion_state_machine",
+      "states": [
+        "idle",
+        "start",
+        "cycle",
+        "stop",
+        "pivot",
+        "turn"
+      ],
+      "bindings": {
+        "walk.fwd.cycle": "auth_motion_01",
+        "walk.fwd.start": "auth_motion_02",
+        "walk.fwd.stop": "auth_motion_03",
+        "walk.fwd.pivot": "auth_motion_04",
+        "walk.bwd.cycle": "auth_motion_05",
+        "walk.bwd.start": "auth_motion_06",
+        "walk.bwd.stop": "auth_motion_07",
+        "walk.bwd.pivot": "auth_motion_08",
+        "walk.left.cycle": "auth_motion_09",
+        "walk.left.start": "auth_motion_10",
+        "walk.left.stop": "auth_motion_11",
+        "walk.left.pivot": "auth_motion_12",
+        "walk.right.cycle": "auth_motion_13",
+        "walk.right.start": "auth_motion_14",
+        "walk.right.stop": "auth_motion_15",
+        "walk.right.pivot": "auth_motion_16",
+        "jog.fwd.cycle": "auth_motion_17",
+        "jog.fwd.start": "auth_motion_18",
+        "jog.fwd.stop": "auth_motion_19",
+        "jog.fwd.pivot": "auth_motion_20",
+        "jog.bwd.cycle": "auth_motion_21",
+        "jog.bwd.start": "auth_motion_22",
+        "jog.bwd.stop": "auth_motion_23",
+        "jog.bwd.pivot": "auth_motion_24",
+        "jog.left.cycle": "auth_motion_25",
+        "jog.left.start": "auth_motion_26",
+        "jog.left.stop": "auth_motion_27",
+        "jog.left.pivot": "auth_motion_28",
+        "jog.right.cycle": "auth_motion_29",
+        "jog.right.start": "auth_motion_30",
+        "jog.right.stop": "auth_motion_31",
+        "jog.right.pivot": "auth_motion_32",
+        "turn.90": "auth_motion_33",
+        "turn.180": "auth_motion_34",
+        "turn.-90": "auth_motion_35",
+        "turn.-180": "auth_motion_36",
+        "idle": "auth_motion_37"
+      },
+      "run_semantic": "jog",
+      "pivot_direction_semantics": "incoming velocity direction; outgoing reversal determined from acceleration or observed velocity change",
+      "transition_policy": {
+        "priority": [
+          "movement interrupts turn",
+          "observed reversal interrupts locomotion",
+          "predicted reversal only in start/cycle",
+          "stop/restart/completion"
+        ],
+        "braking_prediction": "Once Stop is selected, prediction alone cannot select Pivot; actual velocity reversal may interrupt Stop.",
+        "incoming_gait": "Stop/Pivot keep previous-frame incoming gait, not the zero-speed result.",
+        "turn_cancel": "Changed aim within exit threshold cancels obsolete turn; opposite target may cancel too.",
+        "deferred_actions": "Policy timers are not measured animation duration or progress."
+      }
+    },
+    {
+      "id": "cycles",
+      "type": "circular_direction_and_gait_blend",
+      "angles_degrees": {
+        "fwd": 0.0,
+        "right": 90.0,
+        "bwd": 180.0,
+        "left": 270.0
+      },
+      "sync_group": "locomotion",
+      "phase_mapping": {
+        "L": 0.0,
+        "R": 0.5,
+        "next_L": 1.0,
+        "window": "asset.data.loop_range_seconds",
+        "mapping": "piecewise linear through measured contact onsets; all fading cycles remain followers"
+      }
+    },
+    {
+      "id": "actions",
+      "type": "one_shot_with_distance_time_selection",
+      "sync_group": null,
+      "distance_matching": {
+        "start": "inverse accumulated traveled XY distance; rate bounded",
+        "stop": "inverse total root arc length minus v^2/(2*deceleration); rate bounded",
+        "pivot": "bounded source-time playback; measured reversal hint retained as evidence, not assumed contact"
+      }
+    },
+    {
+      "id": "blend",
+      "type": "interruptible_weight_crossfade"
+    },
+    {
+      "id": "facing",
+      "type": "visual_root_yaw_offset",
+      "authority": "actor yaw is external; no movement commands"
+    },
+    {
+      "id": "orientation",
+      "type": "limited_orientation_warp",
+      "mode": "single dominant action only; cycles use directional blend"
+    },
+    {
+      "id": "stride",
+      "type": "stride_warp_intent",
+      "pelvis": "pelvis",
+      "feet": [
+        "foot_l",
+        "foot_r"
+      ]
+    },
+    {
+      "id": "lean",
+      "type": "acceleration_additive_intent",
+      "bones": [
+        "spine_01",
+        "spine_02",
+        "spine_03"
+      ]
+    },
+    {
+      "id": "feet",
+      "type": "contact_weighted_foot_ik_intent",
+      "feet": [
+        "foot_l",
+        "foot_r"
+      ],
+      "ground": "flat; no collision query or world position"
+    }
+  ],
+  "connections": [
+    {
+      "from": "inputs",
+      "to": "state"
+    },
+    {
+      "from": "state",
+      "to": "cycles"
+    },
+    {
+      "from": "state",
+      "to": "actions"
+    },
+    {
+      "from": "cycles",
+      "to": "blend"
+    },
+    {
+      "from": "actions",
+      "to": "blend"
+    },
+    {
+      "from": "blend",
+      "to": "facing"
+    },
+    {
+      "from": "facing",
+      "to": "orientation"
+    },
+    {
+      "from": "orientation",
+      "to": "stride"
+    },
+    {
+      "from": "stride",
+      "to": "lean"
+    },
+    {
+      "from": "lean",
+      "to": "feet"
+    }
+  ],
+  "sync_groups": [
+    {
+      "group_id": "locomotion",
+      "mode": "shared_left_right_contact_phase",
+      "fallback": "normalized_cycle_phase_when_markers_unavailable",
+      "leader": "highest_weight_then_asset_id",
+      "phase_reset": "reset only; action handoff may align nearest foot features"
+    }
+  ],
+  "output": "feet",
+  "missing_samples_policy": "Keep requested asset and unavailable status; no substitute pose claimed. Policy timers are not asset durations.",
+  "player_clock": "sample_time_seconds is authoritative current sample; play_rate describes advancement since last sample or cycle derivative. Consumer must not advance time again."
+}

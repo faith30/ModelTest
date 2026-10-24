@@ -1,0 +1,11 @@
+已完成并落盘全部 5 个必需交付文件：
+
+- `src/build_assets.py`：实际读取和加工原始抽样。
+- `assets/authored_assets.json`：37 条可追溯资源，其中 **15 条已加工**，**22 条标为 `deferred_missing_samples`**。
+- `config/animation_graph.json`：控制器实际使用的资源绑定、状态配置、阈值与同步规则。
+- `src/controller.py`：四方向走跑、起步、停步、pivot、原地转身及中断切换的逐帧播放计划。
+- `IMPLEMENTATION.md`：使用方法、坐标转换、时钟与操作语义、假设及限制。
+
+另有 `src/asset_analysis.py`、`.work/` 自查脚本和 `SELF_CHECK.json`。本地通过 **11 组检查、41 个场景、14,073 帧计划验证**，并验证了跨进程确定性和资源表逐字节一致重建。
+
+**限制明确保留：**Idle 等缺样资源不可物化；接触估计与循环窗口是基于抽样的启发式加工。姿态操作仅为执行意图，未实现下游 IK/渲染执行器，也未在 UE 中运行或验证最终动画质量。

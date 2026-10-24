@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "files": {
+    "INTERFACE.md": "fd1b3f2caabd23bd871a678a5c3e94810559e4dfa2289c4ce9a9f878d318602c",
+    "LICENSE-Lyra.md": "73f98e42dbdb609f741e58725a0627dd8a0ce1122dc8aa784cc474cb41d4ddea",
+    "TASK_ZH.md": "b4ecc0940f90a43fad1970ba4ba69cb03fd484bf8992d8c18de146928aa2d3df",
+    "assets/authored_assets.json": "726681da26643208308b87b8f9dba85941622f655412aef6309cf4bee088b787",
+    "config/animation_graph.json": "076941f3c15dd75d56473951c0c1f007bb69263653e4ec1553f1ce561d143215",
+    "raw/manifest.json": "7a6e820b941cd6aed86916f2c5318ff934b31b4a7a38ff673653fe04d3e9fa2a",
+    "raw/poses/motion_01.json": "0810bc8075ad50952f0a94f04b9abff4c34f94b562965d16cb8e008bc506e91c",
+    "raw/poses/motion_02.json": "1b014ebc227fcbf070766db70205a14287a9ed3d9aeac9df483d1d80383ad49d",
+    "raw/poses/motion_03.json": "821580ab6427cd8144f1a3198aaa7c6f5c8f7293f1d3bbefcde6e0309eb29eed",
+    "raw/poses/motion_05.json": "8ff593cf04ff9921bfbc2a35b40779e3e2dc7457f524aedc69f32eb4dc979e6b",
+    "raw/poses/motion_09.json": "71b9e78e0f00f3ebf716b7b439a5a9320ebab7d78530a088674c0edb15041f1d",
+    "raw/poses/motion_13.json": "83f3d5fb1498d04715b0475c714427771b72ccb37acaf4c596047b36aae68e6a",
+    "raw/poses/motion_17.json": "6a9135f44dc3f18d6df5dbed3f9029dbc4012b9b266ab9a482fd9e96a1c253ce",
+    "raw/poses/motion_18.json": "ae26680626aab3efcf0c9d6bb1f245aae5194760c62dd9ed71871cc03c1bc92d",
+    "raw/poses/motion_19.json": "9d5e15de0c93425e1bf6011627e53668d32d5ac784908d2806215d7cbcae8612",
+    "raw/poses/motion_20.json": "685da29bc7e29e9235f5a67a05f6853fb67710c1c9399d6592ef4d9a6b167860",
+    "raw/poses/motion_21.json": "b871b4614e4d9d3a49d67aba7489b177f80495e309ca549c74b32f3eceddcf8a",
+    "raw/poses/motion_25.json": "afbe1b1e2c2432c5d29555514a067403cddb28a210782a15ca2e365b9f9c54e3",
+    "raw/poses/motion_29.json": "8486c5b0f78d61468717966a97ed1a303bc687ea1afe0ab7b20bfc900506dd60",
+    "raw/poses/motion_33.json": "2e882a8f8663bd72562eeb623d4aabc98ce24f272a9f6d4311b2af63d5e21c2a",
+    "raw/poses/motion_36.json": "7249dec0e0e32eb8d5e19cf8e9b92156b1f4d1c6f49a06de6ac23b13d8e7ae41",
+    "src/build_assets.py": "40283bd5651a3d299227bc2c29029f85d06ff52bc0a30b82dc3e0a335953f7a0",
+    "src/controller.py": "f810a363701d6edec7bcf5364f4345c740d0a040b3e5f46face4ff4f52aa6440"
+  },
+  "excluded": [
+    "evaluator",
+    "reference configurations",
+    "authored markers/curves/notifies",
+    "past model outputs",
+    ".git",
+    "UE assets"
+  ],
+  "hard_os_sandbox": false,
+  "boundary": "This is content separation only. A model with unrestricted host filesystem access could still read the evaluator."
+}

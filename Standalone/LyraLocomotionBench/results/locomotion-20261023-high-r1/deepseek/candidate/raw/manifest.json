@@ -1,0 +1,544 @@
+{
+  "schema_version": 1,
+  "task_kind": "static_animation_development_artifacts",
+  "coordinate_system": {
+    "units": "cm",
+    "up": "Z",
+    "source_forward": "+Y",
+    "source_left": "+X",
+    "runtime_actor_forward": "+X",
+    "runtime_actor_left": "-Y",
+    "note": "Source mesh axes differ from the abstract actor axes. Declare the basis conversion; do not apply root displacement twice."
+  },
+  "pose_format": {
+    "space": "component",
+    "rotation": "xyzw",
+    "bone_subset": true,
+    "source_sampling": "Existing RAW animation export retargeted to Manny; root motion included in pose; no AnimBP, IK or gameplay evaluation."
+  },
+  "missing_samples_policy": "metadata_only clips require generic reusable processing recipes and deferred_missing_samples status, not fabricated curves or timestamps. Input absence is not a candidate defect.",
+  "clips": [
+    {
+      "clip_id": "motion_01",
+      "source_name": "MM_Unarmed_Walk_Fwd",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "cycle"
+      },
+      "duration_seconds": 2.200000047683716,
+      "pose_file": "poses/motion_01.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_02",
+      "source_name": "MM_Unarmed_Walk_Fwd_Start",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "start"
+      },
+      "duration_seconds": 1.600000023841858,
+      "pose_file": "poses/motion_02.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_03",
+      "source_name": "MM_Unarmed_Walk_Fwd_Stop",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "stop"
+      },
+      "duration_seconds": 1.9333332777023315,
+      "pose_file": "poses/motion_03.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_04",
+      "source_name": "MM_Unarmed_Walk_Fwd_Pivot",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "pivot"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_05",
+      "source_name": "MM_Unarmed_Walk_Bwd",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "cycle"
+      },
+      "duration_seconds": 2.200000047683716,
+      "pose_file": "poses/motion_05.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_06",
+      "source_name": "MM_Unarmed_Walk_Bwd_Start",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "start"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_07",
+      "source_name": "MM_Unarmed_Walk_Bwd_Stop",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "stop"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_08",
+      "source_name": "MM_Unarmed_Walk_Bwd_Pivot",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "pivot"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_09",
+      "source_name": "MM_Unarmed_Walk_Left",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "cycle"
+      },
+      "duration_seconds": 1.4333332777023315,
+      "pose_file": "poses/motion_09.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_10",
+      "source_name": "MM_Unarmed_Walk_Left_Start",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "start"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_11",
+      "source_name": "MM_Unarmed_Walk_Left_Stop",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "stop"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_12",
+      "source_name": "MM_Unarmed_Walk_Left_Pivot",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "pivot"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_13",
+      "source_name": "MM_Unarmed_Walk_Right",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "cycle"
+      },
+      "duration_seconds": 2.2666666507720947,
+      "pose_file": "poses/motion_13.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_14",
+      "source_name": "MM_Unarmed_Walk_Right_Start",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "start"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_15",
+      "source_name": "MM_Unarmed_Walk_Right_Stop",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "stop"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_16",
+      "source_name": "MM_Unarmed_Walk_Right_Pivot",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "pivot"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_17",
+      "source_name": "MM_Unarmed_Jog_Fwd",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "cycle"
+      },
+      "duration_seconds": 1.7000000476837158,
+      "pose_file": "poses/motion_17.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_18",
+      "source_name": "MM_Unarmed_Jog_Fwd_Start",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "start"
+      },
+      "duration_seconds": 1.5,
+      "pose_file": "poses/motion_18.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_19",
+      "source_name": "MM_Unarmed_Jog_Fwd_Stop",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "stop"
+      },
+      "duration_seconds": 1.399999976158142,
+      "pose_file": "poses/motion_19.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_20",
+      "source_name": "MM_Unarmed_Jog_Fwd_Pivot",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "pivot"
+      },
+      "duration_seconds": 1.600000023841858,
+      "pose_file": "poses/motion_20.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_21",
+      "source_name": "MM_Unarmed_Jog_Bwd",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "cycle"
+      },
+      "duration_seconds": 1.5666667222976685,
+      "pose_file": "poses/motion_21.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_22",
+      "source_name": "MM_Unarmed_Jog_Bwd_Start",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "start"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_23",
+      "source_name": "MM_Unarmed_Jog_Bwd_Stop",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "stop"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_24",
+      "source_name": "MM_Unarmed_Jog_Bwd_Pivot",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "pivot"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_25",
+      "source_name": "MM_Unarmed_Jog_Left",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "cycle"
+      },
+      "duration_seconds": 1.5666667222976685,
+      "pose_file": "poses/motion_25.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_26",
+      "source_name": "MM_Unarmed_Jog_Left_Start",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "start"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_27",
+      "source_name": "MM_Unarmed_Jog_Left_Stop",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "stop"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_28",
+      "source_name": "MM_Unarmed_Jog_Left_Pivot",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "pivot"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_29",
+      "source_name": "MM_Unarmed_Jog_Right",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "cycle"
+      },
+      "duration_seconds": 1.5666667222976685,
+      "pose_file": "poses/motion_29.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_30",
+      "source_name": "MM_Unarmed_Jog_Right_Start",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "start"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_31",
+      "source_name": "MM_Unarmed_Jog_Right_Stop",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "stop"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_32",
+      "source_name": "MM_Unarmed_Jog_Pivot_Right",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "pivot"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_33",
+      "source_name": "MM_Unarmed_TurnLeft_90",
+      "semantic": {
+        "gait": null,
+        "direction": "left",
+        "action": "turn",
+        "anatomical_turn_degrees": 90
+      },
+      "duration_seconds": 1.8333333730697632,
+      "pose_file": "poses/motion_33.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_34",
+      "source_name": "MM_Unarmed_TurnLeft_180",
+      "semantic": {
+        "gait": null,
+        "direction": "left",
+        "action": "turn",
+        "anatomical_turn_degrees": 180
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_35",
+      "source_name": "MM_Unarmed_TurnRight_90",
+      "semantic": {
+        "gait": null,
+        "direction": "right",
+        "action": "turn",
+        "anatomical_turn_degrees": -90
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    },
+    {
+      "clip_id": "motion_36",
+      "source_name": "MM_Unarmed_TurnRight_180",
+      "semantic": {
+        "gait": null,
+        "direction": "right",
+        "action": "turn",
+        "anatomical_turn_degrees": -180
+      },
+      "duration_seconds": 2.4666666984558105,
+      "pose_file": "poses/motion_36.json",
+      "sample_rate_hz": 60,
+      "pose_bone_count": 26,
+      "availability": "pose_samples"
+    },
+    {
+      "clip_id": "motion_37",
+      "source_name": "MM_Unarmed_Idle_Ready",
+      "semantic": {
+        "gait": null,
+        "direction": null,
+        "action": "idle"
+      },
+      "duration_seconds": null,
+      "pose_file": null,
+      "sample_rate_hz": null,
+      "pose_bone_count": null,
+      "availability": "metadata_only"
+    }
+  ]
+}

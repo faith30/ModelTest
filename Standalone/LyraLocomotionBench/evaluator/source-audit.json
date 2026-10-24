@@ -1,0 +1,354 @@
+{
+  "schema_version": 1,
+  "status": "source_inventory_verified",
+  "source_asset_writes": false,
+  "ue_started": false,
+  "model_calls": false,
+  "scoring_kind": "static_evidence_review",
+  "clips": [
+    {
+      "clip_id": "motion_01",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Fwd.uasset",
+      "source_sha256": "5f25be607e0b825cbbd9d903203083e0d30ffe764ef8bfe43057e8c197b34e79",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_01.json",
+      "source_pose_sha256": "eb228c8556552c6ec5644f3c5a8acf8d9a5d035ed62e094a0dd6f1f577a92ca8",
+      "candidate_pose_sha256": "0810bc8075ad50952f0a94f04b9abff4c34f94b562965d16cb8e008bc506e91c"
+    },
+    {
+      "clip_id": "motion_02",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Fwd_Start.uasset",
+      "source_sha256": "04cbb0c00aa8541de8505b742f8c629f19ee85e560e54c9ea83e8510d3d13bbb",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_09.json",
+      "source_pose_sha256": "d572c2982caada911f895c9b5f284c30f83c326b41ff243dc71d15b15883220e",
+      "candidate_pose_sha256": "1b014ebc227fcbf070766db70205a14287a9ed3d9aeac9df483d1d80383ad49d"
+    },
+    {
+      "clip_id": "motion_03",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Fwd_Stop.uasset",
+      "source_sha256": "dc263a34da54a10872f70ce6b27f38547d608d97e22cb1f148778af57bfc1755",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_10.json",
+      "source_pose_sha256": "c5d2498ed1bcf966c0a9165ff7f77f931051eb33f33df2c19b5f141e4227bc1b",
+      "candidate_pose_sha256": "821580ab6427cd8144f1a3198aaa7c6f5c8f7293f1d3bbefcde6e0309eb29eed"
+    },
+    {
+      "clip_id": "motion_04",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Fwd_Pivot.uasset",
+      "source_sha256": "c326b8052a8832e146612dcf69be00b56043a1c3734b8176dbd7950ef0ba8547",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_05",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Bwd.uasset",
+      "source_sha256": "acbd0fd8da4285eba9e4414a479f92fa6ccac32ed3c9e033c37097b72b296ce2",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_03.json",
+      "source_pose_sha256": "b9b60a902159ce6b88309c8000de494d3eb112829a5c0d60b71ea94bbbd998f7",
+      "candidate_pose_sha256": "8ff593cf04ff9921bfbc2a35b40779e3e2dc7457f524aedc69f32eb4dc979e6b"
+    },
+    {
+      "clip_id": "motion_06",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Bwd_Start.uasset",
+      "source_sha256": "db8b83013b01a4a654e0c4e645ff0511e86700b0f391e0fa4b1ae8743920f39b",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_07",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Bwd_Stop.uasset",
+      "source_sha256": "54dbfa9010921b2eecff772edda4c0ac6c51866c12afbefd985ba5d413c97ea0",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_08",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Bwd_Pivot.uasset",
+      "source_sha256": "a015a2e16e6946668e2c6bfce3a9f463747991419e1cc565f22f2c2756f97fa2",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_09",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Left.uasset",
+      "source_sha256": "c5dd1eaafcd9e0e38be985037d1dbe76c529c3deb7750ab4aecabd2b18217bca",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_04.json",
+      "source_pose_sha256": "4a1f074dbdddb9fac21b44a306213c45d2b85d702c6414a0af257473bba65f0c",
+      "candidate_pose_sha256": "71b9e78e0f00f3ebf716b7b439a5a9320ebab7d78530a088674c0edb15041f1d"
+    },
+    {
+      "clip_id": "motion_10",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Left_Start.uasset",
+      "source_sha256": "158f8e797a07b5f8eb23080c5d0fd77350712aa922068281a21937069af2c127",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_11",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Left_Stop.uasset",
+      "source_sha256": "9b06d19e6a5cf8257e3e9226888ae91f128d6f3882c45a15e5258549291c3a42",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_12",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Left_Pivot.uasset",
+      "source_sha256": "99d621ae324247bea2bc9dfed08c105b358b6d8b9e0c3c81fc329ff355c3935f",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_13",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Right.uasset",
+      "source_sha256": "7fd1d19a5df7bd4bf2fcf3f991a13c647afbe65e21844b1505104283d3aece6c",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_05.json",
+      "source_pose_sha256": "c67eb8c848e4ceebab2bb23fd5c42cfaef34c1769088a389614bfa6601bf46d1",
+      "candidate_pose_sha256": "83f3d5fb1498d04715b0475c714427771b72ccb37acaf4c596047b36aae68e6a"
+    },
+    {
+      "clip_id": "motion_14",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Right_Start.uasset",
+      "source_sha256": "b2b961dd7ec4ea77876cf251db423bf26d42bab1cdd549220d114002bf9cf6b9",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_15",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Right_Stop.uasset",
+      "source_sha256": "45a8b2cd9fb2530ca4c10f0dc56d74991abe9a985fec26a38fb958b7b7a2ec98",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_16",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Walk_Right_Pivot.uasset",
+      "source_sha256": "026bc2355a77b943c8f09ac580fa6614f3ecc398584cd6f9fdd65f75d90d16d6",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_17",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Fwd.uasset",
+      "source_sha256": "311e3ada2f94a75805638f2a2ec1d86bb5dbe22c99bcf43aeef1dab2a3b0a9e7",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_02.json",
+      "source_pose_sha256": "5296e4c0d4cd48f485f0756b694a21829df6e420bba262d21c74c3a5344bad62",
+      "candidate_pose_sha256": "6a9135f44dc3f18d6df5dbed3f9029dbc4012b9b266ab9a482fd9e96a1c253ce"
+    },
+    {
+      "clip_id": "motion_18",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Fwd_Start.uasset",
+      "source_sha256": "8762533fe0d6167d5db93a7aad916be10c9d8860bfd44c274776680dfd41d88b",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_11.json",
+      "source_pose_sha256": "9e52b892e87e3483d44af32885f10e325571c70e26c38ea5615034ddbe683c2b",
+      "candidate_pose_sha256": "ae26680626aab3efcf0c9d6bb1f245aae5194760c62dd9ed71871cc03c1bc92d"
+    },
+    {
+      "clip_id": "motion_19",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Fwd_Stop.uasset",
+      "source_sha256": "9b9ae28d747313f4b06609629cde949087fed542a19e278d1b907c913f35b6cd",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_12.json",
+      "source_pose_sha256": "5bdd1d05bf3e6454053597eb8b2a454f79505a2299c337f3a78a4823d829916a",
+      "candidate_pose_sha256": "9d5e15de0c93425e1bf6011627e53668d32d5ac784908d2806215d7cbcae8612"
+    },
+    {
+      "clip_id": "motion_20",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Fwd_Pivot.uasset",
+      "source_sha256": "f1b865b7aadca78049f82206e7e37375598e251106cad004598bbd25b8ef63c5",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_15.json",
+      "source_pose_sha256": "026939a018041e2c2e98b638d3610ec6c8d33ec85098fe741c140afc1b2cf9b5",
+      "candidate_pose_sha256": "685da29bc7e29e9235f5a67a05f6853fb67710c1c9399d6592ef4d9a6b167860"
+    },
+    {
+      "clip_id": "motion_21",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Bwd.uasset",
+      "source_sha256": "4184cca43edb15afcbfae9f24d6c216c3bbc7dc6d0e80600a33d27a764ce9f76",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_06.json",
+      "source_pose_sha256": "89790566b4139cda94403ff053bda57e7f560100d47b06cb44d8f042a49179aa",
+      "candidate_pose_sha256": "b871b4614e4d9d3a49d67aba7489b177f80495e309ca549c74b32f3eceddcf8a"
+    },
+    {
+      "clip_id": "motion_22",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Bwd_Start.uasset",
+      "source_sha256": "c8491ce0c70078d3730496f723ad76dccb9439cce9b414e7dcd53ee9fced50d7",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_23",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Bwd_Stop.uasset",
+      "source_sha256": "bae3c518c3390c64db713517042f3abdabbc5ab3bd34acc73860dfe18eea3376",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_24",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Bwd_Pivot.uasset",
+      "source_sha256": "47f92a7155f5b718d6691e5d5df4233ddc4345e5ca5eb1130781c264107f2e8e",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_25",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Left.uasset",
+      "source_sha256": "8693b6a99bc599a3d5082eae37e442f5321a6f18202ee88b2c1fa525ac56df39",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_07.json",
+      "source_pose_sha256": "70779eea43e25fcaf8a80bda58853460b427d2759844295068f1c640c27e0f6b",
+      "candidate_pose_sha256": "afbe1b1e2c2432c5d29555514a067403cddb28a210782a15ca2e365b9f9c54e3"
+    },
+    {
+      "clip_id": "motion_26",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Left_Start.uasset",
+      "source_sha256": "ff24bee57f49595e8acaf0f947722dabe4aa5ee1f555d4ed8a6aaf948a086edd",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_27",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Left_Stop.uasset",
+      "source_sha256": "6bd32fb64f858101fa546e18e544fae506a66c0f62474491ec1ccb82059e4483",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_28",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Left_Pivot.uasset",
+      "source_sha256": "0d92f1f034436bc4c9ef48f4e4621ed1d9af292d18ee4d5d3ff39a615495aaaa",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_29",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Right.uasset",
+      "source_sha256": "a654414dbe92ec3d65df76bcb5ef0beedd9d980ed3b6dff51f73bb59058789ba",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_08.json",
+      "source_pose_sha256": "3ce824f2916621c54a49c794a5c79eb404693e0c0e66816fe839137ad8d1c9b4",
+      "candidate_pose_sha256": "8486c5b0f78d61468717966a97ed1a303bc687ea1afe0ab7b20bfc900506dd60"
+    },
+    {
+      "clip_id": "motion_30",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Right_Start.uasset",
+      "source_sha256": "bd1da49da627b8471b824264c00df3a637501e74fdd254a149b8c974e3ff9fca",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_31",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Right_Stop.uasset",
+      "source_sha256": "07c1b2a52977314bf6ce27d286c364355a55d7efbc9fb2d2273a8ea2e381624a",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_32",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Jog_Pivot_Right.uasset",
+      "source_sha256": "efad7b417f965e69d8e89c0d39ea8ceb77836c02dd3a959625403ca53eb7f98c",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_33",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_TurnLeft_90.uasset",
+      "source_sha256": "3671a6436ddd4753c8703f474f3f2753a97566824cce59d763c47cdd3642e5e6",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_16.json",
+      "source_pose_sha256": "a9cb7ceac9839e4741ec5f3ec4c068c8cc2af5fad7242f31933ddb82d7ffcf11",
+      "candidate_pose_sha256": "2e882a8f8663bd72562eeb623d4aabc98ce24f272a9f6d4311b2af63d5e21c2a"
+    },
+    {
+      "clip_id": "motion_34",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_TurnLeft_180.uasset",
+      "source_sha256": "f68bf8c4f8a090c490a53b2ef5e7ecd9a8bcbf117d9f608aba7ceb68cf9da095",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_35",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_TurnRight_90.uasset",
+      "source_sha256": "f97967f0085426ab0f9c5374dc7e116bee75ec1b2cfe6f5af16d638d5778ba64",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    },
+    {
+      "clip_id": "motion_36",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_TurnRight_180.uasset",
+      "source_sha256": "3b757132c8cb22f5831a1a91da281636aae2d8117ab22a7a1ce080848f3374b6",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks",
+      "source_pose": "D:\\AnimationMarkBench\\private\\paired_v2\\candidate\\poses\\clip_17.json",
+      "source_pose_sha256": "6db94b37504e2e029767305d7450c7094c7487a0fae5f1d228dbe2c12e47afae",
+      "candidate_pose_sha256": "7249dec0e0e32eb8d5e19cf8e9b92156b1f4d1c6f49a06de6ac23b13d8e7ae41"
+    },
+    {
+      "clip_id": "motion_37",
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\MM_Unarmed_Idle_Ready.uasset",
+      "source_sha256": "cf6e5580e6fd608aa4563ae599525f9698faf22efc00a81bd5149903d22b1046",
+      "candidate_action": "retain_raw_pose_or_metadata_only; omit_authored_tracks"
+    }
+  ],
+  "blueprint_evidence": [
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\ABP_Mannequin_Base.uasset",
+      "source_sha256": "564b1a724a3527c3f2d0fa8b240ece1f6b509555d3708a8c3d6a78821c210233",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\ABP_Mannequin_Base.json",
+      "export_sha256": "68607318e4991183da2bf03f5b799c4f09b09ab4f23858453c65430019ddf173"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\LinkedLayers\\ABP_ItemAnimLayersBase.uasset",
+      "source_sha256": "a1cb052b6c87e8951eaa5c861fb1c18e7c6b76f668795ba1485ef0db9debda20",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\ABP_ItemAnimLayersBase.json",
+      "export_sha256": "adfc9aa13fc40867cc46306b8d82abba7bb95b7772dd866b8e2a01c032efdea1"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\Locomotion\\Unarmed\\ABP_UnarmedAnimLayers.uasset",
+      "source_sha256": "c82fcb3b4f96705f4f9f8449c02e89d6f00ac68b1013fb5618ce1880e3c6f9f7",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\ABP_UnarmedAnimLayers.json",
+      "export_sha256": "48897734c8a9764525049e361ffc325bd156d57bb195c1b79dc67f68ac24f920"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\AnimNotifies\\TransitionToLocomotion.uasset",
+      "source_sha256": "665affb5e2da2b0f1e1697e7063357c1e26f19c6ee39a1fcfa07ee48ab69d79c",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\TransitionToLocomotion.json",
+      "export_sha256": "026d5cc293a22777c9edbdcac39eb4fc1eb436f949baadced4001c6b53ce5caf"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Effects\\AnimationNotifies\\AN_FootPlant_Left.uasset",
+      "source_sha256": "2800fc716aa61cd0758fb51fc10f431924ffc50b1be53c1da24fb92636ae3244",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\AN_FootPlant_Left.json",
+      "export_sha256": "04c0d957736b7f8826b510c53a504622c2a92180ebfcf79278756644236f6ae5"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Effects\\AnimationNotifies\\AN_FootPlant_Right.uasset",
+      "source_sha256": "a40cc399b35d3f8187c3efee7fa36b81e6183373b53a1e2344083510ab7d7603",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\AN_FootPlant_Right.json",
+      "export_sha256": "c95117fce0fb3a078fa314b2a1f423c9610c8d4a4ab5f97a310234fe8cdf5546"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\AnimModifiers\\FootFXAnimModifier.uasset",
+      "source_sha256": "d2360c8e39431a6bfee904d63f7b1a9c56216bf71514c5b2f53b27ef30ab7581",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\FootFXAnimModifier.json",
+      "export_sha256": "8391a9fddbea9dc7ee722e60d35e46c0b658b734210c1abf448896adc499bac6"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\AnimModifiers\\FootstepEffectTagModifier.uasset",
+      "source_sha256": "08e5236211ef2bd3fe115870689199040488daadc11d189e062ddcf18f99cf7b",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\FootstepEffectTagModifier.json",
+      "export_sha256": "4c12e6426f42220f8334448bc01664bba9e469fe7793425b93a39863b4dc95a7"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\AnimModifiers\\FootFXAnimModifier_FootDefinition.uasset",
+      "source_sha256": "ae17b1939875575fc08c7ce04e8de784f37ba1887ec372f0711a4e78322ba9e6",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\FootFXAnimModifier_FootDefinition.json",
+      "export_sha256": "7357652f1d01d3ae7e08ba100b3d3662352dee7ab1ab3f474636816613f0f8dd"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Animations\\AnimModifiers\\TurnYawAnimModifier.uasset",
+      "source_sha256": "b2842ead0af3ced39f9be4b4383ed9f70edae34463b5c19c4c9f0f5f6cdc8e8c",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\TurnYawAnimModifier.json",
+      "export_sha256": "4858b7d8fe1df3d38858e5ee0c302b839f33143b4d45b9213f2962a05d1ce37e"
+    },
+    {
+      "source": "D:\\ModelTest\\Content\\Characters\\Heroes\\Mannequin\\Rig\\CR_Mannequin_FootPlant.uasset",
+      "source_sha256": "19365767ffc003b753d54020137cf38ddd0c78dfddb76ba59766b45f44f93c1e",
+      "readonly_export": "D:\\AnimationMarkBench\\private\\locomotion_context\\raw\\CR_Mannequin_FootPlant.json",
+      "export_sha256": "1107f678f743461deccd476ce989fac01d14d419e4cf220a4c57facfeceec094"
+    }
+  ],
+  "summary": {
+    "catalog_clips": 37,
+    "pose_sampled_clips": 15,
+    "metadata_only_clips": 22
+  },
+  "limits": [
+    "No engine execution, skeletal rendering, graph execution or runtime quality validated.",
+    "Current source hashes match the previous exports. Previous export correctness remains bounded by their recorded coverage."
+  ]
+}

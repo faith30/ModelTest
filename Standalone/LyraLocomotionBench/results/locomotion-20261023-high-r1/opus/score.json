@@ -1,0 +1,1696 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "candidate_sha256": "9a649cd8c60d007f03149069e3475c262082825c8c8317dab1bd59ad558c8b86",
+  "candidate_file_count": 48,
+  "semantic_judgment": "Provided by the reviewer; this tool validates evidence locations and arithmetic only.",
+  "max_score": 100.0,
+  "reviewed_subscore": 84.5,
+  "reviewed_max_score": 100.0,
+  "reviewed_deductions": 15.5,
+  "coverage": {
+    "reviewed_items": 40,
+    "total_items": 40,
+    "weight_fraction": 1.0,
+    "reviewed_gates": 3,
+    "total_gates": 3
+  },
+  "unreviewed_items": [],
+  "unreviewed_gates": [],
+  "raw_score": 84.5,
+  "effective_cap": 100.0,
+  "cap_deduction": 0.0,
+  "final_score": 84.5,
+  "categories": {
+    "asset_authoring": {
+      "reviewed_subscore": 18.0,
+      "reviewed_max_score": 20.0,
+      "max_score": 20.0
+    },
+    "locomotion_states": {
+      "reviewed_subscore": 16.5,
+      "reviewed_max_score": 18.0,
+      "max_score": 18.0
+    },
+    "synchronization": {
+      "reviewed_subscore": 10.5,
+      "reviewed_max_score": 16.0,
+      "max_score": 16.0
+    },
+    "distance_matching": {
+      "reviewed_subscore": 13.0,
+      "reviewed_max_score": 16.0,
+      "max_score": 16.0
+    },
+    "warping_and_yaw": {
+      "reviewed_subscore": 9.0,
+      "reviewed_max_score": 12.0,
+      "max_score": 12.0
+    },
+    "architecture_and_lifecycle": {
+      "reviewed_subscore": 10.0,
+      "reviewed_max_score": 10.0,
+      "max_score": 10.0
+    },
+    "robustness_and_reproducibility": {
+      "reviewed_subscore": 7.5,
+      "reviewed_max_score": 8.0,
+      "max_score": 8.0
+    }
+  },
+  "items": [
+    {
+      "id": "RES01",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "原始输入与派生姿态分开；产物记录 source_clip_id/source_pose_file/源 SHA-256，资源表记录 input ID、具体 recipe、builder_version 与产物 SHA。派生曲线及静态替代姿态均明确说明来源，没有冒充原始 Lyra 曲线或 Idle。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 245,
+          "line_end": 255,
+          "quote": "    artifact = {\n        \"schema_version\": 1,\n        \"asset_id\": asset_id,\n        \"source_clip_id\": clip[\"clip_id\"],\n        \"source_pose_file\": clip[\"pose_file\"],\n        \"source_sha256\": samples[\"sha256\"],\n        \"space\": \"actor component space, root-relative (root bone = identity); root motion stored separately in authored_assets.json\",\n        \"bones\": [{\"name\": b[\"name\"], \"parent\": b[\"parent\"]} for b in bones],\n        \"sample_rate_hz\": rate,\n        \"times\": [_r(t) for t in times],\n        \"frames\": in_place,"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 339,
+          "line_end": 347,
+          "quote": "    return {\n        \"asset_id\": asset_id,\n        \"kind\": f\"locomotion_{action}\" if action not in (\"turn\", \"idle\") else action,\n        \"semantic\": sem,\n        \"source_clip_ids\": [clip[\"clip_id\"]],\n        \"source_name\": clip[\"source_name\"],\n        \"status\": \"ready\",\n        \"recipe\": recipe_for(sem),\n        \"data\": data,"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 112,
+          "line_end": 113,
+          "quote": "    steps.append({\"op\": \"write_pose_artifact\", \"params\": {\"dir\": ARTIFACT_DIR_NAME, \"format\": \"json\", \"precision_decimals\": ROUND}})\n    return {\"builder\": \"src/build_assets.py\", \"builder_version\": BUILDER_VERSION, \"steps\": steps}"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 30,
+          "line_end": 33,
+          "quote": "- **派生数据**（全部可由采样复算，方法写在 recipe 中，不是原始打点/曲线）：循环的闭合误差、速度、步幅、脚着地区间及 `foot_l_plant/foot_r_plant` 同步标记（高度 + 水平速度阈值）；Start 的 `distance_traveled_cm`；Stop 的 `distance_to_stop_cm` 与静止时刻；Pivot 的 pivot 时刻（最小 root 速度）、`signed_distance_to_pivot_cm` 与进出方向（数据显示 Jog_Fwd_Pivot 进入 0°、离开 180°）；Turn 的 `root_yaw_deg`、`remaining_turn_yaw_deg`、转身结束时刻。\n- **ready_pose_static**：取 walk_fwd_start 第 0 帧，并与其他 start 首帧、stop 末帧、turn 首帧交叉校验（偏差 <0.01 cm）。它**不是** Idle_Ready（motion_37 仍为 deferred），没有呼吸/待机动作。\n- **skeleton**：仅记录采样中的 26 骨精简层级，`is_full_manny_skeleton=false`，无 bind/reference pose。\n- **deferred**：22 条只有元数据的素材保留 clip 引用和同类型完整 recipe，`data=null`，不填任何时长、曲线或姿态。补齐采样后重跑构建即可生成。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "RES02",
+      "category": "asset_authoring",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "已给出 cm/component/xyzw、26 骨骼边界、位置基变换与正确的世界转局部速度计算。但 _convert 先把 q_root 左乘 B，_root_relative 随后用该完整 q_root 的逆旋转所有 Bp：对于初始单位源 root，B^-1(Bp)=p，固定 -90° 的 actor 基变换被抵消。产物仍宣称 actor component space，记录 root_origin_yaw_deg=-90，却没有消费者恢复这个常量；pose_operations 只输出动态 root_yaw_offset/速度偏角。故姿态坐标与 actor 前向契约未闭合。这一根因只在本项扣分，不在 RES05 或 warping 重扣。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 142,
+          "line_end": 147,
+          "quote": "def _convert(frames: list) -> list:\n    out = []\n    for f in frames:\n        pos = [[sum(BASIS_MATRIX[r][c] * p[c] for c in range(3)) for r in range(3)] for p in f[\"positions\"]]\n        rot = [qcanonical(qnormalize(qmul(BASIS_QUAT, q))) for q in f[\"rotations_xyzw\"]]\n        out.append({\"positions\": pos, \"rotations\": rot})"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 173,
+          "line_end": 178,
+          "quote": "        qinv = qconj(q)\n        pos = [[_r(c) for c in qrotate(qinv, [p[0] - t[0], p[1] - t[1], p[2] - t[2]])] for p in f[\"positions\"]]\n        rot = [[_r(c) for c in qcanonical(qnormalize(qmul(qinv, r)))] for r in f[\"rotations\"]]\n        in_place.append({\"positions\": pos, \"rotations_xyzw\": rot})\n    return root_curve, in_place, {\"root_origin_actor_cm\": [_r(c) for c in root0_t],\n                                  \"root_origin_yaw_deg\": _r(root0_yaw),"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 245,
+          "line_end": 255,
+          "quote": "    artifact = {\n        \"schema_version\": 1,\n        \"asset_id\": asset_id,\n        \"source_clip_id\": clip[\"clip_id\"],\n        \"source_pose_file\": clip[\"pose_file\"],\n        \"source_sha256\": samples[\"sha256\"],\n        \"space\": \"actor component space, root-relative (root bone = identity); root motion stored separately in authored_assets.json\",\n        \"bones\": [{\"name\": b[\"name\"], \"parent\": b[\"parent\"]} for b in bones],\n        \"sample_rate_hz\": rate,\n        \"times\": [_r(t) for t in times],\n        \"frames\": in_place,"
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 853,
+          "line_end": 855,
+          "quote": "     \"root_origin_yaw_deg\": -90.0,\n     \"max_root_non_yaw_rotation_deg\": 0.0,\n     \"note\": \"Delta from frame 0, actor basis. Consumer applies either this curve OR capsule motion, never both.\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 599,
+          "line_end": 602,
+          "quote": "        warp = 0.0\n        if moving:\n            warp = clamp(wrap_degrees(k[\"local_velocity_angle\"] - CARDINAL_CENTER[self.cardinal]),\n                         -p[\"orientation_warp_max_deg\"], p[\"orientation_warp_max_deg\"])"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 613,
+          "line_end": 625,
+          "quote": "            if typ == \"rotate_root_yaw\":\n                if abs(self.root_yaw_offset) < 0.01:\n                    continue\n                params = {\"yaw_deg\": round(self.root_yaw_offset, 6),\n                          \"mesh_world_yaw_deg\": round(k[\"mesh_yaw\"], 6),\n                          \"actor_world_yaw_deg\": k[\"actor_yaw\"],\n                          \"convention\": \"positive rotates +X toward +Y about +Z\"}\n            elif typ == \"orientation_warping\":\n                if abs(warp) < 0.01:\n                    continue\n                params = {\"angle_deg\": round(warp, 6), \"bones\": p[\"orientation_warp_bones\"],\n                          \"cardinal\": self.cardinal,\n                          \"velocity_local_angle_deg\": round(k[\"local_velocity_angle\"], 6)}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "RES03",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "资源表/选择器覆盖 walk/jog 四方向的 cycle/start/stop/pivot 和转身；15 条有样本资源实际处理，22 条 metadata_only 复用同类通用 recipe 并保留延期。缺失 Idle 使用有明确来源的静态首帧；其他缺片采用明确选择表与替代策略，不要求不存在的姿态。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 86,
+          "line_end": 112,
+          "quote": "  {\"id\": \"sel_start\", \"kind\": \"asset_selector\", \"keys\": [\"gait\", \"cardinal\"],\n   \"table\": {\n    \"walk\": {\"fwd\": \"walk_fwd_start\", \"bwd\": \"walk_bwd_start\", \"left\": \"walk_left_start\", \"right\": \"walk_right_start\"},\n    \"jog\": {\"fwd\": \"jog_fwd_start\", \"bwd\": \"jog_bwd_start\", \"left\": \"jog_left_start\", \"right\": \"jog_right_start\"}},\n   \"fallback\": {\"*\": {\"policy\": \"skip_state\", \"target_state\": \"cycle\", \"reason\": \"directional start samples missing; enter matching cycle directly with crossfade\"}}},\n  {\"id\": \"sel_cycle\", \"kind\": \"asset_selector\", \"keys\": [\"gait\", \"cardinal\"],\n   \"table\": {\n    \"walk\": {\"fwd\": \"walk_fwd_cycle\", \"bwd\": \"walk_bwd_cycle\", \"left\": \"walk_left_cycle\", \"right\": \"walk_right_cycle\"},\n    \"jog\": {\"fwd\": \"jog_fwd_cycle\", \"bwd\": \"jog_bwd_cycle\", \"left\": \"jog_left_cycle\", \"right\": \"jog_right_cycle\"}},\n   \"fallback\": {}},\n  {\"id\": \"sel_stop\", \"kind\": \"asset_selector\", \"keys\": [\"gait\", \"cardinal\"],\n   \"table\": {\n    \"walk\": {\"fwd\": \"walk_fwd_stop\", \"bwd\": \"walk_bwd_stop\", \"left\": \"walk_left_stop\", \"right\": \"walk_right_stop\"},\n    \"jog\": {\"fwd\": \"jog_fwd_stop\", \"bwd\": \"jog_bwd_stop\", \"left\": \"jog_left_stop\", \"right\": \"jog_right_stop\"}},\n   \"fallback\": {\"*\": {\"policy\": \"substitute_timed_blend\", \"asset_id\": \"ready_pose_static\", \"reason\": \"directional stop samples missing; crossfade cycle to static ready pose over predicted stopping time\"}}},\n  {\"id\": \"sel_pivot\", \"kind\": \"asset_selector\", \"keys\": [\"gait\", \"cardinal\"],\n   \"key_note\": \"cardinal = entry (pre-pivot) local velocity direction; jog_fwd_pivot data shows entry 0 deg -> exit 180 deg\",\n   \"table\": {\n    \"walk\": {\"fwd\": \"walk_fwd_pivot\", \"bwd\": \"walk_bwd_pivot\", \"left\": \"walk_left_pivot\", \"right\": \"walk_right_pivot\"},\n    \"jog\": {\"fwd\": \"jog_fwd_pivot\", \"bwd\": \"jog_bwd_pivot\", \"left\": \"jog_left_pivot\", \"right\": \"jog_right_pivot\"}},\n   \"fallback\": {\"*\": {\"policy\": \"skip_state\", \"target_state\": \"cycle\", \"reason\": \"pivot samples missing; crossfade to the cycle of the new direction\"}}},\n  {\"id\": \"sel_turn\", \"kind\": \"asset_selector\", \"keys\": [\"turn_side\", \"turn_size\"],\n   \"table\": {\"left\": {\"90\": \"turn_in_place_left_90\", \"180\": \"turn_in_place_left_180\"},\n             \"right\": {\"90\": \"turn_in_place_right_90\", \"180\": \"turn_in_place_right_180\"}},\n   \"fallback\": {\n    \"turn_in_place_left_180\": {\"policy\": \"substitute\", \"asset_id\": \"turn_in_place_right_180\", \"reason\": \"left 180 missing; right 180 reaches the same facing\", \"turn_yaw_scale_mode\": \"match_requested\"},\n    \"turn_in_place_right_90\": {\"policy\": \"substitute\", \"asset_id\": \"turn_in_place_right_180\", \"reason\": \"right 90 missing; right 180 with root-yaw warp scaled to requested angle\", \"turn_yaw_scale_mode\": \"match_requested\"}}},"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 424,
+          "line_end": 438,
+          "quote": "        if clip.get(\"availability\") == \"pose_samples\" and clip.get(\"pose_file\"):\n            samples = _load_samples(manifest_dir / clip[\"pose_file\"], clip)\n            bones = [(b[\"name\"], b[\"parent\"]) for b in samples[\"bones\"]]\n            if skeleton_ref is None:\n                skeleton_ref = bones\n            elif bones != skeleton_ref:\n                raise ValueError(f\"{clip['clip_id']}: bone hierarchy differs from reference subset\")\n            conv = _convert(samples[\"frames\"])\n            entry = _process_clip(clip, samples, conv, artifact_dir, output_dir)\n            _, in_place, _ = _root_relative(conv)\n            processed[aid] = {\"semantic\": clip[\"semantic\"], \"in_place\": in_place, \"clip_id\": clip[\"clip_id\"]}\n            ready[aid] = entry\n            assets.append(entry)\n        else:\n            assets.append(_deferred_entry(clip))"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 351,
+          "line_end": 364,
+          "quote": "def _deferred_entry(clip: dict) -> dict:\n    sem = clip[\"semantic\"]\n    return {\n        \"asset_id\": _asset_id(sem),\n        \"kind\": f\"locomotion_{sem['action']}\" if sem[\"action\"] not in (\"turn\", \"idle\") else sem[\"action\"],\n        \"semantic\": sem,\n        \"source_clip_ids\": [clip[\"clip_id\"]],\n        \"source_name\": clip[\"source_name\"],\n        \"status\": \"deferred_missing_samples\",\n        \"missing_inputs\": [\"pose_file\", \"sample_rate_hz\", \"duration_seconds\", \"pose_bone_count\"],\n        \"recipe\": recipe_for(sem),\n        \"data\": None,\n        \"pending_work\": \"Provide component-space samples in the manifest format, then rerun build_assets.py; \"\n                        \"the same recipe will produce pose artefact, root motion and derived curves.\","
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 31,
+          "line_end": 33,
+          "quote": "- **ready_pose_static**：取 walk_fwd_start 第 0 帧，并与其他 start 首帧、stop 末帧、turn 首帧交叉校验（偏差 <0.01 cm）。它**不是** Idle_Ready（motion_37 仍为 deferred），没有呼吸/待机动作。\n- **skeleton**：仅记录采样中的 26 骨精简层级，`is_full_manny_skeleton=false`，无 bind/reference pose。\n- **deferred**：22 条只有元数据的素材保留 clip 引用和同类型完整 recipe，`data=null`，不填任何时长、曲线或姿态。补齐采样后重跑构建即可生成。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 46,
+          "line_end": 46,
+          "quote": "- **缺失资源**：选择表总是先选语义资源；若为 deferred，就按图中的回退策略处理，并在 `diagnostics.fallbacks_this_frame`、播放器的 `substitutes_for_asset_id/substituted_asset_status` 和 `deferred_assets_substituted` 中写明 `materialized:false`。播放器只引用 ready 资源。回退：Idle→ready_pose_static；非前向 start→直接进 cycle；非前向 stop→按预测停步时间交叉淡化到静态姿态；缺失 pivot→跳过并切到新方向 cycle；TurnRight_90→TurnRight_180 缩放 0.5；TurnLeft_180→TurnRight_180（终止朝向相同）。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "RES04",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "保留源时间戳与采样率，时长来自最后/最初样本差；循环显式记录 period 与首尾闭合/是否重复，播放器按 duration 取模，非循环 clamp，不额外增加末帧。metadata_only data=null，选择时改用 ready 资源，不以零时长伪装已有素材。循环接触 seam 的 marker 问题只计 RES06。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 264,
+          "line_end": 272,
+          "quote": "    duration = times[-1] - times[0]\n    curves = {\"time_s\": [_r(t) for t in times], \"root_speed_cm_s\": [_r(s) for s in speed]}\n    data = {\n        \"pose_artifact\": rel,\n        \"pose_artifact_sha256\": hashlib.sha256(text.encode(\"utf-8\")).hexdigest(),\n        \"duration_seconds\": _r(duration),\n        \"sample_rate_hz\": rate,\n        \"frame_count\": len(times),\n        \"time_origin\": \"source time 0 (no trimming applied)\","
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 284,
+          "line_end": 292,
+          "quote": "    if action == \"cycle\":\n        a, b = in_place[0], in_place[-1]\n        closure = max(math.dist(pa, pb) for pa, pb in zip(a[\"positions\"], b[\"positions\"]))\n        rot_closure = max(quat_angle_degrees(qa, qb) for qa, qb in zip(a[\"rotations_xyzw\"], b[\"rotations_xyzw\"]))\n        data[\"loop\"] = {\"loop_start_s\": _r(times[0]), \"loop_end_s\": _r(times[-1]),\n                        \"period_s\": _r(duration),\n                        \"last_sample_duplicates_first\": closure < 2.0 and rot_closure < 3.0,\n                        \"closure_max_position_error_cm\": _r(closure),\n                        \"closure_max_rotation_error_deg\": _r(rot_closure)}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 256,
+          "line_end": 266,
+          "quote": "    def _advance_clock(self, pl, dt, rate):\n        pl[\"prev_time\"] = pl[\"time\"]\n        data = self.asset_data(pl[\"asset_id\"])\n        dur = data[\"duration_seconds\"]\n        t = pl[\"time\"] + dt * rate\n        if pl[\"loop\"] and dur > 0:\n            t = math.fmod(t, dur)\n        else:\n            t = clamp(t, 0.0, dur)\n        pl[\"time\"] = t\n        pl[\"play_rate\"] = rate"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 357,
+          "line_end": 364,
+          "quote": "        \"source_clip_ids\": [clip[\"clip_id\"]],\n        \"source_name\": clip[\"source_name\"],\n        \"status\": \"deferred_missing_samples\",\n        \"missing_inputs\": [\"pose_file\", \"sample_rate_hz\", \"duration_seconds\", \"pose_bone_count\"],\n        \"recipe\": recipe_for(sem),\n        \"data\": None,\n        \"pending_work\": \"Provide component-space samples in the manifest format, then rerun build_assets.py; \"\n                        \"the same recipe will produce pose artefact, root motion and derived curves.\","
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 121,
+          "line_end": 135,
+          "quote": "    def select_asset(self, selector_id, keys):\n        \"\"\"Return (asset_id_or_None, fallback_policy_or_None, requested_asset_id).\"\"\"\n        sel = self.nodes[selector_id]\n        node = sel[\"table\"]\n        if not sel[\"keys\"]:\n            node = node[\"default\"]\n        for key in sel[\"keys\"]:\n            node = node[str(keys[key])]\n        requested = node\n        if self.asset_ready(requested):\n            return requested, None, requested\n        fb = sel[\"fallback\"].get(requested) or sel[\"fallback\"].get(\"*\")\n        if fb is None:\n            raise RuntimeError(f\"no ready asset and no fallback for {requested}\")\n        return fb.get(\"asset_id\"), fb, requested"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "RES05",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "从 root 提取独立 tx/ty/tz/yaw 轨迹并将姿态做 root-relative；制作数据注明 curve 与 capsule 位移二选一。输出播放器明确 ignored_capsule_driven，转身仅消费 root yaw 的帧间差，平移不会再次推动角色。固定基旋转丢失另计 RES02，不重复扣分。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 169,
+          "line_end": 179,
+          "quote": "        root_curve[\"tx_cm\"].append(_r(t[0] - root0_t[0]))\n        root_curve[\"ty_cm\"].append(_r(t[1] - root0_t[1]))\n        root_curve[\"tz_cm\"].append(_r(t[2] - root0_t[2]))\n        root_curve[\"yaw_deg\"].append(_r(yaw_unwrapped))\n        qinv = qconj(q)\n        pos = [[_r(c) for c in qrotate(qinv, [p[0] - t[0], p[1] - t[1], p[2] - t[2]])] for p in f[\"positions\"]]\n        rot = [[_r(c) for c in qcanonical(qnormalize(qmul(qinv, r)))] for r in f[\"rotations\"]]\n        in_place.append({\"positions\": pos, \"rotations_xyzw\": rot})\n    return root_curve, in_place, {\"root_origin_actor_cm\": [_r(c) for c in root0_t],\n                                  \"root_origin_yaw_deg\": _r(root0_yaw),\n                                  \"max_root_non_yaw_rotation_deg\": _r(max_tilt)}"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 269,
+          "line_end": 276,
+          "quote": "        \"duration_seconds\": _r(duration),\n        \"sample_rate_hz\": rate,\n        \"frame_count\": len(times),\n        \"time_origin\": \"source time 0 (no trimming applied)\",\n        \"root_motion\": dict(root_curve, **root_info,\n                            note=\"Delta from frame 0, actor basis. Consumer applies either this curve OR capsule motion, never both.\"),\n        \"foot_contacts\": contacts,\n        \"curves\": curves,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 562,
+          "line_end": 569,
+          "quote": "                \"player_id\": pl[\"player_id\"], \"asset_id\": pl[\"asset_id\"],\n                \"sample_time_seconds\": round(pl[\"time\"], 6),\n                \"weight\": round(pl[\"weight\"] / total, 6),\n                \"play_rate\": round(pl[\"play_rate\"], 6), \"loop\": pl[\"loop\"],\n                \"node_id\": pl[\"node_id\"], \"state\": pl[\"state\"], \"time_mode\": pl[\"time_mode\"],\n                \"target_weight\": pl[\"target\"], \"asset_status\": a[\"status\"],\n                \"materializable\": a[\"status\"] == \"ready\",\n                \"root_motion\": \"ignored_capsule_driven\","
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 535,
+          "line_end": 540,
+          "quote": "            elif mode == \"clock_once\":\n                self._advance_clock(pl, dt, 1.0)\n                if pl[\"state\"] == \"turn_in_place\":\n                    y0 = sample_curve(c[\"time_s\"], c[\"root_yaw_deg\"], pl[\"prev_time\"])\n                    y1 = sample_curve(c[\"time_s\"], c[\"root_yaw_deg\"], pl[\"time\"])\n                    self.root_yaw_offset += (y1 - y0) * pl.get(\"root_yaw_scale\", 1.0)"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 29,
+          "line_end": 29,
+          "quote": "- **root motion**：root 轨迹以第 0 帧为原点存为 `data.root_motion`（tx,ty,tz,yaw）；姿态产物中 root=单位变换，位移只存在一处。运行时为 capsule 驱动，平移类 root motion 不再施加；只有原地转身消耗 `root_yaw_deg` 曲线（经 root yaw offset）。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "RES06",
+      "category": "asset_authoring",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "有实质性的脚/球骨高度+水平速度接触检测，统一 foot_l_plant/foot_r_plant 名称，按时间排序，并声明是派生同步 marker 而非原始 Notify。但接触区间按线性数组切分，循环首尾不合并：walk_fwd_cycle 的右脚接触覆盖 [2.08333,2.2] 与 [0,0.18333]，却同时生成 2.08333 和 0 的右脚 onset；跨 seam 同一次接触被当成两次开始，违反自己的 onset 定义，造成跨循环多一个相位标记。只在制作项扣这一 seam 根因。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 214,
+          "line_end": 232,
+          "quote": "            for i in idx:\n                pa, pb, pk = conv[a][\"positions\"][i], conv[b][\"positions\"][i], conv[k][\"positions\"][i]\n                hs = math.hypot(pb[0] - pa[0], pb[1] - pa[1]) / dt\n                if pk[2] <= zmin + FOOT_CONTACT_PARAMS[\"height_above_clip_min_cm\"] and \\\n                        hs <= FOOT_CONTACT_PARAMS[\"max_horizontal_speed_cm_s\"]:\n                    planted = True\n            flags.append(planted)\n        intervals = []\n        k = 0\n        while k < n:\n            if flags[k]:\n                s = k\n                while k < n and flags[k]:\n                    k += 1\n                if k - s >= min_frames:\n                    intervals.append([_r(times[s]), _r(times[k - 1])])\n            else:\n                k += 1\n        result[side] = intervals"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 295,
+          "line_end": 301,
+          "quote": "        markers = []\n        for side, ivs in contacts.items():\n            for s, _e in ivs:\n                markers.append({\"name\": f\"foot_{side}_plant\", \"time_s\": s})\n        markers.sort(key=lambda m: m[\"time_s\"])\n        data[\"sync_markers\"] = markers\n        data[\"sync_marker_method\"] = \"onset of detected foot contact interval (derived, not authored notify)\""
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 872,
+          "line_end": 888,
+          "quote": "     \"r\": [\n      [\n       0.0,\n       0.18333\n      ],\n      [\n       0.63333,\n       0.91667\n      ],\n      [\n       1.35,\n       1.66667\n      ],\n      [\n       2.08333,\n       2.2\n      ]"
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 1175,
+          "line_end": 1182,
+          "quote": "    \"sync_markers\": [\n     {\n      \"name\": \"foot_r_plant\",\n      \"time_s\": 0.0\n     },\n     {\n      \"name\": \"foot_l_plant\",\n      \"time_s\": 0.25"
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 1200,
+          "line_end": 1205,
+          "quote": "     {\n      \"name\": \"foot_r_plant\",\n      \"time_s\": 2.08333\n     }\n    ],\n    \"sync_marker_method\": \"onset of detected foot contact interval (derived, not authored notify)\""
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "RES07",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "从 XY 根轨迹累计路程，实际生成 start 累计距离、stop 剩余路程、pivot 相对最小速度帧的有符号路程。输出 time_s 与数值数组，独立函数支持按时间线性采样和距离反查，控制器实际引用曲线；不依赖 UE 压缩格式名。无效/非单调输入验证不足只计 DST04。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 182,
+          "line_end": 187,
+          "quote": "def _horizontal_path(root_curve: dict) -> list:\n    xs, ys = root_curve[\"tx_cm\"], root_curve[\"ty_cm\"]\n    acc = [0.0]\n    for i in range(1, len(xs)):\n        acc.append(acc[-1] + math.hypot(xs[i] - xs[i - 1], ys[i] - ys[i - 1]))\n    return acc"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 302,
+          "line_end": 318,
+          "quote": "    elif action == \"start\":\n        curves[\"distance_traveled_cm\"] = [_r(d) for d in path_len]\n        data[\"end_speed_cm_s\"] = _r(speed[-1])\n    elif action == \"stop\":\n        total = path_len[-1]\n        curves[\"distance_to_stop_cm\"] = [_r(total - d) for d in path_len]\n        rest = next((times[i] for i in range(len(times)) if total - path_len[i] < 0.5 and speed[i] < 5.0), times[-1])\n        data[\"stop_distance_cm\"] = _r(total)\n        data[\"entry_speed_cm_s\"] = _r(speed[0])\n        data[\"root_at_rest_time_s\"] = _r(rest)\n    elif action == \"pivot\":\n        n = len(times)\n        lo, hi = n // 10, n - n // 10\n        piv = min(range(lo, hi), key=lambda i: speed[i])\n        tp = times[piv]\n        dist = [_r(path_len[i] - path_len[piv]) for i in range(n)]\n        curves[\"signed_distance_to_pivot_cm\"] = dist"
+        },
+        {
+          "path": "src/anim_math.py",
+          "line_start": 90,
+          "line_end": 107,
+          "quote": "def sample_curve(times: Sequence[float], values: Sequence[float], t: float) -> float:\n    \"\"\"Piecewise-linear sample with end clamping; ``times`` ascending.\"\"\"\n    if not times:\n        raise ValueError(\"empty curve\")\n    if t <= times[0]:\n        return values[0]\n    if t >= times[-1]:\n        return values[-1]\n    lo, hi = 0, len(times) - 1\n    while hi - lo > 1:\n        mid = (lo + hi) // 2\n        if times[mid] <= t:\n            lo = mid\n        else:\n            hi = mid\n    span = times[hi] - times[lo]\n    u = 0.0 if span <= 0 else (t - times[lo]) / span\n    return lerp(values[lo], values[hi], u)"
+        },
+        {
+          "path": "src/anim_math.py",
+          "line_start": 110,
+          "line_end": 130,
+          "quote": "def invert_monotonic_curve(times: Sequence[float], values: Sequence[float], target: float) -> float:\n    \"\"\"Find the first time where a monotonic (non-strict) curve reaches ``target``.\n\n    Works for increasing or decreasing curves; clamps to the curve range.\n    This is the core of distance matching.\n    \"\"\"\n    if not times:\n        raise ValueError(\"empty curve\")\n    increasing = values[-1] >= values[0]\n    sign = 1.0 if increasing else -1.0\n    tgt = sign * target\n    if tgt <= sign * values[0]:\n        return times[0]\n    for i in range(1, len(times)):\n        v0, v1 = sign * values[i - 1], sign * values[i]\n        if v1 >= tgt:\n            if v1 == v0:\n                return times[i]\n            u = (tgt - v0) / (v1 - v0)\n            return lerp(times[i - 1], times[i], clamp(u, 0.0, 1.0))\n    return times[-1]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 515,
+          "line_end": 524,
+          "quote": "            elif mode == \"distance_match\" and pl[\"state\"] == \"start\":\n                self.start_distance += k[\"speed\"] * dt\n                tm = invert_monotonic_curve(c[\"time_s\"], c[\"distance_traveled_cm\"], self.start_distance)\n                self._set_matched_time(pl, dt, tm)\n            elif mode == \"distance_match\" and pl[\"state\"] == \"stop\":\n                if k[\"speed\"] <= p[\"idle_speed_max_cm_s\"]:\n                    self._advance_clock(pl, dt, 1.0)\n                else:\n                    d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                    self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "RES08",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "构建入口可重用并按固定公式/精度写出产物与 SHA；检查 schema、重复 ID、采样数量、骨骼数量/层级一致、均匀时间步和有限姿态数组，错误包含素材 ID。产物引用以输出文件目录为根并由 CLI 传递 output.parent；静态核对最终 ready 引用均存在。曲线反查器专门的无效输入策略缺口只计 DST04。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 118,
+          "line_end": 139,
+          "quote": "def _load_samples(path: Path, clip: dict) -> dict:\n    with path.open(\"r\", encoding=\"utf-8-sig\") as fh:\n        doc = json.load(fh)\n    bones = doc[\"bones\"]\n    frames = doc[\"frames\"]\n    if clip.get(\"pose_bone_count\") is not None and len(bones) != clip[\"pose_bone_count\"]:\n        raise ValueError(f\"{clip['clip_id']}: bone count mismatch\")\n    if len(frames) < 2:\n        raise ValueError(f\"{clip['clip_id']}: not enough frames\")\n    rate = clip.get(\"sample_rate_hz\") or doc.get(\"sample_rate\")\n    times = [float(f[\"time\"]) for f in frames]\n    for i in range(1, len(times)):\n        if abs((times[i] - times[i - 1]) - 1.0 / rate) > 1e-3:\n            raise ValueError(f\"{clip['clip_id']}: non-uniform sampling at frame {i}\")\n    for f in frames:\n        if len(f[\"positions\"]) != len(bones) or len(f[\"rotations_xyzw\"]) != len(bones):\n            raise ValueError(f\"{clip['clip_id']}: frame array size mismatch\")\n        for v in f[\"positions\"] + f[\"rotations_xyzw\"]:\n            if not all(math.isfinite(c) for c in v):\n                raise ValueError(f\"{clip['clip_id']}: non-finite sample\")\n    return {\"bones\": bones, \"times\": times, \"frames\": frames, \"rate\": rate,\n            \"sha256\": hashlib.sha256(path.read_bytes()).hexdigest()}"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 407,
+          "line_end": 432,
+          "quote": "def build_assets(manifest: dict, manifest_dir: Path, output_dir: Path | None = None) -> dict:\n    if manifest.get(\"schema_version\") != 1:\n        raise ValueError(\"unsupported manifest schema_version\")\n    output_dir = Path(output_dir) if output_dir is not None else Path.cwd() / \"assets\"\n    artifact_dir = output_dir / ARTIFACT_DIR_NAME\n    artifact_dir.mkdir(parents=True, exist_ok=True)\n\n    skeleton_ref = None\n    assets = []\n    ready = {}\n    processed = {}\n    seen = set()\n    for clip in manifest[\"clips\"]:\n        aid = _asset_id(clip[\"semantic\"])\n        if aid in seen:\n            raise ValueError(f\"duplicate asset id {aid}\")\n        seen.add(aid)\n        if clip.get(\"availability\") == \"pose_samples\" and clip.get(\"pose_file\"):\n            samples = _load_samples(manifest_dir / clip[\"pose_file\"], clip)\n            bones = [(b[\"name\"], b[\"parent\"]) for b in samples[\"bones\"]]\n            if skeleton_ref is None:\n                skeleton_ref = bones\n            elif bones != skeleton_ref:\n                raise ValueError(f\"{clip['clip_id']}: bone hierarchy differs from reference subset\")\n            conv = _convert(samples[\"frames\"])\n            entry = _process_clip(clip, samples, conv, artifact_dir, output_dir)"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 257,
+          "line_end": 268,
+          "quote": "    rel = f\"{ARTIFACT_DIR_NAME}/{asset_id}.pose.json\"\n    text = json.dumps(artifact, separators=(\",\", \":\"), allow_nan=False)\n    (artifact_dir / f\"{asset_id}.pose.json\").write_text(text, encoding=\"utf-8\")\n\n    path_len = _horizontal_path(root_curve)\n    speed = _root_speed(root_curve, rate)\n    contacts = _foot_contacts(conv, bones, times, rate)\n    duration = times[-1] - times[0]\n    curves = {\"time_s\": [_r(t) for t in times], \"root_speed_cm_s\": [_r(s) for s in speed]}\n    data = {\n        \"pose_artifact\": rel,\n        \"pose_artifact_sha256\": hashlib.sha256(text.encode(\"utf-8\")).hexdigest(),"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 479,
+          "line_end": 493,
+          "quote": "def main() -> None:\n    parser = argparse.ArgumentParser(description=\"Build candidate animation resources\")\n    parser.add_argument(\"--manifest\", required=True, type=Path)\n    parser.add_argument(\"--output\", required=True, type=Path)\n    args = parser.parse_args()\n\n    manifest_path = args.manifest.resolve()\n    with manifest_path.open(\"r\", encoding=\"utf-8-sig\") as handle:\n        manifest = json.load(handle)\n\n    output_path = args.output.resolve()\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    authored_assets = build_assets(manifest, manifest_path.parent, output_path.parent)\n    serialized = json.dumps(authored_assets, ensure_ascii=False, indent=1, allow_nan=False)\n    output_path.write_text(serialized + \"\\n\", encoding=\"utf-8\")"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "LOC01",
+      "category": "locomotion_states",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1.5,
+      "deduction": 1.5,
+      "reason": "同一frame派生水平速度、局部速度/加速度方向、速度-加速度夹角及yaw增量，坐标读取路径明确；但强制把题面加速度改解释为input_intent，wants_to_stop仅判断not has_accel。故非零匀速且零加速度会从Cycle进入Stop；这是输入语义根因，主要在此扣1.5分，LOC05/LOC06不为同一输入假设重复扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 180,
+          "line_end": 200,
+          "quote": "    def _derive(self, dt, vel, acc, actor_yaw, aim_yaw):\n        p = self.p\n        speed = math.hypot(vel[0], vel[1])\n        accel_mag = math.hypot(acc[0], acc[1])\n        yr = math.radians(actor_yaw)\n        def to_local(v):\n            return (v[0] * math.cos(yr) + v[1] * math.sin(yr), -v[0] * math.sin(yr) + v[1] * math.cos(yr))\n        lv, la = to_local(vel), to_local(acc)\n        has_accel = accel_mag > p[\"accel_input_eps_cm_s2\"]\n        if speed > p[\"moving_speed_min_cm_s\"]:\n            local_angle = math.degrees(math.atan2(lv[1], lv[0]))\n        elif has_accel:\n            local_angle = math.degrees(math.atan2(la[1], la[0]))\n        else:\n            local_angle = CARDINAL_CENTER[self.cardinal]\n        accel_along = (acc[0] * vel[0] + acc[1] * vel[1]) / speed if speed > 1e-6 else 0.0\n        if speed > 1e-6 and accel_mag > 1e-6:\n            cosang = clamp((acc[0] * vel[0] + acc[1] * vel[1]) / (speed * accel_mag), -1.0, 1.0)\n            av_angle = math.degrees(math.acos(cosang))\n        else:\n            av_angle = 0.0"
+        },
+        {
+          "path": "src/locomotion_conditions.py",
+          "line_start": 7,
+          "line_end": 21,
+          "quote": "Acceleration semantics (\"input_intent\", Lyra/CharacterMovement style): the\nacceleration input is the movement intent. Zero acceleration while moving\nmeans the character is braking to a stop; acceleration opposing velocity\nmeans a direction reversal (pivot).\n\"\"\"\n\nfrom __future__ import annotations\n\n\ndef wants_to_move(c) -> bool:\n    return c.k[\"has_accel\"]\n\n\ndef wants_to_stop(c) -> bool:\n    return not c.k[\"has_accel\"]"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 64,
+          "line_end": 64,
+          "quote": "    {\"from\": \"cycle\", \"to\": \"stop\", \"condition\": \"wants_to_stop\", \"blend_time_s\": 0.2, \"priority\": 0},"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/locomotion_conditions.py",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "LOC02",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "walk/jog有独立上下行速度阈值，Cycle的gait变化会选新资源并执行0.2秒混合；输出权重由渐变权重归一，满足明确选择与阈值稳定。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 216,
+          "line_end": 222,
+          "quote": "        # gait with hysteresis\n        if self.gait == \"walk\" and speed > p[\"gait_walk_to_jog_speed_cm_s\"]:\n            self.gait = \"jog\"\n        elif self.gait == \"jog\" and speed < p[\"gait_jog_to_walk_speed_cm_s\"]:\n            self.gait = \"walk\"\n        if speed > p[\"moving_speed_min_cm_s\"] or has_accel:\n            self.cardinal = self._cardinal_from_angle(local_angle, self.cardinal)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 485,
+          "line_end": 490,
+          "quote": "        if self.state == \"cycle\":\n            sp = self.state_player()\n            want = self.select_asset(\"sel_cycle\", {\"gait\": self.gait, \"cardinal\": self.cardinal})[0]\n            if sp is None or sp[\"asset_id\"] != want:\n                self.events.append({\"from\": \"cycle\", \"to\": \"cycle\", \"condition\": \"gait_or_cardinal_changed\"})\n                self._enter_cycle(0.2)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 544,
+          "line_end": 552,
+          "quote": "    def _update_weights(self, dt):\n        for pl in self.players:\n            step = dt * pl[\"fade_rate\"]\n            if pl[\"weight\"] < pl[\"target\"]:\n                pl[\"weight\"] = min(pl[\"target\"], pl[\"weight\"] + step)\n            else:\n                pl[\"weight\"] = max(pl[\"target\"], pl[\"weight\"] - step)\n        eps = self.p[\"blend_epsilon\"]\n        self.players = [pl for pl in self.players if pl[\"weight\"] > eps or pl[\"target\"] > 0]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "LOC03",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "世界速度按actor yaw转局部；四方向选择含当前扇区扩张滞回、低速时保留当前方向，atan2与wrap支持后退及跨角度边界，Cycle选择表覆盖四向。斜向有有界warp计划；其独立mesh offset差异在WRP01评，不在此重复扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 161,
+          "line_end": 194,
+          "quote": "    def _cardinal_from_angle(self, ang, current):\n        p = self.p\n        dz = p[\"cardinal_deadzone_deg\"]\n        fwd_lim, bwd_lim = p[\"cardinal_fwd_half_angle_deg\"], p[\"cardinal_bwd_half_angle_deg\"]\n        a = abs(ang)\n        # hysteresis: widen the currently selected sector by the deadzone\n        if current == \"fwd\" and a <= fwd_lim + dz:\n            return \"fwd\"\n        if current == \"bwd\" and a >= bwd_lim - dz:\n            return \"bwd\"\n        if current in (\"left\", \"right\") and (fwd_lim - dz) < a < (bwd_lim + dz) and \\\n                ((ang < 0) == (current == \"left\")):\n            return current\n        if a <= fwd_lim:\n            return \"fwd\"\n        if a >= bwd_lim:\n            return \"bwd\"\n        return \"left\" if ang < 0 else \"right\"\n\n    def _derive(self, dt, vel, acc, actor_yaw, aim_yaw):\n        p = self.p\n        speed = math.hypot(vel[0], vel[1])\n        accel_mag = math.hypot(acc[0], acc[1])\n        yr = math.radians(actor_yaw)\n        def to_local(v):\n            return (v[0] * math.cos(yr) + v[1] * math.sin(yr), -v[0] * math.sin(yr) + v[1] * math.cos(yr))\n        lv, la = to_local(vel), to_local(acc)\n        has_accel = accel_mag > p[\"accel_input_eps_cm_s2\"]\n        if speed > p[\"moving_speed_min_cm_s\"]:\n            local_angle = math.degrees(math.atan2(lv[1], lv[0]))\n        elif has_accel:\n            local_angle = math.degrees(math.atan2(la[1], la[0]))\n        else:\n            local_angle = CARDINAL_CENTER[self.cardinal]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 436,
+          "line_end": 447,
+          "quote": "    def _enter_cycle(self, blend_time):\n        aid, _fb, _req = self.select_asset(\"sel_cycle\", {\"gait\": self.gait, \"cardinal\": self.cardinal})\n        settings = self.sync_groups[\"locomotion_cycle\"][\"settings\"]\n        existing = [pl for pl in self._members(\"locomotion_cycle\") if pl[\"weight\"] > 0]\n        if existing:\n            lead = max(existing, key=lambda pl: pl[\"weight\"])\n            ph, m = self._phase(lead[\"asset_id\"], lead[\"time\"], settings)\n            t0 = self._time_from_phase(aid, ph, m, 0.0, settings)\n        else:\n            src = next((pl for pl in reversed(self.players) if pl[\"state\"] in (\"start\", \"pivot\")), None)\n            t0 = self._cycle_time_from_contacts(src, aid) if src else 0.0\n        self._new_player(\"cycle\", aid, t0, blend_time, \"speed_scaled_clock\", loop=True)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 598,
+          "line_end": 602,
+          "quote": "        moving = self.state in MOVING_STATES\n        warp = 0.0\n        if moving:\n            warp = clamp(wrap_degrees(k[\"local_velocity_angle\"] - CARDINAL_CENTER[self.cardinal]),\n                         -p[\"orientation_warp_max_deg\"], p[\"orientation_warp_max_deg\"])"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "LOC04",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "图定义Idle/Start/Cycle与完成条件；进入Start清零start_distance并新建时间为0的非循环播放器，结束由时长、目标速度或方向变更决定。缺样本的方向Start明确记录延期并回退Cycle，不作为素材缺失扣分。输入意图误解已归LOC01。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 350,
+          "line_end": 370,
+          "quote": "    def _enter_state(self, state, blend_time, reason):\n        k, p = self.k, self.p\n        prev = self.state\n        self.events.append({\"from\": prev, \"to\": state, \"condition\": reason})\n        self.state, self.state_time = state, 0.0\n        self.state_entry_cardinal = self.cardinal\n        keys = {\"gait\": self.gait, \"cardinal\": self.cardinal}\n        if state == \"idle\":\n            aid, fb, req = self.select_asset(\"sel_idle\", {})\n            if fb:\n                self._note_fallback(state, req, fb)\n            self._new_player(\"idle\", aid, 0.0, blend_time, \"static_pose\" if fb else \"clock_loop\",\n                             loop=not fb, extra={\"substitutes_for_asset_id\": req if fb else None,\n                                                 \"frame_index\": self.asset_data(aid).get(\"frame_index\")})\n        elif state == \"start\":\n            aid, fb, req = self.select_asset(\"sel_start\", keys)\n            if fb:\n                self._note_fallback(state, req, fb)\n                return self._enter_state(fb[\"target_state\"], blend_time, \"fallback_skip:\" + req)\n            self.start_distance = 0.0\n            self._new_player(\"start\", aid, 0.0, blend_time, \"distance_match\", loop=False)"
+        },
+        {
+          "path": "src/locomotion_conditions.py",
+          "line_start": 33,
+          "line_end": 47,
+          "quote": "def start_finished(c) -> bool:\n    pl = c.state_player()\n    if pl is None:\n        return True\n    data = c.asset_data(pl[\"asset_id\"])\n    dur = data[\"duration_seconds\"]\n    if pl[\"time\"] >= c.p[\"start_exit_max_time_ratio\"] * dur:\n        return True\n    cyc = c.select_asset(\"sel_cycle\", {\"gait\": c.gait, \"cardinal\": c.cardinal})[0]\n    target = c.asset_data(cyc)[\"authored_speed_cm_s\"] if c.asset_ready(cyc) else None\n    if target and c.k[\"speed\"] >= c.p[\"start_exit_speed_ratio\"] * target:\n        return True\n    if c.cardinal != c.state_entry_cardinal:\n        return True\n    return False"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 63,
+          "line_end": 63,
+          "quote": "    {\"from\": \"start\", \"to\": \"cycle\", \"condition\": \"start_finished\", \"blend_time_s\": 0.25, \"priority\": 2},"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/locomotion_conditions.py",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "LOC05",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "在LOC01已单独归因的输入语义缺陷之外，Stop流程有声明的制动距离反查、低速后的正常时间推进，以及速度足够低且片段达到静止位置才退出Idle的条件；无样本Stop用预测停止时间淡化并标记回退。不重复处罚相同的零加速度Stop触发根因。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 373,
+          "line_end": 385,
+          "quote": "        elif state == \"stop\":\n            aid, fb, req = self.select_asset(\"sel_stop\", keys)\n            if fb:\n                self._note_fallback(state, req, fb)\n                stop_t = clamp(k[\"speed\"] / max(self.braking_est, 1.0), 0.2, 1.5)\n                self._new_player(\"stop\", aid, 0.0, stop_t, \"timed_blend\", loop=False,\n                                 extra={\"substitutes_for_asset_id\": req,\n                                        \"frame_index\": self.asset_data(aid)[\"frame_index\"]})\n            else:\n                d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                c = self.asset_data(aid)[\"curves\"]\n                t0 = invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d)\n                self._new_player(\"stop\", aid, t0, blend_time, \"distance_match\", loop=False)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 519,
+          "line_end": 524,
+          "quote": "            elif mode == \"distance_match\" and pl[\"state\"] == \"stop\":\n                if k[\"speed\"] <= p[\"idle_speed_max_cm_s\"]:\n                    self._advance_clock(pl, dt, 1.0)\n                else:\n                    d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                    self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d))"
+        },
+        {
+          "path": "src/locomotion_conditions.py",
+          "line_start": 60,
+          "line_end": 68,
+          "quote": "def stop_finished(c) -> bool:\n    pl = c.state_player()\n    slow = c.k[\"speed\"] <= c.p[\"idle_speed_max_cm_s\"]\n    if pl is None:\n        return slow\n    if pl.get(\"time_mode\") == \"timed_blend\":\n        return slow and pl[\"weight\"] >= 1.0 - c.p[\"blend_epsilon\"]\n    data = c.asset_data(pl[\"asset_id\"])\n    return slow and pl[\"time\"] >= data.get(\"root_at_rest_time_s\", data[\"duration_seconds\"])"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "LOC06",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "分别定义Stop重启、反向Pivot触发、进入/退出资源与方向匹配；Pivot跟踪进入速度方向、反向后的累计距离，有缺采样/方向不匹配的显式回退。将加速度视为意图导致的普通制动歧义已在LOC01扣，不再次扣此项。",
+      "evidence": [
+        {
+          "path": "src/locomotion_conditions.py",
+          "line_start": 24,
+          "line_end": 30,
+          "quote": "def pivot_requested(c) -> bool:\n    k, p = c.k, c.p\n    if c.pivot_suppressed:\n        return False\n    return (k[\"has_accel\"] and k[\"speed\"] >= p[\"pivot_min_speed_cm_s\"]\n            and k[\"accel_mag\"] >= p[\"pivot_min_accel_cm_s2\"]\n            and k[\"accel_velocity_angle\"] >= p[\"pivot_min_angle_deg\"])"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 386,
+          "line_end": 417,
+          "quote": "        elif state == \"pivot\":\n            aid, fb, req = self.select_asset(\"sel_pivot\", keys)\n            if fb:\n                self._note_fallback(state, req, fb)\n                self.pivot_suppressed = True\n                self.state = prev  # stay in cycle; the cycle selection follows the velocity reversal\n                self.events[-1][\"to\"] = prev\n                if prev != \"cycle\":\n                    return self._enter_state(\"cycle\", blend_time, \"fallback_skip:\" + req)\n                return None\n            data = self.asset_data(aid)\n            expected_exit = CARDINAL_CENTER[self.cardinal] + wrap_degrees(\n                data[\"exit_velocity_heading_actor_deg\"] - data[\"entry_velocity_heading_actor_deg\"])\n            mismatch = abs(wrap_degrees(k[\"accel_local_angle\"] - expected_exit))\n            if mismatch > p[\"pivot_exit_direction_tolerance_deg\"]:\n                self.unmaterializable.append({\"state\": state, \"requested_asset_id\": aid, \"requested_status\": \"ready\",\n                                              \"policy\": \"skip_state\", \"used_asset_id\": None,\n                                              \"reason\": f\"pivot exit direction mismatch {mismatch:.1f} deg\"})\n                self.pivot_suppressed = True\n                self.state = prev\n                self.events[-1][\"to\"] = prev\n                if prev != \"cycle\":\n                    return self._enter_state(\"cycle\", blend_time, \"pivot_direction_mismatch\")\n                return None\n            v = k[\"velocity\"]\n            self.pivot_entry_dir = (v[0] / k[\"speed\"], v[1] / k[\"speed\"])\n            self.pivot_reversed = False\n            self.pivot_post_distance = 0.0\n            d = k[\"speed\"] ** 2 / (2.0 * max(-k[\"accel_along_velocity\"], 1.0))\n            c = self.asset_data(aid)[\"curves\"]\n            t0 = invert_monotonic_curve(c[\"time_s\"], c[\"signed_distance_to_pivot_cm\"], -d)\n            self._new_player(\"pivot\", aid, t0, blend_time, \"distance_match_to_marker\", loop=False)"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 68,
+          "line_end": 68,
+          "quote": "    {\"from\": \"stop\", \"to\": \"start\", \"condition\": \"wants_to_move\", \"blend_time_s\": 0.2, \"priority\": 0},"
+        }
+      ],
+      "reviewed_paths": [
+        "src/locomotion_conditions.py",
+        "src/controller.py",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "LOC07",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "转移按priority排序且每帧命中一次后break；进入新播放器时保留旧播放器并设置淡出目标，权重逐帧推进、清理及归一，重入发生于状态调用而非非零权重。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 41,
+          "line_end": 44,
+          "quote": "        self.state_player_node = {s[\"id\"]: s[\"player_node\"] for s in sm[\"states\"]}\n        self.transitions = {}\n        for t in sorted(sm[\"transitions\"], key=lambda t: t[\"priority\"]):\n            self.transitions.setdefault(t[\"from\"], []).append(t)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 238,
+          "line_end": 253,
+          "quote": "    # ------------------------------------------------------------------ players\n    def _new_player(self, state, asset_id, time, blend_time, time_mode, loop, extra=None, immediate=False):\n        pid = f\"p{self.next_player_num:04d}_{state}\"\n        self.next_player_num += 1\n        node_id = self.state_player_node[state]\n        rate = 1.0 / blend_time if blend_time > 0 else float(\"inf\")\n        for pl in self.players:\n            pl[\"target\"] = 0.0\n            pl[\"fade_rate\"] = rate\n        pl = {\"player_id\": pid, \"node_id\": node_id, \"state\": state, \"asset_id\": asset_id,\n              \"time\": time, \"prev_time\": time, \"play_rate\": 1.0, \"loop\": loop,\n              \"weight\": 1.0 if (immediate or not self.players) else 0.0, \"target\": 1.0,\n              \"fade_rate\": rate, \"time_mode\": time_mode}\n        if extra:\n            pl.update(extra)\n        self.players.append(pl)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 478,
+          "line_end": 498,
+          "quote": "        if self.pivot_suppressed and (k[\"accel_velocity_angle\"] < p[\"pivot_min_angle_deg\"]\n                                      or k[\"speed\"] < p[\"pivot_min_speed_cm_s\"] or not k[\"has_accel\"]):\n            self.pivot_suppressed = False\n        for t in self.transitions.get(self.state, []):\n            if CONDITIONS[t[\"condition\"]](self):\n                self._enter_state(t[\"to\"], t[\"blend_time_s\"], t[\"condition\"])\n                break\n        if self.state == \"cycle\":\n            sp = self.state_player()\n            want = self.select_asset(\"sel_cycle\", {\"gait\": self.gait, \"cardinal\": self.cardinal})[0]\n            if sp is None or sp[\"asset_id\"] != want:\n                self.events.append({\"from\": \"cycle\", \"to\": \"cycle\", \"condition\": \"gait_or_cardinal_changed\"})\n                self._enter_cycle(0.2)\n\n        self._advance_players(dt)\n        sync_info = self._update_sync_groups(dt)\n        self._update_weights(dt)\n        self.state_time += dt\n        self.idle_time = self.idle_time + dt if self.state == \"idle\" else 0.0\n        self.prev_speed = k[\"speed\"]\n        plan = self._build_plan(sync_info, dt_raw, dt)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "SYN01",
+      "category": "synchronization",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "只将兼容的循环移动播放器置于locomotion_cycle，起停、pivot、turn和idle明确不参加；控制器从图建立组表并按node.sync_group查找真实玩家。角色由组内leader决策给出。leader选取政策本身的错误在SYN04承担，本项认可成员作用域及消费连接。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 71,
+          "line_end": 82,
+          "quote": "  {\"id\": \"player_idle\", \"kind\": \"asset_player\", \"state\": \"idle\", \"selector\": \"sel_idle\",\n   \"time_mode\": \"clock_loop\", \"loop\": true, \"sync_group\": null},\n  {\"id\": \"player_start\", \"kind\": \"asset_player\", \"state\": \"start\", \"selector\": \"sel_start\",\n   \"time_mode\": \"distance_match\", \"distance_curve\": \"distance_traveled_cm\", \"loop\": false, \"sync_group\": null},\n  {\"id\": \"player_cycle\", \"kind\": \"asset_player\", \"state\": \"cycle\", \"selector\": \"sel_cycle\",\n   \"time_mode\": \"speed_scaled_clock\", \"loop\": true, \"sync_group\": \"locomotion_cycle\"},\n  {\"id\": \"player_stop\", \"kind\": \"asset_player\", \"state\": \"stop\", \"selector\": \"sel_stop\",\n   \"time_mode\": \"distance_match\", \"distance_curve\": \"distance_to_stop_cm\", \"loop\": false, \"sync_group\": null},\n  {\"id\": \"player_pivot\", \"kind\": \"asset_player\", \"state\": \"pivot\", \"selector\": \"sel_pivot\",\n   \"time_mode\": \"distance_match_to_marker\", \"distance_curve\": \"signed_distance_to_pivot_cm\", \"loop\": false, \"sync_group\": null},\n  {\"id\": \"player_turn\", \"kind\": \"asset_player\", \"state\": \"turn_in_place\", \"selector\": \"sel_turn\",\n   \"time_mode\": \"clock_once\", \"curve\": \"remaining_turn_yaw_deg\", \"loop\": false, \"sync_group\": null},"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 152,
+          "line_end": 156,
+          "quote": " \"sync_groups\": [\n  {\"id\": \"locomotion_cycle\", \"members_from_nodes\": [\"player_cycle\"],\n   \"settings\": {\"method\": \"marker_phase\", \"markers\": [\"foot_l_plant\", \"foot_r_plant\"],\n                \"phase_reference_marker\": \"foot_l_plant\", \"leader_policy\": \"highest_weight\",\n                \"fallback_method\": \"normalized_time\"}}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 313,
+          "line_end": 320,
+          "quote": "    def _members(self, group_id):\n        return [pl for pl in self.players\n                if self.nodes[pl[\"node_id\"]].get(\"sync_group\") == group_id]\n\n    def _update_sync_groups(self, dt):\n        out = {}\n        for gid, g in self.sync_groups.items():\n            members = self._members(gid)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN02",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "实现了带跨尾扩展的前后同名左脚marker区间，按区间内相对进度映射至另一片段，不是简单使用相同normalized time，能适应不同周期与左脚接触偏移。但只保留phase_reference_marker的同名点，配置中的右脚marker不进入分段；当左右接触相对时刻不同，不能按左右相邻marker区间保持两侧接触。这里仅扣该相位表达缺口；Notify归属缺失由SYN04承担，公共集合缺口由SYN03承担。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 302,
+          "quote": "    def _ref_markers(self, asset_id, ref_name):\n        data = self.asset_data(asset_id)\n        return sorted(m[\"time_s\"] for m in data.get(\"sync_markers\", []) if m[\"name\"] == ref_name)\n\n    def _stride_at(self, asset_id, t, ref_name):\n        \"\"\"Return (prev_marker, next_marker) bracketing t on the looped marker track, or None.\"\"\"\n        refs = self._ref_markers(asset_id, ref_name)\n        if not refs:\n            return None\n        period = self.asset_data(asset_id)[\"loop\"][\"period_s\"]\n        ext = [r - period for r in refs] + refs + [r + period for r in refs]\n        for a, b in zip(ext, ext[1:]):\n            if a <= t < b:\n                return a, b\n        return ext[-2], ext[-1]\n\n    def _phase(self, asset_id, t, settings):\n        st = self._stride_at(asset_id, t, settings[\"phase_reference_marker\"])\n        if st is None or settings[\"method\"] != \"marker_phase\":\n            return t / self.asset_data(asset_id)[\"duration_seconds\"], \"normalized_time\"\n        a, b = st\n        return (t - a) / (b - a), \"marker_phase\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 304,
+          "line_end": 311,
+          "quote": "    def _time_from_phase(self, asset_id, phase, method, near_t, settings):\n        period = self.asset_data(asset_id)[\"loop\"][\"period_s\"]\n        if method == \"marker_phase\":\n            st = self._stride_at(asset_id, near_t, settings[\"phase_reference_marker\"])\n            if st is not None:\n                a, b = st\n                return math.fmod(a + phase * (b - a) + period, period)\n        return phase * period"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 153,
+          "line_end": 156,
+          "quote": "  {\"id\": \"locomotion_cycle\", \"members_from_nodes\": [\"player_cycle\"],\n   \"settings\": {\"method\": \"marker_phase\", \"markers\": [\"foot_l_plant\", \"foot_r_plant\"],\n                \"phase_reference_marker\": \"foot_l_plant\", \"leader_policy\": \"highest_weight\",\n                \"fallback_method\": \"normalized_time\"}}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN03",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1,
+      "deduction": 2,
+      "reason": "有找不到参考marker时转normalized time的可定位实现，故保留退化工作的部分分。没有按当前组成员求公共marker集合或先验证全部成员兼容；leader仍可输出marker_phase，而缺标记的follower直接把marker区间进度当作全长进度，组内语义不一致。也未消费声明的fallback_method来统一全组退化/拒绝并报告。此为兼容性策略问题，独立于SYN02仅使用左脚分段的限制。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 297,
+          "line_end": 311,
+          "quote": "    def _phase(self, asset_id, t, settings):\n        st = self._stride_at(asset_id, t, settings[\"phase_reference_marker\"])\n        if st is None or settings[\"method\"] != \"marker_phase\":\n            return t / self.asset_data(asset_id)[\"duration_seconds\"], \"normalized_time\"\n        a, b = st\n        return (t - a) / (b - a), \"marker_phase\"\n\n    def _time_from_phase(self, asset_id, phase, method, near_t, settings):\n        period = self.asset_data(asset_id)[\"loop\"][\"period_s\"]\n        if method == \"marker_phase\":\n            st = self._stride_at(asset_id, near_t, settings[\"phase_reference_marker\"])\n            if st is not None:\n                a, b = st\n                return math.fmod(a + phase * (b - a) + period, period)\n        return phase * period"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 317,
+          "line_end": 339,
+          "quote": "    def _update_sync_groups(self, dt):\n        out = {}\n        for gid, g in self.sync_groups.items():\n            members = self._members(gid)\n            if not members:\n                out[gid] = None\n                continue\n            leader = max(members, key=lambda pl: (pl[\"weight\"] + pl[\"target\"], pl[\"player_id\"]))\n            data = self.asset_data(leader[\"asset_id\"])\n            rate = clamp(self.k[\"speed\"] / data[\"authored_speed_cm_s\"],\n                         self.p[\"cycle_play_rate_min\"], self.p[\"cycle_play_rate_max\"])\n            self._advance_clock(leader, dt, rate)\n            phase, method = self._phase(leader[\"asset_id\"], leader[\"time\"], g[\"settings\"])\n            for pl in members:\n                if pl is leader:\n                    continue\n                pl[\"prev_time\"] = pl[\"time\"]\n                nt = self._time_from_phase(pl[\"asset_id\"], phase, method, pl[\"time\"], g[\"settings\"])\n                per = self.asset_data(pl[\"asset_id\"])[\"loop\"][\"period_s\"]\n                adv = math.fmod(nt - pl[\"time\"] + per, per)\n                pl[\"time\"] = nt\n                pl[\"play_rate\"] = adv / dt if adv < 0.5 * per else 0.0\n            out[gid] = {\"leader\": leader[\"player_id\"], \"phase\": phase, \"method\": method}"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 153,
+          "line_end": 156,
+          "quote": "  {\"id\": \"locomotion_cycle\", \"members_from_nodes\": [\"player_cycle\"],\n   \"settings\": {\"method\": \"marker_phase\", \"markers\": [\"foot_l_plant\", \"foot_r_plant\"],\n                \"phase_reference_marker\": \"foot_l_plant\", \"leader_policy\": \"highest_weight\",\n                \"fallback_method\": \"normalized_time\"}}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN04",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 0.5,
+      "deduction": 1.5,
+      "reason": "有确定性的leader选择与player_id平局顺序，输出leader关联。但比较weight+target而非图声明highest_weight，刚进入的低权重玩家可提前夺取leader；没有Notify的所属播放器、仅leader触发或抑制follower重复事件的具体计划。diagnostics中的state transition事件不能充当Notify归属计划。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 324,
+          "line_end": 339,
+          "quote": "            leader = max(members, key=lambda pl: (pl[\"weight\"] + pl[\"target\"], pl[\"player_id\"]))\n            data = self.asset_data(leader[\"asset_id\"])\n            rate = clamp(self.k[\"speed\"] / data[\"authored_speed_cm_s\"],\n                         self.p[\"cycle_play_rate_min\"], self.p[\"cycle_play_rate_max\"])\n            self._advance_clock(leader, dt, rate)\n            phase, method = self._phase(leader[\"asset_id\"], leader[\"time\"], g[\"settings\"])\n            for pl in members:\n                if pl is leader:\n                    continue\n                pl[\"prev_time\"] = pl[\"time\"]\n                nt = self._time_from_phase(pl[\"asset_id\"], phase, method, pl[\"time\"], g[\"settings\"])\n                per = self.asset_data(pl[\"asset_id\"])[\"loop\"][\"period_s\"]\n                adv = math.fmod(nt - pl[\"time\"] + per, per)\n                pl[\"time\"] = nt\n                pl[\"play_rate\"] = adv / dt if adv < 0.5 * per else 0.0\n            out[gid] = {\"leader\": leader[\"player_id\"], \"phase\": phase, \"method\": method}"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 153,
+          "line_end": 156,
+          "quote": "  {\"id\": \"locomotion_cycle\", \"members_from_nodes\": [\"player_cycle\"],\n   \"settings\": {\"method\": \"marker_phase\", \"markers\": [\"foot_l_plant\", \"foot_r_plant\"],\n                \"phase_reference_marker\": \"foot_l_plant\", \"leader_policy\": \"highest_weight\",\n                \"fallback_method\": \"normalized_time\"}}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 350,
+          "line_end": 354,
+          "quote": "    def _enter_state(self, state, blend_time, reason):\n        k, p = self.k, self.p\n        prev = self.state\n        self.events.append({\"from\": prev, \"to\": state, \"condition\": reason})\n        self.state, self.state_time = state, 0.0"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN05",
+      "category": "synchronization",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "起停非循环播放器显式不参与cycle同步组，其时间由距离曲线反查并受速率约束，因此不会被cycle follower时间覆盖。进入cycle时优先继承已有cycle相位，否则从输出start/pivot最近plant接触对应到cycle标记；停止以独立距离时间和交叉淡化衔接。这是明确的替代Always Leader方案，并未声称距离反查天然等于脚相同步。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 73,
+          "line_end": 80,
+          "quote": "  {\"id\": \"player_start\", \"kind\": \"asset_player\", \"state\": \"start\", \"selector\": \"sel_start\",\n   \"time_mode\": \"distance_match\", \"distance_curve\": \"distance_traveled_cm\", \"loop\": false, \"sync_group\": null},\n  {\"id\": \"player_cycle\", \"kind\": \"asset_player\", \"state\": \"cycle\", \"selector\": \"sel_cycle\",\n   \"time_mode\": \"speed_scaled_clock\", \"loop\": true, \"sync_group\": \"locomotion_cycle\"},\n  {\"id\": \"player_stop\", \"kind\": \"asset_player\", \"state\": \"stop\", \"selector\": \"sel_stop\",\n   \"time_mode\": \"distance_match\", \"distance_curve\": \"distance_to_stop_cm\", \"loop\": false, \"sync_group\": null},\n  {\"id\": \"player_pivot\", \"kind\": \"asset_player\", \"state\": \"pivot\", \"selector\": \"sel_pivot\",\n   \"time_mode\": \"distance_match_to_marker\", \"distance_curve\": \"signed_distance_to_pivot_cm\", \"loop\": false, \"sync_group\": null},"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 436,
+          "line_end": 464,
+          "quote": "    def _enter_cycle(self, blend_time):\n        aid, _fb, _req = self.select_asset(\"sel_cycle\", {\"gait\": self.gait, \"cardinal\": self.cardinal})\n        settings = self.sync_groups[\"locomotion_cycle\"][\"settings\"]\n        existing = [pl for pl in self._members(\"locomotion_cycle\") if pl[\"weight\"] > 0]\n        if existing:\n            lead = max(existing, key=lambda pl: pl[\"weight\"])\n            ph, m = self._phase(lead[\"asset_id\"], lead[\"time\"], settings)\n            t0 = self._time_from_phase(aid, ph, m, 0.0, settings)\n        else:\n            src = next((pl for pl in reversed(self.players) if pl[\"state\"] in (\"start\", \"pivot\")), None)\n            t0 = self._cycle_time_from_contacts(src, aid) if src else 0.0\n        self._new_player(\"cycle\", aid, t0, blend_time, \"speed_scaled_clock\", loop=True)\n\n    def _cycle_time_from_contacts(self, src, cycle_id):\n        \"\"\"Align the cycle to the foot that most recently planted in the outgoing clip.\"\"\"\n        contacts = self.asset_data(src[\"asset_id\"]).get(\"foot_contacts\", {})\n        best = None\n        for side, ivs in contacts.items():\n            for s, _e in ivs:\n                if s <= src[\"time\"] and (best is None or s > best[1]):\n                    best = (side, s)\n        if best is None:\n            return 0.0\n        side, s = best\n        marks = [m[\"time_s\"] for m in self.asset_data(cycle_id)[\"sync_markers\"] if m[\"name\"] == f\"foot_{side}_plant\"]\n        if not marks:\n            return 0.0\n        per = self.asset_data(cycle_id)[\"loop\"][\"period_s\"]\n        return math.fmod(marks[0] + (src[\"time\"] - s), per)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 502,
+          "line_end": 524,
+          "quote": "    def _advance_players(self, dt):\n        k, p = self.k, self.p\n        for pl in self.players:\n            node = self.nodes[pl[\"node_id\"]]\n            if node.get(\"sync_group\"):\n                continue  # advanced by the sync group\n            mode = pl[\"time_mode\"]\n            active = pl[\"state\"] == self.state and pl[\"target\"] > 0\n            c = self.asset_data(pl[\"asset_id\"]).get(\"curves\", {})\n            if mode in (\"static_pose\", \"timed_blend\"):\n                pl[\"prev_time\"], pl[\"play_rate\"] = pl[\"time\"], 0.0\n            elif not active:\n                self._advance_clock(pl, dt, 1.0)\n            elif mode == \"distance_match\" and pl[\"state\"] == \"start\":\n                self.start_distance += k[\"speed\"] * dt\n                tm = invert_monotonic_curve(c[\"time_s\"], c[\"distance_traveled_cm\"], self.start_distance)\n                self._set_matched_time(pl, dt, tm)\n            elif mode == \"distance_match\" and pl[\"state\"] == \"stop\":\n                if k[\"speed\"] <= p[\"idle_speed_max_cm_s\"]:\n                    self._advance_clock(pl, dt, 1.0)\n                else:\n                    d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                    self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN06",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "已有周期取模、跨尾参考点扩展，以及新增cycle玩家时复制已有相位，覆盖基本接管与跨尾。但只保留取模前后时刻，没有跨越圈数/有序marker区间/开闭端点及事件标识去重规则；单帧跨多个marker或整圈的调度区间不能从所交付计划恢复。本项扣时间区间与唯一性规则缺失，SYN04另扣leader选择及事件所属者。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 256,
+          "line_end": 266,
+          "quote": "    def _advance_clock(self, pl, dt, rate):\n        pl[\"prev_time\"] = pl[\"time\"]\n        data = self.asset_data(pl[\"asset_id\"])\n        dur = data[\"duration_seconds\"]\n        t = pl[\"time\"] + dt * rate\n        if pl[\"loop\"] and dur > 0:\n            t = math.fmod(t, dur)\n        else:\n            t = clamp(t, 0.0, dur)\n        pl[\"time\"] = t\n        pl[\"play_rate\"] = rate"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 285,
+          "line_end": 295,
+          "quote": "    def _stride_at(self, asset_id, t, ref_name):\n        \"\"\"Return (prev_marker, next_marker) bracketing t on the looped marker track, or None.\"\"\"\n        refs = self._ref_markers(asset_id, ref_name)\n        if not refs:\n            return None\n        period = self.asset_data(asset_id)[\"loop\"][\"period_s\"]\n        ext = [r - period for r in refs] + refs + [r + period for r in refs]\n        for a, b in zip(ext, ext[1:]):\n            if a <= t < b:\n                return a, b\n        return ext[-2], ext[-1]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 330,
+          "line_end": 339,
+          "quote": "            for pl in members:\n                if pl is leader:\n                    continue\n                pl[\"prev_time\"] = pl[\"time\"]\n                nt = self._time_from_phase(pl[\"asset_id\"], phase, method, pl[\"time\"], g[\"settings\"])\n                per = self.asset_data(pl[\"asset_id\"])[\"loop\"][\"period_s\"]\n                adv = math.fmod(nt - pl[\"time\"] + per, per)\n                pl[\"time\"] = nt\n                pl[\"play_rate\"] = adv / dt if adv < 0.5 * per else 0.0\n            out[gid] = {\"leader\": leader[\"player_id\"], \"phase\": phase, \"method\": method}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 436,
+          "line_end": 447,
+          "quote": "    def _enter_cycle(self, blend_time):\n        aid, _fb, _req = self.select_asset(\"sel_cycle\", {\"gait\": self.gait, \"cardinal\": self.cardinal})\n        settings = self.sync_groups[\"locomotion_cycle\"][\"settings\"]\n        existing = [pl for pl in self._members(\"locomotion_cycle\") if pl[\"weight\"] > 0]\n        if existing:\n            lead = max(existing, key=lambda pl: pl[\"weight\"])\n            ph, m = self._phase(lead[\"asset_id\"], lead[\"time\"], settings)\n            t0 = self._time_from_phase(aid, ph, m, 0.0, settings)\n        else:\n            src = next((pl for pl in reversed(self.players) if pl[\"state\"] in (\"start\", \"pivot\")), None)\n            t0 = self._cycle_time_from_contacts(src, aid) if src else 0.0\n        self._new_player(\"cycle\", aid, t0, blend_time, \"speed_scaled_clock\", loop=True)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST01",
+      "category": "distance_matching",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "三类距离定义独立且单位为 cm：start 自起点累计 XY 路程，stop 到结束的剩余路程，pivot 以最小速度位置为零且前负后正。消费者分别积累 speed*dt、预测正剩余距离、反向前负目标/反向后累计正目标；符号和参考点一致。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 97,
+          "line_end": 106,
+          "quote": "    elif action == \"start\":\n        steps.append({\"op\": \"derive_distance_curve\", \"params\": {\"name\": \"distance_traveled_cm\",\n                                                                 \"method\": \"cumulative horizontal root path length from t0\"}})\n    elif action == \"stop\":\n        steps.append({\"op\": \"derive_distance_curve\", \"params\": {\"name\": \"distance_to_stop_cm\",\n                                                                 \"method\": \"remaining horizontal root path length to final frame\"}})\n    elif action == \"pivot\":\n        steps.append({\"op\": \"derive_pivot\", \"params\": {\"pivot_time\": \"frame of minimum horizontal root speed between entry and exit\",\n                                                        \"curve\": \"signed_distance_to_pivot_cm (negative before pivot, positive after)\",\n                                                        \"entry_exit_direction\": \"sign of root velocity along clip axis before/after pivot\"}})"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 302,
+          "line_end": 318,
+          "quote": "    elif action == \"start\":\n        curves[\"distance_traveled_cm\"] = [_r(d) for d in path_len]\n        data[\"end_speed_cm_s\"] = _r(speed[-1])\n    elif action == \"stop\":\n        total = path_len[-1]\n        curves[\"distance_to_stop_cm\"] = [_r(total - d) for d in path_len]\n        rest = next((times[i] for i in range(len(times)) if total - path_len[i] < 0.5 and speed[i] < 5.0), times[-1])\n        data[\"stop_distance_cm\"] = _r(total)\n        data[\"entry_speed_cm_s\"] = _r(speed[0])\n        data[\"root_at_rest_time_s\"] = _r(rest)\n    elif action == \"pivot\":\n        n = len(times)\n        lo, hi = n // 10, n - n // 10\n        piv = min(range(lo, hi), key=lambda i: speed[i])\n        tp = times[piv]\n        dist = [_r(path_len[i] - path_len[piv]) for i in range(n)]\n        curves[\"signed_distance_to_pivot_cm\"] = dist"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 515,
+          "line_end": 534,
+          "quote": "            elif mode == \"distance_match\" and pl[\"state\"] == \"start\":\n                self.start_distance += k[\"speed\"] * dt\n                tm = invert_monotonic_curve(c[\"time_s\"], c[\"distance_traveled_cm\"], self.start_distance)\n                self._set_matched_time(pl, dt, tm)\n            elif mode == \"distance_match\" and pl[\"state\"] == \"stop\":\n                if k[\"speed\"] <= p[\"idle_speed_max_cm_s\"]:\n                    self._advance_clock(pl, dt, 1.0)\n                else:\n                    d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                    self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d))\n            elif mode == \"distance_match_to_marker\":\n                v = k[\"velocity\"]\n                if not self.pivot_reversed and (v[0] * self.pivot_entry_dir[0] + v[1] * self.pivot_entry_dir[1]) <= 0.1 * k[\"speed\"]:\n                    self.pivot_reversed = True\n                if self.pivot_reversed:\n                    self.pivot_post_distance += k[\"speed\"] * dt\n                    target = self.pivot_post_distance\n                else:\n                    target = -k[\"speed\"] ** 2 / (2.0 * max(-k[\"accel_along_velocity\"], 1.0))\n                self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"signed_distance_to_pivot_cm\"], target))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "DST02",
+      "category": "distance_matching",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "start 每帧只向内部累计量加 speed*dt，再由该累计值查绝对时间，未把累计路程反复加到播放器时间；stop 每帧按剩余目标反查，pivot 切换前后距离语义。匹配时间由 _set_matched_time 写入，播放器不二次推进。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 369,
+          "line_end": 370,
+          "quote": "            self.start_distance = 0.0\n            self._new_player(\"start\", aid, 0.0, blend_time, \"distance_match\", loop=False)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 515,
+          "line_end": 534,
+          "quote": "            elif mode == \"distance_match\" and pl[\"state\"] == \"start\":\n                self.start_distance += k[\"speed\"] * dt\n                tm = invert_monotonic_curve(c[\"time_s\"], c[\"distance_traveled_cm\"], self.start_distance)\n                self._set_matched_time(pl, dt, tm)\n            elif mode == \"distance_match\" and pl[\"state\"] == \"stop\":\n                if k[\"speed\"] <= p[\"idle_speed_max_cm_s\"]:\n                    self._advance_clock(pl, dt, 1.0)\n                else:\n                    d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                    self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d))\n            elif mode == \"distance_match_to_marker\":\n                v = k[\"velocity\"]\n                if not self.pivot_reversed and (v[0] * self.pivot_entry_dir[0] + v[1] * self.pivot_entry_dir[1]) <= 0.1 * k[\"speed\"]:\n                    self.pivot_reversed = True\n                if self.pivot_reversed:\n                    self.pivot_post_distance += k[\"speed\"] * dt\n                    target = self.pivot_post_distance\n                else:\n                    target = -k[\"speed\"] ** 2 / (2.0 * max(-k[\"accel_along_velocity\"], 1.0))\n                self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"signed_distance_to_pivot_cm\"], target))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 268,
+          "line_end": 278,
+          "quote": "    def _set_matched_time(self, pl, dt, t_match):\n        \"\"\"Distance matching with clamped play rate (time never runs backwards).\"\"\"\n        p = self.p\n        dur = self.asset_data(pl[\"asset_id\"])[\"duration_seconds\"]\n        lo = pl[\"time\"] + dt * p[\"distance_match_min_play_rate\"]\n        hi = pl[\"time\"] + dt * p[\"distance_match_max_play_rate\"]\n        t = clamp(clamp(t_match, lo, hi), 0.0, dur)\n        pl[\"prev_time\"] = pl[\"time\"]\n        pl[\"play_rate\"] = (t - pl[\"time\"]) / dt\n        pl[\"time\"] = t\n        pl[\"distance_match_target_s\"] = round(t_match, 5)"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 36,
+          "line_end": 36,
+          "quote": "- **时间**：控制器是唯一时钟。`sample_time_seconds` 为本帧权威采样时间；`play_rate` 是本帧推进该时间所用倍率，仅作说明，消费方不应再次推进。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "DST03",
+      "category": "distance_matching",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "停止距离使用 v²/(2b)，b 有图内可配置默认值和观测减速平滑估计；pivot 使用速度方向上的减速度预测到反向点的距离，分母至少为 1 并在反向后改为实走距离。模型假设及缺片路径有说明。input_intent 与题面加速度语义的兼容性归 LOC 审查，本项不重复扣同一状态判断根因。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 15,
+          "line_end": 19,
+          "quote": "  \"acceleration_semantics\": \"input_intent\",\n  \"default_braking_deceleration_cm_s2\": 1400.0,\n  \"braking_estimate_smoothing\": 0.25,\n  \"pivot_min_speed_cm_s\": 150.0,\n  \"pivot_min_accel_cm_s2\": 300.0,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 195,
+          "line_end": 205,
+          "quote": "        accel_along = (acc[0] * vel[0] + acc[1] * vel[1]) / speed if speed > 1e-6 else 0.0\n        if speed > 1e-6 and accel_mag > 1e-6:\n            cosang = clamp((acc[0] * vel[0] + acc[1] * vel[1]) / (speed * accel_mag), -1.0, 1.0)\n            av_angle = math.degrees(math.acos(cosang))\n        else:\n            av_angle = 0.0\n        # braking estimate from observed speed drop while no input acceleration\n        if not has_accel and self.frame_index > 0 and speed < self.prev_speed:\n            obs = (self.prev_speed - speed) / dt\n            s = p[\"braking_estimate_smoothing\"]\n            self.braking_est = (1 - s) * self.braking_est + s * obs"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 382,
+          "line_end": 385,
+          "quote": "                d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                c = self.asset_data(aid)[\"curves\"]\n                t0 = invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d)\n                self._new_player(\"stop\", aid, t0, blend_time, \"distance_match\", loop=False)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 410,
+          "line_end": 417,
+          "quote": "            v = k[\"velocity\"]\n            self.pivot_entry_dir = (v[0] / k[\"speed\"], v[1] / k[\"speed\"])\n            self.pivot_reversed = False\n            self.pivot_post_distance = 0.0\n            d = k[\"speed\"] ** 2 / (2.0 * max(-k[\"accel_along_velocity\"], 1.0))\n            c = self.asset_data(aid)[\"curves\"]\n            t0 = invert_monotonic_curve(c[\"time_s\"], c[\"signed_distance_to_pivot_cm\"], -d)\n            self._new_player(\"pivot\", aid, t0, blend_time, \"distance_match_to_marker\", loop=False)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 525,
+          "line_end": 534,
+          "quote": "            elif mode == \"distance_match_to_marker\":\n                v = k[\"velocity\"]\n                if not self.pivot_reversed and (v[0] * self.pivot_entry_dir[0] + v[1] * self.pivot_entry_dir[1]) <= 0.1 * k[\"speed\"]:\n                    self.pivot_reversed = True\n                if self.pivot_reversed:\n                    self.pivot_post_distance += k[\"speed\"] * dt\n                    target = self.pivot_post_distance\n                else:\n                    target = -k[\"speed\"] ** 2 / (2.0 * max(-k[\"accel_along_velocity\"], 1.0))\n                self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"signed_distance_to_pivot_cm\"], target))"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 38,
+          "line_end": 43,
+          "quote": "- **加速度语义**：`input_intent`（类似 CharacterMovement 的输入加速度）：有加速度=想移动；移动中加速度≈0=停步；加速度与速度夹角 ≥120° 且足够大=pivot。若调用方传入的是运动学加速度，停步判断会不同，这是关键假设。\n- **状态机**（图中定义，按 priority 求值，每帧至多一次转移）：idle / start / cycle / stop / pivot / turn_in_place。\n  - start：距离匹配 `distance_traveled_cm`（内部积分 speed·dt），播放倍率限制在 [0.6,1.6]；达到循环速度 90%、时长 85% 或方向改变时进入 cycle，并按 start 中最近着地的脚对齐 cycle 相位。\n  - cycle：倍率 = speed/资源速度，限制在 [0.8,1.25]，余量交给 stride_warping；gait/方向变化时在同步组内交叉淡入，按 `foot_l_plant` 标记相位对齐。\n  - stop：预测停步距离 v²/(2b) 反查 `distance_to_stop_cm`；\n  - pivot：减速段用 −v²/(2|a∥|)，速度反向后用累计距离，反查 `signed_distance_to_pivot_cm`；资源离开方向与加速度方向偏差 >35° 时不用该 pivot。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "DST04",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "反查支持增/减曲线、线性插值、两端 clamp、平台分支，并把生成的 pivot 曲线化为有符号累计路程；播放器限制新时间不倒退。缺口是只检查 times 非空，直接按端点判断单调性，未验证 times/values 对齐、有限性和全序单调，也没有拒绝或分支处理非单调输入的明确契约。对这种输入会静默取第一个命中段或末端；这不是要求通用引擎，而是本项要求的曲线边界策略。",
+      "evidence": [
+        {
+          "path": "src/anim_math.py",
+          "line_start": 110,
+          "line_end": 130,
+          "quote": "def invert_monotonic_curve(times: Sequence[float], values: Sequence[float], target: float) -> float:\n    \"\"\"Find the first time where a monotonic (non-strict) curve reaches ``target``.\n\n    Works for increasing or decreasing curves; clamps to the curve range.\n    This is the core of distance matching.\n    \"\"\"\n    if not times:\n        raise ValueError(\"empty curve\")\n    increasing = values[-1] >= values[0]\n    sign = 1.0 if increasing else -1.0\n    tgt = sign * target\n    if tgt <= sign * values[0]:\n        return times[0]\n    for i in range(1, len(times)):\n        v0, v1 = sign * values[i - 1], sign * values[i]\n        if v1 >= tgt:\n            if v1 == v0:\n                return times[i]\n            u = (tgt - v0) / (v1 - v0)\n            return lerp(times[i - 1], times[i], clamp(u, 0.0, 1.0))\n    return times[-1]"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 312,
+          "line_end": 318,
+          "quote": "    elif action == \"pivot\":\n        n = len(times)\n        lo, hi = n // 10, n - n // 10\n        piv = min(range(lo, hi), key=lambda i: speed[i])\n        tp = times[piv]\n        dist = [_r(path_len[i] - path_len[piv]) for i in range(n)]\n        curves[\"signed_distance_to_pivot_cm\"] = dist"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 268,
+          "line_end": 278,
+          "quote": "    def _set_matched_time(self, pl, dt, t_match):\n        \"\"\"Distance matching with clamped play rate (time never runs backwards).\"\"\"\n        p = self.p\n        dur = self.asset_data(pl[\"asset_id\"])[\"duration_seconds\"]\n        lo = pl[\"time\"] + dt * p[\"distance_match_min_play_rate\"]\n        hi = pl[\"time\"] + dt * p[\"distance_match_max_play_rate\"]\n        t = clamp(clamp(t_match, lo, hi), 0.0, dur)\n        pl[\"prev_time\"] = pl[\"time\"]\n        pl[\"play_rate\"] = (t - pl[\"time\"]) / dt\n        pl[\"time\"] = t\n        pl[\"distance_match_target_s\"] = round(t_match, 5)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 51,
+          "line_end": 72,
+          "quote": "    def _validate_graph(self) -> None:\n        ids = set(self.nodes)\n        for c in self.graph[\"connections\"]:\n            if c[\"from\"] not in ids or c[\"to\"] not in ids:\n                raise ValueError(f\"unresolved connection {c}\")\n        for t in self.sm[\"transitions\"]:\n            if t[\"condition\"] not in CONDITIONS:\n                raise ValueError(f\"unknown condition {t['condition']}\")\n        for sid, pn in self.state_player_node.items():\n            node = self.nodes[pn]\n            sel = self.nodes[node[\"selector\"]]\n            if node.get(\"sync_group\") and node[\"sync_group\"] not in self.sync_groups:\n                raise ValueError(f\"unknown sync group {node['sync_group']}\")\n            for aid in self._table_ids(sel[\"table\"]):\n                if aid not in self.asset_by_id:\n                    raise ValueError(f\"{sel['id']} references unknown asset {aid}\")\n            for fb in sel.get(\"fallback\", {}).values():\n                if \"asset_id\" in fb and self.asset_by_id.get(fb[\"asset_id\"], {}).get(\"status\") != \"ready\":\n                    raise ValueError(f\"fallback {fb['asset_id']} is not a ready asset\")\n        for op in self.op_order:\n            if op not in ids:\n                raise ValueError(f\"unknown pose op node {op}\")"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "DST05",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "距离匹配时间有 dt*min/max playrate 的上下限并报告有效倍率；cycle 另用 speed/authored_speed，并在 clamp 后按 speed/(authored_speed*play_rate) 计算剩余 stride，避免同一速度补偿两次。缺口是 stride 只对 cycle 计算：start/stop/pivot 匹配被 .6–1.6 限制后未处理残余距离，也未明确声明这些状态接受受限滑动。只是说无 IK/未调参不等于给出该取舍契约。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 268,
+          "line_end": 278,
+          "quote": "    def _set_matched_time(self, pl, dt, t_match):\n        \"\"\"Distance matching with clamped play rate (time never runs backwards).\"\"\"\n        p = self.p\n        dur = self.asset_data(pl[\"asset_id\"])[\"duration_seconds\"]\n        lo = pl[\"time\"] + dt * p[\"distance_match_min_play_rate\"]\n        hi = pl[\"time\"] + dt * p[\"distance_match_max_play_rate\"]\n        t = clamp(clamp(t_match, lo, hi), 0.0, dur)\n        pl[\"prev_time\"] = pl[\"time\"]\n        pl[\"play_rate\"] = (t - pl[\"time\"]) / dt\n        pl[\"time\"] = t\n        pl[\"distance_match_target_s\"] = round(t_match, 5)"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 26,
+          "line_end": 29,
+          "quote": "  \"distance_match_min_play_rate\": 0.6,\n  \"distance_match_max_play_rate\": 1.6,\n  \"cycle_play_rate_min\": 0.8,\n  \"cycle_play_rate_max\": 1.25,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 603,
+          "line_end": 608,
+          "quote": "        stride = None\n        sp = self.state_player()\n        if self.state == \"cycle\" and sp is not None and k[\"speed\"] > p[\"moving_speed_min_cm_s\"]:\n            d = self.asset_data(sp[\"asset_id\"])\n            denom = d[\"authored_speed_cm_s\"] * max(sp[\"play_rate\"], 1e-6)\n            stride = clamp(k[\"speed\"] / denom, 0.5, 1.5)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 626,
+          "line_end": 629,
+          "quote": "            elif typ == \"stride_warping\":\n                if stride is None or abs(stride - 1.0) < 0.01:\n                    continue\n                params = {\"stride_scale\": round(stride, 6), \"axis\": \"local velocity direction\", \"ik_executed\": False}"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 40,
+          "line_end": 43,
+          "quote": "  - start：距离匹配 `distance_traveled_cm`（内部积分 speed·dt），播放倍率限制在 [0.6,1.6]；达到循环速度 90%、时长 85% 或方向改变时进入 cycle，并按 start 中最近着地的脚对齐 cycle 相位。\n  - cycle：倍率 = speed/资源速度，限制在 [0.8,1.25]，余量交给 stride_warping；gait/方向变化时在同步组内交叉淡入，按 `foot_l_plant` 标记相位对齐。\n  - stop：预测停步距离 v²/(2b) 反查 `distance_to_stop_cm`；\n  - pivot：减速段用 −v²/(2|a∥|)，速度反向后用累计距离，反查 `signed_distance_to_pivot_cm`；资源离开方向与加速度方向偏差 >35° 时不用该 pivot。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 55,
+          "line_end": 55,
+          "quote": "- 没有 IK、脚锁定、姿态求值器或 UE 执行；warping 与 blend 只是参数化描述。参数（阈值、混合时间）为经验值，未在实际角色上调过。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "DST06",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "显式 time_mode、prev_time、权威 sample_time 和本帧有效倍率可追踪；普通推进/距离推进路径分开，root translation 忽略、转身 yaw 按前后采样差消费，且未宣称 UE 等价。缺口是进入 stop/pivot 直接初始化到反查 t0 与逐帧 advancing 的事件语义未定义，未声明此类跳转/初始化是否抑制或补发 Notify，也没有相应事件计划。只要求可审查的副作用约定，不要求事件执行器；此处不为 RES05 已处理的 root 所有权重复扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 239,
+          "line_end": 266,
+          "quote": "    def _new_player(self, state, asset_id, time, blend_time, time_mode, loop, extra=None, immediate=False):\n        pid = f\"p{self.next_player_num:04d}_{state}\"\n        self.next_player_num += 1\n        node_id = self.state_player_node[state]\n        rate = 1.0 / blend_time if blend_time > 0 else float(\"inf\")\n        for pl in self.players:\n            pl[\"target\"] = 0.0\n            pl[\"fade_rate\"] = rate\n        pl = {\"player_id\": pid, \"node_id\": node_id, \"state\": state, \"asset_id\": asset_id,\n              \"time\": time, \"prev_time\": time, \"play_rate\": 1.0, \"loop\": loop,\n              \"weight\": 1.0 if (immediate or not self.players) else 0.0, \"target\": 1.0,\n              \"fade_rate\": rate, \"time_mode\": time_mode}\n        if extra:\n            pl.update(extra)\n        self.players.append(pl)\n        return pl\n\n    def _advance_clock(self, pl, dt, rate):\n        pl[\"prev_time\"] = pl[\"time\"]\n        data = self.asset_data(pl[\"asset_id\"])\n        dur = data[\"duration_seconds\"]\n        t = pl[\"time\"] + dt * rate\n        if pl[\"loop\"] and dur > 0:\n            t = math.fmod(t, dur)\n        else:\n            t = clamp(t, 0.0, dur)\n        pl[\"time\"] = t\n        pl[\"play_rate\"] = rate"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 382,
+          "line_end": 385,
+          "quote": "                d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                c = self.asset_data(aid)[\"curves\"]\n                t0 = invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d)\n                self._new_player(\"stop\", aid, t0, blend_time, \"distance_match\", loop=False)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 414,
+          "line_end": 417,
+          "quote": "            d = k[\"speed\"] ** 2 / (2.0 * max(-k[\"accel_along_velocity\"], 1.0))\n            c = self.asset_data(aid)[\"curves\"]\n            t0 = invert_monotonic_curve(c[\"time_s\"], c[\"signed_distance_to_pivot_cm\"], -d)\n            self._new_player(\"pivot\", aid, t0, blend_time, \"distance_match_to_marker\", loop=False)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 535,
+          "line_end": 540,
+          "quote": "            elif mode == \"clock_once\":\n                self._advance_clock(pl, dt, 1.0)\n                if pl[\"state\"] == \"turn_in_place\":\n                    y0 = sample_curve(c[\"time_s\"], c[\"root_yaw_deg\"], pl[\"prev_time\"])\n                    y1 = sample_curve(c[\"time_s\"], c[\"root_yaw_deg\"], pl[\"time\"])\n                    self.root_yaw_offset += (y1 - y0) * pl.get(\"root_yaw_scale\", 1.0)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 562,
+          "line_end": 569,
+          "quote": "                \"player_id\": pl[\"player_id\"], \"asset_id\": pl[\"asset_id\"],\n                \"sample_time_seconds\": round(pl[\"time\"], 6),\n                \"weight\": round(pl[\"weight\"] / total, 6),\n                \"play_rate\": round(pl[\"play_rate\"], 6), \"loop\": pl[\"loop\"],\n                \"node_id\": pl[\"node_id\"], \"state\": pl[\"state\"], \"time_mode\": pl[\"time_mode\"],\n                \"target_weight\": pl[\"target\"], \"asset_status\": a[\"status\"],\n                \"materializable\": a[\"status\"] == \"ready\",\n                \"root_motion\": \"ignored_capsule_driven\","
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 36,
+          "line_end": 36,
+          "quote": "- **时间**：控制器是唯一时钟。`sample_time_seconds` 为本帧权威采样时间；`play_rate` 是本帧推进该时间所用倍率，仅作说明，消费方不应再次推进。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md",
+        "src/anim_math.py",
+        "src/locomotion_conditions.py"
+      ]
+    },
+    {
+      "id": "WRP01",
+      "category": "warping_and_yaw",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "计算有界的局部移动方向-四向中心角，区分根旋转及脊柱瞄准并形成操作链；但local_velocity_angle基于actor空间，warp只减当前cardinal。计划先施加rotate_root_yaw后仍未从方向差中消去有效root/mesh offset，存在offset时方向补偿与最终下身朝向不一致。扣1分；未因另由RES02处理的烘焙坐标根因重复扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 224,
+          "line_end": 235,
+          "quote": "    def _update_root_yaw_offset(self, dt):\n        k, p = self.k, self.p\n        if self.state in (\"idle\", \"turn_in_place\"):\n            self.root_yaw_offset -= k[\"actor_yaw_delta\"]  # keep feet planted while capsule rotates\n        else:\n            tau = max(p[\"root_yaw_offset_moving_blend_out_s\"], 1e-3)\n            self.root_yaw_offset *= math.exp(-dt / tau)\n        self.root_yaw_offset = wrap_degrees(self.root_yaw_offset)\n        lim = p[\"root_yaw_offset_max_deg\"]\n        self.root_yaw_offset = clamp(self.root_yaw_offset, -lim, lim)\n        mesh_yaw = k[\"actor_yaw\"] + self.root_yaw_offset\n        k[\"turn_error\"] = wrap_degrees(k[\"aim_yaw\"] - mesh_yaw)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 598,
+          "line_end": 609,
+          "quote": "        moving = self.state in MOVING_STATES\n        warp = 0.0\n        if moving:\n            warp = clamp(wrap_degrees(k[\"local_velocity_angle\"] - CARDINAL_CENTER[self.cardinal]),\n                         -p[\"orientation_warp_max_deg\"], p[\"orientation_warp_max_deg\"])\n        stride = None\n        sp = self.state_player()\n        if self.state == \"cycle\" and sp is not None and k[\"speed\"] > p[\"moving_speed_min_cm_s\"]:\n            d = self.asset_data(sp[\"asset_id\"])\n            denom = d[\"authored_speed_cm_s\"] * max(sp[\"play_rate\"], 1e-6)\n            stride = clamp(k[\"speed\"] / denom, 0.5, 1.5)\n        aim = clamp(wrap_degrees(k[\"aim_yaw\"] - k[\"mesh_yaw\"]), -p[\"aim_yaw_limit_deg\"], p[\"aim_yaw_limit_deg\"])"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 610,
+          "line_end": 639,
+          "quote": "        for op_id in self.op_order:\n            node = self.nodes[op_id]\n            typ = node[\"operation_type\"]\n            if typ == \"rotate_root_yaw\":\n                if abs(self.root_yaw_offset) < 0.01:\n                    continue\n                params = {\"yaw_deg\": round(self.root_yaw_offset, 6),\n                          \"mesh_world_yaw_deg\": round(k[\"mesh_yaw\"], 6),\n                          \"actor_world_yaw_deg\": k[\"actor_yaw\"],\n                          \"convention\": \"positive rotates +X toward +Y about +Z\"}\n            elif typ == \"orientation_warping\":\n                if abs(warp) < 0.01:\n                    continue\n                params = {\"angle_deg\": round(warp, 6), \"bones\": p[\"orientation_warp_bones\"],\n                          \"cardinal\": self.cardinal,\n                          \"velocity_local_angle_deg\": round(k[\"local_velocity_angle\"], 6)}\n            elif typ == \"stride_warping\":\n                if stride is None or abs(stride - 1.0) < 0.01:\n                    continue\n                params = {\"stride_scale\": round(stride, 6), \"axis\": \"local velocity direction\", \"ik_executed\": False}\n            elif typ == \"spine_yaw_distribution\":\n                if abs(aim) < 0.5:\n                    continue\n                params = {\"aim_offset_deg\": round(aim, 6),\n                          \"per_bone_yaw_deg\": {b: round(aim * w, 6)\n                                               for b, w in zip(p[\"aim_spine_bones\"], p[\"aim_spine_weights\"])}}\n            else:\n                continue\n            ops.append({\"operation_id\": op_id, \"operation_type\": typ, \"inputs\": [last], \"parameters\": params})\n            last = op_id"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "WRP02",
+      "category": "warping_and_yaw",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "Cycle使用speed/(authored_speed*play_rate)得到stride并夹在0.5..1.5，低移动速度时禁用，结果进入有效姿态计划；但原动画速度分母未作近零保护，stride也直接逐帧输出，没有独立平滑或入出过渡。扣1分；不要求实际IK/FK，不在本项重复扣Start距离匹配余量的其他问题。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 603,
+          "line_end": 608,
+          "quote": "        stride = None\n        sp = self.state_player()\n        if self.state == \"cycle\" and sp is not None and k[\"speed\"] > p[\"moving_speed_min_cm_s\"]:\n            d = self.asset_data(sp[\"asset_id\"])\n            denom = d[\"authored_speed_cm_s\"] * max(sp[\"play_rate\"], 1e-6)\n            stride = clamp(k[\"speed\"] / denom, 0.5, 1.5)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 626,
+          "line_end": 629,
+          "quote": "            elif typ == \"stride_warping\":\n                if stride is None or abs(stride - 1.0) < 0.01:\n                    continue\n                params = {\"stride_scale\": round(stride, 6), \"axis\": \"local velocity direction\", \"ik_executed\": False}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "WRP03",
+      "category": "warping_and_yaw",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "操作链由图指定，输出引用上一操作，依次表达根yaw、方向、步幅和脊柱分配；骨骼均属于给定26骨子集，文档明确无完整Manny/绑定参考姿态/IK执行和姿态求值。该项计划层契约充分，不要求渲染或补齐缺失骨骼；各参数算法缺口在独立WRP项评分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 610,
+          "line_end": 639,
+          "quote": "        for op_id in self.op_order:\n            node = self.nodes[op_id]\n            typ = node[\"operation_type\"]\n            if typ == \"rotate_root_yaw\":\n                if abs(self.root_yaw_offset) < 0.01:\n                    continue\n                params = {\"yaw_deg\": round(self.root_yaw_offset, 6),\n                          \"mesh_world_yaw_deg\": round(k[\"mesh_yaw\"], 6),\n                          \"actor_world_yaw_deg\": k[\"actor_yaw\"],\n                          \"convention\": \"positive rotates +X toward +Y about +Z\"}\n            elif typ == \"orientation_warping\":\n                if abs(warp) < 0.01:\n                    continue\n                params = {\"angle_deg\": round(warp, 6), \"bones\": p[\"orientation_warp_bones\"],\n                          \"cardinal\": self.cardinal,\n                          \"velocity_local_angle_deg\": round(k[\"local_velocity_angle\"], 6)}\n            elif typ == \"stride_warping\":\n                if stride is None or abs(stride - 1.0) < 0.01:\n                    continue\n                params = {\"stride_scale\": round(stride, 6), \"axis\": \"local velocity direction\", \"ik_executed\": False}\n            elif typ == \"spine_yaw_distribution\":\n                if abs(aim) < 0.5:\n                    continue\n                params = {\"aim_offset_deg\": round(aim, 6),\n                          \"per_bone_yaw_deg\": {b: round(aim * w, 6)\n                                               for b, w in zip(p[\"aim_spine_bones\"], p[\"aim_spine_weights\"])}}\n            else:\n                continue\n            ops.append({\"operation_id\": op_id, \"operation_type\": typ, \"inputs\": [last], \"parameters\": params})\n            last = op_id"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 29,
+          "line_end": 33,
+          "quote": "- **root motion**：root 轨迹以第 0 帧为原点存为 `data.root_motion`（tx,ty,tz,yaw）；姿态产物中 root=单位变换，位移只存在一处。运行时为 capsule 驱动，平移类 root motion 不再施加；只有原地转身消耗 `root_yaw_deg` 曲线（经 root yaw offset）。\n- **派生数据**（全部可由采样复算，方法写在 recipe 中，不是原始打点/曲线）：循环的闭合误差、速度、步幅、脚着地区间及 `foot_l_plant/foot_r_plant` 同步标记（高度 + 水平速度阈值）；Start 的 `distance_traveled_cm`；Stop 的 `distance_to_stop_cm` 与静止时刻；Pivot 的 pivot 时刻（最小 root 速度）、`signed_distance_to_pivot_cm` 与进出方向（数据显示 Jog_Fwd_Pivot 进入 0°、离开 180°）；Turn 的 `root_yaw_deg`、`remaining_turn_yaw_deg`、转身结束时刻。\n- **ready_pose_static**：取 walk_fwd_start 第 0 帧，并与其他 start 首帧、stop 末帧、turn 首帧交叉校验（偏差 <0.01 cm）。它**不是** Idle_Ready（motion_37 仍为 deferred），没有呼吸/待机动作。\n- **skeleton**：仅记录采样中的 26 骨精简层级，`is_full_manny_skeleton=false`，无 bind/reference pose。\n- **deferred**：22 条只有元数据的素材保留 clip 引用和同类型完整 recipe，`data=null`，不填任何时长、曲线或姿态。补齐采样后重跑构建即可生成。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 45,
+          "line_end": 55,
+          "quote": "- **姿态操作**（只是意图，未执行）：`weighted_blend` → `rotate_root_yaw` → `orientation_warping`（与四向中心的夹角，±50°）→ `stride_warping`（无 IK 执行）→ `spine_yaw_distribution`（由瞄准 yaw 分配到脊柱；清单中没有 aim offset 资源，这是程序化替代）。\n- **缺失资源**：选择表总是先选语义资源；若为 deferred，就按图中的回退策略处理，并在 `diagnostics.fallbacks_this_frame`、播放器的 `substitutes_for_asset_id/substituted_asset_status` 和 `deferred_assets_substituted` 中写明 `materialized:false`。播放器只引用 ready 资源。回退：Idle→ready_pose_static；非前向 start→直接进 cycle；非前向 stop→按预测停步时间交叉淡化到静态姿态；缺失 pivot→跳过并切到新方向 cycle；TurnRight_90→TurnRight_180 缩放 0.5；TurnLeft_180→TurnRight_180（终止朝向相同）。\n- **非法输入**：缺字段、非有限数、dt≤0 时抛出 `FrameValidationError`；dt>0.25 s 时截断为 0.25 并在诊断里标记 `dt_clamped`。\n- 无随机数；相同输入与 seed 产生相同计划（自查脚本已比对）。\n\n## 限制与未完成\n- 22 条素材缺采样：全部 walk 的 pivot、bwd/left/right 的 start/stop、jog 的 bwd/left/right 的 start/stop/pivot、TurnLeft_180、TurnRight_90、Idle_Ready。补齐采样后，回退表中对应项会自动改用真实资源（选择器优先 ready）。\n- 着地标记、闭合误差等都是由精简骨架自动推导的，未经美术确认；walk_left/right、jog_right 的循环首尾存在 2–4 cm / 2–5° 的接缝（数值已记录），未做修补。\n- 没有镜像资源：精简采样缺少骨骼局部轴/参考姿态，无法可靠镜像左右骨骼。\n- 起步时速度≈0，只能按当前 gait（通常为 walk）选择起步动画，jog 起步后会在同步组内切到 jog cycle。\n- 没有 IK、脚锁定、姿态求值器或 UE 执行；warping 与 blend 只是参数化描述。参数（阈值、混合时间）为经验值，未在实际角色上调过。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "WRP04",
+      "category": "warping_and_yaw",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "Idle/TIP累积反向actor yaw，并wrap/clamp；移动状态指数淡出且输出根旋转操作。但Start与Cycle走同一else淡出分支，没有Start Hold模式，三类状态策略缺一类。扣1分，未另扣烘焙坐标或TIP符号。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 224,
+          "line_end": 233,
+          "quote": "    def _update_root_yaw_offset(self, dt):\n        k, p = self.k, self.p\n        if self.state in (\"idle\", \"turn_in_place\"):\n            self.root_yaw_offset -= k[\"actor_yaw_delta\"]  # keep feet planted while capsule rotates\n        else:\n            tau = max(p[\"root_yaw_offset_moving_blend_out_s\"], 1e-3)\n            self.root_yaw_offset *= math.exp(-dt / tau)\n        self.root_yaw_offset = wrap_degrees(self.root_yaw_offset)\n        lim = p[\"root_yaw_offset_max_deg\"]\n        self.root_yaw_offset = clamp(self.root_yaw_offset, -lim, lim)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 613,
+          "line_end": 619,
+          "quote": "            if typ == \"rotate_root_yaw\":\n                if abs(self.root_yaw_offset) < 0.01:\n                    continue\n                params = {\"yaw_deg\": round(self.root_yaw_offset, 6),\n                          \"mesh_world_yaw_deg\": round(k[\"mesh_yaw\"], 6),\n                          \"actor_world_yaw_deg\": k[\"actor_yaw\"],\n                          \"convention\": \"positive rotates +X toward +Y about +Z\"}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "WRP05",
+      "category": "warping_and_yaw",
+      "status": "pass",
+      "weight": 1,
+      "awarded": 1,
+      "deduction": 0,
+      "reason": "TIP有idle等待和角度阈值、90/180资源选择及缺样本替代；播放器按源root_yaw曲线相邻时间差持续消耗/累加offset，并按请求角缩放。满足计划层转身曲线要求；坐标烘焙根因按RES02单独归属。",
+      "evidence": [
+        {
+          "path": "src/locomotion_conditions.py",
+          "line_start": 71,
+          "line_end": 81,
+          "quote": "def turn_needed(c) -> bool:\n    return (c.idle_time >= c.p[\"turn_min_idle_time_s\"]\n            and abs(c.k[\"turn_error\"]) > c.p[\"turn_trigger_deg\"])\n\n\ndef turn_finished(c) -> bool:\n    pl = c.state_player()\n    if pl is None:\n        return True\n    data = c.asset_data(pl[\"asset_id\"])\n    return pl[\"time\"] >= min(data[\"duration_seconds\"], data[\"turn_end_time_s\"] + 0.3)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 418,
+          "line_end": 433,
+          "quote": "        elif state == \"turn_in_place\":\n            req_yaw = k[\"turn_error\"]\n            side = \"right\" if req_yaw > 0 else \"left\"\n            size = \"180\" if abs(req_yaw) > p[\"turn_select_180_above_deg\"] else \"90\"\n            aid, fb, req = self.select_asset(\"sel_turn\", {\"turn_side\": side, \"turn_size\": size})\n            if fb:\n                self._note_fallback(state, req, fb)\n            total = self.asset_data(aid)[\"total_root_yaw_actor_deg\"]\n            if total * req_yaw < 0:\n                req_yaw += 360.0 * math.copysign(1.0, total)\n            self.turn_requested = req_yaw\n            self.turn_scale = req_yaw / total\n            self._new_player(\"turn_in_place\", aid, 0.0, blend_time, \"clock_once\", loop=False,\n                             extra={\"substitutes_for_asset_id\": req if fb else None,\n                                    \"root_yaw_scale\": self.turn_scale,\n                                    \"requested_turn_yaw_deg\": req_yaw})"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 535,
+          "line_end": 540,
+          "quote": "            elif mode == \"clock_once\":\n                self._advance_clock(pl, dt, 1.0)\n                if pl[\"state\"] == \"turn_in_place\":\n                    y0 = sample_curve(c[\"time_s\"], c[\"root_yaw_deg\"], pl[\"prev_time\"])\n                    y1 = sample_curve(c[\"time_s\"], c[\"root_yaw_deg\"], pl[\"time\"])\n                    self.root_yaw_offset += (y1 - y0) * pl.get(\"root_yaw_scale\", 1.0)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/locomotion_conditions.py",
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "ARC01",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "图驱动高层状态/过渡，选择器负责资产表与fallback，派生移动数据集中于self.k；最终组合分别计算root yaw、orientation、stride和spine aim，职责可独立追踪。没有因单一Unarmed题包额外要求武器接口。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 37,
+          "line_end": 46,
+          "quote": "        self.nodes = {n[\"id\"]: n for n in graph[\"nodes\"]}\n        self.asset_by_id = {a[\"asset_id\"]: a for a in assets[\"assets\"]}\n        sm = next(n for n in graph[\"nodes\"] if n[\"kind\"] == \"state_machine\")\n        self.sm = sm\n        self.state_player_node = {s[\"id\"]: s[\"player_node\"] for s in sm[\"states\"]}\n        self.transitions = {}\n        for t in sorted(sm[\"transitions\"], key=lambda t: t[\"priority\"]):\n            self.transitions.setdefault(t[\"from\"], []).append(t)\n        self.sync_groups = {g[\"id\"]: g for g in graph[\"sync_groups\"]}\n        self.op_order = graph[\"output\"][\"pose_operation_order\"]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 121,
+          "line_end": 135,
+          "quote": "    def select_asset(self, selector_id, keys):\n        \"\"\"Return (asset_id_or_None, fallback_policy_or_None, requested_asset_id).\"\"\"\n        sel = self.nodes[selector_id]\n        node = sel[\"table\"]\n        if not sel[\"keys\"]:\n            node = node[\"default\"]\n        for key in sel[\"keys\"]:\n            node = node[str(keys[key])]\n        requested = node\n        if self.asset_ready(requested):\n            return requested, None, requested\n        fb = sel[\"fallback\"].get(requested) or sel[\"fallback\"].get(\"*\")\n        if fb is None:\n            raise RuntimeError(f\"no ready asset and no fallback for {requested}\")\n        return fb.get(\"asset_id\"), fb, requested"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 209,
+          "line_end": 214,
+          "quote": "        self.k = {\n            \"dt\": dt, \"speed\": speed, \"accel_mag\": accel_mag, \"has_accel\": has_accel,\n            \"local_velocity_angle\": local_angle, \"accel_along_velocity\": accel_along,\n            \"accel_velocity_angle\": av_angle, \"actor_yaw\": actor_yaw, \"aim_yaw\": aim_yaw,\n            \"actor_yaw_delta\": dyaw, \"velocity\": vel, \"acceleration\": acc,\n            \"accel_local_angle\": math.degrees(math.atan2(la[1], la[0])) if has_accel else None,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 620,
+          "line_end": 635,
+          "quote": "            elif typ == \"orientation_warping\":\n                if abs(warp) < 0.01:\n                    continue\n                params = {\"angle_deg\": round(warp, 6), \"bones\": p[\"orientation_warp_bones\"],\n                          \"cardinal\": self.cardinal,\n                          \"velocity_local_angle_deg\": round(k[\"local_velocity_angle\"], 6)}\n            elif typ == \"stride_warping\":\n                if stride is None or abs(stride - 1.0) < 0.01:\n                    continue\n                params = {\"stride_scale\": round(stride, 6), \"axis\": \"local velocity direction\", \"ik_executed\": False}\n            elif typ == \"spine_yaw_distribution\":\n                if abs(aim) < 0.5:\n                    continue\n                params = {\"aim_offset_deg\": round(aim, 6),\n                          \"per_bone_yaw_deg\": {b: round(aim * w, 6)\n                                               for b, w in zip(p[\"aim_spine_bones\"], p[\"aim_spine_weights\"])}}"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC02",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "配置明确capsule拥有根平移、姿态操作顺序与上身骨骼权重；控制器输出加权移动pose后，依序串接root yaw、orientation/stride及spine aim。上身yaw按有效骨骼权重分配，输入链接承接前一操作，符合本题允许的抽象分层契约。未将此证据表述为最终pose验证。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 31,
+          "line_end": 38,
+          "quote": "  \"orientation_warp_bones\": [\"pelvis\", \"spine_01\", \"spine_02\", \"spine_03\"],\n  \"turn_trigger_deg\": 60.0,\n  \"turn_select_180_above_deg\": 130.0,\n  \"turn_min_idle_time_s\": 0.1,\n  \"root_yaw_offset_max_deg\": 180.0,\n  \"root_yaw_offset_moving_blend_out_s\": 0.2,\n  \"aim_spine_bones\": [\"spine_01\", \"spine_02\", \"spine_03\", \"spine_04\", \"spine_05\", \"neck_01\"],\n  \"aim_spine_weights\": [0.1, 0.15, 0.2, 0.2, 0.2, 0.15],"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 158,
+          "line_end": 160,
+          "quote": " \"output\": {\"node\": \"output\", \"pose_operation_order\": [\"op_root_yaw_offset\", \"op_orientation_warping\", \"op_stride_warping\", \"op_spine_aim\"],\n            \"root_motion_mode\": \"capsule_driven_ignore_asset_root_translation\",\n            \"time_contract\": \"sample_time_seconds is authoritative for every player each frame; play_rate is the rate the controller used to advance that time this frame and must not be re-applied by a consumer.\"}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 594,
+          "line_end": 596,
+          "quote": "        ops = [{\"operation_id\": \"state_blend\", \"operation_type\": \"weighted_blend\",\n                \"inputs\": [e[\"player_id\"] for e in players],\n                \"parameters\": {\"weights\": {e[\"player_id\"]: e[\"weight\"] for e in players}, \"normalized\": True}}]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 630,
+          "line_end": 639,
+          "quote": "            elif typ == \"spine_yaw_distribution\":\n                if abs(aim) < 0.5:\n                    continue\n                params = {\"aim_offset_deg\": round(aim, 6),\n                          \"per_bone_yaw_deg\": {b: round(aim * w, 6)\n                                               for b, w in zip(p[\"aim_spine_bones\"], p[\"aim_spine_weights\"])}}\n            else:\n                continue\n            ops.append({\"operation_id\": op_id, \"operation_type\": typ, \"inputs\": [last], \"parameters\": params})\n            last = op_id"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC03",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "reset只初始化控制器状态；_enter_state在每次状态变相关时重选资产/创建独立玩家，start清空累计距离并从0开始、stop按当前预测距离初始化时间。每帧推进单列，淡出玩家的继续推进为显式分支，权重归零后移除，不是无关节点永久推进。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 82,
+          "line_end": 99,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = seed  # no randomness is used; kept for interface determinism\n        self.frame_index = 0\n        self.state = self.sm[\"initial_state\"]\n        self.state_time = 0.0\n        self.state_entry_cardinal = \"fwd\"\n        self.players = []\n        self.next_player_num = 0\n        self.gait = \"walk\"\n        self.cardinal = \"fwd\"\n        self.prev_actor_yaw = None\n        self.prev_speed = 0.0\n        self.root_yaw_offset = 0.0\n        self.braking_est = float(self.p[\"default_braking_deceleration_cm_s2\"])\n        self.idle_time = 0.0\n        self.start_distance = 0.0\n        self.pivot_suppressed = False\n        self.pivot_reversed = False"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 239,
+          "line_end": 253,
+          "quote": "    def _new_player(self, state, asset_id, time, blend_time, time_mode, loop, extra=None, immediate=False):\n        pid = f\"p{self.next_player_num:04d}_{state}\"\n        self.next_player_num += 1\n        node_id = self.state_player_node[state]\n        rate = 1.0 / blend_time if blend_time > 0 else float(\"inf\")\n        for pl in self.players:\n            pl[\"target\"] = 0.0\n            pl[\"fade_rate\"] = rate\n        pl = {\"player_id\": pid, \"node_id\": node_id, \"state\": state, \"asset_id\": asset_id,\n              \"time\": time, \"prev_time\": time, \"play_rate\": 1.0, \"loop\": loop,\n              \"weight\": 1.0 if (immediate or not self.players) else 0.0, \"target\": 1.0,\n              \"fade_rate\": rate, \"time_mode\": time_mode}\n        if extra:\n            pl.update(extra)\n        self.players.append(pl)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 364,
+          "line_end": 385,
+          "quote": "        elif state == \"start\":\n            aid, fb, req = self.select_asset(\"sel_start\", keys)\n            if fb:\n                self._note_fallback(state, req, fb)\n                return self._enter_state(fb[\"target_state\"], blend_time, \"fallback_skip:\" + req)\n            self.start_distance = 0.0\n            self._new_player(\"start\", aid, 0.0, blend_time, \"distance_match\", loop=False)\n        elif state == \"cycle\":\n            self._enter_cycle(blend_time)\n        elif state == \"stop\":\n            aid, fb, req = self.select_asset(\"sel_stop\", keys)\n            if fb:\n                self._note_fallback(state, req, fb)\n                stop_t = clamp(k[\"speed\"] / max(self.braking_est, 1.0), 0.2, 1.5)\n                self._new_player(\"stop\", aid, 0.0, stop_t, \"timed_blend\", loop=False,\n                                 extra={\"substitutes_for_asset_id\": req,\n                                        \"frame_index\": self.asset_data(aid)[\"frame_index\"]})\n            else:\n                d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                c = self.asset_data(aid)[\"curves\"]\n                t0 = invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d)\n                self._new_player(\"stop\", aid, t0, blend_time, \"distance_match\", loop=False)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 502,
+          "line_end": 514,
+          "quote": "    def _advance_players(self, dt):\n        k, p = self.k, self.p\n        for pl in self.players:\n            node = self.nodes[pl[\"node_id\"]]\n            if node.get(\"sync_group\"):\n                continue  # advanced by the sync group\n            mode = pl[\"time_mode\"]\n            active = pl[\"state\"] == self.state and pl[\"target\"] > 0\n            c = self.asset_data(pl[\"asset_id\"]).get(\"curves\", {})\n            if mode in (\"static_pose\", \"timed_blend\"):\n                pl[\"prev_time\"], pl[\"play_rate\"] = pl[\"time\"], 0.0\n            elif not active:\n                self._advance_clock(pl, dt, 1.0)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 544,
+          "line_end": 552,
+          "quote": "    def _update_weights(self, dt):\n        for pl in self.players:\n            step = dt * pl[\"fade_rate\"]\n            if pl[\"weight\"] < pl[\"target\"]:\n                pl[\"weight\"] = min(pl[\"target\"], pl[\"weight\"] + step)\n            else:\n                pl[\"weight\"] = max(pl[\"target\"], pl[\"weight\"] - step)\n        eps = self.p[\"blend_epsilon\"]\n        self.players = [pl for pl in self.players if pl[\"weight\"] > eps or pl[\"target\"] > 0]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC04",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "step先校验当前frame，再生成一次self.k供状态、同步及姿态操作共用；可变播放器/时间/历史量与图参数、资产索引分别存储，无外部逐层独立采样。本项只确认快照与共享状态边界；输入加速度解释不符由LOC01承担，不重复扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 31,
+          "line_end": 38,
+          "quote": "    def __init__(self, graph: dict, assets: dict) -> None:\n        self.graph = graph\n        self.assets = assets\n        self.p = dict(graph[\"parameters\"])\n        if self.p.get(\"acceleration_semantics\") != \"input_intent\":\n            raise ValueError(\"only acceleration_semantics='input_intent' is implemented\")\n        self.nodes = {n[\"id\"]: n for n in graph[\"nodes\"]}\n        self.asset_by_id = {a[\"asset_id\"]: a for a in assets[\"assets\"]}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 82,
+          "line_end": 106,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = seed  # no randomness is used; kept for interface determinism\n        self.frame_index = 0\n        self.state = self.sm[\"initial_state\"]\n        self.state_time = 0.0\n        self.state_entry_cardinal = \"fwd\"\n        self.players = []\n        self.next_player_num = 0\n        self.gait = \"walk\"\n        self.cardinal = \"fwd\"\n        self.prev_actor_yaw = None\n        self.prev_speed = 0.0\n        self.root_yaw_offset = 0.0\n        self.braking_est = float(self.p[\"default_braking_deceleration_cm_s2\"])\n        self.idle_time = 0.0\n        self.start_distance = 0.0\n        self.pivot_suppressed = False\n        self.pivot_reversed = False\n        self.pivot_entry_dir = None\n        self.pivot_post_distance = 0.0\n        self.turn_scale = 1.0\n        self.turn_requested = 0.0\n        self.k = {}\n        self.unmaterializable = []\n        self.events = []"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 209,
+          "line_end": 214,
+          "quote": "        self.k = {\n            \"dt\": dt, \"speed\": speed, \"accel_mag\": accel_mag, \"has_accel\": has_accel,\n            \"local_velocity_angle\": local_angle, \"accel_along_velocity\": accel_along,\n            \"accel_velocity_angle\": av_angle, \"actor_yaw\": actor_yaw, \"aim_yaw\": aim_yaw,\n            \"actor_yaw_delta\": dyaw, \"velocity\": vel, \"acceleration\": acc,\n            \"accel_local_angle\": math.degrees(math.atan2(la[1], la[0])) if has_accel else None,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 467,
+          "line_end": 483,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt_raw, vel, acc, actor_yaw, aim_yaw = self._validate_frame(frame)\n        dt = min(dt_raw, MAX_DT)\n        self.events = []\n        self.unmaterializable = []\n        self._derive(dt, vel, acc, actor_yaw, aim_yaw)\n        self._update_root_yaw_offset(dt)\n        k, p = self.k, self.p\n\n        if not self.players:\n            self._enter_state(self.state, 0.0, \"initial\")\n        if self.pivot_suppressed and (k[\"accel_velocity_angle\"] < p[\"pivot_min_angle_deg\"]\n                                      or k[\"speed\"] < p[\"pivot_min_speed_cm_s\"] or not k[\"has_accel\"]):\n            self.pivot_suppressed = False\n        for t in self.transitions.get(self.state, []):\n            if CONDITIONS[t[\"condition\"]](self):\n                self._enter_state(t[\"to\"], t[\"blend_time_s\"], t[\"condition\"])"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC05",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "有配置到决策的完整链：读取图状态/优先级/条件，step按条件选择目标，selector实际按图表索引资产与fallback，资源曲线用于时间反查，图操作顺序用于输出。同步部分的具体算法/配置缺陷已归SYN02–SYN04，本项认可真实连接而不重复扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 37,
+          "line_end": 46,
+          "quote": "        self.nodes = {n[\"id\"]: n for n in graph[\"nodes\"]}\n        self.asset_by_id = {a[\"asset_id\"]: a for a in assets[\"assets\"]}\n        sm = next(n for n in graph[\"nodes\"] if n[\"kind\"] == \"state_machine\")\n        self.sm = sm\n        self.state_player_node = {s[\"id\"]: s[\"player_node\"] for s in sm[\"states\"]}\n        self.transitions = {}\n        for t in sorted(sm[\"transitions\"], key=lambda t: t[\"priority\"]):\n            self.transitions.setdefault(t[\"from\"], []).append(t)\n        self.sync_groups = {g[\"id\"]: g for g in graph[\"sync_groups\"]}\n        self.op_order = graph[\"output\"][\"pose_operation_order\"]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 121,
+          "line_end": 135,
+          "quote": "    def select_asset(self, selector_id, keys):\n        \"\"\"Return (asset_id_or_None, fallback_policy_or_None, requested_asset_id).\"\"\"\n        sel = self.nodes[selector_id]\n        node = sel[\"table\"]\n        if not sel[\"keys\"]:\n            node = node[\"default\"]\n        for key in sel[\"keys\"]:\n            node = node[str(keys[key])]\n        requested = node\n        if self.asset_ready(requested):\n            return requested, None, requested\n        fb = sel[\"fallback\"].get(requested) or sel[\"fallback\"].get(\"*\")\n        if fb is None:\n            raise RuntimeError(f\"no ready asset and no fallback for {requested}\")\n        return fb.get(\"asset_id\"), fb, requested"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 481,
+          "line_end": 490,
+          "quote": "        for t in self.transitions.get(self.state, []):\n            if CONDITIONS[t[\"condition\"]](self):\n                self._enter_state(t[\"to\"], t[\"blend_time_s\"], t[\"condition\"])\n                break\n        if self.state == \"cycle\":\n            sp = self.state_player()\n            want = self.select_asset(\"sel_cycle\", {\"gait\": self.gait, \"cardinal\": self.cardinal})[0]\n            if sp is None or sp[\"asset_id\"] != want:\n                self.events.append({\"from\": \"cycle\", \"to\": \"cycle\", \"condition\": \"gait_or_cardinal_changed\"})\n                self._enter_cycle(0.2)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 515,
+          "line_end": 524,
+          "quote": "            elif mode == \"distance_match\" and pl[\"state\"] == \"start\":\n                self.start_distance += k[\"speed\"] * dt\n                tm = invert_monotonic_curve(c[\"time_s\"], c[\"distance_traveled_cm\"], self.start_distance)\n                self._set_matched_time(pl, dt, tm)\n            elif mode == \"distance_match\" and pl[\"state\"] == \"stop\":\n                if k[\"speed\"] <= p[\"idle_speed_max_cm_s\"]:\n                    self._advance_clock(pl, dt, 1.0)\n                else:\n                    d = k[\"speed\"] ** 2 / (2.0 * max(self.braking_est, 1.0))\n                    self._set_matched_time(pl, dt, invert_monotonic_curve(c[\"time_s\"], c[\"distance_to_stop_cm\"], d))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 610,
+          "line_end": 612,
+          "quote": "        for op_id in self.op_order:\n            node = self.nodes[op_id]\n            typ = node[\"operation_type\"]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ROB01",
+      "category": "robustness_and_reproducibility",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2.5,
+      "deduction": 0.5,
+      "reason": "常规入口有缺字段、类型、非有限值和非正dt校验；dt超过0.25有显式截断诊断，缺资源有报错/声明回退。缺口：仅检查输入分量有限，未检查派生数值有限；例如两个水平速度分量均为1.7e308仍通过校验，hypot溢为inf并直接写入diagnostics。扣0.5，未重复扣曲线/移动语义项。此反例仅由静态代码推导。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 138,
+          "line_end": 159,
+          "quote": "    def _validate_frame(self, frame):\n        if not isinstance(frame, dict):\n            raise FrameValidationError(\"frame must be a dict\")\n        for f in FRAME_FIELDS:\n            if f not in frame:\n                raise FrameValidationError(f\"missing field {f}\")\n        def num(x, name):\n            if isinstance(x, bool) or not isinstance(x, (int, float)) or not math.isfinite(x):\n                raise FrameValidationError(f\"{name} must be a finite number\")\n            return float(x)\n        dt = num(frame[\"dt_seconds\"], \"dt_seconds\")\n        if dt <= 0.0:\n            raise FrameValidationError(\"dt_seconds must be > 0\")\n        vecs = {}\n        for f in (\"velocity_world_cm_s\", \"acceleration_world_cm_s2\"):\n            v = frame[f]\n            if not isinstance(v, (list, tuple)) or len(v) != 3:\n                raise FrameValidationError(f\"{f} must have 3 elements\")\n            vecs[f] = [num(c, f) for c in v]\n        return (dt, vecs[\"velocity_world_cm_s\"], vecs[\"acceleration_world_cm_s2\"],\n                num(frame[\"actor_yaw_degrees\"], \"actor_yaw_degrees\"),\n                num(frame[\"aim_yaw_degrees\"], \"aim_yaw_degrees\"))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 180,
+          "line_end": 195,
+          "quote": "    def _derive(self, dt, vel, acc, actor_yaw, aim_yaw):\n        p = self.p\n        speed = math.hypot(vel[0], vel[1])\n        accel_mag = math.hypot(acc[0], acc[1])\n        yr = math.radians(actor_yaw)\n        def to_local(v):\n            return (v[0] * math.cos(yr) + v[1] * math.sin(yr), -v[0] * math.sin(yr) + v[1] * math.cos(yr))\n        lv, la = to_local(vel), to_local(acc)\n        has_accel = accel_mag > p[\"accel_input_eps_cm_s2\"]\n        if speed > p[\"moving_speed_min_cm_s\"]:\n            local_angle = math.degrees(math.atan2(lv[1], lv[0]))\n        elif has_accel:\n            local_angle = math.degrees(math.atan2(la[1], la[0]))\n        else:\n            local_angle = CARDINAL_CENTER[self.cardinal]\n        accel_along = (acc[0] * vel[0] + acc[1] * vel[1]) / speed if speed > 1e-6 else 0.0"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 650,
+          "line_end": 663,
+          "quote": "            \"diagnostics\": {\n                \"frame_index\": self.frame_index, \"state\": self.state,\n                \"state_time_s\": round(self.state_time, 6), \"transitions\": self.events,\n                \"gait\": self.gait, \"cardinal\": self.cardinal,\n                \"speed_cm_s\": round(k[\"speed\"], 4),\n                \"local_velocity_angle_deg\": round(k[\"local_velocity_angle\"], 4),\n                \"accel_velocity_angle_deg\": round(k[\"accel_velocity_angle\"], 4),\n                \"braking_deceleration_estimate_cm_s2\": round(self.braking_est, 4),\n                \"root_yaw_offset_deg\": round(self.root_yaw_offset, 4),\n                \"turn_error_deg\": round(k[\"turn_error\"], 4),\n                \"fallbacks_this_frame\": self.unmaterializable,\n                \"deferred_assets_substituted\": deferred_active,\n                \"dt_clamped\": dt_raw != dt, \"dt_used_s\": dt,\n                \"note\": \"execution plan only; no pose was evaluated\","
+        }
+      ],
+      "reviewed_paths": []
+    },
+    {
+      "id": "ROB02",
+      "category": "robustness_and_reproducibility",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "CLI保留manifest/output并将输出父目录传给加工函数；控制器入口、reset清理、唯一播放器编号及约定输出完整。随机性未使用，源/配置固定下行为确定；说明给出复现方法。这里只确认静态接口，不把模型自查等同于独立执行通过。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 479,
+          "line_end": 493,
+          "quote": "def main() -> None:\n    parser = argparse.ArgumentParser(description=\"Build candidate animation resources\")\n    parser.add_argument(\"--manifest\", required=True, type=Path)\n    parser.add_argument(\"--output\", required=True, type=Path)\n    args = parser.parse_args()\n\n    manifest_path = args.manifest.resolve()\n    with manifest_path.open(\"r\", encoding=\"utf-8-sig\") as handle:\n        manifest = json.load(handle)\n\n    output_path = args.output.resolve()\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    authored_assets = build_assets(manifest, manifest_path.parent, output_path.parent)\n    serialized = json.dumps(authored_assets, ensure_ascii=False, indent=1, allow_nan=False)\n    output_path.write_text(serialized + \"\\n\", encoding=\"utf-8\")"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 82,
+          "line_end": 106,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = seed  # no randomness is used; kept for interface determinism\n        self.frame_index = 0\n        self.state = self.sm[\"initial_state\"]\n        self.state_time = 0.0\n        self.state_entry_cardinal = \"fwd\"\n        self.players = []\n        self.next_player_num = 0\n        self.gait = \"walk\"\n        self.cardinal = \"fwd\"\n        self.prev_actor_yaw = None\n        self.prev_speed = 0.0\n        self.root_yaw_offset = 0.0\n        self.braking_est = float(self.p[\"default_braking_deceleration_cm_s2\"])\n        self.idle_time = 0.0\n        self.start_distance = 0.0\n        self.pivot_suppressed = False\n        self.pivot_reversed = False\n        self.pivot_entry_dir = None\n        self.pivot_post_distance = 0.0\n        self.turn_scale = 1.0\n        self.turn_requested = 0.0\n        self.k = {}\n        self.unmaterializable = []\n        self.events = []"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 645,
+          "line_end": 649,
+          "quote": "        return {\n            \"schema_version\": 1,\n            \"players\": players,\n            \"sync_groups\": groups,\n            \"pose_operations\": ops,"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 17,
+          "line_end": 24,
+          "quote": "## 使用\n```\npython src/build_assets.py --manifest raw/manifest.json --output assets/authored_assets.json\npython .work/selfcheck.py        # 可选，加 -v 打印逐帧摘要\n```\n```python\nctl = LocomotionController(graph_dict, assets_dict); ctl.reset(seed=0); plan = ctl.step(frame)\n```"
+        }
+      ],
+      "reviewed_paths": []
+    },
+    {
+      "id": "ROB03",
+      "category": "robustness_and_reproducibility",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "实现说明明确列出制作入口、关键假设、22条缺样本延期、派生替代以及静态计划与最终姿态的边界；关键设计可在代码中定位。未伪称UE/姿态验证。说明诚实不免除其他实现项的缺陷扣分。",
+      "evidence": [
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 50,
+          "line_end": 55,
+          "quote": "## 限制与未完成\n- 22 条素材缺采样：全部 walk 的 pivot、bwd/left/right 的 start/stop、jog 的 bwd/left/right 的 start/stop/pivot、TurnLeft_180、TurnRight_90、Idle_Ready。补齐采样后，回退表中对应项会自动改用真实资源（选择器优先 ready）。\n- 着地标记、闭合误差等都是由精简骨架自动推导的，未经美术确认；walk_left/right、jog_right 的循环首尾存在 2–4 cm / 2–5° 的接缝（数值已记录），未做修补。\n- 没有镜像资源：精简采样缺少骨骼局部轴/参考姿态，无法可靠镜像左右骨骼。\n- 起步时速度≈0，只能按当前 gait（通常为 walk）选择起步动画，jog 起步后会在同步组内切到 jog cycle。\n- 没有 IK、脚锁定、姿态求值器或 UE 执行；warping 与 blend 只是参数化描述。参数（阈值、混合时间）为经验值，未在实际角色上调过。"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 1,
+          "line_end": 6,
+          "quote": "\"\"\"Per-frame locomotion planner (see INTERFACE.md, config/animation_graph.json, IMPLEMENTATION.md).\n\nThe controller owns the clock: every player's ``sample_time_seconds`` is\nauthoritative for that frame; ``play_rate`` reports how fast the controller\nadvanced that time this frame (consumers must not advance it again).\n\"\"\""
+        }
+      ],
+      "reviewed_paths": []
+    }
+  ],
+  "gates": [
+    {
+      "id": "G01",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 30,
+      "applied": false,
+      "reason": "资源加工和控制器均有实质Python实现，不是仅文字/模板壳；功能缺口按条目评分。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "assets/authored_assets.json",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "G02",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 60,
+      "applied": false,
+      "reason": "有实际资源制作逻辑和已生成的派生资源表、产物；曲线/marker缺口不能机械视为整个资源类别均缺失。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "assets/authored_assets.json",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "G03",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 60,
+      "applied": false,
+      "reason": "控制器包含可辨认的状态/转移、播放器和组合计划，并消费图参数/资源。图消费不足按ARC项处理，未达到完全无有效动画流程的门槛。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "assets/authored_assets.json",
+        "config/animation_graph.json"
+      ]
+    }
+  ],
+  "rubric_sha256": "5d40aaf760fa9c3b965cf9f8ea4e05badcf4ea632c1700187466404a019b5486",
+  "review_sha256": "8570c3319894c230c8c8c491907dd6a631288c87db5cef9b28165d466673563b"
+}

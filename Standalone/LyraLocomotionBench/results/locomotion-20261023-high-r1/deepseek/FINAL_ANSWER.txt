@@ -1,0 +1,23 @@
+已完成交付。所有要求的 5 个文件均已落盘并通过本地自检。
+
+## 交付文件
+
+- `src/build_assets.py`：实际读取 15 个 26 骨骼抽样文件，执行源→运行时坐标转换（位置 `[sx,sy,sz]→[sy,-sx,sz]`，四元数 `rotZ(-90°)·q·rotZ(+90°)`，root 轨迹只转换一次），计算时长/帧数/平均速度/根位移，写入 `assets/processed/*.json`，并生成资源表。
+- `assets/authored_assets.json`：39 条资产——17 条 `ready`（15 条直接加工 + 2 条派生反转转身），22 条 `deferred_missing_samples`（含可复用配方与缺失输入，`data=null`，不伪造数据）。
+- `config/animation_graph.json`：5 个输入、阈值参数、状态机节点、39 个 player 节点、同步组与输出语义；控制器实际读取其参数与 player 节点。
+- `src/controller.py`：`LocomotionController(graph, assets)`，实现 `idle/start/cycle/stop/pivot/turn` 状态机，支持前/后/左/右走路与跑步、起步、停步、pivot、原地转身，以及 walk/jog 速度混合；对缺失采样资源给出可物化回退并保留 deferred 引用。
+- `IMPLEMENTATION.md`：制作方式、关键假设、限制与未完成部分。
+- 辅助脚本 `.work/gen_graph.py` 用于从资源表确定性生成动画图。
+
+## 自检结果
+
+- `build_assets` CLI 运行成功，生成 17 个加工产物；`py_compile` 两个 Python 文件通过。
+- 控制器通过前进/后退/左右、加减速、停步、左右转身、确定性（同 seed 同计划）、非法输入报错等冒烟测试；计划 JSON 可序列化。
+- 资源表/动画图引用全部可追溯到清单或明确加工结果。
+
+## 主要局限
+
+- 22 条仅有元数据的素材无可播放姿态；相关行为通过方向匹配 cycle 斜坡、stop 末帧保持、派生反转转身等可物化回退表达，并写入诊断中的 deferred 依赖。
+- 无脚步标记/notify，同步组仅为计时级描述。
+- 派生转身是时间反转回放配方，非原始素材。
+- 未使用 UE、AnimGraph 解释器或姿态渲染器；交付是静态资源与执行计划，不是已渲染姿态或 UE 验证结果。

@@ -1,0 +1,1661 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "candidate_sha256": "b00081836bc60711cc1899ee31704637d82e3a655b0e93fe2914d58c738f24c6",
+  "candidate_file_count": 44,
+  "semantic_judgment": "Provided by the reviewer; this tool validates evidence locations and arithmetic only.",
+  "max_score": 100.0,
+  "reviewed_subscore": 46.5,
+  "reviewed_max_score": 100.0,
+  "reviewed_deductions": 53.5,
+  "coverage": {
+    "reviewed_items": 40,
+    "total_items": 40,
+    "weight_fraction": 1.0,
+    "reviewed_gates": 3,
+    "total_gates": 3
+  },
+  "unreviewed_items": [],
+  "unreviewed_gates": [],
+  "raw_score": 46.5,
+  "effective_cap": 100.0,
+  "cap_deduction": 0.0,
+  "final_score": 46.5,
+  "categories": {
+    "asset_authoring": {
+      "reviewed_subscore": 12.0,
+      "reviewed_max_score": 20.0,
+      "max_score": 20.0
+    },
+    "locomotion_states": {
+      "reviewed_subscore": 12.0,
+      "reviewed_max_score": 18.0,
+      "max_score": 18.0
+    },
+    "synchronization": {
+      "reviewed_subscore": 2.5,
+      "reviewed_max_score": 16.0,
+      "max_score": 16.0
+    },
+    "distance_matching": {
+      "reviewed_subscore": 2.0,
+      "reviewed_max_score": 16.0,
+      "max_score": 16.0
+    },
+    "warping_and_yaw": {
+      "reviewed_subscore": 2.5,
+      "reviewed_max_score": 12.0,
+      "max_score": 12.0
+    },
+    "architecture_and_lifecycle": {
+      "reviewed_subscore": 9.0,
+      "reviewed_max_score": 10.0,
+      "max_score": 10.0
+    },
+    "robustness_and_reproducibility": {
+      "reviewed_subscore": 6.5,
+      "reviewed_max_score": 8.0,
+      "max_score": 8.0
+    }
+  },
+  "items": [
+    {
+      "id": "RES01",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "原始 raw 与 assets/processed 分开；输出有 schema_version，逐项关联 source_clip_ids，实际坐标转换参数写入 recipe，派生反转资源记录来源和具体操作并明确非原始 take。未将生成结果冒称本地 Lyra 已核验配置。CLI 自定义输出目录的引用根问题由 ROB02 处理，本项不重复扣分。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 201,
+          "line_end": 214,
+          "quote": "            product = {\n                \"schema_version\": 1,\n                \"asset_id\": clip_id,\n                \"source_clip_id\": clip_id,\n                \"space\": \"component_runtime_actor\",\n                \"rotation\": \"xyzw\",\n                \"coordinate_conversion\": _coordinate_conversion(),\n                \"bones\": bones,\n                \"frames\": frames,\n                \"metrics\": metrics,\n                \"loop\": loop,\n                \"loop_range_seconds\": [0.0, metrics[\"duration_seconds\"]] if loop else None,\n            }\n            rel_path = _write_product(product_dir, product)"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 217,
+          "line_end": 235,
+          "quote": "            assets.append(\n                {\n                    \"asset_id\": clip_id,\n                    \"source_clip_ids\": [clip_id],\n                    \"status\": \"ready\",\n                    \"kind\": \"processed_pose\",\n                    \"semantic\": semantic,\n                    \"recipe\": {\n                        \"name\": \"convert_source_pose_to_runtime\",\n                        \"position_map\": _coordinate_conversion()[\"position_map\"],\n                        \"rotation_conversion\": _coordinate_conversion()[\"rotation_convention\"],\n                        \"root_motion\": \"converted exactly once; no retarget or resample performed\",\n                    },\n                    \"data\": {\n                        \"product_file\": rel_path,\n                        \"metrics\": metrics,\n                        \"loop\": loop,\n                        \"loop_range_seconds\": product[\"loop_range_seconds\"],\n                    },"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 295,
+          "line_end": 315,
+          "quote": "        assets.append(\n            {\n                \"asset_id\": asset_id,\n                \"source_clip_ids\": [src_clip],\n                \"status\": \"ready\",\n                \"kind\": \"processed_pose\",\n                \"semantic\": {\"gait\": None, \"direction\": \"right\" if \"right\" in asset_id else \"left\",\n                             \"action\": \"turn\", \"anatomical_turn_degrees\": -90 if \"right\" in asset_id else 180,\n                             \"derived\": True, \"description\": description},\n                \"recipe\": {\n                    \"name\": \"time_reverse_sampled_turn\",\n                    \"source_asset_id\": src_clip,\n                    \"operation\": \"reverse frame order; t -> duration - t; component-space poses unchanged\",\n                    \"note\": \"Derived playback, not an original captured take; does not fabricate new poses.\",\n                },\n                \"data\": {\n                    \"product_file\": rel_path,\n                    \"metrics\": metrics,\n                    \"loop\": False,\n                    \"loop_range_seconds\": None,\n                },"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 319,
+          "line_end": 325,
+          "quote": "    return {\n        \"schema_version\": 1,\n        \"status\": \"ready\",\n        \"source_manifest\": \"raw/manifest.json\",\n        \"coordinate_conversion\": _coordinate_conversion(),\n        \"skeleton\": skeleton,\n        \"assets\": assets,"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES02",
+      "category": "asset_authoring",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "位置映射 [sy,-sx,sz]、cm/component/xyzw 与精简骨骼约束有实现，world/local 速度也使用 actor yaw。但 TIP 使用 aim_yaw-actor_yaw 的正差直接选择 motion_33/Left90，并把该资源弧度标为 +90；输入契约中左转是解剖角度为正、actor yaw 为负，实际 Left90 root 四元数也向负 yaw 旋转。这是 anatomical_turn_degrees 与 actor yaw 符号混用。只在本项扣符号根因，其他转身/warp 项勿重扣。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 117,
+          "line_end": 128,
+          "quote": "def _coordinate_conversion() -> dict:\n    return {\n        \"source_forward\": \"+Y\",\n        \"source_left\": \"+X\",\n        \"source_up\": \"+Z\",\n        \"runtime_actor_forward\": \"+X\",\n        \"runtime_actor_left\": \"-Y\",\n        \"runtime_actor_up\": \"+Z\",\n        \"position_map\": \"[sx, sy, sz] -> [sy, -sx, sz]\",\n        \"rotation_convention\": \"active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)\",\n        \"rotz_neg90_xyzw\": _ROTZ_NEG90_XYZW,\n        \"root_motion_policy\": \"root trajectory converted once; runtime must not apply source root displacement again\","
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 181,
+          "line_end": 185,
+          "quote": "    def _rotate_to_local(v: list[float], yaw_deg: float):\n        yaw = math.radians(yaw_deg)\n        c, s = math.cos(yaw), math.sin(yaw)\n        x, y = v[0], v[1]\n        return (c * x + s * y, -s * x + c * y)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 261,
+          "line_end": 278,
+          "quote": "    def _turn_asset(self, delta_deg: float) -> str:\n        if delta_deg >= 0.0:\n            if abs(delta_deg) <= 135.0:\n                return \"motion_33\"\n            return \"turn_left_180_reverse\"\n        if abs(delta_deg) <= 135.0:\n            return \"turn_right_90_reverse\"\n        return \"motion_36\"\n\n    def _turn_arc_degrees(self, asset_id: str) -> float:\n        if asset_id == \"motion_33\":\n            return 90.0\n        if asset_id == \"motion_36\":\n            return -180.0\n        if asset_id == \"turn_left_180_reverse\":\n            return 180.0\n        if asset_id == \"turn_right_90_reverse\":\n            return -90.0"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 603,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)\n\n        lx, ly = self._rotate_to_local(velocity, actor_yaw)\n        direction = self._direction_from_local(lx, ly, speed)"
+        },
+        {
+          "path": "assets/authored_assets.json",
+          "line_start": 1338,
+          "line_end": 1348,
+          "quote": "      \"asset_id\": \"motion_33\",\n      \"source_clip_ids\": [\n        \"motion_33\"\n      ],\n      \"status\": \"ready\",\n      \"kind\": \"processed_pose\",\n      \"semantic\": {\n        \"gait\": null,\n        \"direction\": \"left\",\n        \"action\": \"turn\",\n        \"anatomical_turn_degrees\": 90"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES03",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "代码/资源表覆盖两种步态四方向 cycle/start/stop/pivot 及转身，15 条有样本输入生成实际转换后的帧文件；22 条 metadata_only 使用通用 recipe+延期，data=null。另以实际样本时间反转生成两种转身并明确替代性质，Idle 使用 stop 末帧保持。缺输入不扣分；正确的时间/方向消费问题分别归专属项。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 221,
+          "line_end": 259,
+          "quote": "    def _sel_asset(self, action: str, gait: str, direction: str) -> str:\n        table = {\n            (\"cycle\", \"walk\", \"fwd\"): \"motion_01\",\n            (\"cycle\", \"walk\", \"bwd\"): \"motion_05\",\n            (\"cycle\", \"walk\", \"left\"): \"motion_09\",\n            (\"cycle\", \"walk\", \"right\"): \"motion_13\",\n            (\"cycle\", \"jog\", \"fwd\"): \"motion_17\",\n            (\"cycle\", \"jog\", \"bwd\"): \"motion_21\",\n            (\"cycle\", \"jog\", \"left\"): \"motion_25\",\n            (\"cycle\", \"jog\", \"right\"): \"motion_29\",\n            (\"start\", \"walk\", \"fwd\"): \"motion_02\",\n            (\"start\", \"walk\", \"bwd\"): \"motion_06\",\n            (\"start\", \"walk\", \"left\"): \"motion_10\",\n            (\"start\", \"walk\", \"right\"): \"motion_14\",\n            (\"start\", \"jog\", \"fwd\"): \"motion_18\",\n            (\"start\", \"jog\", \"bwd\"): \"motion_22\",\n            (\"start\", \"jog\", \"left\"): \"motion_26\",\n            (\"start\", \"jog\", \"right\"): \"motion_30\",\n            (\"stop\", \"walk\", \"fwd\"): \"motion_03\",\n            (\"stop\", \"walk\", \"bwd\"): \"motion_07\",\n            (\"stop\", \"walk\", \"left\"): \"motion_11\",\n            (\"stop\", \"walk\", \"right\"): \"motion_15\",\n            (\"stop\", \"jog\", \"fwd\"): \"motion_19\",\n            (\"stop\", \"jog\", \"bwd\"): \"motion_23\",\n            (\"stop\", \"jog\", \"left\"): \"motion_27\",\n            (\"stop\", \"jog\", \"right\"): \"motion_31\",\n            (\"pivot\", \"walk\", \"fwd\"): \"motion_04\",\n            (\"pivot\", \"walk\", \"bwd\"): \"motion_08\",\n            (\"pivot\", \"walk\", \"left\"): \"motion_12\",\n            (\"pivot\", \"walk\", \"right\"): \"motion_16\",\n            (\"pivot\", \"jog\", \"fwd\"): \"motion_20\",\n            (\"pivot\", \"jog\", \"bwd\"): \"motion_24\",\n            (\"pivot\", \"jog\", \"left\"): \"motion_28\",\n            (\"pivot\", \"jog\", \"right\"): \"motion_32\",\n        }\n        asset_id = table.get((action, gait, direction))\n        if asset_id is None or asset_id not in self.asset_map:\n            raise ValueError(f\"no asset mapped for {action}/{gait}/{direction}\")\n        return asset_id"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 180,
+          "line_end": 214,
+          "quote": "        if availability == \"pose_samples\" and pose_file:\n            pose_path = manifest_dir / pose_file\n            if not pose_path.exists():\n                raise FileNotFoundError(f\"missing pose sample referenced by manifest: {pose_path}\")\n            source_data = _load_pose(pose_path)\n\n            bones = source_data.get(\"bones\", [])\n            if skeleton is None and bones:\n                skeleton = {\n                    \"description\": \"26-bone component-space subset observed in the available pose samples; full Manny skeleton is not available.\",\n                    \"space\": \"component\",\n                    \"bones\": bones,\n                }\n\n            frames = _convert_frames(source_data.get(\"frames\", []))\n            times = [f[\"time\"] for f in frames]\n            roots = [f[\"positions\"][0] for f in frames]\n            metrics = _metrics_from_root(times, roots)\n\n            semantic = clip.get(\"semantic\", {}) or {}\n            loop = semantic.get(\"action\") == \"cycle\"\n            product = {\n                \"schema_version\": 1,\n                \"asset_id\": clip_id,\n                \"source_clip_id\": clip_id,\n                \"space\": \"component_runtime_actor\",\n                \"rotation\": \"xyzw\",\n                \"coordinate_conversion\": _coordinate_conversion(),\n                \"bones\": bones,\n                \"frames\": frames,\n                \"metrics\": metrics,\n                \"loop\": loop,\n                \"loop_range_seconds\": [0.0, metrics[\"duration_seconds\"]] if loop else None,\n            }\n            rel_path = _write_product(product_dir, product)"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 238,
+          "line_end": 251,
+          "quote": "        else:\n            assets.append(\n                {\n                    \"asset_id\": clip_id,\n                    \"source_clip_ids\": [clip_id],\n                    \"status\": \"deferred_missing_samples\",\n                    \"kind\": \"processed_pose\",\n                    \"semantic\": clip.get(\"semantic\"),\n                    \"missing_inputs\": [\n                        f\"raw/{clip.get('pose_file') or 'poses/<unknown>.json'} (pose_file is null in manifest)\"\n                    ],\n                    \"recipe\": _generic_deferred_recipe(clip),\n                    \"data\": None,\n                    \"deferred_fallback_hint\": \"see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour\","
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 255,
+          "line_end": 275,
+          "quote": "    # Derived, materialisable in-place turns by reversing ready turn samples.\n    derived_turns = [\n        (\"turn_right_90_reverse\", \"motion_33\", \"reverse of MM_Unarmed_TurnLeft_90\"),\n        (\"turn_left_180_reverse\", \"motion_36\", \"reverse of MM_Unarmed_TurnRight_180\"),\n    ]\n    for asset_id, src_clip, description in derived_turns:\n        source = source_products.get(src_clip)\n        if source is None:\n            continue\n        rev_frames: list[dict] = []\n        for frame in reversed(source[\"frames\"]):\n            rev_frames.append(\n                {\n                    \"time\": float(frame[\"time\"]),\n                    \"positions\": [list(p) for p in frame[\"positions\"]],\n                    \"rotations_xyzw\": [list(q) for q in frame[\"rotations_xyzw\"]],\n                }\n            )\n        duration = source[\"metrics\"][\"duration_seconds\"]\n        rev_times = [duration - f[\"time\"] for f in rev_frames]\n        rev_frames = [dict(f, time=t) for f, t in zip(rev_frames, rev_times)]"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 35,
+          "line_end": 36,
+          "quote": "- 17 条 `ready`：15 条直接来自抽样的 clip（保持 `asset_id == clip_id`），另有 2 条派生转身 `turn_right_90_reverse`（`motion_33` 时间反转）、`turn_left_180_reverse`（`motion_36` 时间反转），用于物化缺失的右转 90°、左转 180°。\n- 22 条 `deferred_missing_samples`：对应清单中 `metadata_only` 的 start/stop/pivot/turn/idle。每条含 `recipe`（通用可复用加工配方）和缺失输入记录，`data` 为 `null`。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 51,
+          "line_end": 54,
+          "quote": "- `start`：优先播放对应方向/步态的 start 素材；该素材缺失采样时，播放对应方向 cycle 并以权重斜坡从 0 升起，同时保留 deferred 引用。\n- `stop`：优先播放 stop 素材；缺失时用对应方向 cycle 随速度下降自然减速，速度低于阈值后进入 `idle`。\n- `idle`：用已就绪的 `motion_03`（walk fwd stop）末帧保持，`play_rate=0`；`motion_37`（idle）以 `materialized=false` 保留依赖。\n- `turn`：停止时若瞄准与角色朝向差超过死区，选择 90°/180° 转身素材；右转 90°、左转 180° 用派生反转素材物化，同时保留 `motion_34/35` 的 deferred 引用。转角未完成时链式续转。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES04",
+      "category": "asset_authoring",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "已采样资源保留源时间戳，duration 来自首尾差，cycle 标记 loop/range；_advance 用 dt*rate，循环 fmod(duration)、非循环到时长后 clamp，没有 duration+一帧的错误。metadata_only 为 null 产物且调用处走 ready/fallback，不以辅助 _duration 返回 0 冒充可播放资产。无效采样数据校验问题专计 RES08。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 76,
+          "line_end": 92,
+          "quote": "def _metrics_from_root(times: list[float], roots: list[list[float]]) -> dict:\n    start = roots[0]\n    end = roots[-1]\n    duration = max(times[-1] - times[0], 0.0)\n    dx = end[0] - start[0]\n    dy = end[1] - start[1]\n    dz = end[2] - start[2]\n    horizontal = math.hypot(dx, dy)\n    avg_speed = horizontal / duration if duration > 0.0 else 0.0\n    return {\n        \"duration_seconds\": duration,\n        \"root_start_cm\": _safe_round(start),\n        \"root_end_cm\": _safe_round(end),\n        \"root_displacement_cm\": [dx, dy, dz],\n        \"horizontal_displacement_cm\": horizontal,\n        \"average_speed_cm_s\": avg_speed,\n    }"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 95,
+          "line_end": 105,
+          "quote": "def _convert_frames(frames: list[dict]) -> list[dict]:\n    out: list[dict] = []\n    for frame in frames:\n        out.append(\n            {\n                \"time\": float(frame[\"time\"]),\n                \"positions\": [convert_position(p) for p in frame[\"positions\"]],\n                \"rotations_xyzw\": [convert_quaternion(q) for q in frame[\"rotations_xyzw\"]],\n            }\n        )\n    return out"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 199,
+          "line_end": 212,
+          "quote": "            semantic = clip.get(\"semantic\", {}) or {}\n            loop = semantic.get(\"action\") == \"cycle\"\n            product = {\n                \"schema_version\": 1,\n                \"asset_id\": clip_id,\n                \"source_clip_id\": clip_id,\n                \"space\": \"component_runtime_actor\",\n                \"rotation\": \"xyzw\",\n                \"coordinate_conversion\": _coordinate_conversion(),\n                \"bones\": bones,\n                \"frames\": frames,\n                \"metrics\": metrics,\n                \"loop\": loop,\n                \"loop_range_seconds\": [0.0, metrics[\"duration_seconds\"]] if loop else None,"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 238,
+          "line_end": 250,
+          "quote": "        else:\n            assets.append(\n                {\n                    \"asset_id\": clip_id,\n                    \"source_clip_ids\": [clip_id],\n                    \"status\": \"deferred_missing_samples\",\n                    \"kind\": \"processed_pose\",\n                    \"semantic\": clip.get(\"semantic\"),\n                    \"missing_inputs\": [\n                        f\"raw/{clip.get('pose_file') or 'poses/<unknown>.json'} (pose_file is null in manifest)\"\n                    ],\n                    \"recipe\": _generic_deferred_recipe(clip),\n                    \"data\": None,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 309,
+          "quote": "    def _advance(self, asset_id: str, dt: float, play_rate: float, loop: bool) -> float:\n        current = self.sample_times.get(asset_id, 0.0)\n        current += dt * play_rate\n        dur = self._duration(asset_id)\n        if loop and dur > 0.0:\n            current = math.fmod(current, dur)\n            if current < 0.0:\n                current += dur\n        elif dur > 0.0 and current > dur:\n            current = dur\n        self.sample_times[asset_id] = current\n        return current\n\n    def _player(self, asset_id: str, weight: float, play_rate: float, loop=None) -> dict:\n        loop = self._loop_spec(asset_id) if loop is None else loop\n        sample_time = self.sample_times.get(asset_id, 0.0)\n        materialized = self._is_ready(asset_id)\n        entry = {\n            \"player_id\": f\"player_{asset_id}\",\n            \"asset_id\": asset_id,\n            \"sample_time_seconds\": float(sample_time),\n            \"weight\": float(weight),\n            \"play_rate\": float(play_rate),\n            \"loop\": bool(loop),\n            \"materialized\": materialized,\n        }\n        if not materialized:\n            entry[\"status\"] = \"deferred_missing_samples\"\n        return entry"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 473,
+          "line_end": 487,
+          "quote": "        if self._is_ready(start_asset):\n            self._advance(start_asset, dt, 1.0, loop=False)\n            players.append(self._player(start_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{start_asset}\")\n            if self.sample_times[start_asset] >= self._duration(start_asset):\n                self.mode = \"cycle\"\n        else:\n            self.deferred_deps.append(start_asset)\n            players.append(self._player(start_asset, 0.0, 1.0, loop=False))\n            cycle = self._cycle_asset(gait, direction)\n            ramp = float(self.playback.get(\"start_ramp_seconds\", 0.5))\n            progress = min(1.0, self.mode_elapsed / ramp) if ramp > 0.0 else 1.0\n            play_rate = self._play_rate_for_speed(cycle, speed)\n            self._advance(cycle, dt, play_rate, loop=True)\n            players.append(self._player(cycle, progress, play_rate, loop=True))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES05",
+      "category": "asset_authoring",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "转换后的全帧保留 root 轨迹，附端点/位移指标，并有 extract_root_delta_world 计划和不要二次应用源位移的说明。缺口是产品仍保留完整移动 root，而计划只写 apply world delta after pose，没有约定抽取后去除 pose 中的 root，也没有明确由输入速度驱动的角色运动与该 world delta 谁拥有最终位移。这是接口职责未闭合，静态上不能断言实际已发生双重移动；扣的是该契约缺失，坐标/角度符号不在本项重复扣。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 95,
+          "line_end": 105,
+          "quote": "def _convert_frames(frames: list[dict]) -> list[dict]:\n    out: list[dict] = []\n    for frame in frames:\n        out.append(\n            {\n                \"time\": float(frame[\"time\"]),\n                \"positions\": [convert_position(p) for p in frame[\"positions\"]],\n                \"rotations_xyzw\": [convert_quaternion(q) for q in frame[\"rotations_xyzw\"]],\n            }\n        )\n    return out"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 201,
+          "line_end": 212,
+          "quote": "            product = {\n                \"schema_version\": 1,\n                \"asset_id\": clip_id,\n                \"source_clip_id\": clip_id,\n                \"space\": \"component_runtime_actor\",\n                \"rotation\": \"xyzw\",\n                \"coordinate_conversion\": _coordinate_conversion(),\n                \"bones\": bones,\n                \"frames\": frames,\n                \"metrics\": metrics,\n                \"loop\": loop,\n                \"loop_range_seconds\": [0.0, metrics[\"duration_seconds\"]] if loop else None,"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 125,
+          "line_end": 128,
+          "quote": "        \"position_map\": \"[sx, sy, sz] -> [sy, -sx, sz]\",\n        \"rotation_convention\": \"active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)\",\n        \"rotz_neg90_xyzw\": _ROTZ_NEG90_XYZW,\n        \"root_motion_policy\": \"root trajectory converted once; runtime must not apply source root displacement again\","
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 342,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 27,
+          "line_end": 27,
+          "quote": "- 根轨迹：源姿态中的 root 位移随全部姿态一次性转换，加工产物只记录转换后的 root 轨迹；运行时不再二次应用源位移。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 57,
+          "line_end": 57,
+          "quote": "姿态操作均为执行意图描述：`extract_root_delta_world` 将转换后的根增量按角色 yaw 映射到世界；`aim_yaw_offset` 描述上半身朝向偏移意图；`hold_sample` 描述保持当前采样。控制器不生成最终骨骼变换。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES06",
+      "category": "asset_authoring",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "检查完整 builder、实际资源表和同步计划，只有坐标转换/时长速度指标，没有从现有脚部采样生成 L/R 相位标记的逻辑、实际 marker 表或明确的替代相位配方。同步输出明确 independent 并称 no authored footstep/notify markers。原始输入未附 marker 不妨碍从15段已有采样制作；本项不因为22条 metadata_only 缺采样扣分。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 194,
+          "line_end": 212,
+          "quote": "            frames = _convert_frames(source_data.get(\"frames\", []))\n            times = [f[\"time\"] for f in frames]\n            roots = [f[\"positions\"][0] for f in frames]\n            metrics = _metrics_from_root(times, roots)\n\n            semantic = clip.get(\"semantic\", {}) or {}\n            loop = semantic.get(\"action\") == \"cycle\"\n            product = {\n                \"schema_version\": 1,\n                \"asset_id\": clip_id,\n                \"source_clip_id\": clip_id,\n                \"space\": \"component_runtime_actor\",\n                \"rotation\": \"xyzw\",\n                \"coordinate_conversion\": _coordinate_conversion(),\n                \"bones\": bones,\n                \"frames\": frames,\n                \"metrics\": metrics,\n                \"loop\": loop,\n                \"loop_range_seconds\": [0.0, metrics[\"duration_seconds\"]] if loop else None,"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 311,
+          "line_end": 324,
+          "quote": "    def _sync_groups_for(self, members):\n        groups = []\n        if members:\n            groups.append(\n                {\n                    \"group_id\": \"locomotion\",\n                    \"member_player_ids\": list(members),\n                    \"settings\": {\n                        \"mode\": \"independent\",\n                        \"note\": \"no authored footstep/notify markers; sync is timing-only\",\n                    },\n                }\n            )\n        return groups"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 29,
+          "line_end": 29,
+          "quote": "处理只做显式基变换，不做重定向、重采样或曲线伪造。循环素材记录整段 `loop_range_seconds`；非循环素材记录时长、帧数、平均速度、根位移等指标。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 69,
+          "line_end": 69,
+          "quote": "- 无脚步标记/notify 数据，同步组仅作计时级描述。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES07",
+      "category": "asset_authoring",
+      "status": "missing",
+      "weight": 2,
+      "awarded": 0,
+      "deduction": 2,
+      "reason": "资源加工只计算根首尾位移/平均速度并写转换后的姿态，没有按样本生成距离曲线、停止参考点/轴定义或可供 time-index/distance-inverse 使用的数据接口；完整 builder/controller 未发现相应曲线读取或反查实现。这里判定的是可用采样的曲线制作交付缺失，不是要求 UE 压缩资产，也不为 metadata_only 罚分。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 76,
+          "line_end": 92,
+          "quote": "def _metrics_from_root(times: list[float], roots: list[list[float]]) -> dict:\n    start = roots[0]\n    end = roots[-1]\n    duration = max(times[-1] - times[0], 0.0)\n    dx = end[0] - start[0]\n    dy = end[1] - start[1]\n    dz = end[2] - start[2]\n    horizontal = math.hypot(dx, dy)\n    avg_speed = horizontal / duration if duration > 0.0 else 0.0\n    return {\n        \"duration_seconds\": duration,\n        \"root_start_cm\": _safe_round(start),\n        \"root_end_cm\": _safe_round(end),\n        \"root_displacement_cm\": [dx, dy, dz],\n        \"horizontal_displacement_cm\": horizontal,\n        \"average_speed_cm_s\": avg_speed,\n    }"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 194,
+          "line_end": 212,
+          "quote": "            frames = _convert_frames(source_data.get(\"frames\", []))\n            times = [f[\"time\"] for f in frames]\n            roots = [f[\"positions\"][0] for f in frames]\n            metrics = _metrics_from_root(times, roots)\n\n            semantic = clip.get(\"semantic\", {}) or {}\n            loop = semantic.get(\"action\") == \"cycle\"\n            product = {\n                \"schema_version\": 1,\n                \"asset_id\": clip_id,\n                \"source_clip_id\": clip_id,\n                \"space\": \"component_runtime_actor\",\n                \"rotation\": \"xyzw\",\n                \"coordinate_conversion\": _coordinate_conversion(),\n                \"bones\": bones,\n                \"frames\": frames,\n                \"metrics\": metrics,\n                \"loop\": loop,\n                \"loop_range_seconds\": [0.0, metrics[\"duration_seconds\"]] if loop else None,"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 230,
+          "line_end": 235,
+          "quote": "                    \"data\": {\n                        \"product_file\": rel_path,\n                        \"metrics\": metrics,\n                        \"loop\": loop,\n                        \"loop_range_seconds\": product[\"loop_range_seconds\"],\n                    },"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 458,
+          "line_end": 465,
+          "quote": "    def _play_rate_for_speed(self, cycle_asset, speed):\n        avg = self._avg_speed(cycle_asset)\n        if avg <= 0.0:\n            return 1.0\n        rate = speed / avg\n        lo = float(self.playback.get(\"min_play_rate\", 0.05))\n        hi = float(self.playback.get(\"max_play_rate\", 2.0))\n        return max(lo, min(hi, rate))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "RES08",
+      "category": "asset_authoring",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "具有真实构建入口、确定性坐标转换和写文件，manifest 指向的姿态文件不存在会明确报错，JSON 输出拒绝 NaN。缺口是缺少骨骼层级/帧数组一致性及时间合法性验证，骨架仅取首次有值的文件；duration=max(last-first,0) 把非正时间范围静默转成 0，仍建立 ready 资源，不能把非法素材定位为失败。自定义 --output 的相对引用缺陷由 ROB02 处理，本项不扣它；距离曲线类别缺失也不在此再扣。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 76,
+          "line_end": 92,
+          "quote": "def _metrics_from_root(times: list[float], roots: list[list[float]]) -> dict:\n    start = roots[0]\n    end = roots[-1]\n    duration = max(times[-1] - times[0], 0.0)\n    dx = end[0] - start[0]\n    dy = end[1] - start[1]\n    dz = end[2] - start[2]\n    horizontal = math.hypot(dx, dy)\n    avg_speed = horizontal / duration if duration > 0.0 else 0.0\n    return {\n        \"duration_seconds\": duration,\n        \"root_start_cm\": _safe_round(start),\n        \"root_end_cm\": _safe_round(end),\n        \"root_displacement_cm\": [dx, dy, dz],\n        \"horizontal_displacement_cm\": horizontal,\n        \"average_speed_cm_s\": avg_speed,\n    }"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 108,
+          "line_end": 114,
+          "quote": "def _write_product(product_dir: Path, product: dict) -> str:\n    product_dir.mkdir(parents=True, exist_ok=True)\n    rel_path = f\"processed/{product['asset_id']}.json\"\n    out_path = product_dir.parent / rel_path\n    with out_path.open(\"w\", encoding=\"utf-8\") as handle:\n        json.dump(product, handle, ensure_ascii=False, allow_nan=False)\n    return rel_path"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 180,
+          "line_end": 197,
+          "quote": "        if availability == \"pose_samples\" and pose_file:\n            pose_path = manifest_dir / pose_file\n            if not pose_path.exists():\n                raise FileNotFoundError(f\"missing pose sample referenced by manifest: {pose_path}\")\n            source_data = _load_pose(pose_path)\n\n            bones = source_data.get(\"bones\", [])\n            if skeleton is None and bones:\n                skeleton = {\n                    \"description\": \"26-bone component-space subset observed in the available pose samples; full Manny skeleton is not available.\",\n                    \"space\": \"component\",\n                    \"bones\": bones,\n                }\n\n            frames = _convert_frames(source_data.get(\"frames\", []))\n            times = [f[\"time\"] for f in frames]\n            roots = [f[\"positions\"][0] for f in frames]\n            metrics = _metrics_from_root(times, roots)"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 217,
+          "line_end": 221,
+          "quote": "            assets.append(\n                {\n                    \"asset_id\": clip_id,\n                    \"source_clip_ids\": [clip_id],\n                    \"status\": \"ready\","
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "LOC01",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 3,
+      "awarded": 3,
+      "deduction": 0,
+      "reason": "同一frame校验并读取给定字段，以actor yaw将世界速度转局部，使用水平速度和上帧速度差/dt推导观察减速；没有把零加速度解释为松键，也未读取虚构输入。原acceleration字段未直接使用，但该项接受明确的速度差推导。Pivot使用aim差的独立行为错误仅在LOC06扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 172,
+          "line_end": 185,
+          "quote": "        return (\n            dt,\n            [float(v) for v in velocity],\n            [float(v) for v in acceleration],\n            float(actor_yaw),\n            float(aim_yaw),\n        )\n\n    @staticmethod\n    def _rotate_to_local(v: list[float], yaw_deg: float):\n        yaw = math.radians(yaw_deg)\n        c, s = math.cos(yaw), math.sin(yaw)\n        x, y = v[0], v[1]\n        return (c * x + s * y, -s * x + c * y)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 379,
+          "line_end": 393,
+          "quote": "    def _update_mode(self, speed: float, prev_speed: float, dt: float, aim_delta: float) -> None:\n        thr = self.thresholds\n        idle_max = float(thr.get(\"idle_max_cm_s\", 20.0))\n        stop_done = float(thr.get(\"stop_done_cm_s\", 8.0))\n        cycle_enter = float(thr.get(\"cycle_enter_cm_s\", 120.0))\n        stop_enter = float(thr.get(\"stop_enter_cm_s\", 150.0))\n        turn_max = float(thr.get(\"turn_max_cm_s\", 40.0))\n        turn_exit = float(thr.get(\"turn_exit_cm_s\", 60.0))\n        pivot_min = float(thr.get(\"pivot_min_cm_s\", 150.0))\n        pivot_angle = float(thr.get(\"pivot_angle_degrees\", 60.0))\n        aim_deadzone = float(thr.get(\"aim_yaw_deadzone_degrees\", 15.0))\n        accel_resume = float(thr.get(\"accel_resume_cm_s2\", 20.0))\n        decel_slope = float(thr.get(\"decel_slope_cm_s2\", 80.0))\n\n        dv_dt = (speed - prev_speed) / dt if dt > 0.0 else 0.0"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 613,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)\n\n        lx, ly = self._rotate_to_local(velocity, actor_yaw)\n        direction = self._direction_from_local(lx, ly, speed)\n        self.direction = direction\n        gait_mix = self._gait_mix(speed)\n        self.gait = self._dominant_gait(gait_mix)\n\n        alpha = float(self.playback.get(\"velocity_alpha\", 0.2))\n        self.smoothed_velocity = [\n            alpha * velocity[i] + (1.0 - alpha) * self.smoothed_velocity[i] for i in range(3)\n        ]\n\n        self._update_mode(speed, prev_speed, dt, aim_delta)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "LOC02",
+      "category": "locomotion_states",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "配置明确walk/jog低高阈值，之间线性混合两套Cycle，分别按实测平均速度计算播放倍率。连续权重足以满足本项平滑策略，不强制必须使用上下阈值滞回。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 195,
+          "line_end": 207,
+          "quote": "    def _gait_mix(self, speed: float) -> float:\n        low = float(self.thresholds.get(\"gait_blend_low_cm_s\", 380.0))\n        high = float(self.thresholds.get(\"gait_blend_high_cm_s\", 450.0))\n        if high <= low:\n            return 0.0 if speed < high else 1.0\n        if speed <= low:\n            return 0.0\n        if speed >= high:\n            return 1.0\n        return (speed - low) / (high - low)\n\n    def _dominant_gait(self, mix: float) -> str:\n        return \"jog\" if mix >= 0.5 else \"walk\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 491,
+          "line_end": 516,
+          "quote": "    def _plan_cycle(self, dt, speed, mix, direction):\n        players = []\n        members = []\n        walk = self._cycle_asset(\"walk\", direction)\n        jog = self._cycle_asset(\"jog\", direction)\n\n        if mix <= 0.0:\n            rate = self._play_rate_for_speed(walk, speed)\n            self._advance(walk, dt, rate, loop=True)\n            players.append(self._player(walk, 1.0, rate, loop=True))\n            members.append(f\"player_{walk}\")\n        elif mix >= 1.0:\n            rate = self._play_rate_for_speed(jog, speed)\n            self._advance(jog, dt, rate, loop=True)\n            players.append(self._player(jog, 1.0, rate, loop=True))\n            members.append(f\"player_{jog}\")\n        else:\n            walk_rate = self._play_rate_for_speed(walk, speed)\n            jog_rate = self._play_rate_for_speed(jog, speed)\n            self._advance(walk, dt, walk_rate, loop=True)\n            self._advance(jog, dt, jog_rate, loop=True)\n            players.append(self._player(walk, 1.0 - mix, walk_rate, loop=True))\n            players.append(self._player(jog, mix, jog_rate, loop=True))\n            members.append(f\"player_{walk}\")\n            members.append(f\"player_{jog}\")\n        return players, members"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 24,
+          "line_end": 34,
+          "quote": "      \"gait_blend_low_cm_s\": 380.0,\n      \"gait_blend_high_cm_s\": 450.0,\n      \"accel_resume_cm_s2\": 20.0,\n      \"decel_slope_cm_s2\": 80.0\n    },\n    \"playback\": {\n      \"min_play_rate\": 0.05,\n      \"max_play_rate\": 2.0,\n      \"start_ramp_seconds\": 0.5,\n      \"pivot_seconds\": 0.45,\n      \"velocity_alpha\": 0.2"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "LOC03",
+      "category": "locomotion_states",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "局部轴转换、四向覆盖、低速保留方向均实现；但方向直接按abs(lx)>=abs(ly)切换，扇区边界没有滞回/角度平滑。虽计算smoothed_velocity，方向已由原速度选完且未消费该平滑值，因此45度边界轻微摆动会切换资源。扣1分；未将缺斜向Orientation Warp在此重复扣，归WRP01。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 181,
+          "line_end": 193,
+          "quote": "    def _rotate_to_local(v: list[float], yaw_deg: float):\n        yaw = math.radians(yaw_deg)\n        c, s = math.cos(yaw), math.sin(yaw)\n        x, y = v[0], v[1]\n        return (c * x + s * y, -s * x + c * y)\n\n    def _direction_from_local(self, lx: float, ly: float, speed: float) -> str:\n        dead = float(self.thresholds.get(\"direction_deadzone_cm_s\", 20.0))\n        if speed < dead:\n            return self.direction\n        if abs(lx) >= abs(ly):\n            return \"fwd\" if lx >= 0.0 else \"bwd\"\n        return \"left\" if ly < 0.0 else \"right\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 598,
+          "line_end": 613,
+          "quote": "        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)\n\n        lx, ly = self._rotate_to_local(velocity, actor_yaw)\n        direction = self._direction_from_local(lx, ly, speed)\n        self.direction = direction\n        gait_mix = self._gait_mix(speed)\n        self.gait = self._dominant_gait(gait_mix)\n\n        alpha = float(self.playback.get(\"velocity_alpha\", 0.2))\n        self.smoothed_velocity = [\n            alpha * velocity[i] + (1.0 - alpha) * self.smoothed_velocity[i] for i in range(3)\n        ]\n\n        self._update_mode(speed, prev_speed, dt, aim_delta)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "LOC04",
+      "category": "locomotion_states",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1.5,
+      "deduction": 1.5,
+      "reason": "Idle->Start->Cycle首轮路径、方向Start选择和缺样本Cycle回退存在；但sample_times按asset保存，仅全局reset时清空，Stop->Start等状态重入没有重置片段时间，结束过的Start再次进入会立即到Cycle。mode_elapsed也仅全局初始化并持续累加，延期Start的权重斜坡不能按每次进入重新开始。作为同一状态进入生命周期根因扣1.5分，请ARC03不要重复扣。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 120,
+          "line_end": 135,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = int(seed)\n        self.clock = 0.0\n        self.mode = \"idle\"\n        self.mode_elapsed = 0.0\n        self.sample_times: dict[str, float] = {}\n        self.last_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_aim_yaw = None\n        self.direction = \"fwd\"\n        self.gait = \"walk\"\n        self.hold_asset_id: str | None = None\n        self.hold_sample_time = 0.0\n        self.turn_state: dict | None = None\n        self.pivot_elapsed = 0.0\n        self.pivot_asset_id: str | None = None"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 291,
+          "quote": "    def _advance(self, asset_id: str, dt: float, play_rate: float, loop: bool) -> float:\n        current = self.sample_times.get(asset_id, 0.0)\n        current += dt * play_rate\n        dur = self._duration(asset_id)\n        if loop and dur > 0.0:\n            current = math.fmod(current, dur)\n            if current < 0.0:\n                current += dur\n        elif dur > 0.0 and current > dur:\n            current = dur\n        self.sample_times[asset_id] = current"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 415,
+          "line_end": 425,
+          "quote": "        if self.mode in (\"idle\", \"turn\"):\n            self.mode = \"start\"\n            return\n        if self.mode == \"stop\":\n            if dv_dt > accel_resume:\n                self.mode = \"start\"\n            return\n        if self.mode == \"start\":\n            if speed >= cycle_enter:\n                self.mode = \"cycle\"\n            return"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 467,
+          "line_end": 489,
+          "quote": "    def _plan_start(self, dt, speed, mix, direction):\n        gait = self._dominant_gait(mix)\n        start_asset = self._start_asset(gait, direction)\n        players = []\n        members = []\n\n        if self._is_ready(start_asset):\n            self._advance(start_asset, dt, 1.0, loop=False)\n            players.append(self._player(start_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{start_asset}\")\n            if self.sample_times[start_asset] >= self._duration(start_asset):\n                self.mode = \"cycle\"\n        else:\n            self.deferred_deps.append(start_asset)\n            players.append(self._player(start_asset, 0.0, 1.0, loop=False))\n            cycle = self._cycle_asset(gait, direction)\n            ramp = float(self.playback.get(\"start_ramp_seconds\", 0.5))\n            progress = min(1.0, self.mode_elapsed / ramp) if ramp > 0.0 else 1.0\n            play_rate = self._play_rate_for_speed(cycle, speed)\n            self._advance(cycle, dt, play_rate, loop=True)\n            players.append(self._player(cycle, progress, play_rate, loop=True))\n            members.append(f\"player_{cycle}\")\n        return players, members"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 650,
+          "line_end": 652,
+          "quote": "        self.mode_elapsed += dt\n        self.clock += dt\n        self.last_velocity = list(velocity)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "LOC05",
+      "category": "locomotion_states",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1.5,
+      "deduction": 1.5,
+      "reason": "利用观察减速触发Stop，低速回Idle，并能对无样本Stop使用对应Cycle回退；但ready Stop到片段末尾直接设置mode=idle，不再要求实际速度达到stop_done。在速度仍非零时可进入静止姿态，下一帧又因速度重启Start。独立结束条件缺陷扣1.5分；没有重复因距离匹配未实现或重入时钟问题扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 403,
+          "line_end": 432,
+          "quote": "        if speed <= idle_max:\n            if self.mode in (\"start\", \"cycle\", \"stop\", \"pivot\"):\n                if speed <= stop_done:\n                    self.mode = \"idle\"\n                else:\n                    self.mode = \"stop\"\n            elif self.mode == \"idle\":\n                if abs(aim_delta) > aim_deadzone and speed <= turn_max:\n                    self.mode = \"turn\"\n                    self.turn_state = {\"remaining\": aim_delta}\n            return\n\n        if self.mode in (\"idle\", \"turn\"):\n            self.mode = \"start\"\n            return\n        if self.mode == \"stop\":\n            if dv_dt > accel_resume:\n                self.mode = \"start\"\n            return\n        if self.mode == \"start\":\n            if speed >= cycle_enter:\n                self.mode = \"cycle\"\n            return\n        if self.mode == \"cycle\":\n            if abs(aim_delta) > pivot_angle and speed > pivot_min:\n                self.mode = \"pivot\"\n                self.pivot_elapsed = 0.0\n                self.pivot_asset_id = None\n            elif dv_dt < -decel_slope and speed <= stop_enter:\n                self.mode = \"stop\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 518,
+          "line_end": 539,
+          "quote": "    def _plan_stop(self, dt, speed, mix, direction):\n        gait = self._dominant_gait(mix)\n        stop_asset = self._stop_asset(gait, direction)\n        players = []\n        members = []\n\n        if self._is_ready(stop_asset):\n            self._advance(stop_asset, dt, 1.0, loop=False)\n            players.append(self._player(stop_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{stop_asset}\")\n            if self.sample_times[stop_asset] >= self._duration(stop_asset):\n                self.hold_asset_id = stop_asset\n                self.hold_sample_time = self._duration(stop_asset)\n                self.mode = \"idle\"\n        else:\n            self.deferred_deps.append(stop_asset)\n            players.append(self._player(stop_asset, 0.0, 1.0, loop=False))\n            cycle = self._cycle_asset(gait, direction)\n            rate = self._play_rate_for_speed(cycle, speed)\n            self._advance(cycle, dt, rate, loop=True)\n            players.append(self._player(cycle, 1.0, rate, loop=True))\n            members.append(f\"player_{cycle}\")"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "LOC06",
+      "category": "locomotion_states",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "Stop期间根据速度增加重启Start，Pivot有独立资源选择和状态；但Pivot触发是abs(aim_yaw-actor_yaw)>阈值而非移动反向，维持同向速度只改变瞄准即可触发，真实速度反向且aim不变则不触发。没有保留所要求的运动方向反转语义，扣1分；不再因unused acceleration单独扣LOC01。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 418,
+          "line_end": 438,
+          "quote": "        if self.mode == \"stop\":\n            if dv_dt > accel_resume:\n                self.mode = \"start\"\n            return\n        if self.mode == \"start\":\n            if speed >= cycle_enter:\n                self.mode = \"cycle\"\n            return\n        if self.mode == \"cycle\":\n            if abs(aim_delta) > pivot_angle and speed > pivot_min:\n                self.mode = \"pivot\"\n                self.pivot_elapsed = 0.0\n                self.pivot_asset_id = None\n            elif dv_dt < -decel_slope and speed <= stop_enter:\n                self.mode = \"stop\"\n            return\n        if self.mode == \"pivot\":\n            pivot_dur = float(self.playback.get(\"pivot_seconds\", 0.45))\n            if self.pivot_elapsed >= pivot_dur:\n                self.mode = \"cycle\"\n                self.pivot_asset_id = None"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 542,
+          "line_end": 560,
+          "quote": "    def _plan_pivot(self, dt, mix, direction):\n        gait = self._dominant_gait(mix)\n        desired = self._pivot_asset(gait, direction)\n        players = []\n        members = []\n\n        pivot = desired if self._is_ready(desired) else \"motion_20\"\n        if pivot != desired:\n            self.deferred_deps.append(desired)\n            players.append(self._player(desired, 0.0, 1.0, loop=False))\n        if not self._is_ready(pivot):\n            pivot = \"motion_20\"\n\n        self._advance(pivot, dt, 1.0, loop=False)\n        players.append(self._player(pivot, 1.0, 1.0, loop=False))\n        members.append(f\"player_{pivot}\")\n        self.pivot_elapsed += dt\n        if self.pivot_elapsed >= float(self.playback.get(\"pivot_seconds\", 0.45)):\n            self.mode = \"cycle\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 605,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)\n\n        lx, ly = self._rotate_to_local(velocity, actor_yaw)\n        direction = self._direction_from_local(lx, ly, speed)\n        self.direction = direction\n        gait_mix = self._gait_mix(speed)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "LOC07",
+      "category": "locomotion_states",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "if/return结构给出确定的状态条件优先级，每帧只输出当前模式；但状态切换没有保存旧播放器及交叉淡出，ready Start/Stop/Pivot直接以weight=1输出，跨状态为硬切。扣1分；未重复因LOC03角度防抖或LOC04进入计时根因扣分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 395,
+          "line_end": 438,
+          "quote": "        if self.mode == \"turn\":\n            if self.turn_state is None:\n                self.mode = \"idle\"\n            elif speed > turn_exit:\n                self.turn_state = None\n                self.mode = \"start\" if speed > idle_max else \"idle\"\n            return\n\n        if speed <= idle_max:\n            if self.mode in (\"start\", \"cycle\", \"stop\", \"pivot\"):\n                if speed <= stop_done:\n                    self.mode = \"idle\"\n                else:\n                    self.mode = \"stop\"\n            elif self.mode == \"idle\":\n                if abs(aim_delta) > aim_deadzone and speed <= turn_max:\n                    self.mode = \"turn\"\n                    self.turn_state = {\"remaining\": aim_delta}\n            return\n\n        if self.mode in (\"idle\", \"turn\"):\n            self.mode = \"start\"\n            return\n        if self.mode == \"stop\":\n            if dv_dt > accel_resume:\n                self.mode = \"start\"\n            return\n        if self.mode == \"start\":\n            if speed >= cycle_enter:\n                self.mode = \"cycle\"\n            return\n        if self.mode == \"cycle\":\n            if abs(aim_delta) > pivot_angle and speed > pivot_min:\n                self.mode = \"pivot\"\n                self.pivot_elapsed = 0.0\n                self.pivot_asset_id = None\n            elif dv_dt < -decel_slope and speed <= stop_enter:\n                self.mode = \"stop\"\n            return\n        if self.mode == \"pivot\":\n            pivot_dur = float(self.playback.get(\"pivot_seconds\", 0.45))\n            if self.pivot_elapsed >= pivot_dur:\n                self.mode = \"cycle\"\n                self.pivot_asset_id = None"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 473,
+          "line_end": 478,
+          "quote": "        if self._is_ready(start_asset):\n            self._advance(start_asset, dt, 1.0, loop=False)\n            players.append(self._player(start_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{start_asset}\")\n            if self.sample_times[start_asset] >= self._duration(start_asset):\n                self.mode = \"cycle\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 615,
+          "line_end": 632,
+          "quote": "        if self.mode == \"idle\":\n            players, members = self._plan_idle(dt, aim_delta)\n        elif self.mode == \"start\":\n            players, members = self._plan_start(dt, speed, gait_mix, direction)\n        elif self.mode == \"cycle\":\n            players, members = self._plan_cycle(dt, speed, gait_mix, direction)\n        elif self.mode == \"stop\":\n            players, members = self._plan_stop(dt, speed, gait_mix, direction)\n        elif self.mode == \"pivot\":\n            players, members = self._plan_pivot(dt, gait_mix, direction)\n        elif self.mode == \"turn\":\n            players, members = self._plan_turn(dt)\n        else:\n            players, members = self._plan_idle(dt, aim_delta)\n\n        sync_groups = self._sync_groups_for(members)\n        active_ids = [p[\"player_id\"] for p in players if p.get(\"weight\", 0.0) > 0.0]\n        ops = self._pose_operations(active_ids, aim_delta, hold=(self.mode == \"idle\"))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "SYN01",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1,
+      "deduction": 2,
+      "reason": "图有locomotion/turn/idle分组及成员列表，已形成部分作用域配置。但sync_group_defs只保存未用于消费；_sync_groups_for不管当前动作一律输出locomotion/independent，实际组引用与配置中的turn/idle不一致，没有角色关联。该项只扣组配置与消费不一致，不以缺marker资源代替同步算法判断。",
+      "evidence": [
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 460,
+          "line_end": 487,
+          "quote": "      \"settings\": {\n        \"mode\": \"independent\",\n        \"note\": \"timing-only; no authored footstep markers\"\n      }\n    },\n    {\n      \"group_id\": \"turn\",\n      \"members\": [\n        \"motion_33\",\n        \"motion_34\",\n        \"motion_35\",\n        \"motion_36\",\n        \"turn_right_90_reverse\",\n        \"turn_left_180_reverse\"\n      ],\n      \"settings\": {\n        \"mode\": \"independent\",\n        \"note\": \"in-place turns; no footstep markers\"\n      }\n    },\n    {\n      \"group_id\": \"idle\",\n      \"members\": [\n        \"motion_37\"\n      ],\n      \"settings\": {\n        \"mode\": \"independent\",\n        \"note\": \"idle/hold pose\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 78,
+          "line_end": 83,
+          "quote": "        self.player_specs: dict[str, dict] = {}\n        for node in graph.get(\"nodes\") or []:\n            if node.get(\"kind\") == \"player\":\n                self.player_specs[node.get(\"asset_id\")] = node\n        self.sync_group_defs = graph.get(\"sync_groups\") or []\n        self.output_config = graph.get(\"output\") or {}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 311,
+          "line_end": 324,
+          "quote": "    def _sync_groups_for(self, members):\n        groups = []\n        if members:\n            groups.append(\n                {\n                    \"group_id\": \"locomotion\",\n                    \"member_player_ids\": list(members),\n                    \"settings\": {\n                        \"mode\": \"independent\",\n                        \"note\": \"no authored footstep/notify markers; sync is timing-only\",\n                    },\n                }\n            )\n        return groups"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 630,
+          "line_end": 632,
+          "quote": "        sync_groups = self._sync_groups_for(members)\n        active_ids = [p[\"player_id\"] for p in players if p.get(\"weight\", 0.0) > 0.0]\n        ops = self._pose_operations(active_ids, aim_delta, hold=(self.mode == \"idle\"))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN02",
+      "category": "synchronization",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "检查控制器、图及实现说明后，未发现前后marker区间、相对进度映射或可审查的等价同步计划。walk/jog混合时分别按各自速度推进时钟；independent说明不是marker同步算法。这里扣缺通用同步逻辑，即使资源随后补充marker仍不会被消费；不重复扣资源制作不足。Notify所属者问题由SYN04承担。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 311,
+          "line_end": 324,
+          "quote": "    def _sync_groups_for(self, members):\n        groups = []\n        if members:\n            groups.append(\n                {\n                    \"group_id\": \"locomotion\",\n                    \"member_player_ids\": list(members),\n                    \"settings\": {\n                        \"mode\": \"independent\",\n                        \"note\": \"no authored footstep/notify markers; sync is timing-only\",\n                    },\n                }\n            )\n        return groups"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 507,
+          "line_end": 515,
+          "quote": "        else:\n            walk_rate = self._play_rate_for_speed(walk, speed)\n            jog_rate = self._play_rate_for_speed(jog, speed)\n            self._advance(walk, dt, walk_rate, loop=True)\n            self._advance(jog, dt, jog_rate, loop=True)\n            players.append(self._player(walk, 1.0 - mix, walk_rate, loop=True))\n            players.append(self._player(jog, mix, jog_rate, loop=True))\n            members.append(f\"player_{walk}\")\n            members.append(f\"player_{jog}\")"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN03",
+      "category": "synchronization",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "没有公共marker求交/一致性验证，也没有缺标记时统一长度相位同步或显式拒绝报告的分支。独立时钟不构成长度同步，尤其walk/jog各自按自身平均速度求rate。本项缺的是不兼容/缺标记的退化策略，和SYN02缺主同步计算是两个独立要求。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 292,
+          "quote": "    def _advance(self, asset_id: str, dt: float, play_rate: float, loop: bool) -> float:\n        current = self.sample_times.get(asset_id, 0.0)\n        current += dt * play_rate\n        dur = self._duration(asset_id)\n        if loop and dur > 0.0:\n            current = math.fmod(current, dur)\n            if current < 0.0:\n                current += dur\n        elif dur > 0.0 and current > dur:\n            current = dur\n        self.sample_times[asset_id] = current\n        return current"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 311,
+          "line_end": 324,
+          "quote": "    def _sync_groups_for(self, members):\n        groups = []\n        if members:\n            groups.append(\n                {\n                    \"group_id\": \"locomotion\",\n                    \"member_player_ids\": list(members),\n                    \"settings\": {\n                        \"mode\": \"independent\",\n                        \"note\": \"no authored footstep/notify markers; sync is timing-only\",\n                    },\n                }\n            )\n        return groups"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 507,
+          "line_end": 515,
+          "quote": "        else:\n            walk_rate = self._play_rate_for_speed(walk, speed)\n            jog_rate = self._play_rate_for_speed(jog, speed)\n            self._advance(walk, dt, walk_rate, loop=True)\n            self._advance(jog, dt, jog_rate, loop=True)\n            players.append(self._player(walk, 1.0 - mix, walk_rate, loop=True))\n            players.append(self._player(jog, mix, jog_rate, loop=True))\n            members.append(f\"player_{walk}\")\n            members.append(f\"player_{jog}\")"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN04",
+      "category": "synchronization",
+      "status": "missing",
+      "weight": 2,
+      "awarded": 0,
+      "deduction": 2,
+      "reason": "没有由权重/角色确定leader的计算或计划，sync_groups只有成员和independent说明；也没有Notify归属、follower抑制及平局规则。混合权重用于player输出，未进入leader选择。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 311,
+          "line_end": 324,
+          "quote": "    def _sync_groups_for(self, members):\n        groups = []\n        if members:\n            groups.append(\n                {\n                    \"group_id\": \"locomotion\",\n                    \"member_player_ids\": list(members),\n                    \"settings\": {\n                        \"mode\": \"independent\",\n                        \"note\": \"no authored footstep/notify markers; sync is timing-only\",\n                    },\n                }\n            )\n        return groups"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 507,
+          "line_end": 515,
+          "quote": "        else:\n            walk_rate = self._play_rate_for_speed(walk, speed)\n            jog_rate = self._play_rate_for_speed(jog, speed)\n            self._advance(walk, dt, walk_rate, loop=True)\n            self._advance(jog, dt, jog_rate, loop=True)\n            players.append(self._player(walk, 1.0 - mix, walk_rate, loop=True))\n            players.append(self._player(jog, mix, jog_rate, loop=True))\n            members.append(f\"player_{walk}\")\n            members.append(f\"player_{jog}\")"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 630,
+          "line_end": 647,
+          "quote": "        sync_groups = self._sync_groups_for(members)\n        active_ids = [p[\"player_id\"] for p in players if p.get(\"weight\", 0.0) > 0.0]\n        ops = self._pose_operations(active_ids, aim_delta, hold=(self.mode == \"idle\"))\n\n        plan = {\n            \"schema_version\": _SCHEMA_VERSION,\n            \"players\": players,\n            \"sync_groups\": sync_groups,\n            \"pose_operations\": ops,\n            \"diagnostics\": {\n                \"mode\": self.mode,\n                \"speed_cm_s\": round(speed, 4),\n                \"gait_mix\": round(gait_mix, 4),\n                \"direction\": direction,\n                \"aim_actor_yaw_delta_degrees\": round(aim_delta, 4),\n                \"clock_seconds\": round(self.clock, 6),\n                \"deferred_missing_samples_dependencies\": sorted(set(self.deferred_deps)),\n            },"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN05",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1,
+      "deduction": 2,
+      "reason": "起停按非循环时钟独立推进，实际未被任何follower强制覆盖，提供了基本时间所有权。但没有从起停接触或相位到cycle的接管连续性规则，start结束直接切mode，cycle继续各自时钟。此处只扣同步接管策略缺失；距离曲线/反查缺失由相应DST/LOC项目承担，起停重入未重置也由LOC04承担。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 467,
+          "line_end": 489,
+          "quote": "    def _plan_start(self, dt, speed, mix, direction):\n        gait = self._dominant_gait(mix)\n        start_asset = self._start_asset(gait, direction)\n        players = []\n        members = []\n\n        if self._is_ready(start_asset):\n            self._advance(start_asset, dt, 1.0, loop=False)\n            players.append(self._player(start_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{start_asset}\")\n            if self.sample_times[start_asset] >= self._duration(start_asset):\n                self.mode = \"cycle\"\n        else:\n            self.deferred_deps.append(start_asset)\n            players.append(self._player(start_asset, 0.0, 1.0, loop=False))\n            cycle = self._cycle_asset(gait, direction)\n            ramp = float(self.playback.get(\"start_ramp_seconds\", 0.5))\n            progress = min(1.0, self.mode_elapsed / ramp) if ramp > 0.0 else 1.0\n            play_rate = self._play_rate_for_speed(cycle, speed)\n            self._advance(cycle, dt, play_rate, loop=True)\n            players.append(self._player(cycle, progress, play_rate, loop=True))\n            members.append(f\"player_{cycle}\")\n        return players, members"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 491,
+          "line_end": 515,
+          "quote": "    def _plan_cycle(self, dt, speed, mix, direction):\n        players = []\n        members = []\n        walk = self._cycle_asset(\"walk\", direction)\n        jog = self._cycle_asset(\"jog\", direction)\n\n        if mix <= 0.0:\n            rate = self._play_rate_for_speed(walk, speed)\n            self._advance(walk, dt, rate, loop=True)\n            players.append(self._player(walk, 1.0, rate, loop=True))\n            members.append(f\"player_{walk}\")\n        elif mix >= 1.0:\n            rate = self._play_rate_for_speed(jog, speed)\n            self._advance(jog, dt, rate, loop=True)\n            players.append(self._player(jog, 1.0, rate, loop=True))\n            members.append(f\"player_{jog}\")\n        else:\n            walk_rate = self._play_rate_for_speed(walk, speed)\n            jog_rate = self._play_rate_for_speed(jog, speed)\n            self._advance(walk, dt, walk_rate, loop=True)\n            self._advance(jog, dt, jog_rate, loop=True)\n            players.append(self._player(walk, 1.0 - mix, walk_rate, loop=True))\n            players.append(self._player(jog, mix, jog_rate, loop=True))\n            members.append(f\"player_{walk}\")\n            members.append(f\"player_{jog}\")"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 518,
+          "line_end": 540,
+          "quote": "    def _plan_stop(self, dt, speed, mix, direction):\n        gait = self._dominant_gait(mix)\n        stop_asset = self._stop_asset(gait, direction)\n        players = []\n        members = []\n\n        if self._is_ready(stop_asset):\n            self._advance(stop_asset, dt, 1.0, loop=False)\n            players.append(self._player(stop_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{stop_asset}\")\n            if self.sample_times[stop_asset] >= self._duration(stop_asset):\n                self.hold_asset_id = stop_asset\n                self.hold_sample_time = self._duration(stop_asset)\n                self.mode = \"idle\"\n        else:\n            self.deferred_deps.append(stop_asset)\n            players.append(self._player(stop_asset, 0.0, 1.0, loop=False))\n            cycle = self._cycle_asset(gait, direction)\n            rate = self._play_rate_for_speed(cycle, speed)\n            self._advance(cycle, dt, rate, loop=True)\n            players.append(self._player(cycle, 1.0, rate, loop=True))\n            members.append(f\"player_{cycle}\")\n        return players, members"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "SYN06",
+      "category": "synchronization",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 0.5,
+      "deduction": 1.5,
+      "reason": "时钟对loop执行fmod，并处理负余数，对普通跨尾有确定的采样时间。没有同步接管状态、未保留跨圈数/前后marker序列，也没有跨多个事件的端点或去重计划。因此仅给基本跨尾时间处理分；不在此重复扣起停重入时钟未清空的LOC04缺陷。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 292,
+          "quote": "    def _advance(self, asset_id: str, dt: float, play_rate: float, loop: bool) -> float:\n        current = self.sample_times.get(asset_id, 0.0)\n        current += dt * play_rate\n        dur = self._duration(asset_id)\n        if loop and dur > 0.0:\n            current = math.fmod(current, dur)\n            if current < 0.0:\n                current += dur\n        elif dur > 0.0 and current > dur:\n            current = dur\n        self.sample_times[asset_id] = current\n        return current"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 311,
+          "line_end": 324,
+          "quote": "    def _sync_groups_for(self, members):\n        groups = []\n        if members:\n            groups.append(\n                {\n                    \"group_id\": \"locomotion\",\n                    \"member_player_ids\": list(members),\n                    \"settings\": {\n                        \"mode\": \"independent\",\n                        \"note\": \"no authored footstep/notify markers; sync is timing-only\",\n                    },\n                }\n            )\n        return groups"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 507,
+          "line_end": 515,
+          "quote": "        else:\n            walk_rate = self._play_rate_for_speed(walk, speed)\n            jog_rate = self._play_rate_for_speed(jog, speed)\n            self._advance(walk, dt, walk_rate, loop=True)\n            self._advance(jog, dt, jog_rate, loop=True)\n            players.append(self._player(walk, 1.0 - mix, walk_rate, loop=True))\n            players.append(self._player(jog, mix, jog_rate, loop=True))\n            members.append(f\"player_{walk}\")\n            members.append(f\"player_{jog}\")"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST01",
+      "category": "distance_matching",
+      "status": "missing",
+      "weight": 2,
+      "awarded": 0,
+      "deduction": 2,
+      "reason": "没有累计路程/剩余目标/有符号 pivot 距离的定义及生产消费协议。现有 horizontal_displacement_cm 是全段首尾位移，average_speed_cm_s 只供 cycle 倍率使用，不能替代三类距离语义。本项是运行消费契约缺失；资源曲线制作缺失另归 RES07，没有追加统一惩罚。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 76,
+          "line_end": 92,
+          "quote": "def _metrics_from_root(times: list[float], roots: list[list[float]]) -> dict:\n    start = roots[0]\n    end = roots[-1]\n    duration = max(times[-1] - times[0], 0.0)\n    dx = end[0] - start[0]\n    dy = end[1] - start[1]\n    dz = end[2] - start[2]\n    horizontal = math.hypot(dx, dy)\n    avg_speed = horizontal / duration if duration > 0.0 else 0.0\n    return {\n        \"duration_seconds\": duration,\n        \"root_start_cm\": _safe_round(start),\n        \"root_end_cm\": _safe_round(end),\n        \"root_displacement_cm\": [dx, dy, dz],\n        \"horizontal_displacement_cm\": horizontal,\n        \"average_speed_cm_s\": avg_speed,\n    }"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 458,
+          "line_end": 465,
+          "quote": "    def _play_rate_for_speed(self, cycle_asset, speed):\n        avg = self._avg_speed(cycle_asset)\n        if avg <= 0.0:\n            return 1.0\n        rate = speed / avg\n        lo = float(self.playback.get(\"min_play_rate\", 0.05))\n        hi = float(self.playback.get(\"max_play_rate\", 2.0))\n        return max(lo, min(hi, rate))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 473,
+          "line_end": 477,
+          "quote": "        if self._is_ready(start_asset):\n            self._advance(start_asset, dt, 1.0, loop=False)\n            players.append(self._player(start_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{start_asset}\")\n            if self.sample_times[start_asset] >= self._duration(start_asset):"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 524,
+          "line_end": 530,
+          "quote": "        if self._is_ready(stop_asset):\n            self._advance(stop_asset, dt, 1.0, loop=False)\n            players.append(self._player(stop_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{stop_asset}\")\n            if self.sample_times[stop_asset] >= self._duration(stop_asset):\n                self.hold_asset_id = stop_asset\n                self.hold_sample_time = self._duration(stop_asset)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 555,
+          "line_end": 560,
+          "quote": "        self._advance(pivot, dt, 1.0, loop=False)\n        players.append(self._player(pivot, 1.0, 1.0, loop=False))\n        members.append(f\"player_{pivot}\")\n        self.pivot_elapsed += dt\n        if self.pivot_elapsed >= float(self.playback.get(\"pivot_seconds\", 0.45)):\n            self.mode = \"cycle\""
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST02",
+      "category": "distance_matching",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "有样本 start/stop/pivot 都调用同一个 _advance(dt,1.0)，既没有按本帧 speed*dt 推进，也没有按目标距离定位；不是把累计值用错，而是这两条距离消费路径未实现。该判定来自实际 ready 资源分支，不涉及缺采样回退。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 292,
+          "quote": "    def _advance(self, asset_id: str, dt: float, play_rate: float, loop: bool) -> float:\n        current = self.sample_times.get(asset_id, 0.0)\n        current += dt * play_rate\n        dur = self._duration(asset_id)\n        if loop and dur > 0.0:\n            current = math.fmod(current, dur)\n            if current < 0.0:\n                current += dur\n        elif dur > 0.0 and current > dur:\n            current = dur\n        self.sample_times[asset_id] = current\n        return current"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 473,
+          "line_end": 477,
+          "quote": "        if self._is_ready(start_asset):\n            self._advance(start_asset, dt, 1.0, loop=False)\n            players.append(self._player(start_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{start_asset}\")\n            if self.sample_times[start_asset] >= self._duration(start_asset):"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 524,
+          "line_end": 528,
+          "quote": "        if self._is_ready(stop_asset):\n            self._advance(stop_asset, dt, 1.0, loop=False)\n            players.append(self._player(stop_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{stop_asset}\")\n            if self.sample_times[stop_asset] >= self._duration(stop_asset):"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 555,
+          "line_end": 560,
+          "quote": "        self._advance(pivot, dt, 1.0, loop=False)\n        players.append(self._player(pivot, 1.0, 1.0, loop=False))\n        members.append(f\"player_{pivot}\")\n        self.pivot_elapsed += dt\n        if self.pivot_elapsed >= float(self.playback.get(\"pivot_seconds\", 0.45)):\n            self.mode = \"cycle\""
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST03",
+      "category": "distance_matching",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "没有从速度、加速度或声明的制动模型得到 stop/pivot 目标距离。dv_dt 仅用作状态阈值，输入 acceleration 被接收后未使用；pivot 用固定 pivot_seconds 结束，stop 按时间播放。已有状态判断不能替代停步/反向目标预测；不要求额外的碰撞、摩擦、actor 位置输入。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 391,
+          "line_end": 393,
+          "quote": "        decel_slope = float(thr.get(\"decel_slope_cm_s2\", 80.0))\n\n        dv_dt = (speed - prev_speed) / dt if dt > 0.0 else 0.0"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 426,
+          "line_end": 437,
+          "quote": "        if self.mode == \"cycle\":\n            if abs(aim_delta) > pivot_angle and speed > pivot_min:\n                self.mode = \"pivot\"\n                self.pivot_elapsed = 0.0\n                self.pivot_asset_id = None\n            elif dv_dt < -decel_slope and speed <= stop_enter:\n                self.mode = \"stop\"\n            return\n        if self.mode == \"pivot\":\n            pivot_dur = float(self.playback.get(\"pivot_seconds\", 0.45))\n            if self.pivot_elapsed >= pivot_dur:\n                self.mode = \"cycle\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 518,
+          "line_end": 530,
+          "quote": "    def _plan_stop(self, dt, speed, mix, direction):\n        gait = self._dominant_gait(mix)\n        stop_asset = self._stop_asset(gait, direction)\n        players = []\n        members = []\n\n        if self._is_ready(stop_asset):\n            self._advance(stop_asset, dt, 1.0, loop=False)\n            players.append(self._player(stop_asset, 1.0, 1.0, loop=False))\n            members.append(f\"player_{stop_asset}\")\n            if self.sample_times[stop_asset] >= self._duration(stop_asset):\n                self.hold_asset_id = stop_asset\n                self.hold_sample_time = self._duration(stop_asset)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 555,
+          "line_end": 560,
+          "quote": "        self._advance(pivot, dt, 1.0, loop=False)\n        players.append(self._player(pivot, 1.0, 1.0, loop=False))\n        members.append(f\"player_{pivot}\")\n        self.pivot_elapsed += dt\n        if self.pivot_elapsed >= float(self.playback.get(\"pivot_seconds\", 0.45)):\n            self.mode = \"cycle\""
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 600,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST04",
+      "category": "distance_matching",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "完整控制器没有距离曲线查找/插值/反查函数，也没有平台、非单调、无效曲线或 pivot 距离分段策略。_advance 仅实现时钟的取模/时长上限，并不满足距离反查边界项；因此是消费者算法类别缺失，不能因已有普通时钟 clamp 给本项分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 292,
+          "quote": "    def _advance(self, asset_id: str, dt: float, play_rate: float, loop: bool) -> float:\n        current = self.sample_times.get(asset_id, 0.0)\n        current += dt * play_rate\n        dur = self._duration(asset_id)\n        if loop and dur > 0.0:\n            current = math.fmod(current, dur)\n            if current < 0.0:\n                current += dur\n        elif dur > 0.0 and current > dur:\n            current = dur\n        self.sample_times[asset_id] = current\n        return current"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 473,
+          "line_end": 475,
+          "quote": "        if self._is_ready(start_asset):\n            self._advance(start_asset, dt, 1.0, loop=False)\n            players.append(self._player(start_asset, 1.0, 1.0, loop=False))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 524,
+          "line_end": 526,
+          "quote": "        if self._is_ready(stop_asset):\n            self._advance(stop_asset, dt, 1.0, loop=False)\n            players.append(self._player(stop_asset, 1.0, 1.0, loop=False))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 555,
+          "line_end": 556,
+          "quote": "        self._advance(pivot, dt, 1.0, loop=False)\n        players.append(self._player(pivot, 1.0, 1.0, loop=False))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST05",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 1,
+      "deduction": 2,
+      "reason": "cycle 有实测平均速度匹配 speed/avg 并用图内 min/max clamp，且没有对同一速度重复补偿，给予该部分分数。没有距离驱动的有效倍率限制，也没有 clamp 后的剩余位移/stride 方案或明确允许滑动的取舍；已有 start/stop/pivot 恒定1倍不属于距离匹配限幅。此项仅评价倍率/残差组合，不追加曲线缺失罚分。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 458,
+          "line_end": 465,
+          "quote": "    def _play_rate_for_speed(self, cycle_asset, speed):\n        avg = self._avg_speed(cycle_asset)\n        if avg <= 0.0:\n            return 1.0\n        rate = speed / avg\n        lo = float(self.playback.get(\"min_play_rate\", 0.05))\n        hi = float(self.playback.get(\"max_play_rate\", 2.0))\n        return max(lo, min(hi, rate))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 491,
+          "line_end": 516,
+          "quote": "    def _plan_cycle(self, dt, speed, mix, direction):\n        players = []\n        members = []\n        walk = self._cycle_asset(\"walk\", direction)\n        jog = self._cycle_asset(\"jog\", direction)\n\n        if mix <= 0.0:\n            rate = self._play_rate_for_speed(walk, speed)\n            self._advance(walk, dt, rate, loop=True)\n            players.append(self._player(walk, 1.0, rate, loop=True))\n            members.append(f\"player_{walk}\")\n        elif mix >= 1.0:\n            rate = self._play_rate_for_speed(jog, speed)\n            self._advance(jog, dt, rate, loop=True)\n            players.append(self._player(jog, 1.0, rate, loop=True))\n            members.append(f\"player_{jog}\")\n        else:\n            walk_rate = self._play_rate_for_speed(walk, speed)\n            jog_rate = self._play_rate_for_speed(jog, speed)\n            self._advance(walk, dt, walk_rate, loop=True)\n            self._advance(jog, dt, jog_rate, loop=True)\n            players.append(self._player(walk, 1.0 - mix, walk_rate, loop=True))\n            players.append(self._player(jog, mix, jog_rate, loop=True))\n            members.append(f\"player_{walk}\")\n            members.append(f\"player_{jog}\")\n        return players, members"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 343,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }\n            )"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 50,
+          "line_end": 50,
+          "quote": "- 步态：速度低于 `gait_blend_low_cm_s` 走，高于 `gait_blend_high_cm_s` 跑，中间线性混合两套 cycle；cycle 的 `play_rate = 速度 / 该素材实测平均速度`，并夹在 `[min_play_rate, max_play_rate]`。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "DST06",
+      "category": "distance_matching",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "控制器自行按 dt*rate 推进并输出权威 sample_time，循环/非循环边界可定位，root 操作也声明为计划而非 UE 执行。缺口是只有每资产 sample_times，没有对初次定位、重新进入或链式转身的 seek/advance 区间与 Notify/root-delta 的副作用规则；no authored footstep/notify markers 只说明数据缺失，未定义跳转时的消费语义。允许简化计划，不要求事件引擎；root 位移所有权缺口只计 RES05。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 120,
+          "line_end": 135,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = int(seed)\n        self.clock = 0.0\n        self.mode = \"idle\"\n        self.mode_elapsed = 0.0\n        self.sample_times: dict[str, float] = {}\n        self.last_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_aim_yaw = None\n        self.direction = \"fwd\"\n        self.gait = \"walk\"\n        self.hold_asset_id: str | None = None\n        self.hold_sample_time = 0.0\n        self.turn_state: dict | None = None\n        self.pivot_elapsed = 0.0\n        self.pivot_asset_id: str | None = None"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 281,
+          "line_end": 309,
+          "quote": "    def _advance(self, asset_id: str, dt: float, play_rate: float, loop: bool) -> float:\n        current = self.sample_times.get(asset_id, 0.0)\n        current += dt * play_rate\n        dur = self._duration(asset_id)\n        if loop and dur > 0.0:\n            current = math.fmod(current, dur)\n            if current < 0.0:\n                current += dur\n        elif dur > 0.0 and current > dur:\n            current = dur\n        self.sample_times[asset_id] = current\n        return current\n\n    def _player(self, asset_id: str, weight: float, play_rate: float, loop=None) -> dict:\n        loop = self._loop_spec(asset_id) if loop is None else loop\n        sample_time = self.sample_times.get(asset_id, 0.0)\n        materialized = self._is_ready(asset_id)\n        entry = {\n            \"player_id\": f\"player_{asset_id}\",\n            \"asset_id\": asset_id,\n            \"sample_time_seconds\": float(sample_time),\n            \"weight\": float(weight),\n            \"play_rate\": float(play_rate),\n            \"loop\": bool(loop),\n            \"materialized\": materialized,\n        }\n        if not materialized:\n            entry[\"status\"] = \"deferred_missing_samples\"\n        return entry"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 563,
+          "line_end": 585,
+          "quote": "    def _plan_turn(self, dt):\n        players = []\n        members = []\n        if self.turn_state is None:\n            self.mode = \"idle\"\n            return players, members\n\n        remaining = self.turn_state.get(\"remaining\", 0.0)\n        asset_id = self._turn_asset(remaining)\n        self._advance(asset_id, dt, 1.0, loop=False)\n        players.append(self._player(asset_id, 1.0, 1.0, loop=False))\n        members.append(f\"player_{asset_id}\")\n\n        if asset_id == \"turn_left_180_reverse\":\n            players.append(self._player(\"motion_34\", 0.0, 1.0, loop=False))\n            self.deferred_deps.append(\"motion_34\")\n        elif asset_id == \"turn_right_90_reverse\":\n            players.append(self._player(\"motion_35\", 0.0, 1.0, loop=False))\n            self.deferred_deps.append(\"motion_35\")\n\n        if self.sample_times[asset_id] >= self._duration(asset_id):\n            arc = self._turn_arc_degrees(asset_id)\n            new_remaining = remaining - arc"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 342,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 57,
+          "line_end": 57,
+          "quote": "姿态操作均为执行意图描述：`extract_root_delta_world` 将转换后的根增量按角色 yaw 映射到世界；`aim_yaw_offset` 描述上半身朝向偏移意图；`hold_sample` 描述保持当前采样。控制器不生成最终骨骼变换。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 64,
+          "line_end": 70,
+          "quote": "- 播放器采样时间由控制器自行推进；`sample_time_seconds` 是加工资源时间轴上的时间，`play_rate` 为无量纲倍率。\n\n## 限制与未完成\n\n- 22 条 `metadata_only` 素材没有可播放姿态；相关行为以可物化回退表达，尚未具备这些原始素材的最终姿态。\n- 无脚步标记/notify 数据，同步组仅作计时级描述。\n- 无 UE 执行器、AnimGraph 解释器或姿态渲染器；本交付是静态资源与计划，未在 UE 中运行或做姿态质量测量。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "config/animation_graph.json",
+        "assets/authored_assets.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "WRP01",
+      "category": "warping_and_yaw",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "最终姿态操作仅有root提取、上身aim_yaw_offset及hold；没有所选动画运动方向与实际局部移动方向差的下身Orientation Warping参数或等价计划。仅选择四向和上身瞄准不能替代该功能。按缺失记0；未重复扣RES02转身符号问题。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 377,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }\n            )\n            ops.append(\n                {\n                    \"operation_id\": \"aim_offset\",\n                    \"operation_type\": \"aim_yaw_offset\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"yaw_offset_degrees\": float(aim_offset),\n                        \"space\": \"actor_local\",\n                        \"target_bones\": [\n                            \"spine_01\", \"spine_02\", \"spine_03\", \"spine_04\", \"spine_05\",\n                            \"neck_01\", \"neck_02\", \"head\",\n                        ],\n                        \"semantics\": self.pose_semantics.get(\n                            \"aim_yaw_offset\",\n                            \"declarative upper-body yaw offset intent; not an executed pose\",\n                        ),\n                    },\n                }\n            )\n        if hold:\n            ops.append(\n                {\n                    \"operation_id\": \"hold_sample\",\n                    \"operation_type\": \"hold_sample\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"semantics\": self.pose_semantics.get(\n                            \"hold_sample\",\n                            \"freeze the referenced player at its current sample time\",\n                        ),\n                    },\n                }\n            )\n        return ops"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 491,
+          "line_end": 497,
+          "quote": "  \"output\": {\n    \"blend\": \"weighted_average\",\n    \"pose_operations_order\": [\n      \"extract_root_delta_world\",\n      \"aim_yaw_offset\",\n      \"hold_sample\"\n    ]"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "WRP02",
+      "category": "warping_and_yaw",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "有基于speed/average_speed的播放倍率调整和clamp，但没有步幅比例、空间补偿操作或等价姿态计划；rate达到限制后的差异也未传给stride。此项功能缺失记0，不要求真实骨骼求解。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 458,
+          "line_end": 465,
+          "quote": "    def _play_rate_for_speed(self, cycle_asset, speed):\n        avg = self._avg_speed(cycle_asset)\n        if avg <= 0.0:\n            return 1.0\n        rate = speed / avg\n        lo = float(self.playback.get(\"min_play_rate\", 0.05))\n        hi = float(self.playback.get(\"max_play_rate\", 2.0))\n        return max(lo, min(hi, rate))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 377,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }\n            )\n            ops.append(\n                {\n                    \"operation_id\": \"aim_offset\",\n                    \"operation_type\": \"aim_yaw_offset\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"yaw_offset_degrees\": float(aim_offset),\n                        \"space\": \"actor_local\",\n                        \"target_bones\": [\n                            \"spine_01\", \"spine_02\", \"spine_03\", \"spine_04\", \"spine_05\",\n                            \"neck_01\", \"neck_02\", \"head\",\n                        ],\n                        \"semantics\": self.pose_semantics.get(\n                            \"aim_yaw_offset\",\n                            \"declarative upper-body yaw offset intent; not an executed pose\",\n                        ),\n                    },\n                }\n            )\n        if hold:\n            ops.append(\n                {\n                    \"operation_id\": \"hold_sample\",\n                    \"operation_type\": \"hold_sample\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"semantics\": self.pose_semantics.get(\n                            \"hold_sample\",\n                            \"freeze the referenced player at its current sample time\",\n                        ),\n                    },\n                }\n            )\n        return ops"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "WRP03",
+      "category": "warping_and_yaw",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "已有姿态操作按root提取/上身aim/hold顺序输出，player引用明确，spine/neck/head目标属于给定26骨子集，文档承认component-space子集和执行意图边界；满足本项计划/骨骼范围契约。Orientation/Stride功能本身缺失已经在WRP01/02记分，不在此重复扣，也不要求实际IK。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 377,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }\n            )\n            ops.append(\n                {\n                    \"operation_id\": \"aim_offset\",\n                    \"operation_type\": \"aim_yaw_offset\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"yaw_offset_degrees\": float(aim_offset),\n                        \"space\": \"actor_local\",\n                        \"target_bones\": [\n                            \"spine_01\", \"spine_02\", \"spine_03\", \"spine_04\", \"spine_05\",\n                            \"neck_01\", \"neck_02\", \"head\",\n                        ],\n                        \"semantics\": self.pose_semantics.get(\n                            \"aim_yaw_offset\",\n                            \"declarative upper-body yaw offset intent; not an executed pose\",\n                        ),\n                    },\n                }\n            )\n        if hold:\n            ops.append(\n                {\n                    \"operation_id\": \"hold_sample\",\n                    \"operation_type\": \"hold_sample\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"semantics\": self.pose_semantics.get(\n                            \"hold_sample\",\n                            \"freeze the referenced player at its current sample time\",\n                        ),\n                    },\n                }\n            )\n        return ops"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 57,
+          "line_end": 64,
+          "quote": "姿态操作均为执行意图描述：`extract_root_delta_world` 将转换后的根增量按角色 yaw 映射到世界；`aim_yaw_offset` 描述上半身朝向偏移意图；`hold_sample` 描述保持当前采样。控制器不生成最终骨骼变换。\n\n## 关键假设\n\n- 场景为平地、持续 grounded、无武器；不处理跳跃、斜坡、网络状态或碰撞。\n- 精简 26 骨骼抽样按 component-space 解释；不假设其等于完整 Manny 骨架。\n- 缺失采样不是缺陷：通用配方已登记，控制器通过方向匹配 cycle 斜坡、就绪 stop 末帧保持、派生反转转身等方式保持可物化回退，并把不可物化依赖写入计划/诊断。\n- 播放器采样时间由控制器自行推进；`sample_time_seconds` 是加工资源时间轴上的时间，`play_rate` 为无量纲倍率。"
+        },
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 66,
+          "line_end": 71,
+          "quote": "## 限制与未完成\n\n- 22 条 `metadata_only` 素材没有可播放姿态；相关行为以可物化回退表达，尚未具备这些原始素材的最终姿态。\n- 无脚步标记/notify 数据，同步组仅作计时级描述。\n- 无 UE 执行器、AnimGraph 解释器或姿态渲染器；本交付是静态资源与计划，未在 UE 中运行或做姿态质量测量。\n- 派生转身通过时间反转物化，是回放配方而非原始拍摄；尚未获得原始 `motion_34/35` 采样前不应视为等价素材。"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "WRP04",
+      "category": "warping_and_yaw",
+      "status": "missing",
+      "weight": 3,
+      "awarded": 0,
+      "deduction": 3,
+      "reason": "reset及输出操作没有RootYawOffset状态，Idle抵消actor yaw、Start Hold、Cycle BlendOut均未实现；aim-actor yaw差只用于上身瞄准/TIP触发，不等同于这三类根yaw策略。按独立功能缺失记0。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 120,
+          "line_end": 136,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = int(seed)\n        self.clock = 0.0\n        self.mode = \"idle\"\n        self.mode_elapsed = 0.0\n        self.sample_times: dict[str, float] = {}\n        self.last_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_aim_yaw = None\n        self.direction = \"fwd\"\n        self.gait = \"walk\"\n        self.hold_asset_id: str | None = None\n        self.hold_sample_time = 0.0\n        self.turn_state: dict | None = None\n        self.pivot_elapsed = 0.0\n        self.pivot_asset_id: str | None = None\n        self.deferred_deps: list[str] = []"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 377,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }\n            )\n            ops.append(\n                {\n                    \"operation_id\": \"aim_offset\",\n                    \"operation_type\": \"aim_yaw_offset\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"yaw_offset_degrees\": float(aim_offset),\n                        \"space\": \"actor_local\",\n                        \"target_bones\": [\n                            \"spine_01\", \"spine_02\", \"spine_03\", \"spine_04\", \"spine_05\",\n                            \"neck_01\", \"neck_02\", \"head\",\n                        ],\n                        \"semantics\": self.pose_semantics.get(\n                            \"aim_yaw_offset\",\n                            \"declarative upper-body yaw offset intent; not an executed pose\",\n                        ),\n                    },\n                }\n            )\n        if hold:\n            ops.append(\n                {\n                    \"operation_id\": \"hold_sample\",\n                    \"operation_type\": \"hold_sample\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"semantics\": self.pose_semantics.get(\n                            \"hold_sample\",\n                            \"freeze the referenced player at its current sample time\",\n                        ),\n                    },\n                }\n            )\n        return ops"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 605,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)\n\n        lx, ly = self._rotate_to_local(velocity, actor_yaw)\n        direction = self._direction_from_local(lx, ly, speed)\n        self.direction = direction\n        gait_mix = self._gait_mix(speed)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "WRP05",
+      "category": "warping_and_yaw",
+      "status": "partial",
+      "weight": 1,
+      "awarded": 0.5,
+      "deduction": 0.5,
+      "reason": "静止时有角度阈值、90/180资源选择与回退，能推进转身片段；但remaining只在采样到片段末尾后减去固定arc，没有按源turn曲线/相邻根旋转逐帧消耗offset，亦未给出持续的受限替代消耗计划。扣0.5分；本项没有因左/右符号错误重复扣RES02。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 403,
+          "line_end": 413,
+          "quote": "        if speed <= idle_max:\n            if self.mode in (\"start\", \"cycle\", \"stop\", \"pivot\"):\n                if speed <= stop_done:\n                    self.mode = \"idle\"\n                else:\n                    self.mode = \"stop\"\n            elif self.mode == \"idle\":\n                if abs(aim_delta) > aim_deadzone and speed <= turn_max:\n                    self.mode = \"turn\"\n                    self.turn_state = {\"remaining\": aim_delta}\n            return"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 261,
+          "line_end": 279,
+          "quote": "    def _turn_asset(self, delta_deg: float) -> str:\n        if delta_deg >= 0.0:\n            if abs(delta_deg) <= 135.0:\n                return \"motion_33\"\n            return \"turn_left_180_reverse\"\n        if abs(delta_deg) <= 135.0:\n            return \"turn_right_90_reverse\"\n        return \"motion_36\"\n\n    def _turn_arc_degrees(self, asset_id: str) -> float:\n        if asset_id == \"motion_33\":\n            return 90.0\n        if asset_id == \"motion_36\":\n            return -180.0\n        if asset_id == \"turn_left_180_reverse\":\n            return 180.0\n        if asset_id == \"turn_right_90_reverse\":\n            return -90.0\n        return 0.0"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 570,
+          "line_end": 592,
+          "quote": "        remaining = self.turn_state.get(\"remaining\", 0.0)\n        asset_id = self._turn_asset(remaining)\n        self._advance(asset_id, dt, 1.0, loop=False)\n        players.append(self._player(asset_id, 1.0, 1.0, loop=False))\n        members.append(f\"player_{asset_id}\")\n\n        if asset_id == \"turn_left_180_reverse\":\n            players.append(self._player(\"motion_34\", 0.0, 1.0, loop=False))\n            self.deferred_deps.append(\"motion_34\")\n        elif asset_id == \"turn_right_90_reverse\":\n            players.append(self._player(\"motion_35\", 0.0, 1.0, loop=False))\n            self.deferred_deps.append(\"motion_35\")\n\n        if self.sample_times[asset_id] >= self._duration(asset_id):\n            arc = self._turn_arc_degrees(asset_id)\n            new_remaining = remaining - arc\n            if abs(_wrap180(new_remaining)) > float(\n                self.thresholds.get(\"aim_yaw_deadzone_degrees\", 15.0)\n            ):\n                self.turn_state = {\"remaining\": new_remaining}\n            else:\n                self.turn_state = None\n                self.mode = \"idle\""
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py"
+      ]
+    },
+    {
+      "id": "ARC01",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "资产索引/参数加载、局部方向与gait派生、_update_mode高层状态、各动作plan、_pose_operations根与上身修正分别承担职责；step复用同一speed/direction/aim_delta。具体未实现的warp能力归WRP条目，本项只确认组织边界。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 62,
+          "line_end": 81,
+          "quote": "        asset_list = assets.get(\"assets\")\n        if not isinstance(asset_list, list):\n            raise ValueError(\"authored_assets.json must contain an assets list\")\n        self.asset_map: dict[str, dict] = {}\n        for asset in asset_list:\n            asset_id = asset.get(\"asset_id\")\n            if not asset_id:\n                raise ValueError(\"asset entry missing asset_id\")\n            self.asset_map[asset_id] = asset\n\n        params = graph.get(\"parameters\") or {}\n        self.params = params\n        self.thresholds = params.get(\"speed_thresholds\") or {}\n        self.playback = params.get(\"playback\") or {}\n        self.pose_semantics = params.get(\"pose_operation_semantics\") or {}\n\n        self.player_specs: dict[str, dict] = {}\n        for node in graph.get(\"nodes\") or []:\n            if node.get(\"kind\") == \"player\":\n                self.player_specs[node.get(\"asset_id\")] = node"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 379,
+          "line_end": 391,
+          "quote": "    def _update_mode(self, speed: float, prev_speed: float, dt: float, aim_delta: float) -> None:\n        thr = self.thresholds\n        idle_max = float(thr.get(\"idle_max_cm_s\", 20.0))\n        stop_done = float(thr.get(\"stop_done_cm_s\", 8.0))\n        cycle_enter = float(thr.get(\"cycle_enter_cm_s\", 120.0))\n        stop_enter = float(thr.get(\"stop_enter_cm_s\", 150.0))\n        turn_max = float(thr.get(\"turn_max_cm_s\", 40.0))\n        turn_exit = float(thr.get(\"turn_exit_cm_s\", 60.0))\n        pivot_min = float(thr.get(\"pivot_min_cm_s\", 150.0))\n        pivot_angle = float(thr.get(\"pivot_angle_degrees\", 60.0))\n        aim_deadzone = float(thr.get(\"aim_yaw_deadzone_degrees\", 15.0))\n        accel_resume = float(thr.get(\"accel_resume_cm_s2\", 20.0))\n        decel_slope = float(thr.get(\"decel_slope_cm_s2\", 80.0))"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 620,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)\n\n        lx, ly = self._rotate_to_local(velocity, actor_yaw)\n        direction = self._direction_from_local(lx, ly, speed)\n        self.direction = direction\n        gait_mix = self._gait_mix(speed)\n        self.gait = self._dominant_gait(gait_mix)\n\n        alpha = float(self.playback.get(\"velocity_alpha\", 0.2))\n        self.smoothed_velocity = [\n            alpha * velocity[i] + (1.0 - alpha) * self.smoothed_velocity[i] for i in range(3)\n        ]\n\n        self._update_mode(speed, prev_speed, dt, aim_delta)\n\n        if self.mode == \"idle\":\n            players, members = self._plan_idle(dt, aim_delta)\n        elif self.mode == \"start\":\n            players, members = self._plan_start(dt, speed, gait_mix, direction)\n        elif self.mode == \"cycle\":\n            players, members = self._plan_cycle(dt, speed, gait_mix, direction)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 630,
+          "line_end": 638,
+          "quote": "        sync_groups = self._sync_groups_for(members)\n        active_ids = [p[\"player_id\"] for p in players if p.get(\"weight\", 0.0) > 0.0]\n        ops = self._pose_operations(active_ids, aim_delta, hold=(self.mode == \"idle\"))\n\n        plan = {\n            \"schema_version\": _SCHEMA_VERSION,\n            \"players\": players,\n            \"sync_groups\": sync_groups,\n            \"pose_operations\": ops,"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC02",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "输出将root delta提取/转换与上身aim_yaw_offset分为独立操作，顺序明确；上身使用具体spine/neck/head范围和actor_local角度，根平移采用一次世界转换后应用的契约。引用当前有效player并将idle冻结单独表达，满足允许的计划层组合，不宣称已渲染pose。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 361,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }\n            )\n            ops.append(\n                {\n                    \"operation_id\": \"aim_offset\",\n                    \"operation_type\": \"aim_yaw_offset\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"yaw_offset_degrees\": float(aim_offset),\n                        \"space\": \"actor_local\",\n                        \"target_bones\": [\n                            \"spine_01\", \"spine_02\", \"spine_03\", \"spine_04\", \"spine_05\",\n                            \"neck_01\", \"neck_02\", \"head\",\n                        ],\n                        \"semantics\": self.pose_semantics.get(\n                            \"aim_yaw_offset\",\n                            \"declarative upper-body yaw offset intent; not an executed pose\",\n                        ),\n                    },\n                }"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 363,
+          "line_end": 377,
+          "quote": "        if hold:\n            ops.append(\n                {\n                    \"operation_id\": \"hold_sample\",\n                    \"operation_type\": \"hold_sample\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"semantics\": self.pose_semantics.get(\n                            \"hold_sample\",\n                            \"freeze the referenced player at its current sample time\",\n                        ),\n                    },\n                }\n            )\n        return ops"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 630,
+          "line_end": 632,
+          "quote": "        sync_groups = self._sync_groups_for(members)\n        active_ids = [p[\"player_id\"] for p in players if p.get(\"weight\", 0.0) > 0.0]\n        ops = self._pose_operations(active_ids, aim_delta, hold=(self.mode == \"idle\"))"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC03",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "reset集中初始化持久状态，step只调用当前mode的plan，inactive动作不会每帧推进；turn/pivot有进入时创建或重置相关状态。已确认start/stop再次进入不清sample_times的缺陷，按统一单根因归属由LOC04扣分，本项不重复扣；本项给分不表示该重入缺陷已解决。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 120,
+          "line_end": 136,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = int(seed)\n        self.clock = 0.0\n        self.mode = \"idle\"\n        self.mode_elapsed = 0.0\n        self.sample_times: dict[str, float] = {}\n        self.last_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_aim_yaw = None\n        self.direction = \"fwd\"\n        self.gait = \"walk\"\n        self.hold_asset_id: str | None = None\n        self.hold_sample_time = 0.0\n        self.turn_state: dict | None = None\n        self.pivot_elapsed = 0.0\n        self.pivot_asset_id: str | None = None\n        self.deferred_deps: list[str] = []"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 409,
+          "line_end": 412,
+          "quote": "            elif self.mode == \"idle\":\n                if abs(aim_delta) > aim_deadzone and speed <= turn_max:\n                    self.mode = \"turn\"\n                    self.turn_state = {\"remaining\": aim_delta}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 426,
+          "line_end": 438,
+          "quote": "        if self.mode == \"cycle\":\n            if abs(aim_delta) > pivot_angle and speed > pivot_min:\n                self.mode = \"pivot\"\n                self.pivot_elapsed = 0.0\n                self.pivot_asset_id = None\n            elif dv_dt < -decel_slope and speed <= stop_enter:\n                self.mode = \"stop\"\n            return\n        if self.mode == \"pivot\":\n            pivot_dur = float(self.playback.get(\"pivot_seconds\", 0.45))\n            if self.pivot_elapsed >= pivot_dur:\n                self.mode = \"cycle\"\n                self.pivot_asset_id = None"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 615,
+          "line_end": 628,
+          "quote": "        if self.mode == \"idle\":\n            players, members = self._plan_idle(dt, aim_delta)\n        elif self.mode == \"start\":\n            players, members = self._plan_start(dt, speed, gait_mix, direction)\n        elif self.mode == \"cycle\":\n            players, members = self._plan_cycle(dt, speed, gait_mix, direction)\n        elif self.mode == \"stop\":\n            players, members = self._plan_stop(dt, speed, gait_mix, direction)\n        elif self.mode == \"pivot\":\n            players, members = self._plan_pivot(dt, gait_mix, direction)\n        elif self.mode == \"turn\":\n            players, members = self._plan_turn(dt)\n        else:\n            players, members = self._plan_idle(dt, aim_delta)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC04",
+      "category": "architecture_and_lifecycle",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "frame校验后复制速度/加速度并得到标量输入，step统一计算speed、aim_delta、direction和gait。运行时mode/sample_times/history与配置/资产索引分开；输出各计划消费同一组本帧派生值。无逐层外部读取或多线程性能已验证之主张。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 59,
+          "line_end": 76,
+          "quote": "        self.graph = graph\n        self.assets = assets\n\n        asset_list = assets.get(\"assets\")\n        if not isinstance(asset_list, list):\n            raise ValueError(\"authored_assets.json must contain an assets list\")\n        self.asset_map: dict[str, dict] = {}\n        for asset in asset_list:\n            asset_id = asset.get(\"asset_id\")\n            if not asset_id:\n                raise ValueError(\"asset entry missing asset_id\")\n            self.asset_map[asset_id] = asset\n\n        params = graph.get(\"parameters\") or {}\n        self.params = params\n        self.thresholds = params.get(\"speed_thresholds\") or {}\n        self.playback = params.get(\"playback\") or {}\n        self.pose_semantics = params.get(\"pose_operation_semantics\") or {}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 120,
+          "line_end": 136,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = int(seed)\n        self.clock = 0.0\n        self.mode = \"idle\"\n        self.mode_elapsed = 0.0\n        self.sample_times: dict[str, float] = {}\n        self.last_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_aim_yaw = None\n        self.direction = \"fwd\"\n        self.gait = \"walk\"\n        self.hold_asset_id: str | None = None\n        self.hold_sample_time = 0.0\n        self.turn_state: dict | None = None\n        self.pivot_elapsed = 0.0\n        self.pivot_asset_id: str | None = None\n        self.deferred_deps: list[str] = []"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 172,
+          "line_end": 178,
+          "quote": "        return (\n            dt,\n            [float(v) for v in velocity],\n            [float(v) for v in acceleration],\n            float(actor_yaw),\n            float(aim_yaw),\n        )"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 620,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)\n\n        lx, ly = self._rotate_to_local(velocity, actor_yaw)\n        direction = self._direction_from_local(lx, ly, speed)\n        self.direction = direction\n        gait_mix = self._gait_mix(speed)\n        self.gait = self._dominant_gait(gait_mix)\n\n        alpha = float(self.playback.get(\"velocity_alpha\", 0.2))\n        self.smoothed_velocity = [\n            alpha * velocity[i] + (1.0 - alpha) * self.smoothed_velocity[i] for i in range(3)\n        ]\n\n        self._update_mode(speed, prev_speed, dt, aim_delta)\n\n        if self.mode == \"idle\":\n            players, members = self._plan_idle(dt, aim_delta)\n        elif self.mode == \"start\":\n            players, members = self._plan_start(dt, speed, gait_mix, direction)\n        elif self.mode == \"cycle\":\n            players, members = self._plan_cycle(dt, speed, gait_mix, direction)"
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ARC05",
+      "category": "architecture_and_lifecycle",
+      "status": "partial",
+      "weight": 2,
+      "awarded": 1,
+      "deduction": 1,
+      "reason": "真实消费资产duration/average_speed以及图的speed_thresholds/playback，能追踪到时钟及状态决策。但图的state_machine只有名字清单，player配置大多未驱动动作选择；output_config读取后未使用，实际pose操作顺序固定写在方法中，修改交付图的组合顺序不会进入计划。此处扣图组合/节点配置和实际决策脱节，sync_group_defs未消费已在SYN01扣，不重复计入。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 72,
+          "line_end": 83,
+          "quote": "        params = graph.get(\"parameters\") or {}\n        self.params = params\n        self.thresholds = params.get(\"speed_thresholds\") or {}\n        self.playback = params.get(\"playback\") or {}\n        self.pose_semantics = params.get(\"pose_operation_semantics\") or {}\n\n        self.player_specs: dict[str, dict] = {}\n        for node in graph.get(\"nodes\") or []:\n            if node.get(\"kind\") == \"player\":\n                self.player_specs[node.get(\"asset_id\")] = node\n        self.sync_group_defs = graph.get(\"sync_groups\") or []\n        self.output_config = graph.get(\"output\") or {}"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 94,
+          "line_end": 110,
+          "quote": "    def _duration(self, asset_id: str) -> float:\n        asset = self.asset_map.get(asset_id) or {}\n        data = asset.get(\"data\") or {}\n        metrics = data.get(\"metrics\") or {}\n        dur = metrics.get(\"duration_seconds\")\n        if isinstance(dur, (int, float)) and math.isfinite(float(dur)):\n            return float(dur)\n        return 0.0\n\n    def _avg_speed(self, asset_id: str) -> float:\n        asset = self.asset_map.get(asset_id) or {}\n        data = asset.get(\"data\") or {}\n        metrics = data.get(\"metrics\") or {}\n        speed = metrics.get(\"average_speed_cm_s\")\n        if isinstance(speed, (int, float)) and math.isfinite(float(speed)):\n            return float(speed)\n        return 0.0"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 379,
+          "line_end": 391,
+          "quote": "    def _update_mode(self, speed: float, prev_speed: float, dt: float, aim_delta: float) -> None:\n        thr = self.thresholds\n        idle_max = float(thr.get(\"idle_max_cm_s\", 20.0))\n        stop_done = float(thr.get(\"stop_done_cm_s\", 8.0))\n        cycle_enter = float(thr.get(\"cycle_enter_cm_s\", 120.0))\n        stop_enter = float(thr.get(\"stop_enter_cm_s\", 150.0))\n        turn_max = float(thr.get(\"turn_max_cm_s\", 40.0))\n        turn_exit = float(thr.get(\"turn_exit_cm_s\", 60.0))\n        pivot_min = float(thr.get(\"pivot_min_cm_s\", 150.0))\n        pivot_angle = float(thr.get(\"pivot_angle_degrees\", 60.0))\n        aim_deadzone = float(thr.get(\"aim_yaw_deadzone_degrees\", 15.0))\n        accel_resume = float(thr.get(\"accel_resume_cm_s2\", 20.0))\n        decel_slope = float(thr.get(\"decel_slope_cm_s2\", 80.0))"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 68,
+          "line_end": 82,
+          "quote": "    {\n      \"id\": \"locomotion_state\",\n      \"kind\": \"state_machine\",\n      \"config\": {\n        \"states\": [\n          \"idle\",\n          \"start\",\n          \"cycle\",\n          \"stop\",\n          \"pivot\",\n          \"turn\"\n        ],\n        \"description\": \"flat-ground grounded locomotion state machine; see src/controller.py\"\n      }\n    },"
+        },
+        {
+          "path": "config/animation_graph.json",
+          "line_start": 491,
+          "line_end": 497,
+          "quote": "  \"output\": {\n    \"blend\": \"weighted_average\",\n    \"pose_operations_order\": [\n      \"extract_root_delta_world\",\n      \"aim_yaw_offset\",\n      \"hold_sample\"\n    ]"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 326,
+          "line_end": 347,
+          "quote": "    def _pose_operations(self, player_ids, aim_offset, hold=False):\n        ops = []\n        if player_ids:\n            ops.append(\n                {\n                    \"operation_id\": \"root_motion\",\n                    \"operation_type\": \"extract_root_delta_world\",\n                    \"inputs\": {\"player_ids\": list(player_ids)},\n                    \"parameters\": {\n                        \"axis_mapping\": \"actor_yaw_degrees\",\n                        \"scale\": 1.0,\n                        \"semantics\": self.pose_semantics.get(\n                            \"extract_root_delta_world\",\n                            \"root delta converted once; apply world delta after pose\",\n                        ),\n                    },\n                }\n            )\n            ops.append(\n                {\n                    \"operation_id\": \"aim_offset\",\n                    \"operation_type\": \"aim_yaw_offset\","
+        }
+      ],
+      "reviewed_paths": [
+        "src/controller.py",
+        "config/animation_graph.json",
+        "IMPLEMENTATION.md"
+      ]
+    },
+    {
+      "id": "ROB01",
+      "category": "robustness_and_reproducibility",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2,
+      "deduction": 1,
+      "reason": "有必填项、正dt、常规非有限数检查，近零速度与延期资源有明确回退。独立入口缺口：_finite对非数值最终返回True，速度分量字符串\"nan\"或\"inf\"先通过检查再float转换为非有限值，step未二次校验且直接输出speed；极大有限向量也无派生有限性保障。扣1，不重复扣曲线、状态或资源加工项。反例为静态推导。",
+      "evidence": [
+        {
+          "path": "src/controller.py",
+          "line_start": 46,
+          "line_end": 51,
+          "quote": "def _finite(x: Any) -> bool:\n    if isinstance(x, (int, float)) and not isinstance(x, bool):\n        return math.isfinite(float(x))\n    if isinstance(x, (list, tuple)):\n        return all(_finite(v) for v in x)\n    return True"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 157,
+          "line_end": 177,
+          "quote": "        for name, value in (\n            (\"velocity_world_cm_s\", velocity),\n            (\"acceleration_world_cm_s2\", acceleration),\n        ):\n            if not isinstance(value, (list, tuple)) or len(value) != 3:\n                raise ValueError(f\"{name} must be a 3-element array\")\n            if not _finite(value):\n                raise ValueError(f\"{name} must contain only finite numbers\")\n\n        for name, value in ((\"actor_yaw_degrees\", actor_yaw), (\"aim_yaw_degrees\", aim_yaw)):\n            if not isinstance(value, (int, float)) or isinstance(value, bool):\n                raise ValueError(f\"{name} must be a finite number\")\n            if not math.isfinite(float(value)):\n                raise ValueError(f\"{name} must be finite\")\n\n        return (\n            dt,\n            [float(v) for v in velocity],\n            [float(v) for v in acceleration],\n            float(actor_yaw),\n            float(aim_yaw),"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 595,
+          "line_end": 600,
+          "quote": "    def step(self, frame: dict) -> dict:\n        dt, velocity, _acceleration, actor_yaw, aim_yaw = self._validate_frame(frame)\n\n        speed = math.hypot(velocity[0], velocity[1])\n        prev_speed = math.hypot(self.last_velocity[0], self.last_velocity[1])\n        aim_delta = _wrap180(aim_yaw - actor_yaw)"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 634,
+          "line_end": 647,
+          "quote": "        plan = {\n            \"schema_version\": _SCHEMA_VERSION,\n            \"players\": players,\n            \"sync_groups\": sync_groups,\n            \"pose_operations\": ops,\n            \"diagnostics\": {\n                \"mode\": self.mode,\n                \"speed_cm_s\": round(speed, 4),\n                \"gait_mix\": round(gait_mix, 4),\n                \"direction\": direction,\n                \"aim_actor_yaw_delta_degrees\": round(aim_delta, 4),\n                \"clock_seconds\": round(self.clock, 6),\n                \"deferred_missing_samples_dependencies\": sorted(set(self.deferred_deps)),\n            },"
+        }
+      ],
+      "reviewed_paths": []
+    },
+    {
+      "id": "ROB02",
+      "category": "robustness_and_reproducibility",
+      "status": "partial",
+      "weight": 3,
+      "awarded": 2.5,
+      "deduction": 0.5,
+      "reason": "CLI、LocomotionController/reset/step、五项交付及输出结构实质存在，reset清理状态且无随机依赖。缺口：加工产物固定写到manifest_dir/../assets/processed，而--output可指向任意目录；资源表里的processed相对引用在换输出目录时失效，违反产物路径相对生成资源表的接口。按接口可复现性扣0.5，RES01/08不重复扣此根因。",
+      "evidence": [
+        {
+          "path": "src/build_assets.py",
+          "line_start": 108,
+          "line_end": 114,
+          "quote": "def _write_product(product_dir: Path, product: dict) -> str:\n    product_dir.mkdir(parents=True, exist_ok=True)\n    rel_path = f\"processed/{product['asset_id']}.json\"\n    out_path = product_dir.parent / rel_path\n    with out_path.open(\"w\", encoding=\"utf-8\") as handle:\n        json.dump(product, handle, ensure_ascii=False, allow_nan=False)\n    return rel_path"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 158,
+          "line_end": 169,
+          "quote": "def build_assets(manifest: dict, manifest_dir: Path) -> dict:\n    \"\"\"Build the authored resource table and write processed product files.\n\n    Products are written to <manifest_dir>/../assets/processed so their\n    relative paths resolve from the generated assets/authored_assets.json.\n    \"\"\"\n    clips = manifest.get(\"clips\", [])\n    if not clips:\n        raise ValueError(\"manifest contains no clips\")\n\n    assets_dir = (manifest_dir / \"..\" / \"assets\").resolve()\n    product_dir = (assets_dir / \"processed\").resolve()"
+        },
+        {
+          "path": "src/build_assets.py",
+          "line_start": 329,
+          "line_end": 343,
+          "quote": "def main() -> None:\n    parser = argparse.ArgumentParser(description=\"Build candidate animation resources\")\n    parser.add_argument(\"--manifest\", required=True, type=Path)\n    parser.add_argument(\"--output\", required=True, type=Path)\n    args = parser.parse_args()\n\n    manifest_path = args.manifest.resolve()\n    with manifest_path.open(\"r\", encoding=\"utf-8-sig\") as handle:\n        manifest = json.load(handle)\n\n    authored_assets = build_assets(manifest, manifest_path.parent)\n    serialized = json.dumps(authored_assets, ensure_ascii=False, indent=2, allow_nan=False)\n    output_path = args.output.resolve()\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n    output_path.write_text(serialized + \"\\n\", encoding=\"utf-8\")"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 120,
+          "line_end": 136,
+          "quote": "    def reset(self, seed: int = 0) -> None:\n        self.seed = int(seed)\n        self.clock = 0.0\n        self.mode = \"idle\"\n        self.mode_elapsed = 0.0\n        self.sample_times: dict[str, float] = {}\n        self.last_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_velocity = [0.0, 0.0, 0.0]\n        self.smoothed_aim_yaw = None\n        self.direction = \"fwd\"\n        self.gait = \"walk\"\n        self.hold_asset_id: str | None = None\n        self.hold_sample_time = 0.0\n        self.turn_state: dict | None = None\n        self.pivot_elapsed = 0.0\n        self.pivot_asset_id: str | None = None\n        self.deferred_deps: list[str] = []"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 634,
+          "line_end": 653,
+          "quote": "        plan = {\n            \"schema_version\": _SCHEMA_VERSION,\n            \"players\": players,\n            \"sync_groups\": sync_groups,\n            \"pose_operations\": ops,\n            \"diagnostics\": {\n                \"mode\": self.mode,\n                \"speed_cm_s\": round(speed, 4),\n                \"gait_mix\": round(gait_mix, 4),\n                \"direction\": direction,\n                \"aim_actor_yaw_delta_degrees\": round(aim_delta, 4),\n                \"clock_seconds\": round(self.clock, 6),\n                \"deferred_missing_samples_dependencies\": sorted(set(self.deferred_deps)),\n            },\n        }\n\n        self.mode_elapsed += dt\n        self.clock += dt\n        self.last_velocity = list(velocity)\n        return plan"
+        }
+      ],
+      "reviewed_paths": []
+    },
+    {
+      "id": "ROB03",
+      "category": "robustness_and_reproducibility",
+      "status": "pass",
+      "weight": 2,
+      "awarded": 2,
+      "deduction": 0,
+      "reason": "实现说明明确列出制作入口、关键假设、22条缺样本延期、派生替代以及静态计划与最终姿态的边界；关键设计可在代码中定位。未伪称UE/姿态验证。说明诚实不免除其他实现项的缺陷扣分。",
+      "evidence": [
+        {
+          "path": "IMPLEMENTATION.md",
+          "line_start": 66,
+          "line_end": 72,
+          "quote": "## 限制与未完成\n\n- 22 条 `metadata_only` 素材没有可播放姿态；相关行为以可物化回退表达，尚未具备这些原始素材的最终姿态。\n- 无脚步标记/notify 数据，同步组仅作计时级描述。\n- 无 UE 执行器、AnimGraph 解释器或姿态渲染器；本交付是静态资源与计划，未在 UE 中运行或做姿态质量测量。\n- 派生转身通过时间反转物化，是回放配方而非原始拍摄；尚未获得原始 `motion_34/35` 采样前不应视为等价素材。\n"
+        },
+        {
+          "path": "src/controller.py",
+          "line_start": 1,
+          "line_end": 6,
+          "quote": "\"\"\"Per-frame locomotion controller.\n\nConsumes config/animation_graph.json and assets/authored_assets.json.\nReturns a JSON-serialisable execution plan (players, sync groups, pose\noperations) for one input frame.  It never returns rendered poses; pose\noperations are execution intents (see graph parameters.pose_operation_semantics)."
+        }
+      ],
+      "reviewed_paths": []
+    }
+  ],
+  "gates": [
+    {
+      "id": "G01",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 30,
+      "applied": false,
+      "reason": "资源加工和控制器均有实质Python实现，不是仅文字/模板壳；功能缺口按条目评分。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "assets/authored_assets.json",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "G02",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 60,
+      "applied": false,
+      "reason": "有实际资源制作逻辑和已生成的派生资源表、产物；曲线/marker缺口不能机械视为整个资源类别均缺失。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "assets/authored_assets.json",
+        "config/animation_graph.json"
+      ]
+    },
+    {
+      "id": "G03",
+      "status": "pass",
+      "confirmed": true,
+      "review_complete": true,
+      "cap": 60,
+      "applied": false,
+      "reason": "控制器包含可辨认的状态/转移、播放器和组合计划，并消费图参数/资源。图消费不足按ARC项处理，未达到完全无有效动画流程的门槛。",
+      "evidence": [],
+      "reviewed_paths": [
+        "src/build_assets.py",
+        "src/controller.py",
+        "assets/authored_assets.json",
+        "config/animation_graph.json"
+      ]
+    }
+  ],
+  "rubric_sha256": "5d40aaf760fa9c3b965cf9f8ea4e05badcf4ea632c1700187466404a019b5486",
+  "review_sha256": "f4f1ec8b52469ab684bc409ea88f0ace406a16796a2fd7ee752486e8a0035cdc"
+}

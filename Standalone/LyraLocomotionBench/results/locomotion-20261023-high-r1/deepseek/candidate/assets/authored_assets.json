@@ -1,0 +1,1620 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "source_manifest": "raw/manifest.json",
+  "coordinate_conversion": {
+    "source_forward": "+Y",
+    "source_left": "+X",
+    "source_up": "+Z",
+    "runtime_actor_forward": "+X",
+    "runtime_actor_left": "-Y",
+    "runtime_actor_up": "+Z",
+    "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+    "rotation_convention": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+    "rotz_neg90_xyzw": [
+      0.0,
+      0.0,
+      -0.7071067811865476,
+      0.7071067811865476
+    ],
+    "root_motion_policy": "root trajectory converted once; runtime must not apply source root displacement again"
+  },
+  "skeleton": {
+    "description": "26-bone component-space subset observed in the available pose samples; full Manny skeleton is not available.",
+    "space": "component",
+    "bones": [
+      {
+        "name": "root",
+        "parent": -1
+      },
+      {
+        "name": "pelvis",
+        "parent": 0
+      },
+      {
+        "name": "spine_01",
+        "parent": 1
+      },
+      {
+        "name": "spine_02",
+        "parent": 2
+      },
+      {
+        "name": "spine_03",
+        "parent": 3
+      },
+      {
+        "name": "spine_04",
+        "parent": 4
+      },
+      {
+        "name": "spine_05",
+        "parent": 5
+      },
+      {
+        "name": "neck_01",
+        "parent": 6
+      },
+      {
+        "name": "neck_02",
+        "parent": 7
+      },
+      {
+        "name": "head",
+        "parent": 8
+      },
+      {
+        "name": "clavicle_l",
+        "parent": 6
+      },
+      {
+        "name": "upperarm_l",
+        "parent": 10
+      },
+      {
+        "name": "lowerarm_l",
+        "parent": 11
+      },
+      {
+        "name": "hand_l",
+        "parent": 12
+      },
+      {
+        "name": "clavicle_r",
+        "parent": 6
+      },
+      {
+        "name": "upperarm_r",
+        "parent": 14
+      },
+      {
+        "name": "lowerarm_r",
+        "parent": 15
+      },
+      {
+        "name": "hand_r",
+        "parent": 16
+      },
+      {
+        "name": "thigh_r",
+        "parent": 1
+      },
+      {
+        "name": "calf_r",
+        "parent": 18
+      },
+      {
+        "name": "foot_r",
+        "parent": 19
+      },
+      {
+        "name": "ball_r",
+        "parent": 20
+      },
+      {
+        "name": "thigh_l",
+        "parent": 1
+      },
+      {
+        "name": "calf_l",
+        "parent": 22
+      },
+      {
+        "name": "foot_l",
+        "parent": 23
+      },
+      {
+        "name": "ball_l",
+        "parent": 24
+      }
+    ]
+  },
+  "assets": [
+    {
+      "asset_id": "motion_01",
+      "source_clip_ids": [
+        "motion_01"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_01.json",
+        "metrics": {
+          "duration_seconds": 2.200000047683716,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            683.3068237304688,
+            -0.0,
+            0.0
+          ],
+          "root_displacement_cm": [
+            683.3068237304688,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 683.3068237304688,
+          "average_speed_cm_s": 310.594004054633
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          2.200000047683716
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_02",
+      "source_clip_ids": [
+        "motion_02"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "start"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_02.json",
+        "metrics": {
+          "duration_seconds": 1.600000023841858,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            474.9122009277344,
+            -0.0,
+            0.0
+          ],
+          "root_displacement_cm": [
+            474.9122009277344,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 474.9122009277344,
+          "average_speed_cm_s": 296.8201211568695
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "motion_03",
+      "source_clip_ids": [
+        "motion_03"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "stop"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_03.json",
+        "metrics": {
+          "duration_seconds": 1.9333332777023315,
+          "root_start_cm": [
+            -320.05816650390625,
+            1.959791141490589e-14,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            1.959791141490589e-14,
+            0.0
+          ],
+          "root_displacement_cm": [
+            320.05816650390625,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 320.05816650390625,
+          "average_speed_cm_s": 165.54733226558804
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "motion_04",
+      "source_clip_ids": [
+        "motion_04"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "fwd",
+        "action": "pivot"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_05",
+      "source_clip_ids": [
+        "motion_05"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_05.json",
+        "metrics": {
+          "duration_seconds": 2.200000047683716,
+          "root_start_cm": [
+            0.0,
+            7.64988658356891e-14,
+            -3.844538551986236e-14
+          ],
+          "root_end_cm": [
+            -660.0,
+            9.520953903746632e-14,
+            -3.844538551986236e-14
+          ],
+          "root_displacement_cm": [
+            -660.0,
+            1.8710673201777217e-14,
+            0.0
+          ],
+          "horizontal_displacement_cm": 660.0,
+          "average_speed_cm_s": 299.99999349767523
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          2.200000047683716
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_06",
+      "source_clip_ids": [
+        "motion_06"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "start"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_07",
+      "source_clip_ids": [
+        "motion_07"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "stop"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_08",
+      "source_clip_ids": [
+        "motion_08"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "bwd",
+        "action": "pivot"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_09",
+      "source_clip_ids": [
+        "motion_09"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_09.json",
+        "metrics": {
+          "duration_seconds": 1.4333332777023315,
+          "root_start_cm": [
+            0.0,
+            -4.909724712371826,
+            4.644616651325968e-15
+          ],
+          "root_end_cm": [
+            0.0,
+            -414.154296875,
+            4.644616651325968e-15
+          ],
+          "root_displacement_cm": [
+            0.0,
+            -409.2445721626282,
+            0.0
+          ],
+          "horizontal_displacement_cm": 409.2445721626282,
+          "average_speed_cm_s": 285.51948003234617
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          1.4333332777023315
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_10",
+      "source_clip_ids": [
+        "motion_10"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "start"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_11",
+      "source_clip_ids": [
+        "motion_11"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "stop"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_12",
+      "source_clip_ids": [
+        "motion_12"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "left",
+        "action": "pivot"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_13",
+      "source_clip_ids": [
+        "motion_13"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_13.json",
+        "metrics": {
+          "duration_seconds": 2.2666666507720947,
+          "root_start_cm": [
+            0.0,
+            3.281681537628174,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            683.322021484375,
+            0.0
+          ],
+          "root_displacement_cm": [
+            0.0,
+            680.0403399467468,
+            0.0
+          ],
+          "horizontal_displacement_cm": 680.0403399467468,
+          "average_speed_cm_s": 300.01779913914766
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          2.2666666507720947
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_14",
+      "source_clip_ids": [
+        "motion_14"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "start"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_15",
+      "source_clip_ids": [
+        "motion_15"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "stop"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_16",
+      "source_clip_ids": [
+        "motion_16"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "walk",
+        "direction": "right",
+        "action": "pivot"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_17",
+      "source_clip_ids": [
+        "motion_17"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_17.json",
+        "metrics": {
+          "duration_seconds": 1.7000000476837158,
+          "root_start_cm": [
+            12.269579887390137,
+            -7.574183437424531e-16,
+            0.0
+          ],
+          "root_end_cm": [
+            1022.6195678710938,
+            -7.574183437424531e-16,
+            0.0
+          ],
+          "root_displacement_cm": [
+            1010.3499879837036,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 1010.3499879837036,
+          "average_speed_cm_s": 594.3235056730297
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          1.7000000476837158
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_18",
+      "source_clip_ids": [
+        "motion_18"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "start"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_18.json",
+        "metrics": {
+          "duration_seconds": 1.5,
+          "root_start_cm": [
+            0.0,
+            -7.574183437424531e-16,
+            -7.480780186597258e-05
+          ],
+          "root_end_cm": [
+            740.72998046875,
+            -7.574183437424531e-16,
+            -0.00031246274011209607
+          ],
+          "root_displacement_cm": [
+            740.72998046875,
+            0.0,
+            -0.0002376549382461235
+          ],
+          "horizontal_displacement_cm": 740.72998046875,
+          "average_speed_cm_s": 493.8199869791667
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "motion_19",
+      "source_clip_ids": [
+        "motion_19"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "stop"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_19.json",
+        "metrics": {
+          "duration_seconds": 1.399999976158142,
+          "root_start_cm": [
+            -218.7467498779297,
+            3.197058308533813e-15,
+            -6.97021750966087e-05
+          ],
+          "root_end_cm": [
+            0.0,
+            3.197058308533813e-15,
+            -6.97021750966087e-05
+          ],
+          "root_displacement_cm": [
+            218.7467498779297,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 218.7467498779297,
+          "average_speed_cm_s": 156.24768114511764
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "motion_20",
+      "source_clip_ids": [
+        "motion_20"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "fwd",
+        "action": "pivot"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_20.json",
+        "metrics": {
+          "duration_seconds": 1.600000023841858,
+          "root_start_cm": [
+            -244.42201232910156,
+            4.8870103757758365e-15,
+            -6.97021750966087e-05
+          ],
+          "root_end_cm": [
+            -518.973876953125,
+            4.8870103757758365e-15,
+            -6.97021750966087e-05
+          ],
+          "root_displacement_cm": [
+            -274.55186462402344,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 274.55186462402344,
+          "average_speed_cm_s": 171.59491283305118
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "motion_21",
+      "source_clip_ids": [
+        "motion_21"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_21.json",
+        "metrics": {
+          "duration_seconds": 1.5666667222976685,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            -939.739990234375,
+            -0.0,
+            0.0
+          ],
+          "root_displacement_cm": [
+            -939.739990234375,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 939.739990234375,
+          "average_speed_cm_s": 599.8340150202177
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          1.5666667222976685
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_22",
+      "source_clip_ids": [
+        "motion_22"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "start"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_23",
+      "source_clip_ids": [
+        "motion_23"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "stop"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_24",
+      "source_clip_ids": [
+        "motion_24"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "bwd",
+        "action": "pivot"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_25",
+      "source_clip_ids": [
+        "motion_25"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_25.json",
+        "metrics": {
+          "duration_seconds": 1.5666667222976685,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            -928.5,
+            0.0
+          ],
+          "root_displacement_cm": [
+            0.0,
+            -928.5,
+            0.0
+          ],
+          "horizontal_displacement_cm": 928.5,
+          "average_speed_cm_s": 592.6595534232481
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          1.5666667222976685
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_26",
+      "source_clip_ids": [
+        "motion_26"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "start"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_27",
+      "source_clip_ids": [
+        "motion_27"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "stop"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_28",
+      "source_clip_ids": [
+        "motion_28"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "left",
+        "action": "pivot"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_29",
+      "source_clip_ids": [
+        "motion_29"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "cycle"
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_29.json",
+        "metrics": {
+          "duration_seconds": 1.5666667222976685,
+          "root_start_cm": [
+            0.0,
+            -7.349999904632568,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            932.8499755859375,
+            0.0
+          ],
+          "root_displacement_cm": [
+            0.0,
+            940.1999754905701,
+            0.0
+          ],
+          "horizontal_displacement_cm": 940.1999754905701,
+          "average_speed_cm_s": 600.1276226201293
+        },
+        "loop": true,
+        "loop_range_seconds": [
+          0.0,
+          1.5666667222976685
+        ]
+      }
+    },
+    {
+      "asset_id": "motion_30",
+      "source_clip_ids": [
+        "motion_30"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "start"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_31",
+      "source_clip_ids": [
+        "motion_31"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "stop"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_32",
+      "source_clip_ids": [
+        "motion_32"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": "jog",
+        "direction": "right",
+        "action": "pivot"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "trim_to_usable_motion_window",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_33",
+      "source_clip_ids": [
+        "motion_33"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": null,
+        "direction": "left",
+        "action": "turn",
+        "anatomical_turn_degrees": 90
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_33.json",
+        "metrics": {
+          "duration_seconds": 1.8333333730697632,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_displacement_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 0.0,
+          "average_speed_cm_s": 0.0
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "motion_34",
+      "source_clip_ids": [
+        "motion_34"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": null,
+        "direction": "left",
+        "action": "turn",
+        "anatomical_turn_degrees": 180
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "derive_turn_arc_from_root_yaw",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_35",
+      "source_clip_ids": [
+        "motion_35"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": null,
+        "direction": "right",
+        "action": "turn",
+        "anatomical_turn_degrees": -90
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "derive_turn_arc_from_root_yaw",
+          "derive_enter_exit_poses"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "motion_36",
+      "source_clip_ids": [
+        "motion_36"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": null,
+        "direction": "right",
+        "action": "turn",
+        "anatomical_turn_degrees": -180
+      },
+      "recipe": {
+        "name": "convert_source_pose_to_runtime",
+        "position_map": "[sx, sy, sz] -> [sy, -sx, sz]",
+        "rotation_conversion": "active Hamilton xyzw; q_runtime = rotZ(-90) * q_source * rotZ(+90)",
+        "root_motion": "converted exactly once; no retarget or resample performed"
+      },
+      "data": {
+        "product_file": "processed/motion_36.json",
+        "metrics": {
+          "duration_seconds": 2.4666666984558105,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_displacement_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 0.0,
+          "average_speed_cm_s": 0.0
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "motion_37",
+      "source_clip_ids": [
+        "motion_37"
+      ],
+      "status": "deferred_missing_samples",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": null,
+        "direction": null,
+        "action": "idle"
+      },
+      "missing_inputs": [
+        "raw/poses/<unknown>.json (pose_file is null in manifest)"
+      ],
+      "recipe": {
+        "name": "generic_source_pose_processing",
+        "input_pose_file_expected": null,
+        "output_space": "component_runtime_actor",
+        "output_rotation": "xyzw",
+        "operations": [
+          "convert_source_to_runtime_basis",
+          "extract_root_trajectory",
+          "derive_hold_pose",
+          "derive_loop_or_hold_range"
+        ],
+        "resample_hz": 60,
+        "note": "Reusable recipe for the metadata-only clip; no curves, timestamps or poses are fabricated until samples exist."
+      },
+      "data": null,
+      "deferred_fallback_hint": "see config/animation_graph.json and IMPLEMENTATION.md for controller fallback behaviour"
+    },
+    {
+      "asset_id": "turn_right_90_reverse",
+      "source_clip_ids": [
+        "motion_33"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": null,
+        "direction": "right",
+        "action": "turn",
+        "anatomical_turn_degrees": -90,
+        "derived": true,
+        "description": "reverse of MM_Unarmed_TurnLeft_90"
+      },
+      "recipe": {
+        "name": "time_reverse_sampled_turn",
+        "source_asset_id": "motion_33",
+        "operation": "reverse frame order; t -> duration - t; component-space poses unchanged",
+        "note": "Derived playback, not an original captured take; does not fabricate new poses."
+      },
+      "data": {
+        "product_file": "processed/turn_right_90_reverse.json",
+        "metrics": {
+          "duration_seconds": 1.8333333730697632,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_displacement_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 0.0,
+          "average_speed_cm_s": 0.0
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    },
+    {
+      "asset_id": "turn_left_180_reverse",
+      "source_clip_ids": [
+        "motion_36"
+      ],
+      "status": "ready",
+      "kind": "processed_pose",
+      "semantic": {
+        "gait": null,
+        "direction": "left",
+        "action": "turn",
+        "anatomical_turn_degrees": 180,
+        "derived": true,
+        "description": "reverse of MM_Unarmed_TurnRight_180"
+      },
+      "recipe": {
+        "name": "time_reverse_sampled_turn",
+        "source_asset_id": "motion_36",
+        "operation": "reverse frame order; t -> duration - t; component-space poses unchanged",
+        "note": "Derived playback, not an original captured take; does not fabricate new poses."
+      },
+      "data": {
+        "product_file": "processed/turn_left_180_reverse.json",
+        "metrics": {
+          "duration_seconds": 2.4666666984558105,
+          "root_start_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_end_cm": [
+            0.0,
+            -0.0,
+            0.0
+          ],
+          "root_displacement_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "horizontal_displacement_cm": 0.0,
+          "average_speed_cm_s": 0.0
+        },
+        "loop": false,
+        "loop_range_seconds": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,405 @@
+{
+  "schema_version": 2,
+  "run_id": "locomotion-20261023-gpt6-high-r1",
+  "completed_utc": "2026-10-23T18:28:44.676112+00:00",
+  "formal_answers_completed": 3,
+  "planned_models": 3,
+  "comparison_complete": true,
+  "assessment_mode": "static_evidence_only",
+  "rubric_id": "lyra_locomotion_static_v1",
+  "candidate_zip_sha256": "b8c3c2523e5f2efee6e6f9799d2926fa5bca94822211523e56253dc96945a87e",
+  "rubric_sha256": "5d40aaf760fa9c3b965cf9f8ea4e05badcf4ea632c1700187466404a019b5486",
+  "system_sha256": "2c229dbd0a8a088e51349c9b759293192ec684c7d9e0c6d926e3419aa4f31cf0",
+  "user_sha256": "c51e0f643535f0b913a2de738b44c998ffa05d62833234a1e726ba60c91be4a2",
+  "timeout_seconds": 2700,
+  "max_output_tokens_requested": 8192,
+  "effort_requested": "high",
+  "hard_os_sandbox": false,
+  "ue_execution": "not_run_by_design",
+  "independent_candidate_execution": "not_run_by_design",
+  "models": {
+    "opus": {
+      "actual_model": "claude-opus-5-5",
+      "transport_status": "completed",
+      "transport_ok": true,
+      "model_matches": true,
+      "formal_invocations": 1,
+      "controller_retries": 0,
+      "human_followups": 0,
+      "elapsed_seconds": 894.9307008999749,
+      "effort_requested": "high",
+      "effort_applied_observed": null,
+      "max_output_tokens_requested": 8192,
+      "max_output_tokens_applied_observed": null,
+      "output_limit_continuations": 2,
+      "immutable_inputs_unchanged": true,
+      "all_required_artifacts_changed": true,
+      "candidate_sha256": "9a649cd8c60d007f03149069e3475c262082825c8c8317dab1bd59ad558c8b86",
+      "review_sha256": "8570c3319894c230c8c8c491907dd6a631288c87db5cef9b28165d466673563b",
+      "score_sha256": "06481535dbc34cca0cb7bd1f6efaf76a8e776b851e40583028c58dba1ddda757",
+      "final_score": 84.5,
+      "coverage": {
+        "reviewed_items": 40,
+        "total_items": 40,
+        "weight_fraction": 1.0,
+        "reviewed_gates": 3,
+        "total_gates": 3
+      },
+      "categories": {
+        "asset_authoring": {
+          "reviewed_subscore": 18.0,
+          "reviewed_max_score": 20.0,
+          "max_score": 20.0
+        },
+        "locomotion_states": {
+          "reviewed_subscore": 16.5,
+          "reviewed_max_score": 18.0,
+          "max_score": 18.0
+        },
+        "synchronization": {
+          "reviewed_subscore": 10.5,
+          "reviewed_max_score": 16.0,
+          "max_score": 16.0
+        },
+        "distance_matching": {
+          "reviewed_subscore": 13.0,
+          "reviewed_max_score": 16.0,
+          "max_score": 16.0
+        },
+        "warping_and_yaw": {
+          "reviewed_subscore": 9.0,
+          "reviewed_max_score": 12.0,
+          "max_score": 12.0
+        },
+        "architecture_and_lifecycle": {
+          "reviewed_subscore": 10.0,
+          "reviewed_max_score": 10.0,
+          "max_score": 10.0
+        },
+        "robustness_and_reproducibility": {
+          "reviewed_subscore": 7.5,
+          "reviewed_max_score": 8.0,
+          "max_score": 8.0
+        }
+      },
+      "result_path": "D:\\LyraLocomotionBench\\runs\\locomotion-20261023-high-r1\\opus\\result.json"
+    },
+    "deepseek": {
+      "actual_model": "deepseek-v4-pro-202606",
+      "transport_status": "completed",
+      "transport_ok": true,
+      "model_matches": true,
+      "formal_invocations": 1,
+      "controller_retries": 0,
+      "human_followups": 0,
+      "elapsed_seconds": 773.9450552000199,
+      "effort_requested": "high",
+      "effort_applied_observed": null,
+      "max_output_tokens_requested": 8192,
+      "max_output_tokens_applied_observed": null,
+      "output_limit_continuations": 1,
+      "immutable_inputs_unchanged": true,
+      "all_required_artifacts_changed": true,
+      "candidate_sha256": "b00081836bc60711cc1899ee31704637d82e3a655b0e93fe2914d58c738f24c6",
+      "review_sha256": "f4f1ec8b52469ab684bc409ea88f0ace406a16796a2fd7ee752486e8a0035cdc",
+      "score_sha256": "fc5937d351712c06ac11f2defda457b36a7fd7dd12c754a2c445390d8594c0bb",
+      "final_score": 46.5,
+      "coverage": {
+        "reviewed_items": 40,
+        "total_items": 40,
+        "weight_fraction": 1.0,
+        "reviewed_gates": 3,
+        "total_gates": 3
+      },
+      "categories": {
+        "asset_authoring": {
+          "reviewed_subscore": 12.0,
+          "reviewed_max_score": 20.0,
+          "max_score": 20.0
+        },
+        "locomotion_states": {
+          "reviewed_subscore": 12.0,
+          "reviewed_max_score": 18.0,
+          "max_score": 18.0
+        },
+        "synchronization": {
+          "reviewed_subscore": 2.5,
+          "reviewed_max_score": 16.0,
+          "max_score": 16.0
+        },
+        "distance_matching": {
+          "reviewed_subscore": 2.0,
+          "reviewed_max_score": 16.0,
+          "max_score": 16.0
+        },
+        "warping_and_yaw": {
+          "reviewed_subscore": 2.5,
+          "reviewed_max_score": 12.0,
+          "max_score": 12.0
+        },
+        "architecture_and_lifecycle": {
+          "reviewed_subscore": 9.0,
+          "reviewed_max_score": 10.0,
+          "max_score": 10.0
+        },
+        "robustness_and_reproducibility": {
+          "reviewed_subscore": 6.5,
+          "reviewed_max_score": 8.0,
+          "max_score": 8.0
+        }
+      },
+      "result_path": "D:\\LyraLocomotionBench\\runs\\locomotion-20261023-high-r1\\deepseek\\result.json"
+    },
+    "gpt6": {
+      "actual_model": "gpt-6-astra",
+      "transport_status": "completed",
+      "transport_ok": true,
+      "model_matches": true,
+      "formal_invocations": 1,
+      "controller_retries": 0,
+      "human_followups": 0,
+      "elapsed_seconds": 952.748851899989,
+      "effort_requested": "high",
+      "effort_applied_observed": null,
+      "max_output_tokens_requested": 8192,
+      "max_output_tokens_applied_observed": null,
+      "output_limit_continuations": 0,
+      "immutable_inputs_unchanged": true,
+      "all_required_artifacts_changed": true,
+      "candidate_sha256": "a8cfd07be7c3c6e34d75b63e3ab668cf61331392984fbc48d5edacb0ab095270",
+      "review_sha256": "a9288d52f1a6408532411a30ec203b1e696f30f1c835838e098f9adf4c7898d2",
+      "score_sha256": "7447ff735c4202dd890c6446aa7759a75a7c8736a220ef9ce5da904ce22c82cc",
+      "final_score": 87.5,
+      "coverage": {
+        "reviewed_items": 40,
+        "total_items": 40,
+        "weight_fraction": 1.0,
+        "reviewed_gates": 3,
+        "total_gates": 3
+      },
+      "categories": {
+        "asset_authoring": {
+          "reviewed_subscore": 20.0,
+          "reviewed_max_score": 20.0,
+          "max_score": 20.0
+        },
+        "locomotion_states": {
+          "reviewed_subscore": 18.0,
+          "reviewed_max_score": 18.0,
+          "max_score": 18.0
+        },
+        "synchronization": {
+          "reviewed_subscore": 12.0,
+          "reviewed_max_score": 16.0,
+          "max_score": 16.0
+        },
+        "distance_matching": {
+          "reviewed_subscore": 11.0,
+          "reviewed_max_score": 16.0,
+          "max_score": 16.0
+        },
+        "warping_and_yaw": {
+          "reviewed_subscore": 9.5,
+          "reviewed_max_score": 12.0,
+          "max_score": 12.0
+        },
+        "architecture_and_lifecycle": {
+          "reviewed_subscore": 9.0,
+          "reviewed_max_score": 10.0,
+          "max_score": 10.0
+        },
+        "robustness_and_reproducibility": {
+          "reviewed_subscore": 8.0,
+          "reviewed_max_score": 8.0,
+          "max_score": 8.0
+        }
+      },
+      "result_path": "D:\\LyraLocomotionBench\\runs\\locomotion-20261023-gpt6-high-r1\\gpt6\\result.json"
+    }
+  },
+  "gpt_proxy_status_counts": {
+    "200": 35
+  },
+  "transport_difference": "Claude Code 2.1.289 via TT Switch; baseline TClaude kernel 2.1.295",
+  "findings": {
+    "overall_zh": "本轮加权静态结果为 GPT-6 87.5、Opus 84.5、DeepSeek 46.5。GPT-6 领先主要来自资源坐标与接触制作、匀速移动判断和 L–R–L 标记相位；Opus 的 Pivot 距离预测与反查更完整，但存在匀速零加速度误入 Stop 的关键错误。DeepSeek 完成了基础加工和状态框架，距离匹配、同步和 Warp 的核心细节缺失较多。三路都没有完整交付同步事件的归属与跨圈唯一性契约；总分不替代对这些具体缺陷的判断。",
+    "models": {
+      "opus": {
+        "summary_zh": "整体方案完整，起停及 Pivot 距离匹配、上身朝向分层有实际实现；主要风险集中在移动意图判断、坐标闭合和同步细节。",
+        "details": [
+          {
+            "ids": [
+              "DST02",
+              "DST03",
+              "ARC02"
+            ],
+            "text": "起步按位移推进，停止预测制动距离，Pivot 区分减速与反向阶段；上身朝向有具体骨骼权重和组合顺序。其中 Pivot 距离处理和上身朝向分层比 GPT 本轮交付更完整。"
+          },
+          {
+            "ids": [
+              "LOC01"
+            ],
+            "text": "把加速度当作移动输入意图，非零匀速、零加速度时会误进 Stop；这是高总分仍不能忽略的关键行为错误。"
+          },
+          {
+            "ids": [
+              "RES02",
+              "RES06"
+            ],
+            "text": "去除完整根旋转时抵消固定坐标转换；循环接缝又重复制作接触起点。姿态坐标与标记制作均有实际缺口。"
+          },
+          {
+            "ids": [
+              "SYN02",
+              "SYN03",
+              "SYN04",
+              "SYN06"
+            ],
+            "text": "同步只按左脚到下一左脚映射，缺左右脚分段相位；公共标记退化、按声明权重选择 leader、Notify 归属及跨圈事件唯一性不完整。"
+          },
+          {
+            "ids": [
+              "WRP01",
+              "WRP02",
+              "WRP04"
+            ],
+            "text": "方向补偿未扣除有效根朝向偏移，步幅缺零速分母保护与平滑，Start 缺 RootYaw Hold。"
+          },
+          {
+            "ids": [
+              "DST04",
+              "DST05",
+              "DST06",
+              "ROB01"
+            ],
+            "text": "曲线合法性、距离限速残差与 seek 副作用契约不足；极大但有限的输入仍可能在派生速度处溢出。"
+          }
+        ]
+      },
+      "deepseek": {
+        "summary_zh": "提交了可追踪的基础资源加工、四向走跑与姿态操作框架，但许多 Lyra 移动关键机制停留在基础播放层。缺采样的22项没有作为扣分原因。",
+        "details": [
+          {
+            "ids": [
+              "ARC02",
+              "ARC04"
+            ],
+            "text": "根运动与上身 aim 有独立操作、骨骼范围和顺序，输入快照与状态边界也清楚，基础架构获得较高分。"
+          },
+          {
+            "ids": [
+              "RES06",
+              "RES07"
+            ],
+            "text": "对已有15段采样未制作脚接触标记和距离曲线，属于实际制作缺失，并非题包缺素材造成。"
+          },
+          {
+            "ids": [
+              "SYN01",
+              "SYN02",
+              "SYN03",
+              "SYN04",
+              "SYN05",
+              "SYN06"
+            ],
+            "text": "同步输出为 independent；缺标记相位映射、公共标记退化、leader 与事件归属，组配置与实际消费也不一致。"
+          },
+          {
+            "ids": [
+              "DST01",
+              "DST02",
+              "DST03",
+              "DST04"
+            ],
+            "text": "Start、Stop、Pivot 主要按时间播放，缺距离语义、停止及反向目标预测和曲线反查。"
+          },
+          {
+            "ids": [
+              "WRP01",
+              "WRP02",
+              "WRP04"
+            ],
+            "text": "缺方向补偿、步幅补偿和 RootYaw 状态策略；四向选片与播放倍率不能完成这些职责。"
+          },
+          {
+            "ids": [
+              "LOC04",
+              "LOC05",
+              "LOC06",
+              "ROB01",
+              "ROB02"
+            ],
+            "text": "重入 Start 不重置时钟，Stop 播完直接 Idle，Pivot 按瞄准差而非移动反向触发；另有字符串 nan 与自定义输出位置的边界问题。"
+          }
+        ]
+      },
+      "gpt6": {
+        "summary_zh": "资源加工和状态细节表现较好，实测接触与 L–R–L 相位进入了实际计算，异常输入边界也较完整；主要未完成项是 Pivot 距离匹配、同步事件规则和上身朝向分层。",
+        "details": [
+          {
+            "ids": [
+              "RES02",
+              "RES06",
+              "RES08",
+              "LOC01",
+              "LOC04",
+              "LOC05",
+              "LOC06",
+              "ROB01"
+            ],
+            "text": "保留坐标变换基底并只移除相对 root yaw，按实测接触选择循环区间；能区分匀速零加速度和停止，重入时钟、移动反向及输入校验也有明确路径。37项资源中15项实做、22项延期，未伪造缺样数据。"
+          },
+          {
+            "ids": [
+              "SYN02",
+              "SYN03",
+              "SYN04",
+              "SYN06"
+            ],
+            "text": "L→R→L 分段相位与统一时钟完整，leader 按实际权重确定；但没有组级公共 marker 退化规则，也缺 Notify 归属和跨圈事件区间/唯一性。"
+          },
+          {
+            "ids": [
+              "DST02",
+              "DST03"
+            ],
+            "text": "Start/Stop 有距离驱动；Pivot 仅按有界播放倍率推进，未把运动预测的反向目标距离生成与反查消费接起来。DST03 评价目标生成，DST02 评价目标消费，不因同一问题再扣资源或状态项。"
+          },
+          {
+            "ids": [
+              "DST04",
+              "DST05",
+              "DST06"
+            ],
+            "text": "曲线反查缺非法/非单调输入契约，Stop 限速后固定 stride=1 且未声明残差取舍；初始化、重入和相位对齐也缺 seek/advance 的事件副作用约定。"
+          },
+          {
+            "ids": [
+              "WRP01",
+              "WRP02",
+              "WRP04"
+            ],
+            "text": "方向补偿未计入已施加的根偏移；步幅有分母保护但缺平滑；Start 与 Cycle 一样淡出，缺 RootYaw Hold。"
+          },
+          {
+            "ids": [
+              "ARC02"
+            ],
+            "text": "已有 root 归属、操作顺序和脊柱范围，但 lean 只由加速度生成 pitch/roll，缺协调下肢移动与上身朝向偏差的独立计划。"
+          }
+        ]
+      }
+    }
+  },
+  "infrastructure_history": {
+    "authentication_failure_formal_attempts": 0,
+    "original_auth_error": "RefreshTokenInvalid",
+    "original_auth_http_401_count": 9,
+    "reauthorization_by_user": true,
+    "canonical_workspace_only_for_gpt": true,
+    "parser_system_event_compatibility_fixed": true,
+    "old_two_logs_reparsed_identically": true,
+    "permission_arguments_unchanged": true,
+    "history_path": "D:\\LyraLocomotionBench\\runs\\locomotion-20261023-gpt6-high-r1\\history\\blocked-auth-20261024"
+  }
+}

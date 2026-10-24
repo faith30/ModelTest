@@ -1,0 +1,499 @@
+{
+  "schema_version": 1,
+  "status": "ready",
+  "parameters": {
+    "inputs": [
+      "velocity_world_cm_s",
+      "acceleration_world_cm_s2",
+      "actor_yaw_degrees",
+      "aim_yaw_degrees",
+      "dt_seconds"
+    ],
+    "speed_thresholds": {
+      "idle_max_cm_s": 20.0,
+      "stop_done_cm_s": 8.0,
+      "direction_deadzone_cm_s": 20.0,
+      "start_end_cm_s": 40.0,
+      "cycle_enter_cm_s": 120.0,
+      "stop_enter_cm_s": 150.0,
+      "turn_max_cm_s": 40.0,
+      "turn_exit_cm_s": 60.0,
+      "pivot_min_cm_s": 150.0,
+      "pivot_angle_degrees": 60.0,
+      "aim_yaw_deadzone_degrees": 15.0,
+      "gait_blend_low_cm_s": 380.0,
+      "gait_blend_high_cm_s": 450.0,
+      "accel_resume_cm_s2": 20.0,
+      "decel_slope_cm_s2": 80.0
+    },
+    "playback": {
+      "min_play_rate": 0.05,
+      "max_play_rate": 2.0,
+      "start_ramp_seconds": 0.5,
+      "pivot_seconds": 0.45,
+      "velocity_alpha": 0.2
+    },
+    "pose_operation_semantics": {
+      "extract_root_delta_world": "root delta converted once; apply world delta after pose",
+      "aim_yaw_offset": "declarative upper-body yaw offset intent; not an executed pose",
+      "hold_sample": "freeze the referenced player at its current sample time"
+    }
+  },
+  "nodes": [
+    {
+      "id": "input_velocity_world_cm_s",
+      "kind": "input",
+      "parameter": "velocity_world_cm_s"
+    },
+    {
+      "id": "input_acceleration_world_cm_s2",
+      "kind": "input",
+      "parameter": "acceleration_world_cm_s2"
+    },
+    {
+      "id": "input_actor_yaw_degrees",
+      "kind": "input",
+      "parameter": "actor_yaw_degrees"
+    },
+    {
+      "id": "input_aim_yaw_degrees",
+      "kind": "input",
+      "parameter": "aim_yaw_degrees"
+    },
+    {
+      "id": "input_dt_seconds",
+      "kind": "input",
+      "parameter": "dt_seconds"
+    },
+    {
+      "id": "locomotion_state",
+      "kind": "state_machine",
+      "config": {
+        "states": [
+          "idle",
+          "start",
+          "cycle",
+          "stop",
+          "pivot",
+          "turn"
+        ],
+        "description": "flat-ground grounded locomotion state machine; see src/controller.py"
+      }
+    },
+    {
+      "id": "player_motion_01",
+      "kind": "player",
+      "asset_id": "motion_01",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_02",
+      "kind": "player",
+      "asset_id": "motion_02",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_03",
+      "kind": "player",
+      "asset_id": "motion_03",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_04",
+      "kind": "player",
+      "asset_id": "motion_04",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_05",
+      "kind": "player",
+      "asset_id": "motion_05",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_06",
+      "kind": "player",
+      "asset_id": "motion_06",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_07",
+      "kind": "player",
+      "asset_id": "motion_07",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_08",
+      "kind": "player",
+      "asset_id": "motion_08",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_09",
+      "kind": "player",
+      "asset_id": "motion_09",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_10",
+      "kind": "player",
+      "asset_id": "motion_10",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_11",
+      "kind": "player",
+      "asset_id": "motion_11",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_12",
+      "kind": "player",
+      "asset_id": "motion_12",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_13",
+      "kind": "player",
+      "asset_id": "motion_13",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_14",
+      "kind": "player",
+      "asset_id": "motion_14",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_15",
+      "kind": "player",
+      "asset_id": "motion_15",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_16",
+      "kind": "player",
+      "asset_id": "motion_16",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_17",
+      "kind": "player",
+      "asset_id": "motion_17",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_18",
+      "kind": "player",
+      "asset_id": "motion_18",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_19",
+      "kind": "player",
+      "asset_id": "motion_19",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_20",
+      "kind": "player",
+      "asset_id": "motion_20",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_21",
+      "kind": "player",
+      "asset_id": "motion_21",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_22",
+      "kind": "player",
+      "asset_id": "motion_22",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_23",
+      "kind": "player",
+      "asset_id": "motion_23",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_24",
+      "kind": "player",
+      "asset_id": "motion_24",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_25",
+      "kind": "player",
+      "asset_id": "motion_25",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_26",
+      "kind": "player",
+      "asset_id": "motion_26",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_27",
+      "kind": "player",
+      "asset_id": "motion_27",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_28",
+      "kind": "player",
+      "asset_id": "motion_28",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_29",
+      "kind": "player",
+      "asset_id": "motion_29",
+      "loop": true,
+      "sync_group": "locomotion",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_30",
+      "kind": "player",
+      "asset_id": "motion_30",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_31",
+      "kind": "player",
+      "asset_id": "motion_31",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_32",
+      "kind": "player",
+      "asset_id": "motion_32",
+      "loop": false,
+      "sync_group": "locomotion",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_33",
+      "kind": "player",
+      "asset_id": "motion_33",
+      "loop": false,
+      "sync_group": "turn",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_34",
+      "kind": "player",
+      "asset_id": "motion_34",
+      "loop": false,
+      "sync_group": "turn",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_35",
+      "kind": "player",
+      "asset_id": "motion_35",
+      "loop": false,
+      "sync_group": "turn",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_motion_36",
+      "kind": "player",
+      "asset_id": "motion_36",
+      "loop": false,
+      "sync_group": "turn",
+      "status": "ready"
+    },
+    {
+      "id": "player_motion_37",
+      "kind": "player",
+      "asset_id": "motion_37",
+      "loop": false,
+      "sync_group": "idle",
+      "status": "deferred_missing_samples"
+    },
+    {
+      "id": "player_turn_right_90_reverse",
+      "kind": "player",
+      "asset_id": "turn_right_90_reverse",
+      "loop": false,
+      "sync_group": "turn",
+      "status": "ready"
+    },
+    {
+      "id": "player_turn_left_180_reverse",
+      "kind": "player",
+      "asset_id": "turn_left_180_reverse",
+      "loop": false,
+      "sync_group": "turn",
+      "status": "ready"
+    }
+  ],
+  "connections": [
+    {
+      "from": "input_velocity_world_cm_s",
+      "to": "locomotion_state"
+    },
+    {
+      "from": "input_acceleration_world_cm_s2",
+      "to": "locomotion_state"
+    },
+    {
+      "from": "input_actor_yaw_degrees",
+      "to": "locomotion_state"
+    },
+    {
+      "from": "input_aim_yaw_degrees",
+      "to": "locomotion_state"
+    },
+    {
+      "from": "input_dt_seconds",
+      "to": "locomotion_state"
+    },
+    {
+      "from": "locomotion_state",
+      "to": "output",
+      "role": "player_selection"
+    }
+  ],
+  "sync_groups": [
+    {
+      "group_id": "locomotion",
+      "members": [
+        "motion_01",
+        "motion_05",
+        "motion_09",
+        "motion_13",
+        "motion_17",
+        "motion_21",
+        "motion_25",
+        "motion_29",
+        "motion_02",
+        "motion_03",
+        "motion_04",
+        "motion_06",
+        "motion_07",
+        "motion_08",
+        "motion_10",
+        "motion_11",
+        "motion_12",
+        "motion_14",
+        "motion_15",
+        "motion_16",
+        "motion_18",
+        "motion_19",
+        "motion_20",
+        "motion_22",
+        "motion_23",
+        "motion_24",
+        "motion_26",
+        "motion_27",
+        "motion_28",
+        "motion_30",
+        "motion_31",
+        "motion_32"
+      ],
+      "settings": {
+        "mode": "independent",
+        "note": "timing-only; no authored footstep markers"
+      }
+    },
+    {
+      "group_id": "turn",
+      "members": [
+        "motion_33",
+        "motion_34",
+        "motion_35",
+        "motion_36",
+        "turn_right_90_reverse",
+        "turn_left_180_reverse"
+      ],
+      "settings": {
+        "mode": "independent",
+        "note": "in-place turns; no footstep markers"
+      }
+    },
+    {
+      "group_id": "idle",
+      "members": [
+        "motion_37"
+      ],
+      "settings": {
+        "mode": "independent",
+        "note": "idle/hold pose"
+      }
+    }
+  ],
+  "output": {
+    "blend": "weighted_average",
+    "pose_operations_order": [
+      "extract_root_delta_world",
+      "aim_yaw_offset",
+      "hold_sample"
+    ]
+  }
+}

@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "audience": "evaluator_only",
+  "status": "bounded_static_evidence_not_executed_graph",
+  "source_context": "D:\\AnimationMarkBench\\private\\locomotion_context\\candidate_context.json",
+  "context_sha256": "828cc1fa5e090d821fd203f614d2e50f851186914da72f8cc5c9a74f2b283704",
+  "context_reuse_policy": "Consumer facts only; older annotation-task exclusions and original-author matching scores are not this benchmark's rules. Some recorded facts concern out-of-scope airborne behavior; rubric.json defines applicability.",
+  "blueprint_structure": {
+    "base": "ABP_Mannequin_Base",
+    "states": [
+      "Idle",
+      "Start",
+      "Cycle",
+      "Stop",
+      "Pivot",
+      "JumpStart",
+      "JumpApex",
+      "FallLand",
+      "JumpStartLoop",
+      "FallLoop"
+    ],
+    "layer_base": "ABP_ItemAnimLayersBase",
+    "selected_layer": "ABP_UnarmedAnimLayers",
+    "description_zh": "Base的LocomotionSM管理高层状态，具体状态行为交给ItemAnimLayersBase的动画层。Unarmed层继承该层基类并配置走、跑、起步、停步和跳跃等资产。",
+    "asset_bindings": {
+      "Walk_Cardinals": {
+        "Forward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Fwd.MM_Unarmed_Walk_Fwd",
+        "Backward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Bwd.MM_Unarmed_Walk_Bwd",
+        "Left": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Left.MM_Unarmed_Walk_Left",
+        "Right": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Right.MM_Unarmed_Walk_Right"
+      },
+      "Jog_Cardinals": {
+        "Forward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Fwd.MM_Unarmed_Jog_Fwd",
+        "Backward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Bwd.MM_Unarmed_Jog_Bwd",
+        "Left": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Left.MM_Unarmed_Jog_Left",
+        "Right": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Right.MM_Unarmed_Jog_Right"
+      },
+      "Jog_Start_Cardinals": {
+        "Forward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Fwd_Start.MM_Unarmed_Jog_Fwd_Start",
+        "Backward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Bwd_Start.MM_Unarmed_Jog_Bwd_Start",
+        "Left": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Left_Start.MM_Unarmed_Jog_Left_Start",
+        "Right": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Right_Start.MM_Unarmed_Jog_Right_Start"
+      },
+      "Jog_Stop_Cardinals": {
+        "Forward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Fwd_Stop.MM_Unarmed_Jog_Fwd_Stop",
+        "Backward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Bwd_Stop.MM_Unarmed_Jog_Bwd_Stop",
+        "Left": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Left_Stop.MM_Unarmed_Jog_Left_Stop",
+        "Right": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jog_Right_Stop.MM_Unarmed_Jog_Right_Stop"
+      },
+      "ADS_Start_Cardinals": {
+        "Forward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Fwd_Start.MM_Unarmed_Walk_Fwd_Start",
+        "Backward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Bwd_Start.MM_Unarmed_Walk_Bwd_Start",
+        "Left": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Left_Start.MM_Unarmed_Walk_Left_Start",
+        "Right": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Right_Start.MM_Unarmed_Walk_Right_Start"
+      },
+      "ADS_Stop_Cardinals": {
+        "Forward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Fwd_Stop.MM_Unarmed_Walk_Fwd_Stop",
+        "Backward": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Bwd_Stop.MM_Unarmed_Walk_Bwd_Stop",
+        "Left": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Left_Stop.MM_Unarmed_Walk_Left_Stop",
+        "Right": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Walk_Right_Stop.MM_Unarmed_Walk_Right_Stop"
+      },
+      "Jump_Start": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jump_Start.MM_Unarmed_Jump_Start",
+      "Jump_FallLand": "/Game/Characters/Heroes/Mannequin/Animations/Locomotion/Unarmed/MM_Unarmed_Jump_Fall_Land.MM_Unarmed_Jump_Fall_Land"
+    },
+    "evidence": [
+      {
+        "asset": "ABP_Mannequin_Base",
+        "export_index_1based": 234,
+        "detail": "图注释：This state machine handles the transitions between high level character states. The behavior of each state is mostly handled by the layers in ABP_ItemAnimLayersBase."
+      },
+      {
+        "asset": "ABP_UnarmedAnimLayers",
+        "export_index_1based": 3,
+        "detail": "SuperStruct resolves to ABP_ItemAnimLayersBase_C"
+      },
+      {
+        "asset": "ABP_UnarmedAnimLayers",
+        "export_index_1based": 1,
+        "detail": "默认对象的动画资产引用"
+      }
+    ]
+  },
+  "annotation_targets": [
+    {
+      "kind": "sync_marker",
+      "names": [
+        "L",
+        "R"
+      ],
+      "purpose_zh": "为相关locomotion动画提供共同步态相位标识，使状态衔接或动画混合能按标记同步。它们与脚步音效通知是不同类型的数据。",
+      "confirmed_consumers_zh": "ItemAnimLayersBase中的Cycle播放器使用Locomotion组且为AlwaysFollower；起步、转向和落地的相关评估器也配置Locomotion组。Stop层有独立Stop组。",
+      "unresolved_convention_zh": "已检查的蓝图配置和消费者没有定义L/R各自必须对应脚掌运动的哪个瞬间，也没有定义与脚步音效通知的固定时间差。仅凭名称不能断言它们等于落脚点。不能从这里唯一推导原作者的绝对相位约定。",
+      "evidence": [
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 110,
+          "node": "ABP_ItemAnimLayersBase.FullBody_FallLandState.AnimGraphNode_SequenceEvaluator_1",
+          "fields": {
+            "GroupName": "Locomotion",
+            "GroupRole": "EAnimGroupRole::AlwaysLeader",
+            "Method": "EAnimSyncMethod::SyncGroup",
+            "bTeleportToExplicitTime": false
+          }
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 117,
+          "node": "ABP_ItemAnimLayersBase.FullBody_PivotState.AnimGraphNode_StateMachine_0.PivotSM.AnimStateNode_0.PivotA.AnimGraphNode_SequenceEvaluator_0",
+          "fields": {
+            "GroupName": "Locomotion",
+            "GroupRole": "EAnimGroupRole::AlwaysLeader",
+            "Method": "EAnimSyncMethod::SyncGroup",
+            "bTeleportToExplicitTime": false
+          }
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 118,
+          "node": "ABP_ItemAnimLayersBase.FullBody_PivotState.AnimGraphNode_StateMachine_0.PivotSM.AnimStateNode_1.PivotB.AnimGraphNode_SequenceEvaluator_0",
+          "fields": {
+            "GroupName": "Locomotion",
+            "GroupRole": "EAnimGroupRole::AlwaysLeader",
+            "Method": "EAnimSyncMethod::SyncGroup",
+            "bTeleportToExplicitTime": false
+          }
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 120,
+          "node": "ABP_ItemAnimLayersBase.FullBody_StartState.AnimGraphNode_SequenceEvaluator_1",
+          "fields": {
+            "GroupName": "Locomotion",
+            "Method": "EAnimSyncMethod::SyncGroup"
+          }
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 122,
+          "node": "ABP_ItemAnimLayersBase.FullBody_StopState.AnimGraphNode_SequenceEvaluator_1",
+          "fields": {
+            "GroupName": "Stop",
+            "Method": "EAnimSyncMethod::SyncGroup"
+          }
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 124,
+          "node": "ABP_ItemAnimLayersBase.FullBody_CycleState.AnimGraphNode_SequencePlayer_0",
+          "fields": {
+            "GroupName": "Locomotion",
+            "GroupRole": "EAnimGroupRole::AlwaysFollower",
+            "Method": "EAnimSyncMethod::SyncGroup"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "context_effect_notify",
+      "class": "AnimNotify_LyraContextEffects",
+      "effect_tags": [
+        "AnimEffect.Footstep.Walk",
+        "AnimEffect.Footstep.Land"
+      ],
+      "purpose_zh": "在动画的相应动作时机发出脚步/落地效果请求。Effect是效果标签，SocketName及bAttached决定附着骨骼/插槽，追踪结果和上下文交给效果系统选择声音或视觉效果。左右骨骼采用角色自身方向。",
+      "confirmed_consumers_zh": "Notify在bPerformTrace为真时从插槽或组件位置发起追踪；随后向实现LyraContextEffectsInterface的角色/组件调用AnimMotionEffect，并传递Effect、附着插槽和命中信息。通知触发时间来自动画事件本身；该消费者没有根据脚高度重新决定动画中的打点位置。",
+      "naming_boundary_zh": "Walk和Land在这里是效果资源选择标签；消费者没有根据动画文件名将Jog自动变成另一种标签。落地效果不等于同步相位标记。",
+      "evidence": [
+        {
+          "source": "Source/LyraGame/Feedback/ContextEffects/AnimNotify_LyraContextEffects.cpp",
+          "line_start": 67,
+          "line_end": 77,
+          "text": "\t\t\tif (bPerformTrace)\n\t\t\t{\n\t\t\t\t// If trace is needed, set up Start Location to Attached\n\t\t\t\tFVector TraceStart = bAttached ? MeshComp->GetSocketLocation(SocketName) : MeshComp->GetComponentLocation();\n\n\t\t\t\t// Make sure World is valid\n\t\t\t\tif (UWorld* World = OwningActor->GetWorld())\n\t\t\t\t{\n\t\t\t\t\t// Call Line Trace, Pass in relevant properties\n\t\t\t\t\tbHitSuccess = World->LineTraceSingleByChannel(HitResult, TraceStart, (TraceStart + TraceProperties.EndTraceLocationOffset),\n\t\t\t\t\t\tTraceProperties.TraceChannel, QueryParams, FCollisionResponseParams::DefaultResponseParam);"
+        },
+        {
+          "source": "Source/LyraGame/Feedback/ContextEffects/AnimNotify_LyraContextEffects.cpp",
+          "line_start": 112,
+          "line_end": 117,
+          "text": "\t\t\t\t\t// If the object is still valid, Execute the AnimMotionEffect Event on it, passing in relevant data\n\t\t\t\t\tILyraContextEffectsInterface::Execute_AnimMotionEffect(LyraContextEffectImplementingObject,\n\t\t\t\t\t\t(bAttached ? SocketName : FName(\"None\")),\n\t\t\t\t\t\tEffect, MeshComp, LocationOffset, RotationOffset,\n\t\t\t\t\t\tAnimation, bHitSuccess, HitResult, Contexts, VFXProperties.Scale,\n\t\t\t\t\t\tAudioProperties.VolumeMultiplier, AudioProperties.PitchMultiplier);"
+        }
+      ]
+    }
+  ],
+  "other_animation_data": [
+    {
+      "name": "TransitionToLocomotion",
+      "type": "AnimNotifyState",
+      "purpose_zh": "区间状态标签。它自身没有脚本实现，但Base的转移规则调用WasAnimNotifyStateActiveInSourceState并传入此类；图节点引用的源状态是Pivot。说明动画上的区间可作为转移条件使用，不能把所有通知都当作脚步点。",
+      "evidence": [
+        {
+          "asset": "TransitionToLocomotion",
+          "export_index_1based": 2,
+          "detail": "SuperStruct=AnimNotifyState; FuncMap/Children/ScriptBytecode为空"
+        },
+        {
+          "asset": "ABP_Mannequin_Base",
+          "export_index_1based": 321,
+          "detail": "WasAnimNotifyStateActiveInSourceState; SourceStateNode=172，其BoundGraph=21(Pivot)"
+        },
+        {
+          "asset": "ABP_Mannequin_Base",
+          "export_index_1based": 282,
+          "detail": "ScriptBytecode[24]查询TransitionToLocomotion_C；[26]写bCanEnterTransition"
+        }
+      ]
+    },
+    {
+      "name": "Distance",
+      "type": "curve",
+      "purpose_zh": "LocomotionDistanceCurveName的默认值。起步通过AdvanceTimeByDistanceMatching推进；停步使用预测停止距离做DistanceMatchToTarget；Pivot也使用距离匹配。",
+      "evidence": [
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 1,
+          "detail": "有界属性读取：LocomotionDistanceCurveName=Distance"
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 451,
+          "detail": "UpdateStartAnim调用AdvanceTimeByDistanceMatching"
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 452,
+          "detail": "UpdateStopAnim调用GetPredictedStopDistance及DistanceMatchToTarget"
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 449,
+          "detail": "UpdatePivotAnim距离匹配调用"
+        }
+      ]
+    },
+    {
+      "name": "GroundDistance",
+      "type": "curve",
+      "purpose_zh": "JumpDistanceCurveName的默认值。UpdateFallLandAnim以Base的GroundDistance做DistanceMatchToTarget，服务落地动画时序。",
+      "evidence": [
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 1,
+          "detail": "有界属性读取：JumpDistanceCurveName=GroundDistance"
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 444,
+          "detail": "UpdateFallLandAnim调用DistanceMatchToTarget"
+        }
+      ]
+    },
+    {
+      "name": "TurnYawWeight / RemainingTurnYaw",
+      "type": "curve",
+      "purpose_zh": "Base的ProcessTurnYawCurve读取二者并更新RootYawOffset，服务原地转向。",
+      "evidence": [
+        {
+          "asset": "ABP_Mannequin_Base",
+          "export_index_1based": 300,
+          "detail": "ProcessTurnYawCurve结构化编译字节码"
+        }
+      ]
+    },
+    {
+      "name": "DisableLegIK",
+      "type": "curve",
+      "purpose_zh": "ShouldEnableControlRig和ShouldEnableFootPlacement读取此曲线，控制腿部处理的启用。它与遗留FootPlant点不是同一个通道。",
+      "evidence": [
+        {
+          "asset": "ABP_Mannequin_Base",
+          "export_index_1based": 305,
+          "detail": "ShouldEnableControlRig结构化编译字节码"
+        },
+        {
+          "asset": "ABP_ItemAnimLayersBase",
+          "export_index_1based": 441,
+          "detail": "ShouldEnableFootPlacement结构化编译字节码"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No original authored marker timestamps, curve samples or modifier algorithms are included in this facts file.",
+    "A saved Start-to-Cycle editor node retains an unconnected transition diagnostic; it cannot prove that transition runs.",
+    "No engine synchronization, blending, collision or audio execution was verified. This benchmark grades static development details, not original-author annotation similarity."
+  ],
+  "parse_boundary": "Base的生成类及一个LinkedAnimLayer是RawExport；ItemLayers多数图节点原始导出为RawExport，但结构化函数字节码可读，且已用按长度有界、与原uasset序列化字节完全相等的读取补取所列同步设置及曲线名。未解码全部native尾部、图引脚连接和生成类。"
+}
