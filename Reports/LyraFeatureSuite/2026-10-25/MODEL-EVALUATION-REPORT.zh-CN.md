@@ -1,7 +1,11 @@
-# DeepSeek 与三款模型在 UE5 Lyra 功能开发中的实测比较
+# 江华麒-CodeAgen游戏开发模型评测
 
 > 阅读版本：[PDF 下载](MODEL-EVALUATION-REPORT.zh-CN.pdf) · [汇总数据](comparison.json) · [未验证归因](UNVERIFIED-CAUSES.json)
-> 本版用于 PDF 与 Git 发布，评分和归因沿用 r5。原始日志、资产与完整运行记录保存在本机，不随这份文档上传。
+> 本版用于 PDF 与 Git 发布，评分和归因沿用 r5。
+> GitHub 仓库：[https://github.com/faith30/ModelTest](https://github.com/faith30/ModelTest)
+> GitHub 报告目录：[https://github.com/faith30/ModelTest/tree/main/Reports/LyraFeatureSuite/2026-10-25](https://github.com/faith30/ModelTest/tree/main/Reports/LyraFeatureSuite/2026-10-25)
+> 案例任务正文：[交互与背包](https://github.com/faith30/ModelTest/blob/dcba4d7625373ed1f128af1de54e4e376b0fb4af/Benchmarks/interaction/TASK.md) · [连杀荣誉](https://github.com/faith30/ModelTest/blob/3da5f9f5f11f7efb162ef91307a3f19c2ca5de74/Benchmarks/accolades/TASK.md) · [场景效果](https://github.com/faith30/ModelTest/blob/6763942e663c5549e0bfff30cb1372ce31e6094c/Benchmarks/context-effects/TASK.md)
+> 公开材料：本报告、PDF、评分汇总、未验证归因，以及上述冻结起点中的三题 TASK 正文。报告目录尚未收录包含时限、隔离和统一环境要求的完整运行提示词。原始运行日志及完整验收附件由评测方本地留档，不随本报告提供。
 
 
 整理日期：2026-10-25（Asia/Shanghai）。本版在荣誉修复后结果的基础上，突出说明未验证来自候选前置功能、评测缺口、混合原因还是归因不足；保留“具体场景—完成状态—排序原因—后续评测调整”的结构。此次未重新运行模型或测试，未修改分数及原有归因。
