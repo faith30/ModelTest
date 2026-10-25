@@ -1,5 +1,7 @@
 # ModelTest
 
+四模型 Lyra 功能开发实测报告（DeepSeek、GPT-6 Astra、Claude Opus 5.5、GPT-5.6 Sol）：[Markdown 正文](Reports/LyraFeatureSuite/2026-10-25/MODEL-EVALUATION-REPORT.zh-CN.md) · [PDF 完整版](Reports/LyraFeatureSuite/2026-10-25/MODEL-EVALUATION-REPORT.zh-CN.pdf)。包含三项任务完成情况、评分与排序原因、未验证来源区分，以及完整评分矩阵；本版整理于 2026-10-25。
+
 独立于 UE 的走跑动画、动画图和控制逻辑评测工程已收录在 **[Standalone/LyraLocomotionBench](Standalone/LyraLocomotionBench/README.md)**。包含候选题包、姿态数据、40 项审查清单、评分工具和三路已完成的作答结果；使用该子目录无需安装或启动 Unreal Engine。
 
 Lyra Starter Game 官方 C++ 工程：使用 Unreal Engine **5.8.3** 发布版源码，并包含通过 Fab / Epic Games Launcher 获取的 **5.8 系列完整 Content 资源**。

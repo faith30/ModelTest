@@ -1,0 +1,1984 @@
+{
+  "schema": "lyra-unresolved-cause-annotation/repaired-r4",
+  "original_annotation": {
+    "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r3\\UNVERIFIED-CAUSES.json",
+    "sha256": "f108ea32b53529b0bda704dfbd1fb13e6465283e434794cad9f846e8f0b1219a"
+  },
+  "current_repaired_annotation": {
+    "path": "D:\\ModelEvaluations\\20261025-gpt56-accolades-tagfix-r1\\review\\accolades-independent-r1\\final-r1\\unknown-causes.json",
+    "sha256": "1502ccc85a90ee5067c4c196cb060febd9064fa80baa88c1239bc55414401888"
+  },
+  "taxonomy": {
+    "candidate_prerequisite": "候选前置",
+    "evaluation_gap": "评测缺口",
+    "mixed": "混合原因",
+    "undetermined": "归因不足"
+  },
+  "row_count": 63,
+  "total_weight": 245,
+  "summary_by_model": {
+    "deepseek": {
+      "candidate_prerequisite": 26,
+      "evaluation_gap": 21,
+      "mixed": 17,
+      "undetermined": 5
+    },
+    "gpt6": {
+      "candidate_prerequisite": 0,
+      "evaluation_gap": 37,
+      "mixed": 0,
+      "undetermined": 5
+    },
+    "opus55": {
+      "candidate_prerequisite": 7,
+      "evaluation_gap": 46,
+      "mixed": 0,
+      "undetermined": 0
+    },
+    "gpt56sol": {
+      "candidate_prerequisite": 55,
+      "evaluation_gap": 17,
+      "mixed": 7,
+      "undetermined": 2
+    }
+  },
+  "summary_by_feature": {
+    "deepseek": {
+      "interaction": {
+        "candidate_prerequisite": 23,
+        "evaluation_gap": 3,
+        "mixed": 13,
+        "undetermined": 0
+      },
+      "accolades": {
+        "candidate_prerequisite": 0,
+        "evaluation_gap": 4,
+        "mixed": 0,
+        "undetermined": 0
+      },
+      "context-effects": {
+        "candidate_prerequisite": 3,
+        "evaluation_gap": 14,
+        "mixed": 4,
+        "undetermined": 5
+      }
+    },
+    "gpt6": {
+      "interaction": {
+        "candidate_prerequisite": 0,
+        "evaluation_gap": 3,
+        "mixed": 0,
+        "undetermined": 0
+      },
+      "accolades": {
+        "candidate_prerequisite": 0,
+        "evaluation_gap": 16,
+        "mixed": 0,
+        "undetermined": 0
+      },
+      "context-effects": {
+        "candidate_prerequisite": 0,
+        "evaluation_gap": 18,
+        "mixed": 0,
+        "undetermined": 5
+      }
+    },
+    "opus55": {
+      "interaction": {
+        "candidate_prerequisite": 3,
+        "evaluation_gap": 21,
+        "mixed": 0,
+        "undetermined": 0
+      },
+      "accolades": {
+        "candidate_prerequisite": 0,
+        "evaluation_gap": 7,
+        "mixed": 0,
+        "undetermined": 0
+      },
+      "context-effects": {
+        "candidate_prerequisite": 4,
+        "evaluation_gap": 18,
+        "mixed": 0,
+        "undetermined": 0
+      }
+    },
+    "gpt56sol": {
+      "interaction": {
+        "candidate_prerequisite": 47,
+        "evaluation_gap": 0,
+        "mixed": 3,
+        "undetermined": 2
+      },
+      "accolades": {
+        "candidate_prerequisite": 0,
+        "evaluation_gap": 13,
+        "mixed": 0,
+        "undetermined": 0
+      },
+      "context-effects": {
+        "candidate_prerequisite": 8,
+        "evaluation_gap": 4,
+        "mixed": 4,
+        "undetermined": 0
+      }
+    }
+  },
+  "rows": [
+    {
+      "feature": "interaction",
+      "id": "2.1",
+      "check": "靠近/远离范围及转开视线，提示与触发许可同步变化",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "mixed",
+      "reason": "背包未打开、合法点拾取未成功，候选前置缺失；同时出界变体实测仍在范围内，评测未采到触发许可分支。提示随视线变化已有证据，但完整许可同步无法裁定。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-scan-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\actor-facts-u7-r3-ds-039-043\\interaction-deepseek--v3-scan_permission_boundary--1.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "提示与扫描选项部分方向同步已直接观察；已打开背包的出界变体实际仍在界内，触发许可分支亦未采到。正控入库失败是case必要结果反例，但不能把它扩大成原item提示/触发许可不同步缺陷。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "2.2",
+      "check": "遮挡、墙后及超距离请求均不能拾取",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "mixed",
+      "reason": "合法内点已进入 Collect，却因 Inventory=None 无法入库，缺少候选成功正控；评测又未形成精确等值、实际拒绝分支及正常移动后的旧提示竞态，不能归为单一原因。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-distance-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\actor-facts-u7-r3-ds-036-039\\interaction-deepseek--v3-occlusion_distance_requests--3.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "本批可观察扫描外/内状态，但精确等值、实际拒绝分支及旧提示正常移动竞态未完整形成。内点入库失败保留为正对照反例，不将其当防超距失败或通过。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "4.2",
+      "check": "快速重复 F 或重复请求不会重复加物品，仅获胜者获得物品",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "双方重复 F 已送达，但服务器始终没有新增物品，独立单客户端拾取也失败。候选收集链缺少一次成功结果，因而无法检验成功后的去重和赢家归属；没有证实去重算法本身错误。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\canonical-partial-boundaries075-r1\\report.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-network-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "真实双方重复F送达，但服务器没有任何有效物品新增；单客户端正向对照同样失败。零次成功无法区分正确去重与收集链整体失败，重复请求不重复入库/仅赢家获得物品未验证；不把零增量判通过或独立去重缺陷。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "4.3",
+      "check": "所有客户端场景状态一致，失败端不永久隐藏对象",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "各端仍有目标、库存不变的状态已观察，但候选没有成功消耗物品的正例，无法判断拾取成功后的场景复制及失败端恢复。各端都没有变化不能证明同步正确。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\canonical-partial-boundaries075-r1\\report.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-network-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "所有角色当前仍可用目标/静止库存一致已观察，未见错误隐藏的直接反例；没有成功消耗对象的正基线，无法完整验证成功后的跨端状态复制。该项保持未验证，不以所有端都没有变化当通过。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "6.2",
+      "check": "保持背包打开时新增内容实时正确出现",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "Tab 与生产控件创建已记录，但背包未可见打开，拾取也未新增库存。缺少同一个已打开界面内的有效新增，无法检验实时监听；入口失败已有独立失败项，不重复判实时更新错误。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\canonical-partial-boundaries075-r1\\report.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-inventory-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "实际Tab/生产控件创建已采，但背包没有可见打开，同一打开实例内也没有生产库存新增。关闭拾取后再打开对照亦未新增/未显示，能定位前置缺失，不能检验实时监听算法；入口/拾取失败已有各自原项，实时更新本项未验证。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "7.1",
+      "check": "两个客户端分别拾取，背包与提示均只属于各自玩家",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "四个不同物品及顺序场景已运行，但候选没有各自成功入库、背包显示和成功提示的基线。无法检验玩家间归属隔离；全空结果不是隔离通过，也没有串端的直接反例。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-ownership-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\network-facts-u7-r2-ds-031-035\\interaction-deepseek--v3-network_inventory_ownership--1.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "本轮四个不同物品/顺序场景已实际运行，尚无各自成功入库/显示/成功提示基线；不能以全空证明归属隔离，也未观察到串端反例。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "7.2",
+      "check": "重复打开界面不增加播报次数",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "Tab 请求实际成立，候选背包却未可见打开，也未形成一次成功播报。重复打开后的播报去重依赖这些前置，不能以始终零播报证明正确或认定重播算法失败。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-ownership-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\network-facts-u7-r2-ds-031-035\\interaction-deepseek--v3-network_inventory_ownership--1.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "实际 Tab 请求成立但背包未可见打开，且无已有成功播报基线；不把零播报当重复打开无重播通过。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "7.3",
+      "check": "失败交互不出现成功提示",
+      "weight": 2,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "失败端没有成功提示已有观察，但同场没有真实获胜者及成功提示正控，单人收集也失败。候选成功链未通使通知正反例无法对照；未发现失败端误报成功的直接反例。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\canonical-partial-boundaries075-r1\\report.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-network-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "失败输入后的成功提示为空已有实际观测，但同次没有真实获胜者与成功提示正控，独立单人收集也失败。不能以全局均无提示证明失败端通知正确；没有失败端冒出成功提示的直接反例，保持未验证。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "8.1",
+      "check": "交互中销毁目标无残留 Indicator 或失效访问",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "扫描后销毁、F 排队后而处理前销毁都观察到清理，但评测没有形成 Collect 已执行过程中才销毁目标的精确时序。已有证据不能代替原要求，也不能据此判候选残留或失效访问。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-target-batch001.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\actor-facts-u7-r3-ds-045-050\\interaction-deepseek--v3-target_invalidation--2.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "扫描后销毁及F排队后、实际处理前销毁均观察到清理。没有记录到生产Collect已经执行过程中才触发Destroy；不以同帧入队时序替代原“交互中销毁”要求。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "8.3",
+      "check": "退出/重进地图不产生重复回调、提示或能力授予",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "mixed",
+      "reason": "两轮真实旅行已清除旧世界，但候选初始成功拾取和 Toast 前置未形成；评测也缺少旧回调及能力授予逐身份退出的完整记录。重进后拾取仍失败不能扩展成旅行重复授予的结论。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\formal-adjudication-u7-r2\\interaction-deepseek-map-batch002.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\actor-facts-u7-r2-ds-map002\\interaction-deepseek--v3-map_reentry_lifecycle--2.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "原8.3仅旅行清理/不重复；未获得重复回调/提示/授予的必要反例。更宽case第二断言失败不能扩展为8.3扣分。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.2",
+      "check": "不同类别按触发顺序展示，异步乱序完成不改变显示顺序",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "不同类别按实际触发顺序显示已有证据；候选采用同步查行及加载，没有生产异步完成回调。冻结证据计划要求的冷资源与真实 pending 反转未形成，属于评测场景适配缺口，不证明同步实现错误。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\accolades-formal-u7-r1\\async-order-scope-independent-r1\\final-scope-addendum-r2.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\standards\\lyra-feature-suite\\v2\\reference\\rubric-evidence-plan.md",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "当前正式045已证实两类荣誉按实际触发顺序显示；冻结交付使用同步查行/加载，没有这条生产异步完成回调路径。原冻结证据计划仍明确要求首项冷资源与真实pending async反转，实际未形成，故4.2保留未验证；不是同步实现失败，不将热加载正常显示冒充异步抗乱序通过。",
+      "model": "deepseek"
+    },
+    {
+      "feature": "context-effects",
+      "id": "1.2",
+      "check": "Trace 通道/终点偏移/忽略拥有者/物理材质正确，无命中安全",
+      "weight": 5,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "标准未明确偏移采用世界轴还是插槽轴；评测的竖直地面射线未证明候选旋转射线具备有效命中正控。六次调用均安全返回但全未命中，不能据此判 Trace 实现错误或完整通过。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch003-trace-conversion.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch011-trace-transition-sequences.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "Original world-axis versus socket-axis convention is unspecified; the independent vertical ground ray did not prove the candidate rotated-ray positive control. Actual six calls safely return once, but all observed candidate hits were false. Independent surface-conversion counterexamples do not retroactively establish this trace offset/channel/owner/material success-to-miss conjunction.",
+      "model": "deepseek"
+    },
+    {
+      "feature": "context-effects",
+      "id": "1.4",
+      "check": "插槽/位置旋转/VFX 缩放/音量/音高确实改变结果",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "undetermined",
+      "reason": "六组参数对照均执行，但缺少完整可归属声画对照；缩放试验选择了未配置 Niagara 的 Default，音高两次运行的动作姿态也不同。无输出与这些测量条件交织，现有证据不足以单独归因。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch-parameter-socket-r1.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch-parameter-location-r1.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch-parameter-scale-r1.json",
+          "note": "缩放对照未获得可归属的脚步特效输出"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch-parameter-pitch-r1.json",
+          "note": "原始有脚步音源、改参运行无目标音源，未构成受控音高声学对照"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原项备注明确 Default 未配置 Niagara、音高对照动作姿态不同；不足以确定唯一原因"
+        }
+      ],
+      "original_notes": "All six own baseline/changed pairs actually ran with a single public field changed and untouched candidate files. Component fields provide only the recorded subfacts. No complete corresponding source/output visual and audible comparison exists for all six properties; scale uses Default/Walk with no configured Niagara. Pitch baseline has two actual Waves but changed run has no target audio and different actual motion/posture; no unique Pitch causality is asserted. No extra human-audition prerequisite is invented: these own pairs simply lack a measured complete output comparison.",
+      "model": "deepseek"
+    },
+    {
+      "feature": "context-effects",
+      "id": "2.4",
+      "check": "未映射表面/Trace 失败不保留上次标签，空配置安全",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "已用独立物理查询确认有效命中及映射，再执行未映射、未命中和恢复序列，但候选初始正确选择始终未成功。因此无法验证成功之后的旧标签清除；恢复选取失败另归原 1.3 项。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch011-trace-transition-sequences.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch003-trace-conversion.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "Each public sequence retains its actual mapped-positive input then miss/unmapped/empty/restoration. Candidate successful selection never occurs at its required initial stage, so removal of a previously successful tag cannot be established. Safe empty branches are positive subfacts; empty-restoration correct-selection failure is retained under1.3 and its original variant rather than misrepresented as demonstrated stale-tag retention.",
+      "model": "deepseek"
+    },
+    {
+      "feature": "context-effects",
+      "id": "3.3",
+      "check": "销毁/重生/重进关卡清除注册，无持续增长失效组件缓存",
+      "weight": 4,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "五轮真实切图清除了旧世界并保持一个有效注册；替换测试未销毁旧 Pawn，其注册增加不能视为泄漏。评测缺少有效敌对角色，正常战斗死亡及重生未形成，完整生命周期仍未验证。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch008-lifecycle.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\dispatch\\context-effects-deepseek--lifecycle-combat\\receipt.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "Five actual travel cycles remove old world/pawn and keep one current valid registration; replacement uses Controller.Reset/UnPossess and leaves valid old pawns, so registration1-to6 is not invalid-cache leakage. Observed invalid/audio/Niagara caches are zero. Required production combat death/respawn stimulus was blocked by absence of a valid opposing role; replacement does not substitute for destruction. Full original lifecycle conjunction is therefore infrastructure-blocked, not a demonstrated leak.",
+      "model": "deepseek"
+    },
+    {
+      "feature": "context-effects",
+      "id": "4.3",
+      "check": "公开变量/接口、原类及资源路径保持兼容，B_Hero_Default 引用有效",
+      "weight": 1,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "当前类、接口参数、资源和 Hero 加载编译已有正向证据，但评测没有解码原基线全部公开变量的类型，也未证明其字节等价。只有名称和当前类型不足以完成兼容性对照，未发现不兼容反例。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\dispatch\\context-effects-deepseek--graph-u6\\receipt.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\evidence\\context-effects-deepseek\\vr1-u8-ce-graph\\details\\ce_blueprint_graph_u6.jsonl",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "Actual original Actor parent/interface, resource path,12 interface parameters and unchanged saved Hero source bytes/current successful Hero load/compile are positive facts. Baseline public-variable type schema is not decoded or verified byte-equivalent; current native16 names/types plus baseline names are insufficient to prove all original public variables kept their types. No incompatibility is invented, and no new UE readback is run.",
+      "model": "deepseek"
+    },
+    {
+      "feature": "context-effects",
+      "id": "4.4",
+      "check": "B_FootStep 接口事件驱动可观察 Niagara，左右脚/命中法线实际生效",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "mixed",
+      "reason": "候选保存地图缺少 Concrete/Glass 地面，相关动作无法开始；已执行的 Default 动作又未证实 B_FootStep 接收调用及脚部特效。候选前置和运行取证均有缺口，不能把已确认的断线直接当成本项运行反例。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch004-walk-savedbootstrap.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch005-land-surfaces.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "Natural typed animation Notify and normal production inputs are actual, but the runtime B_FootStep interface receiver invocation and its left/right/normal Niagara output were not established. Default sound absence is an independently supported required-feedback counterexample; Default does not configure Niagara. The disconnected saved B_FootStep graph fails4.1 but does not by itself establish that this exact graph received a runtime call. Neither a missing delegate diagnostic nor generic component output is substituted for the original receiver/visual predicate.",
+      "model": "deepseek"
+    },
+    {
+      "feature": "context-effects",
+      "id": "6.3",
+      "check": "正常角色移动、死亡/重生及无关武器反馈未受影响",
+      "weight": 4,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "十二个生产移动、跳跃及射击窗口已记录正常移动、弹药减少和枪声音源，但评测缺少有效敌对角色，正常战斗死亡及重生未执行。公共回归的这一必要部分不能由替换 Pawn 或切图替代。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\deepseek-independent-r1\\batch008-lifecycle.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\dispatch\\context-effects-deepseek--lifecycle-combat\\receipt.json",
+          "note": "原评分项引用的独立裁定或直接事实记录"
+        }
+      ],
+      "original_notes": "Twelve real production movement/jump/fire windows across replacement and travel show movement, ammo decrement and owned pistol audio. Original public combat death/respawn is separately unformed because no valid opposing role was available; this necessary part of the original regression item remains infrastructure-blocked. No unrelated UI requirement or all-variants-pass condition is added.",
+      "model": "deepseek"
+    },
+    {
+      "feature": "interaction",
+      "id": "8.1",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "销毁发生在 F 已排队、Collect 尚未启动时，验证了处理前的安全性；评测未形成生产能力执行过程中再销毁目标的精确时序，无法判断原要求。",
+      "check": "交互中销毁目标无残留 Indicator 或失效访问",
+      "source_notes": "原“交互中”及标准actions另列“交互处理中”未形成：148只有真实F已排队、同frame销毁、activation_delta0。已证明处理前安全，未证明能力处理过程中销毁；与DS/Opus同口径保留未验证，无新增运行。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / interaction / 8.1 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\gpt6-formal-independent-r1\\batch013-formal147-149.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "原“交互中”及标准actions另列“交互处理中”未形成：148只有真实F已排队、同frame销毁、activation_delta0。已证明处理前安全，未证明能力处理过程中销毁；与DS/Opus同口径保留未验证，无新增运行。"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.1",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "正在显示的低档替换已有成功证据；等待队列试验停在安全落点前置，另一轮高档到达已太晚，未形成等待项及迟到回调的指定场景。",
+      "check": "同类高档替换正在显示/等待的低档，旧项不复活，单位置一次一项",
+      "source_notes": "Displayed-low replacement succeeds042. Actual waiting-low replacement043 is rejected at first safe-parking precondition;044 high arrives after opacity zero.046 suppresses low during pending load but does not demonstrate the separately prescribed waiting queue plus released late callback. Whole original4.1 remains unverified, not candidate failed.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / accolades / 4.1 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\accolades-formal-u7-r1\\facts-gpt6-042\\raw-extraction.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Displayed-low replacement succeeds042. Actual waiting-low replacement043 is rejected at first safe-parking precondition;044 high arrives after opacity zero.046 suppresses low during pending load but does not demonstrate the separately prescribed waiting queue plus released late callback. Whole original4.1 remains unverified, not candidate failed."
+    },
+    {
+      "feature": "accolades",
+      "id": "4.2",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "真实跨类别触发顺序及等待期间 GC 分支已有证据，但评测没有形成冷加载后跨类别异步逆序完成，不能据正常完成顺序证明乱序仍正确。",
+      "check": "不同类别按触发顺序展示，异步乱序完成不改变显示顺序",
+      "source_notes": "045 shows real Triple→Spree trigger order but cold4x request and reversed cross-category async completion are unformed.047 establishes a valid pending-resource GC survival branch. Neither substitutes for original4.2 deliberate reverse completion requirement.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / accolades / 4.2 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\accolades-formal-u7-r1\\facts-gpt6-042\\raw-extraction.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "045 shows real Triple→Spree trigger order but cold4x request and reversed cross-category async completion are unformed.047 establishes a valid pending-resource GC survival branch. Neither substitutes for original4.2 deliberate reverse completion requirement."
+    },
+    {
+      "feature": "accolades",
+      "id": "4.4",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "重生和切图各两轮已有清理及新奖励正例；菜单复测被 Online 前置与实际 Offline 界面不匹配阻断，待加载迟到回调、独立 HUD 重建等必要场景也未形成。",
+      "check": "HUD 重建/重生/切图/体验卸载清理回调、监听及旧提示",
+      "source_notes": "Two real death/respawn rounds and two normal world/Experience reload rounds have positive old-display cleanup and fresh-award observations (054/055).067 has one real menu rebuild with a fresh visible award, but the second return is blocked by the frozen Online precondition against actual Offline Host UI. Separately, all three variants lack the declared new pending-load/late-callback premise; no isolated HUD-only reconstruction or independent same-world Experience-switch proof is invented. The original per-scenario minimum two rounds and full cleanup conjunction are not established.4.4 is not_run, not attributed entirely to the menu fault or scored as a candidate failure.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / accolades / 4.4 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\accolades-formal-u7-r1\\facts-gpt6-067\\raw-extraction.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Two real death/respawn rounds and two normal world/Experience reload rounds have positive old-display cleanup and fresh-award observations (054/055).067 has one real menu rebuild with a fresh visible award, but the second return is blocked by the frozen Online precondition against actual Offline Host UI. Separately, all three variants lack the declared new pending-load/late-callback premise; no isolated HUD-only reconstruction or independent same-world Experience-switch proof is invented. The original per-scenario minimum two rounds and full cleanup conjunction are not established.4.4 is not_run, not attributed entirely to the menu fault or scored as a candidate failure."
+    },
+    {
+      "feature": "accolades",
+      "id": "4.5",
+      "weight": 3,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "名称、图标和部分声音来源已有正例；截图触发额外 Slate 推进并叠加采样滞后，无法可靠归因显示时长。四连杀刺激也超出时间窗，不能判候选时长实现错误。",
+      "check": "名称/图标/声音/持续时间/显示位置在 HUD 中与资源一致，入场/离场可辨识",
+      "source_notes": "Six assigned awards (2x,3x,5,10,15,20) have correct actual name/icon, visible transition and same-cue recorded PCM source identity. Quadruple058 did not form because final adjacent gap4.9801534675>4.5. Exact display duration remains blocked by concretely evidenced screenshot-triggered Slate drawing/NeedsTick and actual sampling-phase lag; this is a measurement attribution limitation, not generic uncertainty or candidate-only failure. Fixed world clock/endpoints/.25 tolerance unchanged;060 is not selectively passed because its bracket falls inside tolerance. No qualification/032 behavior or old score is inherited.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / accolades / 4.5 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\accolades-formal-u7-r1\\gpt6-av-independent-r1\\baseline-expected.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Six assigned awards (2x,3x,5,10,15,20) have correct actual name/icon, visible transition and same-cue recorded PCM source identity. Quadruple058 did not form because final adjacent gap4.9801534675>4.5. Exact display duration remains blocked by concretely evidenced screenshot-triggered Slate drawing/NeedsTick and actual sampling-phase lag; this is a measurement attribution limitation, not generic uncertainty or candidate-only failure. Fixed world clock/endpoints/.25 tolerance unchanged;060 is not selectively passed because its bracket falls inside tolerance. No qualification/032 behavior or old score is inherited."
+    },
+    {
+      "feature": "context-effects",
+      "id": "1.4",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "十二次参数对照已执行并有实际对象及部分录音变化；图像不足以可靠对应粒子来源、位置和渲染年龄，音量及音高未完成听辨，完整视听对照仍缺证据。",
+      "check": "插槽/位置旋转/VFX 缩放/音量/音高确实改变结果",
+      "source_notes": "Twelve own formal processes establish all six single-property inputs and substantial actual output-object behavior. All364 saved capture PNGs were viewed as18 contact sheets; four Location originals were additionally viewed. Exact source/spatial particle identity and rendering-age correspondence are not established for geometry/scale; volume/pitch have measured source-fit changes but were not auditioned. Existing white-cloud separation cannot alone reject normal old smoke. No candidate failure is inferred from those observation gaps; no component field or AutomationSuccess replaces the original visible/audible comparison. Volume/Pitch assertion0 is independently passed by actual recorded changes; that does not fill the remaining visual/audible conjunction.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / context-effects / 1.4 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\model-review-handoff-r2\\context-effects-gpt6.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Twelve own formal processes establish all six single-property inputs and substantial actual output-object behavior. All364 saved capture PNGs were viewed as18 contact sheets; four Location originals were additionally viewed. Exact source/spatial particle identity and rendering-age correspondence are not established for geometry/scale; volume/pitch have measured source-fit changes but were not auditioned. Existing white-cloud separation cannot alone reject normal old smoke. No candidate failure is inferred from those observation gaps; no component field or AutomationSuccess replaces the original visible/audible comparison. Volume/Pitch assertion0 is independently passed by actual recorded changes; that does not fill the remaining visual/audible conjunction."
+    },
+    {
+      "feature": "context-effects",
+      "id": "3.3",
+      "weight": 4,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "五次世界重进的注册清理已有正例，但评测没有提供合法战斗对手，正常死亡重生未发生；替换 Pawn 保留旧对象，不能代替销毁与清理验证。",
+      "check": "销毁/重生/重进关卡清除注册，无持续增长失效组件缓存",
+      "source_notes": "Actual five-world travel cleanup and zero invalid caches are supported. Required combat death/rebirth cannot be established because no legal opponent was supplied; Reset replacement keeps old Pawns valid and does not substitute a destruction test.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / context-effects / 3.3 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\gpt6-independent-r1\\batch009-lifecycle-evidence.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Actual five-world travel cleanup and zero invalid caches are supported. Required combat death/rebirth cannot be established because no legal opponent was supplied; Reset replacement keeps old Pawns valid and does not substitute a destruction test."
+    },
+    {
+      "feature": "context-effects",
+      "id": "4.3",
+      "weight": 1,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "当前接口、资源路径及 Hero 引用已有证据，但读取工具未可靠解码原基线完整公开变量类型和标记，缺少兼容性对照；没有已确认的不兼容反例。",
+      "check": "公开变量/接口、原类及资源路径保持兼容，B_Hero_Default 引用有效",
+      "source_notes": "Own original/current interface 12 parameter types, class/resource paths and actual Hero FootStep binding are supported. Complete BASE public-variable VarType/flags schema cannot be read reliably (RawExport); current full16 variables alone cannot prove compatibility. No NameMap type guess or extra UE read performed.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / context-effects / 4.3 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\gpt6-independent-r1\\raw-tail-graph-controls\\report.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Own original/current interface 12 parameter types, class/resource paths and actual Hero FootStep binding are supported. Complete BASE public-variable VarType/flags schema cannot be read reliably (RawExport); current full16 variables alone cannot prove compatibility. No NameMap type guess or extra UE read performed."
+    },
+    {
+      "feature": "context-effects",
+      "id": "4.4",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "生产接口和资源链已执行，保存蓝图也有实质处理；现有画面无法可靠区分左右脚、命中法线及旧粒子残留，不能以组件字段代替可见效果验收。",
+      "check": "B_FootStep 接口事件驱动可观察 Niagara，左右脚/命中法线实际生效",
+      "source_notes": "Saved B_FootStep substantive data/exec graph and actual client production interface/resource chain are established. The unchanged standalone server-return branch is a mode limitation, not itself a candidate counterexample. Existing own PNG/PCM/particle evidence does not establish that B_FootStep itself drives the visible effect with distinguishable left/right/impact-normal response. Earlier white-cloud/current-foot separation cannot exclude valid older contact residue; this is not a position failure. Do not substitute Component outputs or setter values for the original visual predicate.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / context-effects / 4.4 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\gpt6-independent-r1\\batch003-walk-surface.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Saved B_FootStep substantive data/exec graph and actual client production interface/resource chain are established. The unchanged standalone server-return branch is a mode limitation, not itself a candidate counterexample. Existing own PNG/PCM/particle evidence does not establish that B_FootStep itself drives the visible effect with distinguishable left/right/impact-normal response. Earlier white-cloud/current-foot separation cannot exclude valid older contact residue; this is not a position failure. Do not substitute Component outputs or setter values for the original visual predicate."
+    },
+    {
+      "feature": "context-effects",
+      "id": "5.6",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "undetermined",
+      "reason": "所选保存验证地图确为非 Lyra GameMode，未形成 Hero 前后对照；但候选声明它供按键驱动测试 Actor，原要求未限定正常游戏基线必须用此图。评测固定选图与候选配置的责任未能分清，不能据此称所有正常游戏入口缺失。",
+      "check": "动画编辑器库/上下文/物理表面预览有效且不污染运行注册",
+      "source_notes": "按原窄项，三种更换维度的真实预览资源与部分实际声画正证保留，不额外要求36设置逐一人耳听辨；但本次前后正常Hero入口都未形成，缺少原项明确的随后游戏注册/效果对照，不能判不污染运行注册通过。也没有证据表明预览实际污染了游戏，所以不是failed。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / context-effects / 5.6 仅认定正常 Hero 前后对照未形成，保留 not_run"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\evidence\\context-effects-gpt6\\vr1-u8-ce-assets\\details\\ce_assets.jsonl",
+          "note": "第33行独立保存资源读回：L_ContextEffectsValidation 的 DefaultGameMode 是 Engine.GameModeBase"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\evidence\\context-effects-gpt6\\vr1-u8-ce-preview-walk\\details\\ce_walk_surface.jsonl",
+          "note": "第1、3行预览前后实际 Engine.GameModeBase/DefaultPawn，Hero 输入未就绪"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\evaluator\\context-effects-gpt6\\Plugins\\ContextEffectsEvaluator\\Source\\ContextEffectsEvaluator\\Private\\ContextEffectsV2ActorTests.cpp",
+          "note": "第121行固定 GlobalMapOverride 到验证地图；第123–127行支持显式独立生产 GameMode，当前预览运行未使用"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\evaluator\\context-effects-gpt6\\Benchmarks\\context-effects\\RESULTS.md",
+          "note": "第25、40行候选声明验证地图包含测试 Actor，以1/2等按键触发；不宣称该地图是正常Hero游戏入口"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\standards\\lyra-feature-suite\\v2\\cases\\context-effects.json",
+          "note": "第605–617行要求正常游戏角色基线及预览后游戏世界对照，但未限定只能使用该保存验证地图"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "按原窄项，三种更换维度的真实预览资源与部分实际声画正证保留，不额外要求36设置逐一人耳听辨；但本次前后正常Hero入口都未形成，缺少原项明确的随后游戏注册/效果对照，不能判不污染运行注册通过。也没有证据表明预览实际污染了游戏，所以不是failed。"
+    },
+    {
+      "feature": "context-effects",
+      "id": "6.3",
+      "weight": 4,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "正常移动、跳跃落地和武器反馈已有实际正例；战斗测试未提供合法对手，死亡重生分支未执行，因此公共行为回归的完整合取要求仍未验证。",
+      "check": "正常角色移动、死亡/重生及无关武器反馈未受影响",
+      "source_notes": "Actual public-map movement, ordered jump/landing, real ammo spending and unrelated weapon feedback are supported, particularly all travel rounds. Production death/rebirth remains explicitly setup-blocked; no process-success-only acceptance.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 gpt6 / context-effects / 6.3 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\gpt6-independent-r1\\batch009-lifecycle-evidence.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "gpt6",
+      "original_notes": "Actual public-map movement, ordered jump/landing, real ammo spending and unrelated weapon feedback are supported, particularly all travel rounds. Production death/rebirth remains explicitly setup-blocked; no process-success-only acceptance."
+    },
+    {
+      "feature": "interaction",
+      "id": "2.1",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "正常靠近及左右转向的提示同步已有正例；背包打开的远离变体中 S 未到达 PlayerInput，角色没有跨出范围。评测缺少有效远离动作，不能据持续提示判扫描错误。",
+      "check": "靠近/远离范围及转开视线，提示与触发许可同步变化",
+      "source_notes": "真实正常移动靠近跨入、左右转开/回正及提示/许可同步已形成；原item合取的正常远离跨出在variant1因S未送达未形成。旧提示case为arrange不是正常移动，不能用其代替该必要方向；无确认扫描反例，保留not_run。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / interaction / 2.1 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\opus-formal-independent-r1\\batch015-formal090-093.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "真实正常移动靠近跨入、左右转开/回正及提示/许可同步已形成；原item合取的正常远离跨出在variant1因S未送达未形成。旧提示case为arrange不是正常移动，不能用其代替该必要方向；无确认扫描反例，保留not_run。"
+    },
+    {
+      "feature": "interaction",
+      "id": "5.2",
+      "weight": 6,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "三种合法配置变体均真实拾取，图标、定义和数量变化已有证据；名称元数据也改变，但评测未触发或采集 Tooltip 的 UI 名称，完整呈现要求未验证。",
+      "check": "在评估副本修改一种配置后，拾取所得名称、图标、定义及数量随配置改变，无写死分支",
+      "source_notes": "本轮三个合法配置变体均形成真实生产拾取：图标、定义与数量变化有实际数据/渲染证据。名称元数据随配置改变，但Tooltip未触发/采集，因此完整UI名称要求仍缺证据；不是配置无效或候选功能失败。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / interaction / 5.2 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\opus-formal-independent-r1\\batch005-formal061-063.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "本轮三个合法配置变体均形成真实生产拾取：图标、定义与数量变化有实际数据/渲染证据。名称元数据随配置改变，但Tooltip未触发/采集，因此完整UI名称要求仍缺证据；不是配置无效或候选功能失败。"
+    },
+    {
+      "feature": "interaction",
+      "id": "6.1",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "末态库存与图标对应已验证；计划未执行拾取前查看并关闭背包，空库存及不同新物品条件亦未完整形成，Tooltip 未采集。这些是该项动作与取证缺口。",
+      "check": "拾取前后打开背包，已有和新增条目准确，无缺漏/重复",
+      "source_notes": "真实最后打开时条目图标与三个库存实例对应成立；原前后打开/关闭及不同新物品流程不足，名称UI提示未触发，不因末态正确补成完整通过。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / interaction / 6.1 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\opus-formal-independent-r1\\batch008-formal071-075.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "真实最后打开时条目图标与三个库存实例对应成立；原前后打开/关闭及不同新物品流程不足，名称UI提示未触发，不因末态正确补成完整通过。"
+    },
+    {
+      "feature": "interaction",
+      "id": "6.2",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "保持背包打开时 F 被 UI 接收，评测未造成真实库存新增；关闭背包后拾取再打开的正控成功。缺少同一打开实例的新增刺激，不能判实时监听算法失效。",
+      "check": "保持背包打开时新增内容实时正确出现",
+      "source_notes": "UI保持打开期间没有真实库存新增。不能把UI合理接收F本身当监听故障；独立关闭拾取后打开正控通过，不补同实例实时更新。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / interaction / 6.2 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\opus-formal-independent-r1\\batch008-formal071-075.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "UI保持打开期间没有真实库存新增。不能把UI合理接收F本身当监听故障；独立关闭拾取后打开正控通过，不补同实例实时更新。"
+    },
+    {
+      "feature": "interaction",
+      "id": "7.2",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "成功拾取和提示已有正控，但候选 Tab 关闭及重开流程失败，后续输入一直留在已打开界面，无法形成重复打开周期；同实例未重播不能证明重开不重播。",
+      "check": "重复打开界面不增加播报次数",
+      "source_notes": "本轮有实际成功提示正控，但Tab关闭重开周期均未形成；无重播仅为同实例持续打开的观察，不能直接宣称重开不重播。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / interaction / 7.2 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\opus-formal-independent-r1\\batch012-formal081-084.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "同时核对同模型 interaction 6.3 的已确认 Tab 关闭/重开失败"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "本轮有实际成功提示正控，但Tab关闭重开周期均未形成；无重播仅为同实例持续打开的观察，不能直接宣称重开不重播。"
+    },
+    {
+      "feature": "interaction",
+      "id": "8.1",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "评测只在扫描后或 F 已排队而 Collect 尚未启动时销毁目标，未形成生产业务处理中的销毁时序；已观察的提前清理只能支持局部安全性。",
+      "check": "交互中销毁目标无残留 Indicator 或失效访问",
+      "source_notes": "原项明确交互中销毁目标。当前注入只在扫描后、或F已排队但Collect尚未启动时Destroy，没有形成生产业务处理中销毁；这两处无残留是部分证据，不能替代所需时序。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / interaction / 8.1 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\interaction\\opus-formal-independent-r1\\batch017-formal098-100.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "原项明确交互中销毁目标。当前注入只在扫描后、或F已排队但Collect尚未启动时Destroy，没有形成生产业务处理中销毁；这两处无残留是部分证据，不能替代所需时序。"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.2",
+      "weight": 4,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "冷加载和跨类别逆序完成试验在任何击杀前就被测试装置的安全落点检查阻断；等待期间 GC 的成功分支不能代替指定逆序加载，队列算法仍未验证。",
+      "check": "不同类别按触发顺序展示，异步乱序完成不改变显示顺序",
+      "source_notes": "Original minimum real cold-first/reversed cross-category stimulus045 stopped before any kill due declared fixture safe-ground failure. No direct evidence of required reversed category loading; own047 legitimately passes only waiting-GC retention and cannot substitute. Candidate async queue code is not called a failure and no old score/qualification substitutes.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / accolades / 4.2 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\accolades-formal-u7-r1\\facts-opus55-045\\raw-extraction.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "Original minimum real cold-first/reversed cross-category stimulus045 stopped before any kill due declared fixture safe-ground failure. No direct evidence of required reversed category loading; own047 legitimately passes only waiting-GC retention and cannot substitute. Candidate async queue code is not called a failure and no old score/qualification substitutes."
+    },
+    {
+      "feature": "accolades",
+      "id": "4.5",
+      "weight": 3,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "六类荣誉的文字、图标和过渡画面已有证据；截图与 Slate 计时干扰未隔离，MetaSound 录音来源亦未充分归属，四连杀刺激超时。不能据此判静音或时长错误。",
+      "check": "名称/图标/声音/持续时间/显示位置在 HUD 中与资源一致，入场/离场可辨识",
+      "source_notes": "Six assigned targets (2x,3x,5,10,15,20) are actually generated and have matching saved text/material icon with top-HUD and real intro/stable/outro pixels. Quad058 was not formed: final adjacent kill gap4.9327881709>4.5. Exact timing is infrastructure_blocked: own screenshot captures, sampling phase/trajectory, native Slate-Delta accumulation versus Host world TimerManager and the actual engine screenshot→extra Paint/NeedsTick path expose a concrete measurement confound whose contribution is not isolated. Original world-clock endpoints, Opus display→outro/OutroCDO .3 phase semantics and .25 tolerance are retained; inside-range values do not selectively pass. Full own same-PID/world MetaSound PlayOrder/WAV and all three potential saved PCM comparisons remain insufficient to establish audible saved-cue identity; no silent/wrong-cue failure or hearing claim. Separately mapped replacement/lifecycle/resource failures are not used to replace this AV judgment. No old or qualification score is inherited.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / accolades / 4.5 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\accolades-formal-u7-r1\\opus55-av-independent-r1\\job056-semantic-review.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "Six assigned targets (2x,3x,5,10,15,20) are actually generated and have matching saved text/material icon with top-HUD and real intro/stable/outro pixels. Quad058 was not formed: final adjacent kill gap4.9327881709>4.5. Exact timing is infrastructure_blocked: own screenshot captures, sampling phase/trajectory, native Slate-Delta accumulation versus Host world TimerManager and the actual engine screenshot→extra Paint/NeedsTick path expose a concrete measurement confound whose contribution is not isolated. Original world-clock endpoints, Opus display→outro/OutroCDO .3 phase semantics and .25 tolerance are retained; inside-range values do not selectively pass. Full own same-PID/world MetaSound PlayOrder/WAV and all three potential saved PCM comparisons remain insufficient to establish audible saved-cue identity; no silent/wrong-cue failure or hearing claim. Separately mapped replacement/lifecycle/resource failures are not used to replace this AV judgment. No old or qualification score is inherited."
+    },
+    {
+      "feature": "context-effects",
+      "id": "1.4",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "参数对照已执行且各组有实际音频输出，但所选 Default/Walk 场景没有 Niagara，无法观察缩放；相对旋转未直接采样，音量及音高缺实际听辨。场景和采集未覆盖完整参数效果。",
+      "check": "插槽/位置旋转/VFX 缩放/音量/音高确实改变结果",
+      "source_notes": "Original 1.4/evidence-plan97 requires each field’s actual visible/audible contrast plus component parameters. The 12 own actual processes prove normal input and substantial real object-parameter subpredicates, but Default/Walk has no Niagara for scale/visible geometry, relative rotation is not directly sampled, and volume/pitch audible results are not established by the numerical diagnostics. Do not mark candidate failure merely for these missing scenario/observation prerequisites. Do not promote AutomationSuccess or field values to full acceptance.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / context-effects / 1.4 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\opus-parameter-independent-r1\\facts.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "Original 1.4/evidence-plan97 requires each field’s actual visible/audible contrast plus component parameters. The 12 own actual processes prove normal input and substantial real object-parameter subpredicates, but Default/Walk has no Niagara for scale/visible geometry, relative rotation is not directly sampled, and volume/pitch audible results are not established by the numerical diagnostics. Do not mark candidate failure merely for these missing scenario/observation prerequisites. Do not promote AutomationSuccess or field values to full acceptance."
+    },
+    {
+      "feature": "context-effects",
+      "id": "3.3",
+      "weight": 4,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "五次世界重进显示有效注册清理；战斗测试没有合法对手，死亡重生未发生，替换 Pawn 又保留旧对象。评测未形成必要销毁场景，不能据此认定缓存泄漏。",
+      "check": "销毁/重生/重进关卡清除注册，无持续增长失效组件缓存",
+      "source_notes": "Five real world reentries clear to one valid registration and zero invalid component caches; replacements retain valid old Pawns and do not prove destruction. The necessary normal combat death/respawn branch was blocked by no legal target. This is not a candidate leak verdict; potential independent native destruction evidence cannot silently substitute complete normal lifecycle coverage.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / context-effects / 3.3 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\opus55-independent-r1\\batch007-lifecycle-evidence.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "Five real world reentries clear to one valid registration and zero invalid component caches; replacements retain valid old Pawns and do not prove destruction. The necessary normal combat death/respawn branch was blocked by no legal target. This is not a candidate leak verdict; potential independent native destruction evidence cannot silently substitute complete normal lifecycle coverage."
+    },
+    {
+      "feature": "context-effects",
+      "id": "4.3",
+      "weight": 1,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "当前接口、类和资源路径及 Hero 调用已有局部证据；原基线的完整公开变量类型未可靠解码，无法完成类型兼容对照，没有据此发现候选不兼容。",
+      "check": "公开变量/接口、原类及资源路径保持兼容，B_Hero_Default 引用有效",
+      "source_notes": "当前接口/类与资源路径、Hero调用有有界正证；原BASE完整公开变量类型未可靠解码，不能以名称或12参数替代完整兼容性。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / context-effects / 4.3 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\opus55-independent-r1\\raw-tail-graph\\report.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "当前接口/类与资源路径、Hero调用有有界正证；原BASE完整公开变量类型未可靠解码，不能以名称或12参数替代完整兼容性。"
+    },
+    {
+      "feature": "context-effects",
+      "id": "4.4",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "网络客户端的 Hero 接口、左右脚和命中字段及 Niagara 对象已有正例，但现有帧不能可靠辨认足印位置和命中法线表现，缺的是可见效果取证。",
+      "check": "B_FootStep 接口事件驱动可观察 Niagara，左右脚/命中法线实际生效",
+      "source_notes": "自身网络client真实Hero→B_FootStep接口/左右脚及HitResult字段和NS_Footsteps对象有正证；保存图有命中法线/位置数据链。已看原帧不能可靠区分实际足印左右脚/命中法线表现，组件/图不能代替必要可见效果。单机BASE IsServer分支不生成FootStep属于原设计，未据此误判候选失败。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / context-effects / 4.4 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\opus55-independent-r1\\batch003-walk-savedbootstrap.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "自身网络client真实Hero→B_FootStep接口/左右脚及HitResult字段和NS_Footsteps对象有正证；保存图有命中法线/位置数据链。已看原帧不能可靠区分实际足印左右脚/命中法线表现，组件/图不能代替必要可见效果。单机BASE IsServer分支不生成FootStep属于原设计，未据此误判候选失败。"
+    },
+    {
+      "feature": "context-effects",
+      "id": "4.6",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "Walk 的非空重复应用稳定已有正例；Land 因候选生成问题变成零 Notify，重复结果仅为零到零。缺少有效初次生成，无法验证两份动画的完整幂等性。",
+      "check": "同一动画重复 Apply 后 Notify 数量/时间/参数稳定，无重复叠加",
+      "source_notes": "Walk nonzero repeat stability passes. Land is0-to0 after actual Apply and two fresh reads; the original explicit zero-output exclusion leaves the full two-animation idempotence requirement unverified. There is no observed non-idempotence or lost-save counterexample.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / context-effects / 4.6 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\ce-u8-gpt-opus-modifier-dependency-independent-r1\\opus55-FootstepEffectTagModifier.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "同时核对同模型 context-effects 4.5：Land 未生成有效 ContextFX 事件"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "Walk nonzero repeat stability passes. Land is0-to0 after actual Apply and two fresh reads; the original explicit zero-output exclusion leaves the full two-animation idempotence requirement unverified. There is no observed non-idempotence or lost-save counterexample."
+    },
+    {
+      "feature": "context-effects",
+      "id": "6.3",
+      "weight": 4,
+      "original_status": "infrastructure_blocked",
+      "category": "evaluation_gap",
+      "reason": "多次切图后的移动、跳跃落地和武器输入有正例；战斗测试未创建对手，正常死亡重生未发生，替换后部分动画与武器画面亦未采全，不能归为候选回归。",
+      "check": "正常角色移动、死亡/重生及无关武器反馈未受影响",
+      "source_notes": "Actual normal movement, jump/land and unrelated weapon input after five travels have positive evidence. The combat fixture created no opposing target and therefore did not exercise normal death/respawn. Replacement later-Pawn animation/visible-weapon gap is separately unverified, not assumed to be caused by this candidate.",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "原评分 opus55 / context-effects / 6.3 的 notes、状态和权重"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\review\\context-effects-formal-u8\\opus55-independent-r1\\batch007-lifecycle-evidence.json",
+          "note": "原评分引用的独立裁定或事实记录"
+        }
+      ],
+      "model": "opus55",
+      "original_notes": "Actual normal movement, jump/land and unrelated weapon input after five travels have positive evidence. The combat fixture created no opposing target and therefore did not exercise normal death/respawn. Replacement later-Pawn animation/visible-weapon gap is separately unverified, not assumed to be caused by this candidate."
+    },
+    {
+      "feature": "interaction",
+      "id": "1.2",
+      "weight": 2,
+      "original_status": "not_run",
+      "category": "undetermined",
+      "reason": "两地图公共操作已成功；原裁定因背包未打开、第二变体前提未成立而保留未知，但旧三模型明确不要求先开关背包。该前提是否属于原项必要条件存在评分口径差异，暂不能单方归为候选或评测原因，待统一口径复核。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/1.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\common-controls-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261023-three-model-unified-v1\\final-four-models-r1\\comparison.json",
+          "note": "models[deepseek/gpt6/opus55].features[interaction].items[1.2].notes 明确无背包开关前置要求"
+        }
+      ],
+      "review_note": "存在评分范围不一致的直接证据：同一 comparison.json 中 DeepSeek、GPT-6、Opus 的 1.2 notes 明确原项不要求先成功开关背包，也不要求所有正例来自同一 variant；5.6 的 common-controls-review 已确认两地图公共操作成功，却以第二 variant 背包前提缺失保留整项 not_run。因此本次原因归为 undetermined，原状态和 2 分权重不变，须按同一原项口径复核，未必需要先修候选。",
+      "model": "gpt56sol",
+      "check": "移动、视角、武器、独立地图及标记操作保留",
+      "original_notes": "公共操作首variant两地图全部成功；第二variant四次Tab送达后InventoryUI从未打开，故原先打开关闭背包后的干扰前提尚未实测。已测公共操作成功不受缺失背包否定，但不足严格整项覆盖。"
+    },
+    {
+      "feature": "interaction",
+      "id": "2.2",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "几何与输入操作已执行，但本用例没有成功的合法拾取正例，交互能力及保存模板缺失；因此零库存无法区分正常拒绝与功能根本未启动，遮挡和超距拒绝算法仍未验证。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/2.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\runtime-preconditions-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "遮挡、墙后及超距离请求均不能拾取",
+      "original_notes": "本用例自身没有成功的合法拾取正例；没有库存变化不能证明遮挡/超距拒绝有效。保留几何、按键和各故障原始观察，核心安全断言未验证。 已闭合独立执行: interaction-r1-occlusion_distance_requests--1-segment1, interaction-r1-occlusion_distance_requests--2-segment1, interaction-r1-occlusion_distance_requests--3-segment1, interaction-r1-occlusion_distance_requests--3-segment2, interaction-r1-occlusion_distance_requests--4-segment1"
+    },
+    {
+      "feature": "interaction",
+      "id": "2.3",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "目标失效场景已运行，但候选从未产生有效交互能力、选项或目标提示，也无稳定目标正例；没有可撤销的提示，无法验证失去资格后的清理，不能把始终不显示视为清理成功。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/2.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\runtime-preconditions-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "目标销毁/失去资格及时撤提示；快速状态变化不留旧目标",
+      "original_notes": "本用例自身未产生有效交互能力、选项或目标Indicator，也无成功的稳定目标正例；不能把始终无提示当成销毁/失去资格后及时撤提示，相关清理与失效访问核心断言未验证。 已闭合独立执行: interaction-r1-target_invalidation--1-segment1, interaction-r1-target_invalidation--2-segment1, interaction-r1-target_invalidation--3-segment1"
+    },
+    {
+      "feature": "interaction",
+      "id": "4.1",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "专服与客户端已完成输入、同步屏障和终态观察，单客户端正向对照也未成功拾取；候选缺少有效交互选项和物品模板，未形成真实竞争，零成功数不能验证只记一次成功。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/4.1：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\network-formal-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "服务器与两个客户端竞争同一对象，只记一次成功",
+      "original_notes": "已完成 12/12 个独立网络场景的过程核验。区分已送达F的场景与different_items配置前置失败、未释放屏障的场景；候选有效拾取正例和生产UI未建立，零结果不能证明竞争/归属/去重/失败Toast规则。初始步枪复制与F后拾取事件分开。"
+    },
+    {
+      "feature": "interaction",
+      "id": "4.2",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "重复请求与多人输入场景已执行，但候选缺少有效选项或可用模板，合法拾取正例未建立；因此没有新增物品不能证明去重正确，也无法裁定只有胜者获得物品。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/4.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\network-formal-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "快速重复 F 或重复请求不会重复加物品，仅获胜者获得物品",
+      "original_notes": "已完成 12/12 个独立网络场景的过程核验。区分已送达F的场景与different_items配置前置失败、未释放屏障的场景；候选有效拾取正例和生产UI未建立，零结果不能证明竞争/归属/去重/失败Toast规则。初始步枪复制与F后拾取事件分开。"
+    },
+    {
+      "feature": "interaction",
+      "id": "4.3",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "网络角色完成了场景与终态观察，但候选未产生有效拾取及其状态变化；初始步枪复制仅是基线，不能替代拾取后的场景同步证据，失败端恢复显示的行为仍未验证。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/4.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\network-formal-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "所有客户端场景状态一致，失败端不永久隐藏对象",
+      "original_notes": "已完成 12/12 个独立网络场景的过程核验。区分已送达F的场景与different_items配置前置失败、未释放屏障的场景；候选有效拾取正例和生产UI未建立，零结果不能证明竞争/归属/去重/失败Toast规则。初始步枪复制与F后拾取事件分开。"
+    },
+    {
+      "feature": "interaction",
+      "id": "5.2",
+      "weight": 6,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "名称图标、定义和数量三种变体均执行了输入，但候选保存的物品模板为空，使配置准备返回失败；未形成修改配置后的有效拾取，传播与无写死分支不可裁定，记录明确非基础设施故障。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/5.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\configuration-preconditions-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "在评估副本修改一种配置后，拾取所得名称、图标、定义及数量随配置改变，无写死分支",
+      "original_notes": "原配置正例未成功；名称图标/定义/数量三个独立变体均完成输入操作但因实际Templates为空而configure_pickup=false。配置变化传播及无写死分支未验证，候选前置缺失而非基础设施错误。"
+    },
+    {
+      "feature": "interaction",
+      "id": "6.2",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "各次 Tab 和 F 已送达，但候选从未打开背包界面，也没有成功新增库存；保持背包打开并拾取这一前提未成立，无法观察实时刷新，不能据此判刷新算法正确或错误。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/6.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\runtime-preconditions-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "保持背包打开时新增内容实时正确出现",
+      "original_notes": "实际Tab与F送达，但InventoryUI从未打开且没有成功的新增库存；未建立“保持背包打开时新增”的前提，实时更新算法未验证。 已闭合独立执行: interaction-r1-inventory_live_update--1-segment1, interaction-r1-inventory_live_update--2-segment1, interaction-r1-inventory_live_update--3-segment1"
+    },
+    {
+      "feature": "interaction",
+      "id": "7.1",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "保存的拾取模板为空，权威端无法准备两种有效物品，未生成配置文件或释放后续屏障；候选的有效拾取与界面前提缺失，两个玩家分别获得物品及提示隔离未被实际检验。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/7.1：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\network-formal-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "两个客户端分别拾取，背包与提示均只属于各自玩家",
+      "original_notes": "已完成 12/12 个独立网络场景的过程核验。区分已送达F的场景与different_items配置前置失败、未释放屏障的场景；候选有效拾取正例和生产UI未建立，零结果不能证明竞争/归属/去重/失败Toast规则。初始步枪复制与F后拾取事件分开。"
+    },
+    {
+      "feature": "interaction",
+      "id": "7.2",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "归属测试的四个变体因候选物品模板为空而停在配置准备，且生产背包界面始终未成立；未形成有效拾取后的反复开关与播报对照，零播报不能验证重复打开不增加次数。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/7.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\network-formal-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "重复打开界面不增加播报次数",
+      "original_notes": "已完成 12/12 个独立网络场景的过程核验。区分已送达F的场景与different_items配置前置失败、未释放屏障的场景；候选有效拾取正例和生产UI未建立，零结果不能证明竞争/归属/去重/失败Toast规则。初始步枪复制与F后拾取事件分开。"
+    },
+    {
+      "feature": "interaction",
+      "id": "7.3",
+      "weight": 2,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "网络运行未建立成功拾取与生产提示正例，部分归属变体还因空模板止于准备；无法在有效提示系统中比较成功和失败交互，始终没有提示不能证明失败时不会误报成功。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/7.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\network-formal-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "失败交互不出现成功提示",
+      "original_notes": "已完成 12/12 个独立网络场景的过程核验。区分已送达F的场景与different_items配置前置失败、未释放屏障的场景；候选有效拾取正例和生产UI未建立，零结果不能证明竞争/归属/去重/失败Toast规则。初始步枪复制与F后拾取事件分开。"
+    },
+    {
+      "feature": "interaction",
+      "id": "8.1",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "mixed",
+      "reason": "候选没有能力、选项或提示正例；同时销毁变体在同一驱动回调中排队 F 后、下一输入处理帧前销毁目标，未建立交互正在执行的时序。前置缺失与动作时序缺口并存，不能拆分该项权重。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/8.1：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\runtime-preconditions-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "review_note": "mixed 为本次归因附注：原运行审查仍将该场景归 candidate_prerequisite_absent。原始 setup_observations 另记录 F queued then Destroy before next input-processing frame，故不能把此次动作当作已覆盖交互执行中的销毁；无评分状态修改。",
+      "model": "gpt56sol",
+      "check": "交互中销毁目标无残留 Indicator 或失效访问",
+      "original_notes": "本用例自身未产生有效交互能力、选项或目标Indicator，也无成功的稳定目标正例；不能把始终无提示当成销毁/失去资格后及时撤提示，相关清理与失效访问核心断言未验证。 已闭合独立执行: interaction-r1-target_invalidation--1-segment1, interaction-r1-target_invalidation--2-segment1, interaction-r1-target_invalidation--3-segment1"
+    },
+    {
+      "feature": "interaction",
+      "id": "8.3",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "两轮真实离开和返回保存地图已完成，且各轮 F/Tab 送达；但初始及重进后均无交互能力、选项和背包，没有已建立的交互回调或提示可比较，零事件不能证明不存在重复残留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/interaction/items/8.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\interaction\\runtime-preconditions-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "退出/重进地图不产生重复回调、提示或能力授予",
+      "original_notes": "实际离开/返回保存地图两轮且每轮F/Tab送达，但最初与重进后均没有交互能力、选项或InventoryUI。世界旅行本身成立；没有建立交互回调/提示/授予正例，不能用零事件证明没有重复残留。 已闭合独立执行: interaction-r1-map_reentry_lifecycle--1-segment1, interaction-r1-map_reentry_lifecycle--2-segment1"
+    },
+    {
+      "feature": "context-effects",
+      "id": "1.4",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "六种参数的基准与变更共十二次运行均完成前置检查，但保存地图缺少 Concrete 物理地面，均在修改参数和触发动作前停止；交付场景不足阻断对照，参数语义本身仍未知。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/context-effects/items/1.4：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\context-effects\\production\\parameters-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "插槽/位置旋转/VFX 缩放/音量/音高确实改变结果",
+      "original_notes": "原6种参数baseline/changed共12次独立运行均闭合，但每次在候选保存地图缺Concrete物理地面的前置处停止；未修改参数、未触发动作或输出对照。记录已执行前置审查，参数效果保持未验证，不以0/0给分或额外判实现失败。"
+    },
+    {
+      "feature": "context-effects",
+      "id": "3.3",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "mixed",
+      "reason": "生产效果未形成非空缓存；评测战斗入口又未生成合法敌人，替换夹具只重启控制器而未销毁旧角色。虽有局部销毁和五次旅行正例，完整生命周期与失效缓存增长仍缺覆盖，不能按权重拆因。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/context-effects/items/3.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\context-effects\\production\\lifecycle-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\REPORT.zh-CN.md",
+          "note": "1.1/4.1 生产 Notify/FootStep 路径失败与 3.3 空效果缓存、未形成死亡/销毁动作须分别阅读，不能将后者一概归候选"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "销毁/重生/重进关卡清除注册，无持续增长失效组件缓存",
+      "original_notes": "Bounded Destroy/EndPlay core and five real travels provide positive registration evidence. Full production lifecycle/no-growing-invalid-effect-cache conjunction remains unverified: Combat never forms, replacement leaves old actors live, production active-effect caches stay empty."
+    },
+    {
+      "feature": "context-effects",
+      "id": "3.4",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "默认表面网络场景已形成真实动作与通知，专服无输出，但客户端也无候选脚步输出；其余八组因保存地面缺失止于动作前。零客户端输出不能检验双重转发去重，尚非网络算法已证实失败。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/context-effects/items/3.4：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\context-effects\\production\\network-all-twelve-review-r2.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "专服不生成声音/Niagara；客户端不因双重转发重复播放",
+      "original_notes": "原12网络取样与30角色进程全部闭合，required三模块/候选ShooterCore均匹配本轮r1。Default A的Dedicated/Listen Walk与Land均有真实角色、地面/落地顺序及Notify，DS动作期无声音/Niagara；客户端同样无脚步实际输出，不能用0输出证明双重转发去重正确。其余8个Concrete/Glass取样因候选保存物理地面缺失在动作前停止，维持未验证，不新增远端效果要求或把setup缺口当网络实现失败。"
+    },
+    {
+      "feature": "context-effects",
+      "id": "6.3",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "移动、跳跃和武器弹药变化已观察成功，但评测的机器人入口未产生可受伤的敌对目标，正常战斗死亡及重生未发生；缺失的是该回归场景的有效动作覆盖，未证明场景效果实现破坏了死亡重生。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/context-effects/items/6.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\context-effects\\production\\lifecycle-review-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "正常角色移动、死亡/重生及无关武器反馈未受影响",
+      "original_notes": "Actual movement/jump and weapon ammunition changes are positive evidence, but normal combat death/respawn never forms; no whole-item regression pass or failure is inferred."
+    },
+    {
+      "model": "gpt56sol",
+      "feature": "accolades",
+      "id": "1.5",
+      "check": "未配置阈值无替代奖励，不重复发已达到阈值，玩家离开记录可释放",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "缺档无替代/不重复、真实离场和新玩家独立计数均有正例；原观察器weak.IsValid在GC前已false，未测到对象实际回收，不能仅TObjectPtr/gc0认定泄漏，原整项记录可释放仍未验证。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-gpt56-accolades-tagfix-r1\\review\\early-000-040\\leave-030-031-semantic-r1.json",
+          "sha256": "cc89d52f7f6bea84bfc776cc37428c0d4fbd0542fefd64f93575f42969e15f75"
+        }
+      ]
+    },
+    {
+      "model": "gpt56sol",
+      "feature": "accolades",
+      "id": "4.1",
+      "check": "同类高档替换正在显示/等待的低档，旧项不复活，单位置一次一项",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "显示态替换已成立，但等待态安全地面/低请求、高Row取消及晚回调必要链没有形成；串行实现和未提供独立退出窗口不构成已确证的原项功能缺失。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-gpt56-accolades-tagfix-r1\\review\\accolades-independent-r1\\queue-cause-refinement-r2.json",
+          "sha256": "1e48a99fb6a9d98e60ed98e281d09e23c6507189627c786d83ecf30ab1c0f1fc"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-gpt56-accolades-tagfix-r1\\review\\accolades-independent-r1\\replacement042-044-semantic-r1.json",
+          "sha256": "1c0ab677728ac25d2c420b3463789a5d0bbc9f5bf3357546c38ae89984281e0d"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-gpt56-accolades-tagfix-r1\\review\\accolades-independent-r1\\async045-047-semantic-r1.json",
+          "sha256": "35523c351275467bc738fb1c8a2c25e6c23a4ee0ab8d67e1d9f49cbb412efe6c"
+        }
+      ]
+    },
+    {
+      "model": "gpt56sol",
+      "feature": "accolades",
+      "id": "4.2",
+      "check": "不同类别按触发顺序展示，异步乱序完成不改变显示顺序",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "evaluation_gap",
+      "reason": "实际非空FIFO与GC存活有正例；受控逆序及两个实际候选callback身份/时序没有闭合。未用旧私有字段形状要求或必须并行加载的新条件判失败。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-gpt56-accolades-tagfix-r1\\review\\accolades-independent-r1\\async045-047-semantic-r1.json",
+          "sha256": "35523c351275467bc738fb1c8a2c25e6c23a4ee0ab8d67e1d9f49cbb412efe6c"
+        }
+      ]
+    }
+  ],
+  "retained_original_review_notes": [
+    {
+      "model": "gpt56sol",
+      "feature": "interaction",
+      "id": "1.2",
+      "note": "存在评分范围不一致的直接证据：同一 comparison.json 中 DeepSeek、GPT-6、Opus 的 1.2 notes 明确原项不要求先成功开关背包，也不要求所有正例来自同一 variant；5.6 的 common-controls-review 已确认两地图公共操作成功，却以第二 variant 背包前提缺失保留整项 not_run。因此本次原因归为 undetermined，原状态和 2 分权重不变，须按同一原项口径复核，未必需要先修候选。"
+    },
+    {
+      "model": "gpt56sol",
+      "feature": "interaction",
+      "id": "8.1",
+      "note": "mixed 为本次归因附注：原运行审查仍将该场景归 candidate_prerequisite_absent。原始 setup_observations 另记录 F queued then Destroy before next input-processing frame，故不能把此次动作当作已覆盖交互执行中的销毁；无评分状态修改。"
+    }
+  ],
+  "raw_gpt56_accolades_rows": [
+    {
+      "feature": "accolades",
+      "id": "1.1",
+      "weight": 6,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/1.1：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "0/4/8/12 秒相邻击杀产生 2/3/4；4.5 包含，大于 4.5 重置",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "1.2",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/1.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "5/10/15/20 存活阈值各一次，死亡后重新计数",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "1.3",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/1.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "自杀不加分且重置；无攻击者死亡同样重置死者",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "1.4",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/1.4：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "A/B 交错击杀不串记录，两类可在同次击杀独立同时触发",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "1.5",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/1.5：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "未配置阈值无替代奖励，不重复发已达到阈值，玩家离开记录可释放",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "2.1",
+      "weight": 8,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/2.1：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "专服+两个客户端：服务器判定，仅获奖者 HUD 收到一次，专服不生成 UI/音效",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "2.2",
+      "weight": 6,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/2.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "Listen Server 本地玩家与远端各能获奖，不重复、不串通知",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "2.3",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/2.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "本地多玩家视图按 PlayerState/LocalPlayer 正确隔离",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "2.4",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/2.4：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "客户端不能伪造奖励；重发/无关玩家消息不会重复通知",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "3.5",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/3.5：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "交付蓝图在当前模块上独立编译成功；可打开且类型/路径兼容",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "3.6",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/3.6：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "Elimination 真实伤害/击杀至 HUD 的端到端链路工作",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "3.7",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/3.7：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "Control Points 同一注册链正常发奖，HUD/Experience 接入有效",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.1",
+      "weight": 5,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/4.1：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "同类高档替换正在显示/等待的低档，旧项不复活，单位置一次一项",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.2",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/4.2：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "不同类别按触发顺序展示，异步乱序完成不改变显示顺序",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.3",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/4.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "无效行/素材缺失/无效时长不堵后续，文字回退及低频诊断",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.4",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/4.4：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "HUD 重建/重生/切图/体验卸载清理回调、监听及旧提示",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "4.5",
+      "weight": 3,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/4.5：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "名称/图标/声音/持续时间/显示位置在 HUD 中与资源一致，入场/离场可辨识",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    },
+    {
+      "feature": "accolades",
+      "id": "5.3",
+      "weight": 4,
+      "original_status": "not_run",
+      "category": "candidate_prerequisite",
+      "reason": "新增 Chain/Streak 与既有 Assist 的静态标签重名，正常 Unity 构建失败，正式功能与当前模块蓝图编译未启动；非 Unity 副本仅供资源诊断。未修候选，业务行为仍未知；旧模型曾获同类修复的政策差异另行保留。",
+      "evidence": [
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\final-r4\\score.json",
+          "note": "features/accolades/items/5.3：原状态、权重和审查说明"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\build-failure-r1.json",
+          "note": "该项的独立审查，保留原始运行与前置条件证据"
+        },
+        {
+          "path": "D:\\ModelEvaluations\\20261025-claude-gpt56-sol-high\\a3\\review\\accolades\\comparison-limitations-r1.json",
+          "note": "旧 DeepSeek/GPT-6 曾获标识符修复，本组未修；因果分类不消除横向干预差异"
+        }
+      ],
+      "model": "gpt56sol",
+      "check": "比分/计分板、助攻、击杀播报与公共对局流程回归通过",
+      "original_notes": "正式normalUnity候选构建失败，未启动该功能/当前标准构建上的BP编译验收；source不变的单模块nonUnity只用于资产诊断，不能授予本项通过。保留not_run，不把未验行为判失败。"
+    }
+  ],
+  "weights_are_original_item_weights_not_bug_counts": true,
+  "boundary": "Cause categories explain unresolved original items and do not change any score/status. Previous GPT5679 unknown Accolades points are historical; current repaired causes are independently reviewed anew."
+}
